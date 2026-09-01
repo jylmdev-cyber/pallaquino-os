@@ -1,0 +1,43 @@
+name: Feature request
+description: Propón una capacidad o mejora para PALLAQUINO.
+title: "[Feature]: "
+labels: [enhancement, triage]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problema
+      description: ¿Qué necesidad concreta no está cubierta?
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Propuesta
+      description: Describe comportamiento, alcance y criterio de aceptación.
+    validations:
+      required: true
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternativas consideradas
+  - type: dropdown
+    id: area
+    attributes:
+      label: Área principal
+      options:
+        - CLI y automatización
+        - Agentes y skills
+        - Routing y evaluaciones
+        - Gobernanza y seguridad
+        - Stack y perfiles
+        - Documentación
+        - Otro
+    validations:
+      required: true
+  - type: textarea
+    id: risks
+    attributes:
+      label: Riesgos y compatibilidad
+      description: Breaking changes, seguridad, datos, dependencias y rollback.
+

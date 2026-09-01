@@ -1,9 +1,9 @@
 # Current task
 
-- ID: PAL-003
-- Objective: expand PALLAQUINO with web, cloud, distributed, data, mobile, AI and domain technology packs
-- Scope: agents, skills, technology catalog, stack profiles, compatibility, coverage, routing, gates, reference architectures and evaluations
+- ID: PAL-004
+- Objective: prepare PALLAQUINO as a complete public GitHub repository
+- Scope: root documentation, community health, CI, dependency automation, release guidance, local Git identity utility and 0.2.1 artifacts
 - Status: COMPLETE
 - Risk: MEDIUM
-- Acceptance: all references resolve, new routing goldens pass, catalog remains version-agnostic, and release archive validates
+- Acceptance: public files are complete, all validators and tests pass, Git identity remains local-only, and the release archive validates
 - Confidence: high

@@ -1,0 +1,64 @@
+name: Bug report
+description: Reporta un comportamiento reproducible de PALLAQUINO.
+title: "[Bug]: "
+labels: [bug, triage]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Gracias por reportarlo. No incluyas secretos ni vulnerabilidades; usa SECURITY.md para estas últimas.
+  - type: input
+    id: version
+    attributes:
+      label: Versión
+      placeholder: "0.2.1"
+    validations:
+      required: true
+  - type: input
+    id: environment
+    attributes:
+      label: Entorno
+      description: Sistema operativo y versión de Python.
+      placeholder: "Windows 11, Python 3.14.7"
+    validations:
+      required: true
+  - type: textarea
+    id: current
+    attributes:
+      label: Comportamiento actual
+      description: Describe el problema y pega salida sanitizada.
+    validations:
+      required: true
+  - type: textarea
+    id: steps
+    attributes:
+      label: Pasos para reproducir
+      placeholder: |
+        1. Ejecutar ...
+        2. Configurar ...
+        3. Observar ...
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: Comportamiento esperado
+    validations:
+      required: true
+  - type: textarea
+    id: context
+    attributes:
+      label: Contexto adicional
+      description: Logs sanitizados, capturas, regresión conocida o posibles causas.
+  - type: checkboxes
+    id: checks
+    attributes:
+      label: Verificaciones
+      options:
+        - label: Busqué Issues duplicados.
+          required: true
+        - label: Eliminé credenciales y datos sensibles.
+          required: true
+        - label: Este reporte no describe una vulnerabilidad de seguridad.
+          required: true
+

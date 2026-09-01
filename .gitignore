@@ -2,8 +2,20 @@ __pycache__/
 *.py[cod]
 .pytest_cache/
 .coverage
+.coverage.*
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
 .env
+.env.*
+!.env.example
 evidence/*.tmp
 dist/
+build/
 *.egg-info/
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
 

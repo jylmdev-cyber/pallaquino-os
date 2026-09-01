@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-01T04:07:00+00:00",
+  "generated_at": "2026-09-01T04:25:29+00:00",
   "root": "D:\\codex\\pallaquino-os\\universal_ai_fullstack_orchestrator",
   "modules": [
     {
@@ -246,6 +246,7 @@
     "changes/PAL-001.json",
     "changes/PAL-002.json",
     "changes/PAL-003.json",
+    "changes/PAL-004.json",
     "changes/README.md",
     "cli/pallaquino",
     "cli/README.md",
@@ -255,6 +256,7 @@
     "continuity/checkpoints/20260901T033819Z.json",
     "continuity/checkpoints/20260901T040539Z.json",
     "continuity/checkpoints/20260901T040659Z.json",
+    "continuity/checkpoints/20260901T042529Z.json",
     "continuity/HANDOFF.json",
     "continuity/HANDOFF_PROTOCOL.md",
     "continuity/SELF_EVALUATION.md",
@@ -384,6 +386,7 @@
     "release/VERSIONING_POLICY.md",
     "releases/0.1.0.json",
     "releases/0.2.0.json",
+    "releases/0.2.1.json",
     "repository/REPOSITORY_MAP.json",
     "repository/REPOSITORY_MAP.md",
     "risk/RISK_POLICY.md",
@@ -514,7 +517,8 @@
     "templates/ADR.md",
     "templates/CHANGE_MANIFEST.json",
     "tests/test_cli.py",
-    "tests/test_core.py"
+    "tests/test_core.py",
+    "tests/test_git_identity.py"
   ],
   "owners": {},
   "technologies": [
@@ -534,7 +538,8 @@
     "evidence/test-2026-09-01T04-04-56+00-00.json",
     "pipeline/gates/PROMPT_INJECTION_TEST.md",
     "tests/test_cli.py",
-    "tests/test_core.py"
+    "tests/test_core.py",
+    "tests/test_git_identity.py"
   ],
   "dependencies": [],
   "runtime_services": [],
@@ -542,13 +547,13 @@
     "pyproject.toml"
   ],
   "statistics": {
-    "files": 345,
+    "files": 349,
     "extensions": {
       "[none]": 3,
       ".md": 244,
-      ".json": 62,
+      ".json": 65,
       ".cmd": 1,
-      ".py": 34,
+      ".py": 35,
       ".toml": 1
     }
   }

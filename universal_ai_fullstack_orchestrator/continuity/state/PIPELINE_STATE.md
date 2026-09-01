@@ -1,13 +1,13 @@
 # Pipeline state
 
 - Status: complete
-- Updated: 2026-09-01 04:04 UTC
+- Updated: 2026-09-01 04:24 UTC
 - Confidence: high
 - Current stage: HANDOFF
-- Last confirmed stage: CHECKPOINT
-- Failed gates remediated: TEST test assertion corrected and full suite rerun
-- Git commit: 344620d3c6a614a5bc4744d2945693fd80773c70
-- Checkpoint: `continuity/checkpoints/20260901T033819Z.json`
+- Last confirmed stage: HANDOFF
+- Failed gates remediated: none
+- Git commit: pending PAL-004 final commit
+- Checkpoint: generated for PAL-004 after public repository validation
 - Handoff: `continuity/HANDOFF.json`
-- Release: PALLAQUINO 0.2.0 complete after final artifact commit
-- Next: adopt a selected profile only after official version audit
+- Release: PALLAQUINO 0.2.1 complete; public repository files and release artifact validated
+- Next: create the public GitHub remote, replace the documented owner/repository placeholders, enable branch protection and publish v0.2.1

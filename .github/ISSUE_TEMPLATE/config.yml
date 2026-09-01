@@ -1,0 +1,6 @@
+blank_issues_enabled: false
+contact_links:
+  - name: Reporte privado de seguridad
+    url: mailto:jylmdev@gmail.com?subject=%5BPALLAQUINO%20SECURITY%5D
+    about: No publiques vulnerabilidades en Issues.
+

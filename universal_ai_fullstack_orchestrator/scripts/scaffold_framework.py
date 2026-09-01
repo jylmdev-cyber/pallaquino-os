@@ -12,7 +12,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 TODAY = "2026-08-31"
-VERSION = "0.2.0"
+VERSION = "0.2.1"
 
 
 def write(path: str, content: str) -> None:

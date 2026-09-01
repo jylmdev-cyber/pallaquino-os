@@ -13,7 +13,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable
 
-VERSION = "0.2.0"
+VERSION = "0.2.1"
 EXPECTED_AUTHOR = "jimdev"
 EXPECTED_EMAIL = "jylmdev@gmail.com"
 STALE_DAYS = 30

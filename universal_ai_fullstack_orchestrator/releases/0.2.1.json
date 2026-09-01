@@ -1,0 +1,33 @@
+{
+  "version": "0.2.1",
+  "commits": [],
+  "features": [
+    "public repository documentation and GitHub community health layer",
+    "configurable repository-local Git author identity utility",
+    "GitHub Actions CI and Dependabot configuration"
+  ],
+  "fixes": [
+    "Git identity setup no longer requires editing hardcoded author values"
+  ],
+  "migrations": [],
+  "dependencies": [],
+  "environment_changes": [
+    "GitHub Actions validates Python 3.11 and 3.14"
+  ],
+  "tests": [
+    "18 framework tests",
+    "10 framework validators",
+    "architecture fitness validation",
+    "release archive integrity"
+  ],
+  "security": [
+    "local-only Git identity mutation",
+    "private vulnerability reporting policy",
+    "read-only default GitHub Actions permissions"
+  ],
+  "rollback": "Revert PAL-004 public repository files and identity utility changes; no product data migration is involved.",
+  "known_issues": [
+    "GitHub URL placeholders must be replaced after the remote repository is created.",
+    "Technology snapshots require re-verification after 30 days."
+  ]
+}

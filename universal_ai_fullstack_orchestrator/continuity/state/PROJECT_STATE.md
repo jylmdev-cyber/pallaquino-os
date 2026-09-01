@@ -1,7 +1,7 @@
 # Project state
 
 - Status: released
-- Version: 0.2.0
+- Version: 0.2.1
 - Updated: 2026-08-31 (evidence timestamps use UTC 2026-09-01)
 - Distribution files: 345 (bytecode and caches excluded)
 - Agents: 59

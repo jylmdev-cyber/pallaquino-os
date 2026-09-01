@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use PALLAQUINO, please cite this software."
+title: "PALLAQUINO Autonomous Engineering OS"
+type: software
+authors:
+  - family-names: "jimdev"
+    email: "jylmdev@gmail.com"
+version: 0.2.1
+date-released: 2026-08-31
+license: MIT
+abstract: "Provider-neutral engineering governance and execution framework for AI agents."
+keywords:
+  - ai-agents
+  - software-engineering
+  - orchestration
+  - governance
+  - devsecops
