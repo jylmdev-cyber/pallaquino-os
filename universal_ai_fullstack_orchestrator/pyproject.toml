@@ -10,6 +10,11 @@ requires-python = ">=3.11"
 license = "MIT"
 authors = [{name = "jimdev", email = "jylmdev@gmail.com"}]
 
+[project.urls]
+Homepage = "https://github.com/jylmdev-cyber/pallaquino-os"
+Repository = "https://github.com/jylmdev-cyber/pallaquino-os.git"
+Issues = "https://github.com/jylmdev-cyber/pallaquino-os/issues"
+
 [project.scripts]
 pallaquino = "pallaquino_cli.__main__:main"
 

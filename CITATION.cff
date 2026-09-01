@@ -8,6 +8,7 @@ authors:
 version: 0.2.1
 date-released: 2026-08-31
 license: MIT
+repository-code: "https://github.com/jylmdev-cyber/pallaquino-os"
 abstract: "Provider-neutral engineering governance and execution framework for AI agents."
 keywords:
   - ai-agents

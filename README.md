@@ -13,6 +13,7 @@
   <img alt="Tests" src="https://img.shields.io/badge/tests-18%20passing-2EA44F">
   <img alt="License" src="https://img.shields.io/badge/license-MIT-blue">
   <img alt="Provider neutral" src="https://img.shields.io/badge/AI-provider--neutral-111827">
+  <a href="https://github.com/jylmdev-cyber/pallaquino-os/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/jylmdev-cyber/pallaquino-os/actions/workflows/ci.yml/badge.svg"></a>
 </p>
 
 PALLAQUINO convierte una solicitud humana en un flujo de ingeniería trazable:
@@ -45,7 +46,7 @@ registros validados, políticas, evaluaciones y empaquetado reproducible.
 Requisitos: Git y Python 3.11 o superior.
 
 ```bash
-git clone <URL-DE-TU-REPOSITORIO>
+git clone https://github.com/jylmdev-cyber/pallaquino-os.git
 cd pallaquino-os/universal_ai_fullstack_orchestrator
 
 python -m pallaquino_cli doctor
@@ -182,13 +183,8 @@ python scripts/package_release.py
 python scripts/verify_zip_integrity.py
 ```
 
-El workflow de GitHub Actions ejecuta la suite en Python 3.11 y 3.14, valida la
-arquitectura y comprueba el ZIP. Al crear el repositorio remoto, reemplaza
-`OWNER/REPOSITORY` en el siguiente badge y agrégalo a esta cabecera:
-
-```markdown
-[![CI](https://github.com/OWNER/REPOSITORY/actions/workflows/ci.yml/badge.svg)](https://github.com/OWNER/REPOSITORY/actions/workflows/ci.yml)
-```
+El [workflow de GitHub Actions](https://github.com/jylmdev-cyber/pallaquino-os/actions/workflows/ci.yml)
+ejecuta la suite en Python 3.11 y 3.14, valida la arquitectura y comprueba el ZIP.
 
 ## Configurar la identidad de Git
 

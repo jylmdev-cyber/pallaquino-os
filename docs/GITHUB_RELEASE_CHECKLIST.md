@@ -8,17 +8,17 @@
 - Topics sugeridos: `ai-agents`, `software-engineering`, `orchestration`,
   `devsecops`, `governance`, `python`, `multi-agent`, `llm`.
 
-## 2. Sustituir placeholders
+## 2. Metadata del repositorio
 
-Reemplaza `OWNER/REPOSITORY` en los ejemplos de `README.md` y este checklist por
-el slug real. Añade `repository-code` a `CITATION.cff` y agrega el badge dinámico
-de CI indicado en el README.
+El slug configurado es `jylmdev-cyber/pallaquino-os`. Antes de cada release,
+confirma que README, citation, changelog y badges continúen apuntando a este
+repositorio.
 
 ## 3. Conectar y publicar
 
 ```bash
 git branch -M main
-git remote add origin https://github.com/OWNER/REPOSITORY.git
+git remote add origin https://github.com/jylmdev-cyber/pallaquino-os.git
 git push -u origin main
 ```
 

@@ -41,3 +41,4 @@ Los cambios relevantes de este proyecto se documentan aquí. El formato sigue
 [0.2.1]: universal_ai_fullstack_orchestrator/releases/0.2.1.json
 [0.2.0]: universal_ai_fullstack_orchestrator/releases/0.2.0.json
 [0.1.0]: universal_ai_fullstack_orchestrator/releases/0.1.0.json
+[Unreleased]: https://github.com/jylmdev-cyber/pallaquino-os/compare/v0.2.1...HEAD
