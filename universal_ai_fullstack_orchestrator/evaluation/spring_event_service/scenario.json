@@ -1,0 +1,14 @@
+{
+  "id": "spring_event_service",
+  "request": "Build a Spring Boot service that publishes Kafka events",
+  "required_agents": [
+    "backend_engineer",
+    "event_contract_reviewer"
+  ],
+  "required_skills": [
+    "spring_boot_expert",
+    "event_driven_architecture_expert",
+    "outbox_pattern_expert"
+  ],
+  "expected": "Select the specialized route, proportional gates and no unrelated expert without rationale."
+}

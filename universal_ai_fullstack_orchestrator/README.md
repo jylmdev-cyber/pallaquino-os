@@ -1,7 +1,7 @@
 # PALLAQUINO Autonomous Engineering OS
 
 Portable, provider-neutral engineering governance and execution framework for AI
-agents. Version `0.1.0` turns a human request into a risk-aware task graph,
+agents. Version `0.2.0` turns a human request into a risk-aware task graph,
 implementation pipeline, evidence trail, checkpoint and handoff.
 
 The framework is executable, not merely a prompt collection. Its standard-library
@@ -20,3 +20,8 @@ python -m pallaquino_cli validate
 See `QUICK_START.md` and `docs/TUTORIAL_DE_PROMPTS.md`, then give the active provider `AI_ENTRYPOINT.md`. The brand
 root is always **PALLAQUINO** and provider capabilities adapt execution without
 changing architecture or bypassing gates.
+
+The expanded catalog contains 59 agents, 90 version-agnostic skills, 46
+technologies and six adoptable stack profiles. See
+`docs/TECHNOLOGY_EXPANSION.md`; every new profile remains
+`VERIFY_BEFORE_USE` until official versions are audited for the target project.

@@ -1,0 +1,192 @@
+{
+  "schema_version": 1,
+  "profiles": [
+    {
+      "id": "nextjs_saas",
+      "technologies": [
+        "nodejs",
+        "typescript",
+        "react",
+        "nextjs",
+        "postgresql",
+        "redis",
+        "docker_engine"
+      ],
+      "agents": [
+        "web_platform_engineer",
+        "backend_engineer",
+        "identity_access_engineer",
+        "database_engineer",
+        "qa_engineer"
+      ],
+      "skills": [
+        "nextjs_expert",
+        "openid_connect_expert",
+        "postgresql_expert",
+        "redis_expert",
+        "playwright_expert"
+      ],
+      "required_gates": [
+        "API_COMPATIBILITY",
+        "ACCESSIBILITY",
+        "SECURITY_CHECK",
+        "BUILD"
+      ],
+      "version_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "spring_enterprise",
+      "technologies": [
+        "java",
+        "spring_boot",
+        "postgresql",
+        "redis",
+        "kafka",
+        "docker_engine"
+      ],
+      "agents": [
+        "software_architect",
+        "backend_engineer",
+        "identity_access_engineer",
+        "integration_engineer",
+        "qa_engineer"
+      ],
+      "skills": [
+        "spring_boot_expert",
+        "openid_connect_expert",
+        "postgresql_expert",
+        "kafka_expert",
+        "testing_strategy_expert"
+      ],
+      "required_gates": [
+        "API_COMPATIBILITY",
+        "EVENT_COMPATIBILITY",
+        "SECURITY_CHECK",
+        "BUILD"
+      ],
+      "version_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "dotnet_enterprise",
+      "technologies": [
+        "dotnet",
+        "sql_server",
+        "redis",
+        "docker_engine"
+      ],
+      "agents": [
+        "software_architect",
+        "backend_engineer",
+        "identity_access_engineer",
+        "database_engineer"
+      ],
+      "skills": [
+        "dotnet_expert",
+        "sql_server_expert",
+        "redis_expert",
+        "openid_connect_expert"
+      ],
+      "required_gates": [
+        "API_COMPATIBILITY",
+        "SECURITY_CHECK",
+        "BUILD"
+      ],
+      "version_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "cloud_native_microservices",
+      "technologies": [
+        "go",
+        "kubernetes",
+        "terraform",
+        "helm",
+        "argocd",
+        "kafka",
+        "postgresql",
+        "redis"
+      ],
+      "agents": [
+        "cloud_architect",
+        "platform_engineer",
+        "distributed_systems_architect",
+        "resilience_engineer",
+        "sre_engineer"
+      ],
+      "skills": [
+        "go_expert",
+        "kubernetes_expert",
+        "terraform_expert",
+        "event_driven_architecture_expert",
+        "distributed_systems_expert"
+      ],
+      "required_gates": [
+        "INFRASTRUCTURE_PLAN_REVIEW",
+        "IAM_LEAST_PRIVILEGE",
+        "EVENT_COMPATIBILITY",
+        "DISASTER_RECOVERY"
+      ],
+      "version_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "flutter_mobile_backend",
+      "technologies": [
+        "flutter",
+        "dart",
+        "python",
+        "django",
+        "postgresql"
+      ],
+      "agents": [
+        "mobile_architect",
+        "mobile_qa_engineer",
+        "backend_engineer",
+        "identity_access_engineer"
+      ],
+      "skills": [
+        "flutter_expert",
+        "mobile_offline_sync_expert",
+        "mobile_security_expert",
+        "django_expert",
+        "postgresql_expert"
+      ],
+      "required_gates": [
+        "MOBILE_SECURITY",
+        "API_COMPATIBILITY",
+        "SECURITY_CHECK"
+      ],
+      "version_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "ai_rag_platform",
+      "technologies": [
+        "python",
+        "mcp",
+        "postgresql",
+        "vector_database",
+        "docker_engine"
+      ],
+      "agents": [
+        "ai_solution_architect",
+        "rag_engineer",
+        "ai_evaluation_engineer",
+        "ai_red_team_reviewer",
+        "data_privacy_reviewer"
+      ],
+      "skills": [
+        "rag_expert",
+        "mcp_expert",
+        "vector_database_expert",
+        "llm_evaluation_expert",
+        "prompt_security_expert"
+      ],
+      "required_gates": [
+        "AI_EVALUATION",
+        "PROMPT_INJECTION_TEST",
+        "TOOL_PERMISSION_REVIEW",
+        "GROUNDING_VALIDATION",
+        "DATA_PRIVACY"
+      ],
+      "version_status": "VERIFY_BEFORE_USE"
+    }
+  ]
+}

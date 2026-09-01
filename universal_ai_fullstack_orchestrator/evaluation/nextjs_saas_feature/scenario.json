@@ -1,0 +1,14 @@
+{
+  "id": "nextjs_saas_feature",
+  "request": "Add a role-protected Next.js SaaS dashboard",
+  "required_agents": [
+    "web_platform_engineer",
+    "identity_access_engineer"
+  ],
+  "required_skills": [
+    "nextjs_expert",
+    "openid_connect_expert",
+    "playwright_expert"
+  ],
+  "expected": "Select the specialized route, proportional gates and no unrelated expert without rationale."
+}

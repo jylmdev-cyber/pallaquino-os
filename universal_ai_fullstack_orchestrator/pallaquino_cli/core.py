@@ -13,7 +13,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Iterable
 
-VERSION = "0.1.0"
+VERSION = "0.2.0"
 EXPECTED_AUTHOR = "jimdev"
 EXPECTED_EMAIL = "jylmdev@gmail.com"
 STALE_DAYS = 30
@@ -233,6 +233,11 @@ def validate_registry(root: Path) -> dict[str, Any]:
         agents = read_json(root / "registry" / "agents.json")["agents"]
         skills = read_json(root / "registry" / "skills.json")["skills"]
         routes = read_json(root / "registry" / "routing_rules.json")["rules"]
+        technologies = read_json(root / "registry" / "technology_catalog.json")["technologies"]
+        profiles = read_json(root / "registry" / "stack_profiles.json")["profiles"]
+        compatibility = read_json(root / "registry" / "technology_compatibility.json")["rules"]
+        domain_packs = read_json(root / "registry" / "domain_packs.json")["packs"]
+        coverage = read_json(root / "registry" / "agent_skill_coverage.json")["coverage"]
         read_json(root / "registry" / "stack_versions_verified.json")
         read_json(root / "registry" / "capabilities.json")
         read_json(root / "registry" / "modes.json")
@@ -240,8 +245,10 @@ def validate_registry(root: Path) -> dict[str, Any]:
         return result("validate_registry", False, [f"cannot load registry: {exc}"])
     agent_ids = [a.get("id") for a in agents]
     skill_ids = [s.get("id") for s in skills]
+    technology_ids = [t.get("id") for t in technologies]
     if len({str(x).casefold() for x in agent_ids}) != len(agent_ids): errors.append("duplicate agent ID")
     if len({str(x).casefold() for x in skill_ids}) != len(skill_ids): errors.append("duplicate skill ID")
+    if len({str(x).casefold() for x in technology_ids}) != len(technology_ids): errors.append("duplicate technology ID")
     for row in agents:
         missing = REQUIRED_AGENT_FIELDS - row.keys()
         if missing: errors.append(f"agent {row.get('id')} missing {sorted(missing)}")
@@ -251,6 +258,8 @@ def validate_registry(root: Path) -> dict[str, Any]:
         if row.get("deprecated") and not row.get("superseded_by"): errors.append(f"deprecated agent {row.get('id')} has no replacement")
         for sid in row.get("required_skills", []):
             if sid not in skill_ids: errors.append(f"agent {row.get('id')} references unknown skill {sid}")
+        for tid in row.get("technologies", []):
+            if tid not in technology_ids: errors.append(f"agent {row.get('id')} references unknown technology {tid}")
     for row in skills:
         missing = REQUIRED_SKILL_FIELDS - row.keys()
         if missing: errors.append(f"skill {row.get('id')} missing {sorted(missing)}")
@@ -260,11 +269,42 @@ def validate_registry(root: Path) -> dict[str, Any]:
         if row.get("deprecated") and not row.get("superseded_by"): errors.append(f"deprecated skill {row.get('id')} has no replacement")
         for sid in row.get("dependencies", []) + row.get("conflicts", []):
             if sid not in skill_ids: errors.append(f"skill {row.get('id')} references unknown skill {sid}")
+        for tid in row.get("technologies", []):
+            if tid not in technology_ids: errors.append(f"skill {row.get('id')} references unknown technology {tid}")
     for rule in routes:
         for aid in rule.get("agents", []):
             if aid not in agent_ids: errors.append(f"route {rule.get('id')} unknown agent {aid}")
         for sid in rule.get("skills", []):
             if sid not in skill_ids: errors.append(f"route {rule.get('id')} unknown skill {sid}")
+    profile_ids = [profile.get("id") for profile in profiles]
+    if len(set(profile_ids)) != len(profile_ids): errors.append("duplicate stack profile ID")
+    for profile in profiles:
+        for tid in profile.get("technologies", []):
+            if tid not in technology_ids: errors.append(f"profile {profile.get('id')} unknown technology {tid}")
+        for aid in profile.get("agents", []):
+            if aid not in agent_ids: errors.append(f"profile {profile.get('id')} unknown agent {aid}")
+        for sid in profile.get("skills", []):
+            if sid not in skill_ids: errors.append(f"profile {profile.get('id')} unknown skill {sid}")
+        for gate in profile.get("required_gates", []):
+            if gate not in STAGES and not (root / "pipeline" / "gates" / f"{gate}.md").is_file(): errors.append(f"profile {profile.get('id')} missing gate {gate}")
+        if profile.get("version_status") != "VERIFY_BEFORE_USE": errors.append(f"profile {profile.get('id')} must require version verification")
+    for rule in compatibility:
+        when = rule.get("when")
+        if when != "profile_activation" and when not in technology_ids: errors.append(f"compatibility {rule.get('id')} unknown technology {when}")
+        for tid in rule.get("requires", []):
+            if tid not in technology_ids: errors.append(f"compatibility {rule.get('id')} unknown requirement {tid}")
+    for pack in domain_packs:
+        for aid in pack.get("agents", []):
+            if aid not in agent_ids: errors.append(f"domain pack {pack.get('id')} unknown agent {aid}")
+        for sid in pack.get("skills", []):
+            if sid not in skill_ids: errors.append(f"domain pack {pack.get('id')} unknown skill {sid}")
+    coverage_ids = [row.get("technology") for row in coverage]
+    if set(coverage_ids) != set(technology_ids): errors.append("agent/skill coverage does not match technology catalog")
+    for row in coverage:
+        for aid in row.get("agents", []):
+            if aid not in agent_ids: errors.append(f"coverage {row.get('technology')} unknown agent {aid}")
+        for sid in row.get("skills", []):
+            if sid not in skill_ids: errors.append(f"coverage {row.get('technology')} unknown skill {sid}")
     try:
         stack = read_json(root / "registry" / "stack_versions_verified.json")["entries"]
         forbidden = re.compile(r"(?i)(alpha|beta|rc|preview|canary|nightly|experimental)")
@@ -274,9 +314,11 @@ def validate_registry(root: Path) -> dict[str, Any]:
                 errors.append(f"stack {entry.get('technology')} is prerelease")
             if not str(entry.get("source", "")).startswith("https://"):
                 errors.append(f"stack {entry.get('technology')} has no official HTTPS source")
+            if entry.get("technology") not in technology_ids:
+                errors.append(f"verified stack has uncatalogued technology {entry.get('technology')}")
     except (OSError, ValueError, KeyError, TypeError) as exc:
         errors.append(f"invalid stack registry: {exc}")
-    return result("validate_registry", not errors, errors or [f"{len(agents)} agents and {len(skills)} skills resolve"])
+    return result("validate_registry", not errors, errors or [f"{len(agents)} agents, {len(skills)} skills, {len(technology_ids)} technologies and {len(profiles)} profiles resolve"])
 
 
 def validate_pipeline(root: Path) -> dict[str, Any]:
@@ -471,7 +513,7 @@ def resume(root: Path) -> dict[str, Any]:
 
 def create_handoff(root: Path) -> dict[str, Any]:
     recovery = resume(root)
-    payload = {"schema_version": 1, "timestamp": utc_now(), "requested": "See CURRENT_TASK.md", "implemented": ["See Git history and task change manifests", "Strict pipeline, registries, CLI, policies, continuity and evaluations"], "missing": [], "assumed": ["See ASSUMPTIONS.md"], "unverified": [], "breakage_risks": ["See KNOWN_ISSUES.md and risk state"], "current": recovery["state"], "next_action": "Adopt into a product repository with `pallaquino init`, then select mode and run doctor/analyze", "confidence": "high"}
+    payload = {"schema_version": 1, "timestamp": utc_now(), "requested": "See CURRENT_TASK.md", "implemented": ["See Git history and task change manifests", "See current registries, evidence, release manifest and repository map"], "missing": [], "assumed": ["See ASSUMPTIONS.md"], "unverified": [], "breakage_risks": ["See KNOWN_ISSUES.md and risk state"], "current": recovery["state"], "next_action": "Adopt into a product repository with `pallaquino init`, select a profile, verify official versions, then run doctor/analyze", "confidence": "high"}
     atomic_json(root / "continuity" / "HANDOFF.json", payload); return payload
 
 

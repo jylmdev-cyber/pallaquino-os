@@ -1,0 +1,125 @@
+{
+  "schema_version": 1,
+  "packs": [
+    {
+      "id": "ecommerce",
+      "agents": [
+        "product_manager",
+        "software_architect",
+        "payments_domain_reviewer",
+        "inventory_consistency_reviewer"
+      ],
+      "skills": [
+        "ecommerce_domain_expert",
+        "fintech_domain_expert",
+        "accounting_domain_expert"
+      ],
+      "risk_factors": [
+        "payments",
+        "personal_data",
+        "external_integrations"
+      ]
+    },
+    {
+      "id": "restobar",
+      "agents": [
+        "erp_domain_expert",
+        "inventory_consistency_reviewer",
+        "payments_domain_reviewer"
+      ],
+      "skills": [
+        "restobar_domain_expert",
+        "accounting_domain_expert"
+      ],
+      "risk_factors": [
+        "payments",
+        "financial_data",
+        "database_migrations"
+      ]
+    },
+    {
+      "id": "healthcare",
+      "agents": [
+        "data_privacy_reviewer",
+        "security_architect",
+        "adversarial_reviewer"
+      ],
+      "skills": [
+        "healthcare_domain_expert",
+        "data_privacy_expert",
+        "application_security_expert"
+      ],
+      "risk_factors": [
+        "personal_data",
+        "authorization",
+        "security"
+      ]
+    },
+    {
+      "id": "fintech",
+      "agents": [
+        "payments_domain_reviewer",
+        "security_architect",
+        "database_reliability_engineer"
+      ],
+      "skills": [
+        "fintech_domain_expert",
+        "accounting_domain_expert",
+        "idempotency_expert"
+      ],
+      "risk_factors": [
+        "payments",
+        "financial_data",
+        "production"
+      ]
+    },
+    {
+      "id": "logistics",
+      "agents": [
+        "integration_engineer",
+        "resilience_engineer",
+        "data_engineer"
+      ],
+      "skills": [
+        "logistics_domain_expert",
+        "event_driven_architecture_expert"
+      ],
+      "risk_factors": [
+        "external_integrations",
+        "public_api"
+      ]
+    },
+    {
+      "id": "manufacturing",
+      "agents": [
+        "erp_domain_expert",
+        "inventory_consistency_reviewer",
+        "database_reliability_engineer"
+      ],
+      "skills": [
+        "manufacturing_domain_expert",
+        "accounting_domain_expert"
+      ],
+      "risk_factors": [
+        "database_migrations",
+        "financial_data"
+      ]
+    },
+    {
+      "id": "crm",
+      "agents": [
+        "product_manager",
+        "data_privacy_reviewer",
+        "integration_engineer"
+      ],
+      "skills": [
+        "crm_domain_expert",
+        "data_privacy_expert"
+      ],
+      "risk_factors": [
+        "personal_data",
+        "external_integrations"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,18 @@
+{
+  "gate": "TEST",
+  "command": [
+    "C:\\Users\\jimdev-pc\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests",
+    "-v"
+  ],
+  "timestamp": "2026-09-01T04:04:56+00:00",
+  "agent": "qa_engineer",
+  "exit_code": 0,
+  "result": "passed",
+  "summary": "test_help (test_cli.CliTests.test_help) ... ok\ntest_init_is_idempotent_and_preserves_existing (test_cli.CliTests.test_init_is_idempotent_and_preserves_existing) ... ok\ntest_risk_json (test_cli.CliTests.test_risk_json) ... ok\ntest_validate_json (test_cli.CliTests.test_validate_json) ... ok\ntest_all_validators_pass (test_core.FrameworkTests.test_all_validators_pass) ... ok\ntest_checkpoint_checksum_and_corrupt_fallback (test_core.FrameworkTests.test_checkpoint_checksum_and_corrupt_fallback) ... ok\ntest_expansion_profiles_and_catalog_resolve (test_core.FrameworkTests.test_expansion_profiles_and_catalog_resolve) ... ok\ntest_expansion_routing_goldens (test_core.FrameworkTests.test_expansion_routing_goldens) ... ok\ntest_file_locks_enforce_owner_and_root (test_core.FrameworkTests.test_file_locks_enforce_owner_and_root) ... ok\ntest_pipeline_is_exact_and_linear_on_success (test_core.FrameworkTests.test_pipeline_is_exact_and_linear_on_success) ... ok\ntest_registry_references_resolve (test_core.FrameworkTests.test_registry_references_resolve) ... ok\ntest_release_archive_is_safe_and_complete (test_core.FrameworkTests.test_release_archive_is_safe_and_complete) ... ok\ntest_repository_map_detects_entrypoints (test_core.FrameworkTests.test_repository_map_detects_entrypoints) ... ok\ntest_risk_goldens_and_monotonicity (test_core.FrameworkTests.test_risk_goldens_and_monotonicity) ... ok\ntest_routing_goldens (test_core.FrameworkTests.test_routing_goldens) ... ok\ntest_stack_snapshot_is_current (test_core.FrameworkTests.test_stack_snapshot_is_current) ... ok\n\n----------------------------------------------------------------------\nRan 16 tests in 6.458s\n\nOK\n",
+  "artifact": null
+}

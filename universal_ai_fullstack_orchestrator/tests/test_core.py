@@ -32,8 +32,31 @@ class FrameworkTests(unittest.TestCase):
     def test_registry_references_resolve(self) -> None:
         self.assertTrue(validate_registry(ROOT)["ok"])
         registry = read_json(ROOT / "registry/agents.json")["agents"]
-        self.assertGreaterEqual(len(registry), 30)
+        self.assertGreaterEqual(len(registry), 59)
         self.assertTrue(all((ROOT / row["path"]).is_file() for row in registry))
+
+    def test_expansion_profiles_and_catalog_resolve(self) -> None:
+        agents = {row["id"] for row in read_json(ROOT / "registry/agents.json")["agents"]}
+        skills = {row["id"] for row in read_json(ROOT / "registry/skills.json")["skills"]}
+        technologies = {row["id"] for row in read_json(ROOT / "registry/technology_catalog.json")["technologies"]}
+        profiles = read_json(ROOT / "registry/stack_profiles.json")["profiles"]
+        self.assertGreaterEqual(len(skills), 90)
+        self.assertGreaterEqual(len(technologies), 44)
+        self.assertEqual(len(profiles), 6)
+        for profile in profiles:
+            self.assertTrue(set(profile["technologies"]).issubset(technologies))
+            self.assertTrue(set(profile["agents"]).issubset(agents))
+            self.assertTrue(set(profile["skills"]).issubset(skills))
+            self.assertEqual(profile["version_status"], "VERIFY_BEFORE_USE")
+
+    def test_expansion_routing_goldens(self) -> None:
+        cases = read_json(ROOT / "evaluation/stack_routing/golden.json")["cases"]
+        for case in cases:
+            routed = route_request(ROOT, case["request"])
+            selected_agents = {row["id"] for row in routed["agents"]}
+            selected_skills = {row["id"] for row in routed["skills"]}
+            self.assertTrue(set(case["required_agents"]).issubset(selected_agents), case)
+            self.assertTrue(set(case["required_skills"]).issubset(selected_skills), case)
 
     def test_risk_goldens_and_monotonicity(self) -> None:
         cases = ["docs", "public API", "authorization with personal data", "delete production database"]

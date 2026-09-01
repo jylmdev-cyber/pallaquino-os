@@ -1,0 +1,13 @@
+{
+  "gate": "BUILD",
+  "command": [
+    "C:\\Users\\jimdev-pc\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "scripts\\package_release.py"
+  ],
+  "timestamp": "2026-09-01T04:06:05+00:00",
+  "agent": "release_manager",
+  "exit_code": 0,
+  "result": "passed",
+  "summary": "{\n  \"archive\": \"D:\\\\codex\\\\pallaquino-os\\\\PALLAQUINO_autonomous_engineering_os.zip\",\n  \"sha256_file\": \"D:\\\\codex\\\\pallaquino-os\\\\PALLAQUINO_autonomous_engineering_os.sha256\",\n  \"sha256\": \"bb61c9f5046dd1e78b8656a6234a2fb2c3e434bad80a553b0c938810681ce5a9\",\n  \"entries\": 343,\n  \"integrity\": true,\n  \"bad_entry\": null,\n  \"unsafe_paths\": []\n}\n",
+  "artifact": "..\\PALLAQUINO_autonomous_engineering_os.zip"
+}

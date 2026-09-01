@@ -1,0 +1,62 @@
+{
+  "schema_version": 1,
+  "rules": [
+    {
+      "id": "nextjs_requires_react_node",
+      "when": "nextjs",
+      "requires": [
+        "react",
+        "nodejs",
+        "typescript"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "spring_requires_java",
+      "when": "spring_boot",
+      "requires": [
+        "java"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "helm_requires_kubernetes",
+      "when": "helm",
+      "requires": [
+        "kubernetes"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "argocd_requires_kubernetes",
+      "when": "argocd",
+      "requires": [
+        "kubernetes"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "flutter_requires_dart",
+      "when": "flutter",
+      "requires": [
+        "dart"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "react_native_requires_react_node",
+      "when": "react_native",
+      "requires": [
+        "react",
+        "nodejs"
+      ],
+      "confidence": "high"
+    },
+    {
+      "id": "verified_version_required",
+      "when": "profile_activation",
+      "requires_policy": "TECH_STACK_VERSION_POLICY",
+      "confidence": "high"
+    }
+  ]
+}

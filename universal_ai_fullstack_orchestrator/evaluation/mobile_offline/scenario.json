@@ -1,0 +1,13 @@
+{
+  "id": "mobile_offline",
+  "request": "Build an offline-capable mobile inventory workflow",
+  "required_agents": [
+    "mobile_architect",
+    "inventory_consistency_reviewer"
+  ],
+  "required_skills": [
+    "mobile_offline_sync_expert",
+    "mobile_security_expert"
+  ],
+  "expected": "Select the specialized route, proportional gates and no unrelated expert without rationale."
+}

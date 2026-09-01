@@ -1,0 +1,13 @@
+{
+  "id": "healthcare_privacy",
+  "request": "Add patient-data export and deletion workflows",
+  "required_agents": [
+    "data_privacy_reviewer",
+    "security_architect"
+  ],
+  "required_skills": [
+    "healthcare_domain_expert",
+    "data_privacy_expert"
+  ],
+  "expected": "Select the specialized route, proportional gates and no unrelated expert without rationale."
+}

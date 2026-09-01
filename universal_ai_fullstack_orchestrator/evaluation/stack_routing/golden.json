@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "cases": [
+    {
+      "request": "Add a role-protected Next.js SaaS dashboard",
+      "required_agents": [
+        "web_platform_engineer",
+        "identity_access_engineer"
+      ],
+      "required_skills": [
+        "nextjs_expert",
+        "openid_connect_expert",
+        "playwright_expert"
+      ]
+    },
+    {
+      "request": "Build a Spring Boot service that publishes Kafka events",
+      "required_agents": [
+        "backend_engineer",
+        "event_contract_reviewer"
+      ],
+      "required_skills": [
+        "spring_boot_expert",
+        "event_driven_architecture_expert",
+        "outbox_pattern_expert"
+      ]
+    },
+    {
+      "request": "Deploy a production workload with Kubernetes and Terraform",
+      "required_agents": [
+        "platform_engineer",
+        "infrastructure_security_reviewer"
+      ],
+      "required_skills": [
+        "kubernetes_expert",
+        "terraform_expert"
+      ]
+    },
+    {
+      "request": "Prevent duplicate payment effects during event retries",
+      "required_agents": [
+        "payments_domain_reviewer",
+        "resilience_engineer"
+      ],
+      "required_skills": [
+        "idempotency_expert",
+        "fintech_domain_expert"
+      ]
+    },
+    {
+      "request": "Build an offline-capable mobile inventory workflow",
+      "required_agents": [
+        "mobile_architect",
+        "inventory_consistency_reviewer"
+      ],
+      "required_skills": [
+        "mobile_offline_sync_expert",
+        "mobile_security_expert"
+      ]
+    },
+    {
+      "request": "Build a permission-aware RAG assistant with tools",
+      "required_agents": [
+        "rag_engineer",
+        "ai_red_team_reviewer"
+      ],
+      "required_skills": [
+        "rag_expert",
+        "prompt_security_expert",
+        "tool_calling_expert"
+      ]
+    },
+    {
+      "request": "Add patient-data export and deletion workflows",
+      "required_agents": [
+        "data_privacy_reviewer",
+        "security_architect"
+      ],
+      "required_skills": [
+        "healthcare_domain_expert",
+        "data_privacy_expert"
+      ]
+    }
+  ]
+}

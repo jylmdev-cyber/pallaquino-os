@@ -1,0 +1,13 @@
+{
+  "id": "event_consistency",
+  "request": "Prevent duplicate payment effects during event retries",
+  "required_agents": [
+    "payments_domain_reviewer",
+    "resilience_engineer"
+  ],
+  "required_skills": [
+    "idempotency_expert",
+    "fintech_domain_expert"
+  ],
+  "expected": "Select the specialized route, proportional gates and no unrelated expert without rationale."
+}

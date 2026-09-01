@@ -1,0 +1,13 @@
+{
+  "id": "kubernetes_deployment",
+  "request": "Deploy a production workload with Kubernetes and Terraform",
+  "required_agents": [
+    "platform_engineer",
+    "infrastructure_security_reviewer"
+  ],
+  "required_skills": [
+    "kubernetes_expert",
+    "terraform_expert"
+  ],
+  "expected": "Select the specialized route, proportional gates and no unrelated expert without rationale."
+}

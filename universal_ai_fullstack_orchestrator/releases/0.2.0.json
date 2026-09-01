@@ -1,0 +1,31 @@
+{
+  "version": "0.2.0",
+  "commits": [],
+  "features": [
+    "24 additional specialized agents",
+    "60 additional version-agnostic skills",
+    "technology catalog, compatibility and coverage registries",
+    "six stack profiles and seven domain packs",
+    "fourteen conditional quality gates",
+    "seven expansion routing evaluations"
+  ],
+  "fixes": [
+    "routing now selects identity for protected Next.js work",
+    "event, inventory, AI tool-calling and healthcare privacy routes covered by goldens"
+  ],
+  "migrations": [],
+  "dependencies": [],
+  "environment_changes": [],
+  "tests": [
+    "16 framework tests",
+    "10 framework validators",
+    "architecture fitness validation"
+  ],
+  "security": [
+    "infrastructure, IAM, container, mobile, AI tool and privacy gates"
+  ],
+  "rollback": "Revert PAL-003 registry, prompt, skill, routing and documentation additions; no product runtime or data migration is involved.",
+  "known_issues": [
+    "New technologies require official version verification before adoption."
+  ]
+}

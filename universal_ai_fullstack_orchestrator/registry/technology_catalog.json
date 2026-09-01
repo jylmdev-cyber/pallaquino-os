@@ -1,0 +1,282 @@
+{
+  "schema_version": 1,
+  "policy": "Concrete versions require official-source verification before profile activation",
+  "technologies": [
+    {
+      "id": "angular",
+      "category": "framework",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "argocd",
+      "category": "delivery",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "aws",
+      "category": "cloud",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "azure",
+      "category": "cloud",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "clickhouse",
+      "category": "database",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "dart",
+      "category": "language",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "django",
+      "category": "framework",
+      "version_agnostic": true,
+      "selection_status": "VERIFIED_BASELINE"
+    },
+    {
+      "id": "docker_compose",
+      "category": "platform",
+      "version_agnostic": true,
+      "selection_status": "VERIFIED_BASELINE"
+    },
+    {
+      "id": "docker_engine",
+      "category": "platform",
+      "version_agnostic": true,
+      "selection_status": "VERIFIED_BASELINE"
+    },
+    {
+      "id": "dotnet",
+      "category": "runtime",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "dotnet_runtime",
+      "category": "runtime",
+      "version_agnostic": true,
+      "selection_status": "VERIFIED_BASELINE"
+    },
+    {
+      "id": "dotnet_sdk",
+      "category": "sdk",
+      "version_agnostic": true,
+      "selection_status": "VERIFIED_BASELINE"
+    },
+    {
+      "id": "flutter",
+      "category": "framework",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "gcp",
+      "category": "cloud",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "github_actions",
+      "category": "ci",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "go",
+      "category": "language",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "helm",
+      "category": "platform",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "java",
+      "category": "language",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "kafka",
+      "category": "messaging",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "kotlin",
+      "category": "language",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "kubernetes",
+      "category": "platform",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "laravel",
+      "category": "framework",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "mcp",
+      "category": "protocol",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "mongodb",
+      "category": "database",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "mysql",
+      "category": "database",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "nextjs",
+      "category": "framework",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "nginx",
+      "category": "web_server",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "nodejs",
+      "category": "runtime",
+      "version_agnostic": true,
+      "selection_status": "VERIFIED_BASELINE"
+    },
+    {
+      "id": "nuxt",
+      "category": "framework",
+      "version_agnostic": true,
+      "selection_status": "VERIFIED_BASELINE"
+    },
+    {
+      "id": "openid_connect",
+      "category": "protocol",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "opensearch",
+      "category": "search",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "php",
+      "category": "language",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "playwright",
+      "category": "testing",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "postgresql",
+      "category": "database",
+      "version_agnostic": true,
+      "selection_status": "VERIFIED_BASELINE"
+    },
+    {
+      "id": "python",
+      "category": "language",
+      "version_agnostic": true,
+      "selection_status": "VERIFIED_BASELINE"
+    },
+    {
+      "id": "rabbitmq",
+      "category": "messaging",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "react",
+      "category": "framework",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "react_native",
+      "category": "framework",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "redis",
+      "category": "database",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "spring_boot",
+      "category": "framework",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "sql_server",
+      "category": "database",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "swiftui",
+      "category": "framework",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "terraform",
+      "category": "infrastructure_as_code",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "typescript",
+      "category": "language",
+      "version_agnostic": true,
+      "selection_status": "VERIFIED_BASELINE"
+    },
+    {
+      "id": "ubuntu",
+      "category": "operating_system",
+      "version_agnostic": true,
+      "selection_status": "VERIFIED_BASELINE"
+    },
+    {
+      "id": "vector_database",
+      "category": "database",
+      "version_agnostic": true,
+      "selection_status": "VERIFY_BEFORE_USE"
+    }
+  ]
+}

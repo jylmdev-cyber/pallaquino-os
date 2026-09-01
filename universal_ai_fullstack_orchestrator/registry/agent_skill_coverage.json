@@ -1,0 +1,353 @@
+{
+  "schema_version": 1,
+  "coverage": [
+    {
+      "technology": "angular",
+      "agents": [],
+      "skills": [
+        "angular_expert"
+      ]
+    },
+    {
+      "technology": "argocd",
+      "agents": [],
+      "skills": [
+        "argocd_expert"
+      ]
+    },
+    {
+      "technology": "aws",
+      "agents": [],
+      "skills": [
+        "aws_expert",
+        "cloud_cost_optimization_expert"
+      ]
+    },
+    {
+      "technology": "azure",
+      "agents": [],
+      "skills": [
+        "azure_expert",
+        "cloud_cost_optimization_expert"
+      ]
+    },
+    {
+      "technology": "clickhouse",
+      "agents": [],
+      "skills": [
+        "clickhouse_expert"
+      ]
+    },
+    {
+      "technology": "dart",
+      "agents": [],
+      "skills": [
+        "flutter_expert"
+      ]
+    },
+    {
+      "technology": "django",
+      "agents": [],
+      "skills": [
+        "django_expert"
+      ]
+    },
+    {
+      "technology": "docker_compose",
+      "agents": [],
+      "skills": [
+        "docker_expert"
+      ]
+    },
+    {
+      "technology": "docker_engine",
+      "agents": [],
+      "skills": [
+        "docker_expert"
+      ]
+    },
+    {
+      "technology": "dotnet",
+      "agents": [],
+      "skills": [
+        "dotnet_expert"
+      ]
+    },
+    {
+      "technology": "dotnet_runtime",
+      "agents": [],
+      "skills": []
+    },
+    {
+      "technology": "dotnet_sdk",
+      "agents": [],
+      "skills": []
+    },
+    {
+      "technology": "flutter",
+      "agents": [],
+      "skills": [
+        "flutter_expert",
+        "mobile_security_expert"
+      ]
+    },
+    {
+      "technology": "gcp",
+      "agents": [],
+      "skills": [
+        "cloud_cost_optimization_expert",
+        "gcp_expert"
+      ]
+    },
+    {
+      "technology": "github_actions",
+      "agents": [],
+      "skills": [
+        "github_actions_expert"
+      ]
+    },
+    {
+      "technology": "go",
+      "agents": [],
+      "skills": [
+        "go_expert"
+      ]
+    },
+    {
+      "technology": "helm",
+      "agents": [],
+      "skills": [
+        "helm_expert"
+      ]
+    },
+    {
+      "technology": "java",
+      "agents": [],
+      "skills": [
+        "spring_boot_expert"
+      ]
+    },
+    {
+      "technology": "kafka",
+      "agents": [],
+      "skills": [
+        "event_driven_architecture_expert",
+        "kafka_expert"
+      ]
+    },
+    {
+      "technology": "kotlin",
+      "agents": [],
+      "skills": [
+        "kotlin_android_expert",
+        "mobile_security_expert"
+      ]
+    },
+    {
+      "technology": "kubernetes",
+      "agents": [],
+      "skills": [
+        "argocd_expert",
+        "helm_expert",
+        "kubernetes_expert",
+        "microservices_expert"
+      ]
+    },
+    {
+      "technology": "laravel",
+      "agents": [],
+      "skills": [
+        "laravel_expert"
+      ]
+    },
+    {
+      "technology": "mcp",
+      "agents": [],
+      "skills": [
+        "mcp_expert",
+        "tool_calling_expert"
+      ]
+    },
+    {
+      "technology": "mongodb",
+      "agents": [],
+      "skills": [
+        "mongodb_expert"
+      ]
+    },
+    {
+      "technology": "mysql",
+      "agents": [],
+      "skills": [
+        "database_performance_expert",
+        "mysql_expert",
+        "outbox_pattern_expert"
+      ]
+    },
+    {
+      "technology": "nextjs",
+      "agents": [],
+      "skills": [
+        "nextjs_expert"
+      ]
+    },
+    {
+      "technology": "nginx",
+      "agents": [],
+      "skills": [
+        "nginx_expert"
+      ]
+    },
+    {
+      "technology": "nodejs",
+      "agents": [],
+      "skills": [
+        "nextjs_expert",
+        "nodejs_expert",
+        "nuxt_expert",
+        "react_native_expert"
+      ]
+    },
+    {
+      "technology": "nuxt",
+      "agents": [],
+      "skills": [
+        "nuxt_expert"
+      ]
+    },
+    {
+      "technology": "openid_connect",
+      "agents": [],
+      "skills": [
+        "openid_connect_expert"
+      ]
+    },
+    {
+      "technology": "opensearch",
+      "agents": [],
+      "skills": [
+        "opensearch_expert"
+      ]
+    },
+    {
+      "technology": "php",
+      "agents": [],
+      "skills": [
+        "laravel_expert"
+      ]
+    },
+    {
+      "technology": "playwright",
+      "agents": [],
+      "skills": [
+        "playwright_expert"
+      ]
+    },
+    {
+      "technology": "postgresql",
+      "agents": [],
+      "skills": [
+        "database_performance_expert",
+        "outbox_pattern_expert",
+        "postgresql_expert",
+        "vector_database_expert"
+      ]
+    },
+    {
+      "technology": "python",
+      "agents": [],
+      "skills": [
+        "django_expert",
+        "python_expert"
+      ]
+    },
+    {
+      "technology": "rabbitmq",
+      "agents": [],
+      "skills": [
+        "event_driven_architecture_expert",
+        "rabbitmq_expert"
+      ]
+    },
+    {
+      "technology": "react",
+      "agents": [],
+      "skills": [
+        "nextjs_expert",
+        "react_expert",
+        "react_native_expert"
+      ]
+    },
+    {
+      "technology": "react_native",
+      "agents": [],
+      "skills": [
+        "mobile_security_expert",
+        "react_native_expert"
+      ]
+    },
+    {
+      "technology": "redis",
+      "agents": [],
+      "skills": [
+        "redis_expert"
+      ]
+    },
+    {
+      "technology": "spring_boot",
+      "agents": [],
+      "skills": [
+        "spring_boot_expert"
+      ]
+    },
+    {
+      "technology": "sql_server",
+      "agents": [],
+      "skills": [
+        "database_performance_expert",
+        "outbox_pattern_expert",
+        "sql_server_expert"
+      ]
+    },
+    {
+      "technology": "swiftui",
+      "agents": [],
+      "skills": [
+        "mobile_security_expert",
+        "swiftui_expert"
+      ]
+    },
+    {
+      "technology": "terraform",
+      "agents": [],
+      "skills": [
+        "terraform_expert"
+      ]
+    },
+    {
+      "technology": "typescript",
+      "agents": [],
+      "skills": [
+        "angular_expert",
+        "nextjs_expert",
+        "react_native_expert",
+        "typescript_expert"
+      ]
+    },
+    {
+      "technology": "ubuntu",
+      "agents": [],
+      "skills": [
+        "ubuntu_server_expert"
+      ]
+    },
+    {
+      "technology": "vector_database",
+      "agents": [],
+      "skills": [
+        "rag_expert",
+        "vector_database_expert"
+      ]
+    }
+  ]
+}
