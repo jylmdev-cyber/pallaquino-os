@@ -1,0 +1,9 @@
+{
+  "id": "nuxt_feature",
+  "request": "Add an accessible Nuxt feature",
+  "required_agents": [
+    "frontend_engineer",
+    "ux_ui_designer"
+  ],
+  "expected": "Selects Nuxt, TypeScript and accessibility skills."
+}

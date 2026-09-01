@@ -1,0 +1,46 @@
+{
+  "cases": [
+    {
+      "request": "agrega login con roles en Django",
+      "required_agents": [
+        "backend_engineer",
+        "security_architect"
+      ],
+      "required_skills": [
+        "django_expert",
+        "application_security_expert"
+      ],
+      "forbidden_agents": [
+        "data_engineer",
+        "devops_engineer"
+      ]
+    },
+    {
+      "request": "crear feature Nuxt accesible",
+      "required_agents": [
+        "frontend_engineer"
+      ],
+      "required_skills": [
+        "nuxt_expert",
+        "frontend_accessibility_expert"
+      ],
+      "forbidden_agents": [
+        "database_engineer"
+      ]
+    },
+    {
+      "request": "migración PostgreSQL de tabla grande",
+      "required_agents": [
+        "database_engineer",
+        "migration_safety_reviewer"
+      ],
+      "required_skills": [
+        "postgresql_expert",
+        "migration_safety_expert"
+      ],
+      "forbidden_agents": [
+        "ux_ui_designer"
+      ]
+    }
+  ]
+}

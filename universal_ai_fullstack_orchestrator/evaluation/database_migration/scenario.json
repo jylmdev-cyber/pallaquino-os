@@ -1,0 +1,9 @@
+{
+  "id": "database_migration",
+  "request": "Migrate a large production table",
+  "required_agents": [
+    "database_engineer",
+    "migration_safety_reviewer"
+  ],
+  "expected": "Requires migration safety, rollback and human approval."
+}

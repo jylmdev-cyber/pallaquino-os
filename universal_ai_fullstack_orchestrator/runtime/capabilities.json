@@ -1,0 +1,71 @@
+{
+  "schema_version": 1,
+  "detected_at": "2026-09-01T03:29:00+00:00",
+  "provider": "unknown",
+  "capabilities": {
+    "filesystem": {
+      "available": true,
+      "evidence": "D:\\codex\\pallaquino-os\\universal_ai_fullstack_orchestrator"
+    },
+    "file_editing": {
+      "available": true,
+      "evidence": "os.access"
+    },
+    "internet": {
+      "available": null,
+      "evidence": "not safely detectable offline"
+    },
+    "browser": {
+      "available": null,
+      "evidence": "provider/tool dependent"
+    },
+    "mcp": {
+      "available": null,
+      "evidence": "provider/tool dependent"
+    },
+    "subagents": {
+      "available": null,
+      "evidence": "provider/tool dependent"
+    },
+    "parallel_execution": {
+      "available": null,
+      "evidence": "provider/tool dependent"
+    },
+    "shell": {
+      "available": true,
+      "evidence": "C:\\Windows\\system32\\cmd.exe"
+    },
+    "git": {
+      "available": true,
+      "evidence": "C:\\Program Files\\Git\\cmd\\git.EXE"
+    },
+    "python": {
+      "available": true,
+      "evidence": "C:\\Users\\jimdev-pc\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe"
+    },
+    "node": {
+      "available": true,
+      "evidence": "C:\\Program Files\\nodejs\\node.EXE"
+    },
+    "dotnet": {
+      "available": true,
+      "evidence": "C:\\Program Files\\dotnet\\dotnet.EXE"
+    },
+    "docker": {
+      "available": true,
+      "evidence": "C:\\Users\\jimdev-pc\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.EXE"
+    },
+    "docker_compose": {
+      "available": true,
+      "evidence": "C:\\Users\\jimdev-pc\\AppData\\Local\\Programs\\DockerDesktop\\resources\\bin\\docker.EXE"
+    },
+    "database_clients": {
+      "available": false,
+      "evidence": "not found"
+    },
+    "zip_creation": {
+      "available": true,
+      "evidence": "stdlib:zipfile"
+    }
+  }
+}

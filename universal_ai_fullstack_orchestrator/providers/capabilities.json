@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "providers": [
+    {
+      "id": "Claude",
+      "capabilities": [],
+      "detection": "runtime",
+      "architecture_override": false
+    },
+    {
+      "id": "ChatGPT",
+      "capabilities": [],
+      "detection": "runtime",
+      "architecture_override": false
+    },
+    {
+      "id": "Codex",
+      "capabilities": [],
+      "detection": "runtime",
+      "architecture_override": false
+    },
+    {
+      "id": "Gemini",
+      "capabilities": [],
+      "detection": "runtime",
+      "architecture_override": false
+    },
+    {
+      "id": "Mistral",
+      "capabilities": [],
+      "detection": "runtime",
+      "architecture_override": false
+    },
+    {
+      "id": "Grok",
+      "capabilities": [],
+      "detection": "runtime",
+      "architecture_override": false
+    },
+    {
+      "id": "other",
+      "capabilities": [],
+      "detection": "runtime",
+      "architecture_override": false
+    }
+  ]
+}

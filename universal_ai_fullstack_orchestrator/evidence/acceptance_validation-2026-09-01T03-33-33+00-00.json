@@ -1,0 +1,13 @@
+{
+  "gate": "ACCEPTANCE_VALIDATION",
+  "command": [
+    "C:\\Users\\jimdev-pc\\.cache\\codex-runtimes\\codex-primary-runtime\\dependencies\\python\\python.exe",
+    "scripts\\validate_all.py"
+  ],
+  "timestamp": "2026-09-01T03:33:33+00:00",
+  "agent": "framework_maintainer",
+  "exit_code": 0,
+  "result": "passed",
+  "summary": "{\n  \"ok\": true,\n  \"checks\": [\n    {\n      \"validator\": \"validate_registry\",\n      \"ok\": true,\n      \"details\": [\n        \"35 agents and 30 skills resolve\"\n      ]\n    },\n    {\n      \"validator\": \"validate_pipeline\",\n      \"ok\": true,\n      \"details\": [\n        \"32 stages and failure loops valid\"\n      ]\n    },\n    {\n      \"validator\": \"validate_continuity\",\n      \"ok\": true,\n      \"details\": [\n        \"12 state files present\"\n      ]\n    },\n    {\n      \"validator\": \"validate_governance\",\n      \"ok\": true,\n      \"details\": [\n        \"10 governance policies present\"\n      ]\n    },\n    {\n      \"validator\": \"validate_git_authorship\",\n      \"ok\": true,\n      \"details\": [\n        \"local identity and history satisfy policy\"\n      ]\n    },\n    {\n      \"validator\": \"validate_task_graph\",\n      \"ok\": true,\n      \"details\": [\n        \"1 tasks form a DAG\"\n      ]\n    },\n    {\n      \"validator\": \"validate_repository_map\",\n      \"ok\": true,\n      \"details\": [\n        \"repository map schema valid\"\n      ]\n    },\n    {\n      \"validator\": \"validate_context\",\n      \"ok\": true,\n      \"details\": [\n        \"context budget and pinned items valid\"\n      ]\n    },\n    {\n      \"validator\": \"validate_risk\",\n      \"ok\": true,\n      \"details\": [\n        \"4 golden classifications pass\"\n      ]\n    },\n    {\n      \"validator\": \"validate_cli\",\n      \"ok\": true,\n      \"details\": [\n        \"15 CLI commands respond to --help\"\n      ]\n    }\n  ],\n  \"version\": \"0.1.0\"\n}\n",
+  "artifact": null
+}

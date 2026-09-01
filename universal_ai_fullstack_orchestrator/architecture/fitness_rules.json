@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "rules": [
+    {
+      "id": "domain_no_infrastructure",
+      "description": "domain cannot directly depend on infrastructure",
+      "severity": "HIGH"
+    },
+    {
+      "id": "frontend_no_database",
+      "description": "frontend cannot connect directly to database",
+      "severity": "CRITICAL"
+    },
+    {
+      "id": "module_boundaries",
+      "description": "cross-module imports respect declared boundaries",
+      "severity": "HIGH"
+    },
+    {
+      "id": "no_secrets",
+      "description": "secrets cannot be committed",
+      "severity": "CRITICAL"
+    }
+  ]
+}

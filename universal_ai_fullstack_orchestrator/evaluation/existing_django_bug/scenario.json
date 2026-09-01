@@ -1,0 +1,10 @@
+{
+  "id": "existing_django_bug",
+  "request": "Fix an authorization bug in existing Django",
+  "required_agents": [
+    "project_analyzer",
+    "backend_engineer",
+    "security_architect"
+  ],
+  "expected": "Maps behavior, classifies HIGH risk and adds regression tests."
+}

@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "tasks": [
+    {
+      "id": "PAL-001",
+      "title": "Materialize and validate PALLAQUINO",
+      "domain": "framework",
+      "dependencies": [],
+      "blocked_by": [],
+      "parallelizable": false,
+      "priority": "P0",
+      "risk": "MEDIUM",
+      "agents": [
+        "framework_maintainer",
+        "pipeline_manager",
+        "qa_engineer"
+      ],
+      "skills": [
+        "task_graph_expert",
+        "evidence_validation_expert"
+      ],
+      "files": [
+        "manifest.json",
+        "registry/",
+        "pipeline/",
+        "pallaquino_cli/"
+      ],
+      "acceptance_criteria": [
+        "all validators pass",
+        "archive integrity passes"
+      ],
+      "quality_gates": [
+        "TEST",
+        "LINT_TYPECHECK",
+        "BUILD",
+        "SECURITY_CHECK",
+        "CODE_REVIEW"
+      ]
+    }
+  ]
+}

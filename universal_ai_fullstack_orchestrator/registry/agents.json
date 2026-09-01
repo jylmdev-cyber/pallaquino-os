@@ -1,0 +1,967 @@
+{
+  "schema_version": 1,
+  "agents": [
+    {
+      "id": "project_analyzer",
+      "path": "agents/prompt_agent_project_analyzer.md",
+      "category": "architecture",
+      "domains": [
+        "repository",
+        "architecture"
+      ],
+      "capabilities": [
+        "analyze",
+        "map"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert"
+      ],
+      "can_write_code": true,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "HIGH",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "codebase_explorer",
+      "path": "agents/prompt_agent_codebase_explorer.md",
+      "category": "architecture",
+      "domains": [
+        "repository"
+      ],
+      "capabilities": [
+        "search",
+        "trace"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert"
+      ],
+      "can_write_code": true,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "HIGH",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "product_manager",
+      "path": "agents/prompt_agent_product_manager.md",
+      "category": "product",
+      "domains": [
+        "product"
+      ],
+      "capabilities": [
+        "requirements",
+        "acceptance"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert"
+      ],
+      "can_write_code": false,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "HIGH",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "software_architect",
+      "path": "agents/prompt_agent_software_architect.md",
+      "category": "architecture",
+      "domains": [
+        "architecture"
+      ],
+      "capabilities": [
+        "design",
+        "review"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert"
+      ],
+      "can_write_code": true,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "HIGH",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "backend_engineer",
+      "path": "agents/prompt_agent_backend_engineer.md",
+      "category": "backend",
+      "domains": [
+        "api",
+        "domain"
+      ],
+      "capabilities": [
+        "code",
+        "test"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert"
+      ],
+      "can_write_code": true,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "HIGH",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "frontend_engineer",
+      "path": "agents/prompt_agent_frontend_engineer.md",
+      "category": "frontend",
+      "domains": [
+        "web",
+        "ux"
+      ],
+      "capabilities": [
+        "code",
+        "test"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert"
+      ],
+      "can_write_code": true,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "HIGH",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "ux_ui_designer",
+      "path": "agents/prompt_agent_ux_ui_designer.md",
+      "category": "design",
+      "domains": [
+        "ux",
+        "web"
+      ],
+      "capabilities": [
+        "design",
+        "accessibility"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert"
+      ],
+      "can_write_code": true,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "HIGH",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "database_engineer",
+      "path": "agents/prompt_agent_database_engineer.md",
+      "category": "data",
+      "domains": [
+        "database"
+      ],
+      "capabilities": [
+        "schema",
+        "migration"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert",
+        "migration_safety_expert"
+      ],
+      "can_write_code": true,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "HIGH",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "devops_engineer",
+      "path": "agents/prompt_agent_devops_engineer.md",
+      "category": "platform",
+      "domains": [
+        "deployment",
+        "infrastructure"
+      ],
+      "capabilities": [
+        "build",
+        "deploy"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert"
+      ],
+      "can_write_code": true,
+      "can_review": true,
+      "can_deploy": true,
+      "risk_limit": "HIGH",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "security_architect",
+      "path": "agents/prompt_agent_security_architect.md",
+      "category": "security",
+      "domains": [
+        "security",
+        "identity"
+      ],
+      "capabilities": [
+        "threat_model",
+        "review"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert",
+        "adversarial_review_expert"
+      ],
+      "can_write_code": true,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "CRITICAL",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "qa_engineer",
+      "path": "agents/prompt_agent_qa_engineer.md",
+      "category": "quality",
+      "domains": [
+        "testing"
+      ],
+      "capabilities": [
+        "test",
+        "validate"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert"
+      ],
+      "can_write_code": true,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "HIGH",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "code_quality_reviewer",
+      "path": "agents/prompt_agent_code_quality_reviewer.md",
+      "category": "quality",
+      "domains": [
+        "code"
+      ],
+      "capabilities": [
+        "review",
+        "lint"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert"
+      ],
+      "can_write_code": true,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "HIGH",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "sre_engineer",
+      "path": "agents/prompt_agent_sre_engineer.md",
+      "category": "operations",
+      "domains": [
+        "production",
+        "incident"
+      ],
+      "capabilities": [
+        "reliability",
+        "rollback"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert"
+      ],
+      "can_write_code": true,
+      "can_review": true,
+      "can_deploy": true,
+      "risk_limit": "CRITICAL",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "observability_engineer",
+      "path": "agents/prompt_agent_observability_engineer.md",
+      "category": "operations",
+      "domains": [
+        "observability"
+      ],
+      "capabilities": [
+        "logs",
+        "metrics",
+        "tracing"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert"
+      ],
+      "can_write_code": true,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "HIGH",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "data_engineer",
+      "path": "agents/prompt_agent_data_engineer.md",
+      "category": "data",
+      "domains": [
+        "data"
+      ],
+      "capabilities": [
+        "pipeline",
+        "quality"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert"
+      ],
+      "can_write_code": true,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "HIGH",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "ai_engineer",
+      "path": "agents/prompt_agent_ai_engineer.md",
+      "category": "ai",
+      "domains": [
+        "ai",
+        "agents"
+      ],
+      "capabilities": [
+        "prompting",
+        "evaluation"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert"
+      ],
+      "can_write_code": true,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "HIGH",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "erp_domain_expert",
+      "path": "agents/prompt_agent_erp_domain_expert.md",
+      "category": "domain",
+      "domains": [
+        "erp"
+      ],
+      "capabilities": [
+        "domain_model",
+        "review"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert"
+      ],
+      "can_write_code": true,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "HIGH",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "saas_architect",
+      "path": "agents/prompt_agent_saas_architect.md",
+      "category": "architecture",
+      "domains": [
+        "saas"
+      ],
+      "capabilities": [
+        "tenancy",
+        "billing"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert"
+      ],
+      "can_write_code": true,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "HIGH",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "documentation_engineer",
+      "path": "agents/prompt_agent_documentation_engineer.md",
+      "category": "documentation",
+      "domains": [
+        "documentation"
+      ],
+      "capabilities": [
+        "write",
+        "verify"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert"
+      ],
+      "can_write_code": true,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "HIGH",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "execution_coordinator",
+      "path": "agents/prompt_agent_execution_coordinator.md",
+      "category": "execution",
+      "domains": [
+        "planning"
+      ],
+      "capabilities": [
+        "schedule",
+        "delegate"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert"
+      ],
+      "can_write_code": true,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "HIGH",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "continuity_manager",
+      "path": "agents/prompt_agent_continuity_manager.md",
+      "category": "continuity",
+      "domains": [
+        "continuity"
+      ],
+      "capabilities": [
+        "checkpoint",
+        "recover"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert"
+      ],
+      "can_write_code": true,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "HIGH",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "governance_auditor",
+      "path": "agents/prompt_agent_governance_auditor.md",
+      "category": "governance",
+      "domains": [
+        "governance"
+      ],
+      "capabilities": [
+        "policy",
+        "audit"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert"
+      ],
+      "can_write_code": false,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "HIGH",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "pipeline_manager",
+      "path": "agents/prompt_agent_pipeline_manager.md",
+      "category": "pipeline",
+      "domains": [
+        "pipeline"
+      ],
+      "capabilities": [
+        "transition",
+        "gate"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert"
+      ],
+      "can_write_code": true,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "HIGH",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "risk_analyst",
+      "path": "agents/prompt_agent_risk_analyst.md",
+      "category": "risk",
+      "domains": [
+        "risk"
+      ],
+      "capabilities": [
+        "classify",
+        "gate"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert"
+      ],
+      "can_write_code": true,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "HIGH",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "context_manager",
+      "path": "agents/prompt_agent_context_manager.md",
+      "category": "context",
+      "domains": [
+        "context"
+      ],
+      "capabilities": [
+        "budget",
+        "summarize"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert",
+        "context_management_expert"
+      ],
+      "can_write_code": true,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "HIGH",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "conflict_resolver",
+      "path": "agents/prompt_agent_conflict_resolver.md",
+      "category": "execution",
+      "domains": [
+        "integration"
+      ],
+      "capabilities": [
+        "merge",
+        "arbitrate"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert"
+      ],
+      "can_write_code": true,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "HIGH",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "technical_decision_arbitrator",
+      "path": "agents/prompt_agent_technical_decision_arbitrator.md",
+      "category": "architecture",
+      "domains": [
+        "architecture"
+      ],
+      "capabilities": [
+        "compare",
+        "adr"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert"
+      ],
+      "can_write_code": true,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "HIGH",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "adversarial_reviewer",
+      "path": "agents/prompt_agent_adversarial_reviewer.md",
+      "category": "security",
+      "domains": [
+        "security",
+        "quality"
+      ],
+      "capabilities": [
+        "attack",
+        "review"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert",
+        "adversarial_review_expert"
+      ],
+      "can_write_code": false,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "HIGH",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "test_gap_analyzer",
+      "path": "agents/prompt_agent_test_gap_analyzer.md",
+      "category": "quality",
+      "domains": [
+        "testing"
+      ],
+      "capabilities": [
+        "coverage",
+        "traceability"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert",
+        "test_gap_analysis_expert"
+      ],
+      "can_write_code": false,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "HIGH",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "specification_drift_detector",
+      "path": "agents/prompt_agent_specification_drift_detector.md",
+      "category": "quality",
+      "domains": [
+        "requirements"
+      ],
+      "capabilities": [
+        "compare",
+        "trace"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert",
+        "specification_drift_expert"
+      ],
+      "can_write_code": false,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "HIGH",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "dependency_governance_agent",
+      "path": "agents/prompt_agent_dependency_governance_agent.md",
+      "category": "security",
+      "domains": [
+        "dependencies"
+      ],
+      "capabilities": [
+        "audit",
+        "license"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert"
+      ],
+      "can_write_code": true,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "HIGH",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "migration_safety_reviewer",
+      "path": "agents/prompt_agent_migration_safety_reviewer.md",
+      "category": "data",
+      "domains": [
+        "database"
+      ],
+      "capabilities": [
+        "migration",
+        "rollback"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert",
+        "migration_safety_expert"
+      ],
+      "can_write_code": true,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "CRITICAL",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "rollback_readiness_reviewer",
+      "path": "agents/prompt_agent_rollback_readiness_reviewer.md",
+      "category": "operations",
+      "domains": [
+        "deployment"
+      ],
+      "capabilities": [
+        "rollback",
+        "flags"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert"
+      ],
+      "can_write_code": true,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "HIGH",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "release_manager",
+      "path": "agents/prompt_agent_release_manager.md",
+      "category": "release",
+      "domains": [
+        "release"
+      ],
+      "capabilities": [
+        "version",
+        "manifest"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert"
+      ],
+      "can_write_code": true,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "CRITICAL",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "framework_maintainer",
+      "path": "agents/prompt_agent_framework_maintainer.md",
+      "category": "framework",
+      "domains": [
+        "pallaquino"
+      ],
+      "capabilities": [
+        "update",
+        "validate"
+      ],
+      "technologies": [],
+      "required_skills": [
+        "risk_analysis_expert"
+      ],
+      "can_write_code": true,
+      "can_review": true,
+      "can_deploy": false,
+      "risk_limit": "HIGH",
+      "context_weight": 3,
+      "priority": 50,
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    }
+  ]
+}

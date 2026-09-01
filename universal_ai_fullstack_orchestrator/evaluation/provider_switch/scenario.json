@@ -1,0 +1,9 @@
+{
+  "id": "provider_switch",
+  "request": "Continue work with another AI provider",
+  "required_agents": [
+    "continuity_manager",
+    "context_manager"
+  ],
+  "expected": "Preserves state and marks reconstructed inference."
+}

@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "steps": [
+    {
+      "task": "PAL-001",
+      "agent": "framework_maintainer",
+      "skills": [
+        "task_graph_expert",
+        "evidence_validation_expert"
+      ],
+      "inputs": [
+        "master request"
+      ],
+      "expected_files": [
+        "manifest.json",
+        "registry/",
+        "pipeline/",
+        "pallaquino_cli/"
+      ],
+      "dependencies": [],
+      "commands": [
+        "python -m unittest discover -s tests -v",
+        "python -m pallaquino_cli validate"
+      ],
+      "tests": [
+        "framework suite"
+      ],
+      "gates": [
+        "TEST",
+        "LINT_TYPECHECK",
+        "BUILD",
+        "SECURITY_CHECK",
+        "CODE_REVIEW"
+      ]
+    }
+  ]
+}

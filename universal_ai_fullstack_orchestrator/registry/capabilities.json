@@ -1,0 +1,69 @@
+{
+  "schema_version": 1,
+  "capabilities": [
+    {
+      "id": "filesystem",
+      "description": "filesystem"
+    },
+    {
+      "id": "shell",
+      "description": "shell"
+    },
+    {
+      "id": "git",
+      "description": "git"
+    },
+    {
+      "id": "internet",
+      "description": "internet"
+    },
+    {
+      "id": "browser",
+      "description": "browser"
+    },
+    {
+      "id": "python",
+      "description": "python"
+    },
+    {
+      "id": "node",
+      "description": "node"
+    },
+    {
+      "id": "dotnet",
+      "description": "dotnet"
+    },
+    {
+      "id": "docker",
+      "description": "docker"
+    },
+    {
+      "id": "docker_compose",
+      "description": "docker compose"
+    },
+    {
+      "id": "database_clients",
+      "description": "database clients"
+    },
+    {
+      "id": "mcp",
+      "description": "mcp"
+    },
+    {
+      "id": "subagents",
+      "description": "subagents"
+    },
+    {
+      "id": "parallel_execution",
+      "description": "parallel execution"
+    },
+    {
+      "id": "file_editing",
+      "description": "file editing"
+    },
+    {
+      "id": "zip_creation",
+      "description": "zip creation"
+    }
+  ]
+}

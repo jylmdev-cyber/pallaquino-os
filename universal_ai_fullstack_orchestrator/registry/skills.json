@@ -1,0 +1,851 @@
+{
+  "schema_version": 1,
+  "skills": [
+    {
+      "id": "risk_analysis_expert",
+      "path": "skills/risk_analysis_expert/SKILL.md",
+      "category": "risk",
+      "tags": [
+        "risk",
+        "risk"
+      ],
+      "domains": [
+        "risk"
+      ],
+      "technologies": [],
+      "capabilities": [
+        "classify",
+        "gate"
+      ],
+      "context_weight": 2,
+      "risk_level": "MEDIUM",
+      "dependencies": [],
+      "conflicts": [],
+      "prerequisites": [],
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "task_graph_expert",
+      "path": "skills/task_graph_expert/SKILL.md",
+      "category": "planning",
+      "tags": [
+        "planning",
+        "planning"
+      ],
+      "domains": [
+        "planning"
+      ],
+      "technologies": [],
+      "capabilities": [
+        "dag",
+        "schedule"
+      ],
+      "context_weight": 2,
+      "risk_level": "MEDIUM",
+      "dependencies": [],
+      "conflicts": [],
+      "prerequisites": [],
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "context_management_expert",
+      "path": "skills/context_management_expert/SKILL.md",
+      "category": "context",
+      "tags": [
+        "context",
+        "context"
+      ],
+      "domains": [
+        "context"
+      ],
+      "technologies": [],
+      "capabilities": [
+        "budget",
+        "summarize"
+      ],
+      "context_weight": 2,
+      "risk_level": "MEDIUM",
+      "dependencies": [],
+      "conflicts": [],
+      "prerequisites": [],
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "evidence_validation_expert",
+      "path": "skills/evidence_validation_expert/SKILL.md",
+      "category": "quality",
+      "tags": [
+        "quality",
+        "evidence"
+      ],
+      "domains": [
+        "evidence"
+      ],
+      "technologies": [],
+      "capabilities": [
+        "capture",
+        "verify"
+      ],
+      "context_weight": 2,
+      "risk_level": "MEDIUM",
+      "dependencies": [],
+      "conflicts": [],
+      "prerequisites": [],
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "dependency_governance_expert",
+      "path": "skills/dependency_governance_expert/SKILL.md",
+      "category": "security",
+      "tags": [
+        "security",
+        "dependencies"
+      ],
+      "domains": [
+        "dependencies"
+      ],
+      "technologies": [],
+      "capabilities": [
+        "audit",
+        "license"
+      ],
+      "context_weight": 2,
+      "risk_level": "HIGH",
+      "dependencies": [],
+      "conflicts": [],
+      "prerequisites": [],
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "supply_chain_security_expert",
+      "path": "skills/supply_chain_security_expert/SKILL.md",
+      "category": "security",
+      "tags": [
+        "security",
+        "dependencies"
+      ],
+      "domains": [
+        "dependencies"
+      ],
+      "technologies": [],
+      "capabilities": [
+        "sbom",
+        "audit"
+      ],
+      "context_weight": 2,
+      "risk_level": "HIGH",
+      "dependencies": [],
+      "conflicts": [],
+      "prerequisites": [],
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "migration_safety_expert",
+      "path": "skills/migration_safety_expert/SKILL.md",
+      "category": "database",
+      "tags": [
+        "database",
+        "database"
+      ],
+      "domains": [
+        "database"
+      ],
+      "technologies": [],
+      "capabilities": [
+        "migration",
+        "online_change"
+      ],
+      "context_weight": 2,
+      "risk_level": "HIGH",
+      "dependencies": [],
+      "conflicts": [],
+      "prerequisites": [],
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "rollback_strategy_expert",
+      "path": "skills/rollback_strategy_expert/SKILL.md",
+      "category": "operations",
+      "tags": [
+        "operations",
+        "deployment"
+      ],
+      "domains": [
+        "deployment"
+      ],
+      "technologies": [],
+      "capabilities": [
+        "rollback",
+        "flags"
+      ],
+      "context_weight": 2,
+      "risk_level": "HIGH",
+      "dependencies": [],
+      "conflicts": [],
+      "prerequisites": [],
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "architecture_fitness_expert",
+      "path": "skills/architecture_fitness_expert/SKILL.md",
+      "category": "architecture",
+      "tags": [
+        "architecture",
+        "architecture"
+      ],
+      "domains": [
+        "architecture"
+      ],
+      "technologies": [],
+      "capabilities": [
+        "boundaries",
+        "validate"
+      ],
+      "context_weight": 2,
+      "risk_level": "MEDIUM",
+      "dependencies": [],
+      "conflicts": [],
+      "prerequisites": [],
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "specification_drift_expert",
+      "path": "skills/specification_drift_expert/SKILL.md",
+      "category": "quality",
+      "tags": [
+        "quality",
+        "requirements"
+      ],
+      "domains": [
+        "requirements"
+      ],
+      "technologies": [],
+      "capabilities": [
+        "trace",
+        "compare"
+      ],
+      "context_weight": 2,
+      "risk_level": "MEDIUM",
+      "dependencies": [],
+      "conflicts": [],
+      "prerequisites": [],
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "test_gap_analysis_expert",
+      "path": "skills/test_gap_analysis_expert/SKILL.md",
+      "category": "testing",
+      "tags": [
+        "testing",
+        "testing"
+      ],
+      "domains": [
+        "testing"
+      ],
+      "technologies": [],
+      "capabilities": [
+        "coverage",
+        "mutation"
+      ],
+      "context_weight": 2,
+      "risk_level": "MEDIUM",
+      "dependencies": [],
+      "conflicts": [],
+      "prerequisites": [],
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "adversarial_review_expert",
+      "path": "skills/adversarial_review_expert/SKILL.md",
+      "category": "security",
+      "tags": [
+        "security",
+        "security"
+      ],
+      "domains": [
+        "security"
+      ],
+      "technologies": [],
+      "capabilities": [
+        "attack",
+        "fuzz"
+      ],
+      "context_weight": 2,
+      "risk_level": "HIGH",
+      "dependencies": [],
+      "conflicts": [],
+      "prerequisites": [],
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "release_management_expert",
+      "path": "skills/release_management_expert/SKILL.md",
+      "category": "release",
+      "tags": [
+        "release",
+        "release"
+      ],
+      "domains": [
+        "release"
+      ],
+      "technologies": [],
+      "capabilities": [
+        "semver",
+        "manifest"
+      ],
+      "context_weight": 2,
+      "risk_level": "MEDIUM",
+      "dependencies": [],
+      "conflicts": [],
+      "prerequisites": [],
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "django_expert",
+      "path": "skills/django_expert/SKILL.md",
+      "category": "backend",
+      "tags": [
+        "backend",
+        "backend",
+        "web"
+      ],
+      "domains": [
+        "backend",
+        "web"
+      ],
+      "technologies": [
+        "django",
+        "python"
+      ],
+      "capabilities": [
+        "orm",
+        "auth",
+        "test"
+      ],
+      "context_weight": 2,
+      "risk_level": "MEDIUM",
+      "dependencies": [],
+      "conflicts": [],
+      "prerequisites": [],
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "nuxt_expert",
+      "path": "skills/nuxt_expert/SKILL.md",
+      "category": "frontend",
+      "tags": [
+        "frontend",
+        "frontend",
+        "web"
+      ],
+      "domains": [
+        "frontend",
+        "web"
+      ],
+      "technologies": [
+        "nuxt",
+        "nodejs"
+      ],
+      "capabilities": [
+        "ssr",
+        "routing",
+        "test"
+      ],
+      "context_weight": 2,
+      "risk_level": "MEDIUM",
+      "dependencies": [],
+      "conflicts": [],
+      "prerequisites": [],
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "postgresql_expert",
+      "path": "skills/postgresql_expert/SKILL.md",
+      "category": "database",
+      "tags": [
+        "database",
+        "database"
+      ],
+      "domains": [
+        "database"
+      ],
+      "technologies": [
+        "postgresql"
+      ],
+      "capabilities": [
+        "sql",
+        "index",
+        "migration"
+      ],
+      "context_weight": 2,
+      "risk_level": "HIGH",
+      "dependencies": [],
+      "conflicts": [],
+      "prerequisites": [],
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "typescript_expert",
+      "path": "skills/typescript_expert/SKILL.md",
+      "category": "language",
+      "tags": [
+        "language",
+        "frontend",
+        "backend"
+      ],
+      "domains": [
+        "frontend",
+        "backend"
+      ],
+      "technologies": [
+        "typescript"
+      ],
+      "capabilities": [
+        "types",
+        "build"
+      ],
+      "context_weight": 2,
+      "risk_level": "MEDIUM",
+      "dependencies": [],
+      "conflicts": [],
+      "prerequisites": [],
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "ubuntu_server_expert",
+      "path": "skills/ubuntu_server_expert/SKILL.md",
+      "category": "platform",
+      "tags": [
+        "platform",
+        "infrastructure"
+      ],
+      "domains": [
+        "infrastructure"
+      ],
+      "technologies": [
+        "ubuntu"
+      ],
+      "capabilities": [
+        "os",
+        "hardening"
+      ],
+      "context_weight": 2,
+      "risk_level": "MEDIUM",
+      "dependencies": [],
+      "conflicts": [],
+      "prerequisites": [],
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "dotnet_expert",
+      "path": "skills/dotnet_expert/SKILL.md",
+      "category": "backend",
+      "tags": [
+        "backend",
+        "backend"
+      ],
+      "domains": [
+        "backend"
+      ],
+      "technologies": [
+        "dotnet"
+      ],
+      "capabilities": [
+        "aspnet",
+        "test"
+      ],
+      "context_weight": 2,
+      "risk_level": "MEDIUM",
+      "dependencies": [],
+      "conflicts": [],
+      "prerequisites": [],
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "python_expert",
+      "path": "skills/python_expert/SKILL.md",
+      "category": "language",
+      "tags": [
+        "language",
+        "backend",
+        "automation"
+      ],
+      "domains": [
+        "backend",
+        "automation"
+      ],
+      "technologies": [
+        "python"
+      ],
+      "capabilities": [
+        "python",
+        "test"
+      ],
+      "context_weight": 2,
+      "risk_level": "MEDIUM",
+      "dependencies": [],
+      "conflicts": [],
+      "prerequisites": [],
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "nodejs_expert",
+      "path": "skills/nodejs_expert/SKILL.md",
+      "category": "runtime",
+      "tags": [
+        "runtime",
+        "frontend",
+        "backend"
+      ],
+      "domains": [
+        "frontend",
+        "backend"
+      ],
+      "technologies": [
+        "nodejs"
+      ],
+      "capabilities": [
+        "node",
+        "package"
+      ],
+      "context_weight": 2,
+      "risk_level": "MEDIUM",
+      "dependencies": [],
+      "conflicts": [],
+      "prerequisites": [],
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "docker_expert",
+      "path": "skills/docker_expert/SKILL.md",
+      "category": "platform",
+      "tags": [
+        "platform",
+        "deployment"
+      ],
+      "domains": [
+        "deployment"
+      ],
+      "technologies": [
+        "docker_engine",
+        "docker_compose"
+      ],
+      "capabilities": [
+        "container",
+        "compose"
+      ],
+      "context_weight": 2,
+      "risk_level": "MEDIUM",
+      "dependencies": [],
+      "conflicts": [],
+      "prerequisites": [],
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "application_security_expert",
+      "path": "skills/application_security_expert/SKILL.md",
+      "category": "security",
+      "tags": [
+        "security",
+        "security"
+      ],
+      "domains": [
+        "security"
+      ],
+      "technologies": [],
+      "capabilities": [
+        "threat_model",
+        "review"
+      ],
+      "context_weight": 2,
+      "risk_level": "HIGH",
+      "dependencies": [],
+      "conflicts": [],
+      "prerequisites": [],
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "testing_strategy_expert",
+      "path": "skills/testing_strategy_expert/SKILL.md",
+      "category": "testing",
+      "tags": [
+        "testing",
+        "testing"
+      ],
+      "domains": [
+        "testing"
+      ],
+      "technologies": [],
+      "capabilities": [
+        "unit",
+        "integration",
+        "e2e"
+      ],
+      "context_weight": 2,
+      "risk_level": "MEDIUM",
+      "dependencies": [],
+      "conflicts": [],
+      "prerequisites": [],
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "observability_expert",
+      "path": "skills/observability_expert/SKILL.md",
+      "category": "operations",
+      "tags": [
+        "operations",
+        "observability"
+      ],
+      "domains": [
+        "observability"
+      ],
+      "technologies": [],
+      "capabilities": [
+        "logs",
+        "metrics",
+        "traces"
+      ],
+      "context_weight": 2,
+      "risk_level": "HIGH",
+      "dependencies": [],
+      "conflicts": [],
+      "prerequisites": [],
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "erp_domain_expert",
+      "path": "skills/erp_domain_expert/SKILL.md",
+      "category": "domain",
+      "tags": [
+        "domain",
+        "erp"
+      ],
+      "domains": [
+        "erp"
+      ],
+      "technologies": [],
+      "capabilities": [
+        "accounting",
+        "inventory"
+      ],
+      "context_weight": 2,
+      "risk_level": "MEDIUM",
+      "dependencies": [],
+      "conflicts": [],
+      "prerequisites": [],
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "saas_tenancy_expert",
+      "path": "skills/saas_tenancy_expert/SKILL.md",
+      "category": "architecture",
+      "tags": [
+        "architecture",
+        "saas"
+      ],
+      "domains": [
+        "saas"
+      ],
+      "technologies": [],
+      "capabilities": [
+        "tenancy",
+        "entitlements"
+      ],
+      "context_weight": 2,
+      "risk_level": "MEDIUM",
+      "dependencies": [],
+      "conflicts": [],
+      "prerequisites": [],
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "frontend_accessibility_expert",
+      "path": "skills/frontend_accessibility_expert/SKILL.md",
+      "category": "frontend",
+      "tags": [
+        "frontend",
+        "web"
+      ],
+      "domains": [
+        "web"
+      ],
+      "technologies": [],
+      "capabilities": [
+        "wcag",
+        "keyboard"
+      ],
+      "context_weight": 2,
+      "risk_level": "MEDIUM",
+      "dependencies": [],
+      "conflicts": [],
+      "prerequisites": [],
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "api_contract_expert",
+      "path": "skills/api_contract_expert/SKILL.md",
+      "category": "backend",
+      "tags": [
+        "backend",
+        "api"
+      ],
+      "domains": [
+        "api"
+      ],
+      "technologies": [],
+      "capabilities": [
+        "openapi",
+        "compatibility"
+      ],
+      "context_weight": 2,
+      "risk_level": "MEDIUM",
+      "dependencies": [],
+      "conflicts": [],
+      "prerequisites": [],
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    },
+    {
+      "id": "git_release_expert",
+      "path": "skills/git_release_expert/SKILL.md",
+      "category": "release",
+      "tags": [
+        "release",
+        "release"
+      ],
+      "domains": [
+        "release"
+      ],
+      "technologies": [],
+      "capabilities": [
+        "git",
+        "commit"
+      ],
+      "context_weight": 2,
+      "risk_level": "MEDIUM",
+      "dependencies": [],
+      "conflicts": [],
+      "prerequisites": [],
+      "provider_neutral": true,
+      "version": "1.0.0",
+      "last_reviewed": "2026-08-31",
+      "deprecated": false,
+      "superseded_by": null
+    }
+  ]
+}

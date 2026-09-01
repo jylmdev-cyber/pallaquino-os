@@ -1,0 +1,18 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pallaquino-autonomous-engineering-os"
+version = "0.1.0"
+description = "Portable engineering operating system for AI agents"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{name = "jimdev", email = "jylmdev@gmail.com"}]
+
+[project.scripts]
+pallaquino = "pallaquino_cli.__main__:main"
+
+[tool.setuptools]
+packages = ["pallaquino_cli"]
+

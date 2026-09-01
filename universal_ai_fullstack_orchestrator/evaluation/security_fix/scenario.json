@@ -1,0 +1,9 @@
+{
+  "id": "security_fix",
+  "request": "Fix a public authorization vulnerability",
+  "required_agents": [
+    "security_architect",
+    "adversarial_reviewer"
+  ],
+  "expected": "Includes threat review and negative tests."
+}

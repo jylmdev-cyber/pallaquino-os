@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "environments": {
+    "development": {
+      "production_secrets": false,
+      "data": "synthetic"
+    },
+    "testing": {
+      "production_secrets": false,
+      "data": "synthetic_or_sanitized"
+    },
+    "staging": {
+      "production_secrets": false,
+      "data": "sanitized"
+    },
+    "production": {
+      "production_secrets": true,
+      "data": "production",
+      "approval_required": true
+    }
+  }
+}

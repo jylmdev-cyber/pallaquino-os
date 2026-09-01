@@ -1,0 +1,9 @@
+{
+  "id": "abrupt_session_recovery",
+  "request": "Recover after an agent disappears",
+  "required_agents": [
+    "continuity_manager",
+    "pipeline_manager"
+  ],
+  "expected": "Rebuilds from checkpoint/Git/evidence without inventing results."
+}

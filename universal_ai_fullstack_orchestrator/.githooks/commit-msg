@@ -1,0 +1,13 @@
+#!/bin/sh
+message_file="$1"
+subject="$(head -n 1 "$message_file")"
+
+if ! printf '%s\n' "$subject" | grep -Eq '^(feat|fix|docs|test|refactor|perf|build|ci|chore)(\([a-z0-9_-]+\))?!?: .+'; then
+  printf '%s\n' 'PALLAQUINO: use a Conventional Commits subject' >&2
+  exit 1
+fi
+
+if grep -Eiq '^Co-authored-by:[[:space:]]*(Claude|ChatGPT|Gemini|Grok|Mistral|Copilot)' "$message_file"; then
+  printf '%s\n' 'PALLAQUINO: AI co-author trailers are forbidden' >&2
+  exit 1
+fi

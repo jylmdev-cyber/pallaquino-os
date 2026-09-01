@@ -1,0 +1,12 @@
+{
+  "schema_version": 1,
+  "level": "LOW",
+  "factors": [],
+  "required_gates": [
+    "TEST",
+    "LINT_TYPECHECK",
+    "CODE_REVIEW"
+  ],
+  "confidence": "low",
+  "analyzed_at": null
+}

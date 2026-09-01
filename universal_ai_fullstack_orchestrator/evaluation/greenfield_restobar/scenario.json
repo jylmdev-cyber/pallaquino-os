@@ -1,0 +1,10 @@
+{
+  "id": "greenfield_restobar",
+  "request": "Create a restobar web system",
+  "required_agents": [
+    "product_manager",
+    "software_architect",
+    "erp_domain_expert"
+  ],
+  "expected": "Produces domains and a non-linear task graph."
+}

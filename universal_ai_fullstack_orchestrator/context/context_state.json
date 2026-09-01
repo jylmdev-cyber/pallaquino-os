@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "budget": 100,
+  "used": 0,
+  "pinned": [
+    "policy",
+    "user_request",
+    "decisions"
+  ],
+  "loaded": [],
+  "omitted": [],
+  "summaries": []
+}

@@ -1,0 +1,406 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-09-01T03:29:01+00:00",
+  "root": "D:\\codex\\pallaquino-os\\universal_ai_fullstack_orchestrator",
+  "modules": [
+    {
+      "id": ".githooks",
+      "path": ".githooks",
+      "owner": "unassigned"
+    },
+    {
+      "id": "agents",
+      "path": "agents",
+      "owner": "unassigned"
+    },
+    {
+      "id": "analysis",
+      "path": "analysis",
+      "owner": "unassigned"
+    },
+    {
+      "id": "architecture",
+      "path": "architecture",
+      "owner": "unassigned"
+    },
+    {
+      "id": "changes",
+      "path": "changes",
+      "owner": "unassigned"
+    },
+    {
+      "id": "context",
+      "path": "context",
+      "owner": "unassigned"
+    },
+    {
+      "id": "continuity",
+      "path": "continuity",
+      "owner": "unassigned"
+    },
+    {
+      "id": "docs",
+      "path": "docs",
+      "owner": "unassigned"
+    },
+    {
+      "id": "environments",
+      "path": "environments",
+      "owner": "unassigned"
+    },
+    {
+      "id": "evaluation",
+      "path": "evaluation",
+      "owner": "unassigned"
+    },
+    {
+      "id": "evidence",
+      "path": "evidence",
+      "owner": "unassigned"
+    },
+    {
+      "id": "examples",
+      "path": "examples",
+      "owner": "unassigned"
+    },
+    {
+      "id": "execution",
+      "path": "execution",
+      "owner": "unassigned"
+    },
+    {
+      "id": "governance",
+      "path": "governance",
+      "owner": "unassigned"
+    },
+    {
+      "id": "modes",
+      "path": "modes",
+      "owner": "unassigned"
+    },
+    {
+      "id": "orchestrator",
+      "path": "orchestrator",
+      "owner": "unassigned"
+    },
+    {
+      "id": "pallaquino_cli",
+      "path": "pallaquino_cli",
+      "owner": "unassigned"
+    },
+    {
+      "id": "pipeline",
+      "path": "pipeline",
+      "owner": "unassigned"
+    },
+    {
+      "id": "planning",
+      "path": "planning",
+      "owner": "unassigned"
+    },
+    {
+      "id": "providers",
+      "path": "providers",
+      "owner": "unassigned"
+    },
+    {
+      "id": "quality",
+      "path": "quality",
+      "owner": "unassigned"
+    },
+    {
+      "id": "registry",
+      "path": "registry",
+      "owner": "unassigned"
+    },
+    {
+      "id": "release",
+      "path": "release",
+      "owner": "unassigned"
+    },
+    {
+      "id": "releases",
+      "path": "releases",
+      "owner": "unassigned"
+    },
+    {
+      "id": "repository",
+      "path": "repository",
+      "owner": "unassigned"
+    },
+    {
+      "id": "risk",
+      "path": "risk",
+      "owner": "unassigned"
+    },
+    {
+      "id": "runtime",
+      "path": "runtime",
+      "owner": "unassigned"
+    },
+    {
+      "id": "scripts",
+      "path": "scripts",
+      "owner": "unassigned"
+    },
+    {
+      "id": "security",
+      "path": "security",
+      "owner": "unassigned"
+    },
+    {
+      "id": "skills",
+      "path": "skills",
+      "owner": "unassigned"
+    },
+    {
+      "id": "templates",
+      "path": "templates",
+      "owner": "unassigned"
+    },
+    {
+      "id": "tests",
+      "path": "tests",
+      "owner": "unassigned"
+    }
+  ],
+  "paths": [
+    ".githooks/commit-msg",
+    "agents/prompt_agent_adversarial_reviewer.md",
+    "agents/prompt_agent_ai_engineer.md",
+    "agents/prompt_agent_backend_engineer.md",
+    "agents/prompt_agent_code_quality_reviewer.md",
+    "agents/prompt_agent_codebase_explorer.md",
+    "agents/prompt_agent_conflict_resolver.md",
+    "agents/prompt_agent_context_manager.md",
+    "agents/prompt_agent_continuity_manager.md",
+    "agents/prompt_agent_data_engineer.md",
+    "agents/prompt_agent_database_engineer.md",
+    "agents/prompt_agent_dependency_governance_agent.md",
+    "agents/prompt_agent_devops_engineer.md",
+    "agents/prompt_agent_documentation_engineer.md",
+    "agents/prompt_agent_erp_domain_expert.md",
+    "agents/prompt_agent_execution_coordinator.md",
+    "agents/prompt_agent_framework_maintainer.md",
+    "agents/prompt_agent_frontend_engineer.md",
+    "agents/prompt_agent_governance_auditor.md",
+    "agents/prompt_agent_migration_safety_reviewer.md",
+    "agents/prompt_agent_observability_engineer.md",
+    "agents/prompt_agent_pipeline_manager.md",
+    "agents/prompt_agent_product_manager.md",
+    "agents/prompt_agent_project_analyzer.md",
+    "agents/prompt_agent_qa_engineer.md",
+    "agents/prompt_agent_release_manager.md",
+    "agents/prompt_agent_risk_analyst.md",
+    "agents/prompt_agent_rollback_readiness_reviewer.md",
+    "agents/prompt_agent_saas_architect.md",
+    "agents/prompt_agent_security_architect.md",
+    "agents/prompt_agent_software_architect.md",
+    "agents/prompt_agent_specification_drift_detector.md",
+    "agents/prompt_agent_sre_engineer.md",
+    "agents/prompt_agent_technical_decision_arbitrator.md",
+    "agents/prompt_agent_test_gap_analyzer.md",
+    "agents/prompt_agent_ux_ui_designer.md",
+    "AI_ENTRYPOINT.md",
+    "analysis/IMPACT_ANALYSIS.md",
+    "architecture/domain_map.json",
+    "architecture/DOMAIN_MAP.md",
+    "architecture/FEATURE_FLAG_POLICY.md",
+    "architecture/fitness_rules.json",
+    "architecture/OBSERVABILITY_POLICY.md",
+    "changes/README.md",
+    "context/CONTEXT_BUDGET_POLICY.md",
+    "context/context_state.json",
+    "continuity/CHECKPOINT_PROTOCOL.md",
+    "continuity/HANDOFF_PROTOCOL.md",
+    "continuity/SELF_EVALUATION.md",
+    "continuity/SESSION_RECOVERY.md",
+    "continuity/state/ARCHITECTURE_STATE.md",
+    "continuity/state/ASSUMPTIONS.md",
+    "continuity/state/CURRENT_TASK.md",
+    "continuity/state/EXTERNAL_DEPENDENCIES.md",
+    "continuity/state/KNOWN_ISSUES.md",
+    "continuity/state/OPEN_QUESTIONS.md",
+    "continuity/state/PIPELINE_STATE.md",
+    "continuity/state/PROJECT_STATE.md",
+    "continuity/state/TASK_BOARD.md",
+    "continuity/state/TECH_STACK_STATE.md",
+    "continuity/state/TECHNICAL_DEBT.md",
+    "continuity/state/TEST_STATUS.md",
+    "docs/DOMAIN_GLOSSARY.md",
+    "environments/environment_matrix.json",
+    "evaluation/abrupt_session_recovery/scenario.json",
+    "evaluation/database_migration/scenario.json",
+    "evaluation/existing_django_bug/scenario.json",
+    "evaluation/greenfield_restobar/scenario.json",
+    "evaluation/nuxt_feature/scenario.json",
+    "evaluation/provider_switch/scenario.json",
+    "evaluation/routing_golden.json",
+    "evaluation/security_fix/scenario.json",
+    "evaluation/stack_upgrade/scenario.json",
+    "evidence/README.md",
+    "examples/restobar_request.md",
+    "execution/file_locks.json",
+    "execution/PARALLEL_EXECUTION_POLICY.md",
+    "governance/AUTONOMY_POLICY.md",
+    "governance/DEPENDENCY_POLICY.md",
+    "governance/DEPRECATION_POLICY.md",
+    "governance/DESTRUCTIVE_ACTION_POLICY.md",
+    "governance/GIT_AUTHORSHIP_POLICY.md",
+    "governance/HUMAN_APPROVAL_POLICY.md",
+    "governance/PALLAQUINO_BRANDING_POLICY.md",
+    "governance/POLICY_HIERARCHY.md",
+    "governance/PROMPT_INJECTION_DEFENSE.md",
+    "governance/TECH_STACK_VERSION_POLICY.md",
+    "manifest.json",
+    "modes/BROWNFIELD.md",
+    "modes/GREENFIELD.md",
+    "modes/INCIDENT.md",
+    "modes/MAINTENANCE.md",
+    "modes/MIGRATION.md",
+    "modes/PRODUCTION.md",
+    "modes/PROTOTYPE.md",
+    "modes/REFACTOR.md",
+    "modes/SECURITY_AUDIT.md",
+    "modes/UPDATE_PALLAQUINO.md",
+    "modes/UPGRADE.md",
+    "orchestrator/agent_selector.md",
+    "orchestrator/ORCHESTRATOR_PROTOCOL.md",
+    "orchestrator/skill_selector.md",
+    "pallaquino.cmd",
+    "pallaquino_cli/__init__.py",
+    "pallaquino_cli/__main__.py",
+    "pallaquino_cli/core.py",
+    "pipeline/gates/ACCESSIBILITY.md",
+    "pipeline/gates/API_COMPATIBILITY.md",
+    "pipeline/gates/MIGRATION_SAFETY.md",
+    "pipeline/gates/ROLLBACK_READINESS.md",
+    "pipeline/pipeline_definition.json",
+    "pipeline/README.md",
+    "planning/execution_plan.json",
+    "planning/EXECUTION_PLAN.md",
+    "planning/task_graph.json",
+    "planning/TASK_GRAPH.md",
+    "PROJECT_CONTEXT.md",
+    "PROJECT_OWNERSHIP.md",
+    "providers/capabilities.json",
+    "pyproject.toml",
+    "quality/DEFINITION_OF_DONE.md",
+    "quality/DEFINITION_OF_READY.md",
+    "quality/PERFORMANCE_BUDGETS.md",
+    "quality/regression_scope.json",
+    "QUICK_START.md",
+    "README.md",
+    "registry/agents.json",
+    "registry/capabilities.json",
+    "registry/modes.json",
+    "registry/routing_rules.json",
+    "registry/skills.json",
+    "registry/stack_versions_verified.json",
+    "release/VERSIONING_POLICY.md",
+    "releases/0.1.0.json",
+    "repository/REPOSITORY_MAP.json",
+    "repository/REPOSITORY_MAP.md",
+    "risk/RISK_POLICY.md",
+    "risk/risk_state.json",
+    "runtime/capabilities.json",
+    "runtime/CAPABILITY_PROTOCOL.md",
+    "scripts/_bootstrap.py",
+    "scripts/analyze_change_impact.py",
+    "scripts/architecture_fitness.py",
+    "scripts/build_repository_map.py",
+    "scripts/commit_as_jimdev.py",
+    "scripts/configure_git_identity.py",
+    "scripts/context_budget.py",
+    "scripts/detect_capabilities.py",
+    "scripts/evidence.py",
+    "scripts/file_lock.py",
+    "scripts/package_release.py",
+    "scripts/rank_skills.py",
+    "scripts/regression_scope.py",
+    "scripts/risk_analyzer.py",
+    "scripts/scaffold_framework.py",
+    "scripts/task_graph.py",
+    "scripts/validate_all.py",
+    "scripts/validate_cli.py",
+    "scripts/validate_context.py",
+    "scripts/validate_continuity.py",
+    "scripts/validate_git_authorship.py",
+    "scripts/validate_governance.py",
+    "scripts/validate_pipeline.py",
+    "scripts/validate_registry.py",
+    "scripts/validate_repository_map.py",
+    "scripts/validate_risk.py",
+    "scripts/validate_task_graph.py",
+    "scripts/verify_zip_integrity.py",
+    "security/SECRETS_POLICY.md",
+    "security/SUPPLY_CHAIN_POLICY.md",
+    "skills/adversarial_review_expert/SKILL.md",
+    "skills/api_contract_expert/SKILL.md",
+    "skills/application_security_expert/SKILL.md",
+    "skills/architecture_fitness_expert/SKILL.md",
+    "skills/context_management_expert/SKILL.md",
+    "skills/dependency_governance_expert/SKILL.md",
+    "skills/django_expert/SKILL.md",
+    "skills/docker_expert/SKILL.md",
+    "skills/dotnet_expert/SKILL.md",
+    "skills/erp_domain_expert/SKILL.md",
+    "skills/evidence_validation_expert/SKILL.md",
+    "skills/frontend_accessibility_expert/SKILL.md",
+    "skills/git_release_expert/SKILL.md",
+    "skills/migration_safety_expert/SKILL.md",
+    "skills/nodejs_expert/SKILL.md",
+    "skills/nuxt_expert/SKILL.md",
+    "skills/observability_expert/SKILL.md",
+    "skills/postgresql_expert/SKILL.md",
+    "skills/python_expert/SKILL.md",
+    "skills/release_management_expert/SKILL.md",
+    "skills/risk_analysis_expert/SKILL.md",
+    "skills/rollback_strategy_expert/SKILL.md",
+    "skills/saas_tenancy_expert/SKILL.md",
+    "skills/specification_drift_expert/SKILL.md",
+    "skills/supply_chain_security_expert/SKILL.md",
+    "skills/task_graph_expert/SKILL.md",
+    "skills/test_gap_analysis_expert/SKILL.md",
+    "skills/testing_strategy_expert/SKILL.md",
+    "skills/typescript_expert/SKILL.md",
+    "skills/ubuntu_server_expert/SKILL.md",
+    "templates/ADR.md",
+    "templates/CHANGE_MANIFEST.json",
+    "tests/test_cli.py",
+    "tests/test_core.py"
+  ],
+  "owners": {},
+  "technologies": [
+    "Python",
+    "Documentation"
+  ],
+  "entrypoints": [
+    "pallaquino_cli/__main__.py",
+    "pyproject.toml"
+  ],
+  "apis": [],
+  "database_models": [],
+  "tests": [
+    "agents/prompt_agent_test_gap_analyzer.md",
+    "continuity/state/TEST_STATUS.md",
+    "tests/test_cli.py",
+    "tests/test_core.py"
+  ],
+  "dependencies": [],
+  "runtime_services": [],
+  "configuration": [
+    "pyproject.toml"
+  ],
+  "statistics": {
+    "files": 204,
+    "extensions": {
+      "[none]": 1,
+      ".md": 137,
+      ".json": 31,
+      ".cmd": 1,
+      ".py": 33,
+      ".toml": 1
+    }
+  }
+}

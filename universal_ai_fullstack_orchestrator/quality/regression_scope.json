@@ -1,0 +1,24 @@
+{
+  "schema_version": 1,
+  "rules": [
+    {
+      "pattern": "pallaquino_cli/**",
+      "tests": [
+        "tests/test_cli.py",
+        "tests/test_core.py"
+      ]
+    },
+    {
+      "pattern": "registry/**",
+      "tests": [
+        "tests/test_core.py"
+      ]
+    },
+    {
+      "pattern": "pipeline/**",
+      "tests": [
+        "tests/test_core.py"
+      ]
+    }
+  ]
+}

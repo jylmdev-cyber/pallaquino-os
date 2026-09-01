@@ -1,0 +1,132 @@
+{
+  "schema_version": 1,
+  "modes": [
+    {
+      "id": "GREENFIELD",
+      "autonomy": "STANDARD",
+      "required_gates": [
+        "architecture",
+        "test",
+        "lint",
+        "build",
+        "security"
+      ],
+      "description": "Broad design freedom; establish contracts and a walking skeleton early."
+    },
+    {
+      "id": "BROWNFIELD",
+      "autonomy": "STANDARD",
+      "required_gates": [
+        "repository_map",
+        "regression",
+        "test",
+        "lint",
+        "build"
+      ],
+      "description": "Preserve observed behavior unless change is explicit; map integration seams first."
+    },
+    {
+      "id": "PROTOTYPE",
+      "autonomy": "STANDARD",
+      "required_gates": [
+        "test",
+        "lint",
+        "acceptance"
+      ],
+      "description": "Permit reversible shortcuts only when labelled and recorded as technical debt; never relax safety or secrets rules."
+    },
+    {
+      "id": "PRODUCTION",
+      "autonomy": "SAFE",
+      "required_gates": [
+        "all_tests",
+        "security",
+        "rollback",
+        "observability",
+        "approval"
+      ],
+      "description": "Require production-like evidence, staged rollout and explicit approval to deploy."
+    },
+    {
+      "id": "MAINTENANCE",
+      "autonomy": "STANDARD",
+      "required_gates": [
+        "regression",
+        "test",
+        "lint",
+        "review"
+      ],
+      "description": "Minimize change surface and preserve compatibility."
+    },
+    {
+      "id": "UPGRADE",
+      "autonomy": "SAFE",
+      "required_gates": [
+        "official_versions",
+        "compatibility",
+        "all_tests",
+        "rollback"
+      ],
+      "description": "Audit official support and transitive compatibility before changing versions."
+    },
+    {
+      "id": "REFACTOR",
+      "autonomy": "STANDARD",
+      "required_gates": [
+        "characterization",
+        "test",
+        "lint",
+        "build",
+        "drift"
+      ],
+      "description": "Keep observable behavior stable and prove it with characterization tests."
+    },
+    {
+      "id": "INCIDENT",
+      "autonomy": "SAFE",
+      "required_gates": [
+        "containment",
+        "evidence",
+        "security",
+        "rollback",
+        "approval"
+      ],
+      "description": "Favor containment and recovery; preserve forensic evidence and document every risky action."
+    },
+    {
+      "id": "MIGRATION",
+      "autonomy": "SAFE",
+      "required_gates": [
+        "migration_safety",
+        "compatibility",
+        "backup",
+        "rollback",
+        "approval"
+      ],
+      "description": "Use expand/backfill/contract and verify coexistence plus recovery."
+    },
+    {
+      "id": "SECURITY_AUDIT",
+      "autonomy": "SAFE",
+      "required_gates": [
+        "threat_model",
+        "security",
+        "adversarial_review",
+        "evidence"
+      ],
+      "description": "Read-only by default; separate findings from authorized remediation."
+    },
+    {
+      "id": "UPDATE_PALLAQUINO",
+      "autonomy": "STANDARD",
+      "required_gates": [
+        "registry",
+        "deprecation",
+        "routing",
+        "security",
+        "evaluation"
+      ],
+      "description": "Review stale versions, deprecated skills, duplicate agents, obsolete routes, references and policies."
+    }
+  ]
+}

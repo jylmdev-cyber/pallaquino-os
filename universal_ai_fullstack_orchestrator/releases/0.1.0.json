@@ -1,0 +1,22 @@
+{
+  "version": "0.1.0",
+  "commits": [],
+  "features": [
+    "initial autonomous engineering framework"
+  ],
+  "fixes": [],
+  "migrations": [],
+  "dependencies": [],
+  "environment_changes": [],
+  "tests": [
+    "framework self-validation"
+  ],
+  "security": [
+    "policy hierarchy",
+    "secret and supply-chain policies"
+  ],
+  "rollback": "Remove the copied framework directory; no product data migration.",
+  "known_issues": [
+    "Stack snapshot must be refreshed after 30 days."
+  ]
+}

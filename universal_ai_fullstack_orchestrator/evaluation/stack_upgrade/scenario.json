@@ -1,0 +1,9 @@
+{
+  "id": "stack_upgrade",
+  "request": "Upgrade the application stack",
+  "required_agents": [
+    "framework_maintainer",
+    "software_architect"
+  ],
+  "expected": "Re-verifies official versions and compatibility before change."
+}

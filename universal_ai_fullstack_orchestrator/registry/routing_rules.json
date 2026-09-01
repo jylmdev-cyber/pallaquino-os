@@ -1,0 +1,134 @@
+{
+  "schema_version": 1,
+  "rules": [
+    {
+      "id": "django_auth",
+      "keywords": [
+        "django",
+        "login",
+        "roles",
+        "auth"
+      ],
+      "agents": [
+        "backend_engineer",
+        "security_architect",
+        "qa_engineer"
+      ],
+      "skills": [
+        "django_expert",
+        "application_security_expert",
+        "testing_strategy_expert"
+      ]
+    },
+    {
+      "id": "nuxt_feature",
+      "keywords": [
+        "nuxt",
+        "vue",
+        "frontend"
+      ],
+      "agents": [
+        "frontend_engineer",
+        "ux_ui_designer",
+        "qa_engineer"
+      ],
+      "skills": [
+        "nuxt_expert",
+        "typescript_expert",
+        "frontend_accessibility_expert"
+      ]
+    },
+    {
+      "id": "database_migration",
+      "keywords": [
+        "database",
+        "migration",
+        "postgresql",
+        "schema"
+      ],
+      "agents": [
+        "database_engineer",
+        "migration_safety_reviewer",
+        "rollback_readiness_reviewer"
+      ],
+      "skills": [
+        "postgresql_expert",
+        "migration_safety_expert",
+        "rollback_strategy_expert"
+      ]
+    },
+    {
+      "id": "security_fix",
+      "keywords": [
+        "security",
+        "vulnerability",
+        "authorization"
+      ],
+      "agents": [
+        "security_architect",
+        "adversarial_reviewer",
+        "qa_engineer"
+      ],
+      "skills": [
+        "application_security_expert",
+        "adversarial_review_expert",
+        "testing_strategy_expert"
+      ]
+    },
+    {
+      "id": "incident",
+      "keywords": [
+        "incident",
+        "outage",
+        "production"
+      ],
+      "agents": [
+        "sre_engineer",
+        "observability_engineer",
+        "rollback_readiness_reviewer"
+      ],
+      "skills": [
+        "observability_expert",
+        "rollback_strategy_expert",
+        "risk_analysis_expert"
+      ]
+    },
+    {
+      "id": "provider_switch",
+      "keywords": [
+        "provider",
+        "handoff",
+        "continuity"
+      ],
+      "agents": [
+        "continuity_manager",
+        "context_manager",
+        "framework_maintainer"
+      ],
+      "skills": [
+        "context_management_expert",
+        "evidence_validation_expert"
+      ]
+    },
+    {
+      "id": "restobar",
+      "keywords": [
+        "restobar",
+        "pos",
+        "restaurant"
+      ],
+      "agents": [
+        "product_manager",
+        "software_architect",
+        "erp_domain_expert",
+        "backend_engineer",
+        "frontend_engineer"
+      ],
+      "skills": [
+        "erp_domain_expert",
+        "task_graph_expert",
+        "risk_analysis_expert"
+      ]
+    }
+  ]
+}
