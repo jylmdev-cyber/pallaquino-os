@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-01T03:42:54+00:00",
+  "generated_at": "2026-09-01T03:48:51+00:00",
   "root": "D:\\codex\\pallaquino-os\\universal_ai_fullstack_orchestrator",
   "modules": [
     {
@@ -214,6 +214,7 @@
     "architecture/fitness_rules.json",
     "architecture/OBSERVABILITY_POLICY.md",
     "changes/PAL-001.json",
+    "changes/PAL-002.json",
     "changes/README.md",
     "cli/pallaquino",
     "cli/README.md",
@@ -238,6 +239,7 @@
     "continuity/state/TECHNICAL_DEBT.md",
     "continuity/state/TEST_STATUS.md",
     "docs/DOMAIN_GLOSSARY.md",
+    "docs/TUTORIAL_DE_PROMPTS.md",
     "environments/environment_matrix.json",
     "evaluation/abrupt_session_recovery/scenario.json",
     "evaluation/database_migration/scenario.json",
@@ -410,11 +412,11 @@
     "pyproject.toml"
   ],
   "statistics": {
-    "files": 215,
+    "files": 217,
     "extensions": {
       "[none]": 3,
-      ".md": 138,
-      ".json": 39,
+      ".md": 139,
+      ".json": 40,
       ".cmd": 1,
       ".py": 33,
       ".toml": 1

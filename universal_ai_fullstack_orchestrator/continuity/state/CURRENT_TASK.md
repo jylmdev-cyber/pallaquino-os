@@ -1,9 +1,9 @@
 # Current task
 
-- ID: PAL-001
-- Objective: materialize, validate and package PALLAQUINO Autonomous Engineering OS
-- Scope: complete portable framework, CLI, registries, policies, engines, tests, ZIP and SHA-256
+- ID: PAL-002
+- Objective: add a practical Spanish prompt tutorial for using PALLAQUINO
+- Scope: tutorial, Quick Start correction, discoverability links, repository map and release archive
 - Status: COMPLETE
-- Risk: MEDIUM
-- Acceptance: all validators passed; final archive integrity verification follows packaging
+- Risk: LOW
+- Acceptance: tutorial is actionable, linked, included in the ZIP, and all validators pass
 - Confidence: high
