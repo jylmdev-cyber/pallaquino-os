@@ -6,7 +6,8 @@
 - Current stage: HANDOFF
 - Last confirmed stage: CHECKPOINT
 - Failed gates remediated: TEST test assertion corrected and full suite rerun
-- Release pending commit: PAL-003 / PALLAQUINO 0.2.0
+- Git commit: 344620d3c6a614a5bc4744d2945693fd80773c70
 - Checkpoint: `continuity/checkpoints/20260901T033819Z.json`
 - Handoff: `continuity/HANDOFF.json`
-- Next: rebuild release archive, verify integrity, commit PAL-003 and adopt a selected profile after official version audit
+- Release: PALLAQUINO 0.2.0 complete after final artifact commit
+- Next: adopt a selected profile only after official version audit

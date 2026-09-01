@@ -1,6 +1,8 @@
 {
   "version": "0.2.0",
-  "commits": [],
+  "commits": [
+    "344620d3c6a614a5bc4744d2945693fd80773c70"
+  ],
   "features": [
     "24 additional specialized agents",
     "60 additional version-agnostic skills",

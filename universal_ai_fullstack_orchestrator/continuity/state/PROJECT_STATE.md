@@ -3,7 +3,7 @@
 - Status: released
 - Version: 0.2.0
 - Updated: 2026-08-31 (evidence timestamps use UTC 2026-09-01)
-- Distribution files: 344 (bytecode and caches excluded)
+- Distribution files: 345 (bytecode and caches excluded)
 - Agents: 59
 - Skills: 90
 - Modes: 11
