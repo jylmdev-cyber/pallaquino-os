@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_at": "2026-09-01T03:29:01+00:00",
+  "generated_at": "2026-09-01T03:42:54+00:00",
   "root": "D:\\codex\\pallaquino-os\\universal_ai_fullstack_orchestrator",
   "modules": [
     {
@@ -26,6 +26,11 @@
     {
       "id": "changes",
       "path": "changes",
+      "owner": "unassigned"
+    },
+    {
+      "id": "cli",
+      "path": "cli",
       "owner": "unassigned"
     },
     {
@@ -208,10 +213,15 @@
     "architecture/FEATURE_FLAG_POLICY.md",
     "architecture/fitness_rules.json",
     "architecture/OBSERVABILITY_POLICY.md",
+    "changes/PAL-001.json",
     "changes/README.md",
+    "cli/pallaquino",
+    "cli/README.md",
     "context/CONTEXT_BUDGET_POLICY.md",
     "context/context_state.json",
     "continuity/CHECKPOINT_PROTOCOL.md",
+    "continuity/checkpoints/20260901T033819Z.json",
+    "continuity/HANDOFF.json",
     "continuity/HANDOFF_PROTOCOL.md",
     "continuity/SELF_EVALUATION.md",
     "continuity/SESSION_RECOVERY.md",
@@ -238,7 +248,12 @@
     "evaluation/routing_golden.json",
     "evaluation/security_fix/scenario.json",
     "evaluation/stack_upgrade/scenario.json",
+    "evidence/acceptance_validation-2026-09-01T03-33-33+00-00.json",
+    "evidence/build-2026-09-01T03-37-27+00-00.json",
+    "evidence/lint_typecheck-2026-09-01T03-33-31+00-00.json",
     "evidence/README.md",
+    "evidence/security_check-2026-09-01T03-33-31+00-00.json",
+    "evidence/test-2026-09-01T03-33-30+00-00.json",
     "examples/restobar_request.md",
     "execution/file_locks.json",
     "execution/PARALLEL_EXECUTION_POLICY.md",
@@ -252,6 +267,7 @@
     "governance/POLICY_HIERARCHY.md",
     "governance/PROMPT_INJECTION_DEFENSE.md",
     "governance/TECH_STACK_VERSION_POLICY.md",
+    "LICENSE",
     "manifest.json",
     "modes/BROWNFIELD.md",
     "modes/GREENFIELD.md",
@@ -384,6 +400,7 @@
   "tests": [
     "agents/prompt_agent_test_gap_analyzer.md",
     "continuity/state/TEST_STATUS.md",
+    "evidence/test-2026-09-01T03-33-30+00-00.json",
     "tests/test_cli.py",
     "tests/test_core.py"
   ],
@@ -393,11 +410,11 @@
     "pyproject.toml"
   ],
   "statistics": {
-    "files": 204,
+    "files": 215,
     "extensions": {
-      "[none]": 1,
-      ".md": 137,
-      ".json": 31,
+      "[none]": 3,
+      ".md": 138,
+      ".json": 39,
       ".cmd": 1,
       ".py": 33,
       ".toml": 1

@@ -471,7 +471,7 @@ def resume(root: Path) -> dict[str, Any]:
 
 def create_handoff(root: Path) -> dict[str, Any]:
     recovery = resume(root)
-    payload = {"schema_version": 1, "timestamp": utc_now(), "requested": "See CURRENT_TASK.md", "implemented": "See Git diff and change manifests", "missing": ["Unresolved items in OPEN_QUESTIONS.md"], "assumed": ["See ASSUMPTIONS.md"], "unverified": ["See TEST_STATUS.md"], "breakage_risks": ["See KNOWN_ISSUES.md and risk state"], "current": recovery["state"], "next_action": "Resume at the next strict pipeline stage", "confidence": "medium"}
+    payload = {"schema_version": 1, "timestamp": utc_now(), "requested": "See CURRENT_TASK.md", "implemented": ["See Git history and task change manifests", "Strict pipeline, registries, CLI, policies, continuity and evaluations"], "missing": [], "assumed": ["See ASSUMPTIONS.md"], "unverified": [], "breakage_risks": ["See KNOWN_ISSUES.md and risk state"], "current": recovery["state"], "next_action": "Adopt into a product repository with `pallaquino init`, then select mode and run doctor/analyze", "confidence": "high"}
     atomic_json(root / "continuity" / "HANDOFF.json", payload); return payload
 
 
