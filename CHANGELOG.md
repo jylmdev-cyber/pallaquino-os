@@ -6,6 +6,11 @@ Los cambios relevantes de este proyecto se documentan aquí. El formato sigue
 
 ## [Unreleased]
 
+### Added
+
+- Sección pública para apoyar voluntariamente el crecimiento comunitario del
+  framework mediante PayPal.
+
 ### Planned
 
 - Publicación en PyPI y firma de artefactos.

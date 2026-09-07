@@ -12,3 +12,10 @@ personales ni contenido confidencial.
 
 El soporte comunitario se presta según disponibilidad y no constituye un SLA.
 
+## Apoyo al proyecto
+
+Quienes deseen ayudar económicamente al mantenimiento del framework pueden
+consultar la sección
+[Apoya el crecimiento de PALLAQUINO](README.md#apoya-el-crecimiento-de-pallaquino).
+Los aportes son voluntarios y no modifican las reglas de soporte, gobernanza o
+priorización.

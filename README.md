@@ -199,6 +199,25 @@ python scripts/configure_git_identity.py \
 python scripts/configure_git_identity.py --show
 ```
 
+## Apoya el crecimiento de PALLAQUINO
+
+PALLAQUINO es un proyecto abierto orientado a construir mejores herramientas de
+ingeniería para la comunidad. Si el framework te resulta útil, puedes colaborar
+voluntariamente mediante PayPal para apoyar su mantenimiento, documentación,
+infraestructura, pruebas y nuevos ejemplos.
+
+<p align="center">
+  <a href="https://www.paypal.com/">
+    <img alt="Apoyar mediante PayPal" src="https://img.shields.io/badge/Apoyar-PayPal-003087?logo=paypal&logoColor=white">
+  </a>
+</p>
+
+**Correo de PayPal:** `jimmy.lingan@outlook.com`
+
+Al realizar un aporte, verifica que el destinatario coincida exactamente con ese
+correo. Las contribuciones son opcionales, no representan una compra y no otorgan
+prioridad, control ni privilegios especiales sobre las decisiones del proyecto.
+
 ## Comunidad y seguridad
 
 Antes de contribuir, consulta [`CONTRIBUTING.md`](CONTRIBUTING.md),
