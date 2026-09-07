@@ -10,6 +10,8 @@ Los cambios relevantes de este proyecto se documentan aquí. El formato sigue
 
 - Sección pública para apoyar voluntariamente el crecimiento comunitario del
   framework mediante PayPal.
+- Botón directo, código QR y configuración de financiación de GitHub para los
+  aportes comunitarios.
 
 ### Planned
 

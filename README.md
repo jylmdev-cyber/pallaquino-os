@@ -207,12 +207,19 @@ voluntariamente mediante PayPal para apoyar su mantenimiento, documentación,
 infraestructura, pruebas y nuevos ejemplos.
 
 <p align="center">
-  <a href="https://www.paypal.com/">
+  <a href="https://www.paypal.com/donate/?hosted_button_id=25WTYKQWHSTWW">
     <img alt="Apoyar mediante PayPal" src="https://img.shields.io/badge/Apoyar-PayPal-003087?logo=paypal&logoColor=white">
+  </a>
+  <br><br>
+  <a href="https://www.paypal.com/donate/?hosted_button_id=25WTYKQWHSTWW">
+    <img alt="Código QR para apoyar PALLAQUINO mediante PayPal" src="docs/assets/paypal-donation-qr.png" width="180">
   </a>
 </p>
 
 **Correo de PayPal:** `jimmy.lingan@outlook.com`
+
+Puedes seleccionar el botón o escanear el código QR para abrir la página oficial
+de aportes de PALLAQUINO en PayPal.
 
 Al realizar un aporte, verifica que el destinatario coincida exactamente con ese
 correo. Las contribuciones son opcionales, no representan una compra y no otorgan

@@ -19,3 +19,5 @@ consultar la sección
 [Apoya el crecimiento de PALLAQUINO](README.md#apoya-el-crecimiento-de-pallaquino).
 Los aportes son voluntarios y no modifican las reglas de soporte, gobernanza o
 priorización.
+
+Enlace directo: [colaborar mediante PayPal](https://www.paypal.com/donate/?hosted_button_id=25WTYKQWHSTWW).
