@@ -1,7 +1,10 @@
 {
   "version": "0.3.0",
   "commits": [
-    "9ba007be77d3a17f51eb2c5fd9e6b1320ea0065a"
+    "9ba007be77d3a17f51eb2c5fd9e6b1320ea0065a",
+    "381859e015415d4a6f7764ce5bcb7e896eb200ff",
+    "f7b4efc0012f2de181eb116969e66b2ba92b94de",
+    "7892056ee434007a73ec4acc30cf00e361434d90"
   ],
   "features": [
     "read-only secret scanning command",
