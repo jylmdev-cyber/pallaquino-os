@@ -234,6 +234,7 @@ class ArchiveReproducibilityTests(unittest.TestCase):
             os.utime(tree / "manifest.json", (1_900_000_000, 1_900_000_000))
             second = create_archive(tree, Path(temp) / "b/out.zip")
             self.assertEqual(first["sha256"], second["sha256"])
+            self.assertEqual(Path(first["sha256_file"]).read_bytes(), f"{first['sha256']}  out.zip\n".encode("ascii"))
             with zipfile.ZipFile(Path(temp) / "a/out.zip") as zf:
                 self.assertEqual(zf.getinfo("framework/cli/run").external_attr >> 16, 0o100755)
                 self.assertEqual(zf.getinfo("framework/manifest.json").date_time, core.FIXED_ZIP_TIME)

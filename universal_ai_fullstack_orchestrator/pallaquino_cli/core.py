@@ -820,5 +820,5 @@ def create_archive(root: Path, archive: Path) -> dict[str, Any]:
         bad = zf.testzip(); names = zf.namelist()
         traversal = [n for n in names if Path(n).is_absolute() or ".." in Path(n).parts or "\\" in n]
     digest = sha256_file(archive)
-    sidecar = archive.with_suffix(".sha256"); sidecar.write_text(f"{digest}  {archive.name}\n", encoding="ascii")
+    sidecar = archive.with_suffix(".sha256"); sidecar.write_text(f"{digest}  {archive.name}\n", encoding="ascii", newline="\n")
     return {"archive": str(archive), "sha256_file": str(sidecar), "sha256": digest, "entries": len(names), "integrity": bad is None and not traversal, "bad_entry": bad, "unsafe_paths": traversal}
