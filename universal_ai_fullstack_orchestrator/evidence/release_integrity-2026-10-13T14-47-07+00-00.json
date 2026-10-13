@@ -1,0 +1,13 @@
+{
+  "gate": "RELEASE_INTEGRITY",
+  "command": [
+    "python",
+    "scripts/verify_zip_integrity.py"
+  ],
+  "timestamp": "2026-10-13T14:47:07+00:00",
+  "agent": "release_manager",
+  "exit_code": 0,
+  "result": "passed",
+  "summary": "{\n  \"ok\": true,\n  \"bad_entry\": null,\n  \"unsafe_paths\": [],\n  \"entries\": 360,\n  \"checks\": [\n    {\n      \"validator\": \"validate_registry\",\n      \"ok\": true,\n      \"details\": [\n        \"59 agents, 90 skills, 46 technologies and 6 profiles resolve\"\n      ]\n    },\n    {\n      \"validator\": \"validate_pipeline\",\n      \"ok\": true,\n      \"details\": [\n        \"32 stages and failure loops valid\"\n      ]\n    },\n    {\n      \"validator\": \"validate_continuity\",\n      \"ok\": true,\n      \"details\": [\n        \"12 state files present\"\n      ]\n    },\n    {\n      \"validator\": \"validate_governance\",\n      \"ok\": true,\n      \"details\": [\n        \"10 governance policies present\"\n      ]\n    },\n    {\n      \"validator\": \"validate_task_graph\",\n      \"ok\": true,\n      \"details\": [\n        \"9 tasks form a DAG\"\n      ]\n    },\n    {\n      \"validator\": \"validate_context\",\n      \"ok\": true,\n      \"details\": [\n        \"context budget and pinned items valid\"\n      ]\n    },\n    {\n      \"validator\": \"validate_risk\",\n      \"ok\": true,\n      \"details\": [\n        \"4 golden classifications pass\"\n      ]\n    },\n    {\n      \"validator\": \"validate_cli\",\n      \"ok\": true,\n      \"details\": [\n        \"16 CLI commands respond to --help\"\n      ]\n    }\n  ],\n  \"sha256\": \"dfd313d67d2c44529741fa8f1409e80e983677aa049c69f1bd6418eda9241f3f\",\n  \"sidecar_ok\": true\n}\n",
+  "artifact": null
+}

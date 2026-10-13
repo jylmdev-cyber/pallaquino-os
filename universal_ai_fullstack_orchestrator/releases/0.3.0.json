@@ -1,6 +1,8 @@
 {
   "version": "0.3.0",
-  "commits": [],
+  "commits": [
+    "9ba007be77d3a17f51eb2c5fd9e6b1320ea0065a"
+  ],
   "features": [
     "read-only secret scanning command",
     "isolated init with dry-run",
