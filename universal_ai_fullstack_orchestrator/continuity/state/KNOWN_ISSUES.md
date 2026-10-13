@@ -8,4 +8,5 @@
 - `runtime/capabilities.json` in the framework tree still contains host paths from the 0.2.x build machine; it is no longer copied into new projects.
 - Installations created with 0.2.1 keep inherited framework state until cleaned manually (MIGRATION_GUIDE.md).
 - Internet, browser, MCP and subagent availability remains provider-session dependent.
+- Tag `v0.3.0` (published) derives lock keys from `\` as a literal character on POSIX, so the same file can be reserved twice from Windows and Linux agents. Fixed on the PAL-005 branch after the tag; ship as 0.3.1.
 - Confidence: high

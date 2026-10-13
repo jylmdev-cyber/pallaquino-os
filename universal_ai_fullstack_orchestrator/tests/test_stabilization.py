@@ -181,6 +181,8 @@ class LockTests(unittest.TestCase):
     def test_keys_are_relative_and_release_is_confined(self) -> None:
         lock = acquire_lock(self.root, "src\\B.py", "agent-a", "T-1")
         self.assertEqual(lock["normalized_path"], "src/b.py")
+        with self.assertRaises(RuntimeError): acquire_lock(self.root, "src/b.py", "agent-b", "T-2")  # same file on every OS
+        with self.assertRaises(ValueError): acquire_lock(self.root, "..\\outside", "agent-a", "T-1")
         self.assertNotIn(str(self.root).casefold(), self.state.read_text(encoding="utf-8").casefold())
         with self.assertRaises(ValueError): release_lock(self.root, "../outside", "agent-a")
         self.assertTrue(release_lock(self.root, "src/b.py", "agent-a"))

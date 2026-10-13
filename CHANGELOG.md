@@ -6,6 +6,13 @@ Los cambios relevantes de este proyecto se documentan aquí. El formato sigue
 
 ## [Unreleased]
 
+### Fixed
+
+- Las claves de lock tratan `\` como separador en todos los sistemas: en Linux y
+  macOS, `src.py` (enviado por un agente en Windows) generaba una clave distinta de
+  `src/a.py` y permitía reservar dos veces el mismo archivo. Presente en `v0.3.0`;
+  candidato a 0.3.1.
+
 ### Planned
 
 - Fase 1.1: re-verificación del snapshot tecnológico (`PAL-006`).

@@ -663,7 +663,8 @@ def stack_status(root: Path, today: date | None = None) -> dict[str, Any]:
 
 def _lock_key(root: Path, file_path: str) -> str:
     # Root-relative and case-folded: stable across machines and never leaks absolute host paths.
-    target = (root / file_path).resolve()
+    # Backslashes are separators on every OS, so `src\a.py` from a Windows agent equals `src/a.py` on POSIX.
+    target = (root / file_path.replace("\\", "/")).resolve()
     try: return target.relative_to(root.resolve()).as_posix().casefold()
     except ValueError: raise ValueError("lock path escapes framework root") from None
 
