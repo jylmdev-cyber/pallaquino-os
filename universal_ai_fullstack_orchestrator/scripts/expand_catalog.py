@@ -14,10 +14,18 @@ ROOT = Path(__file__).resolve().parents[1]
 TODAY = "2026-08-31"
 
 
+# Dry-run unless --write is passed: this generator rewrites the curated registries.
+WRITE = False
+PLANNED: list[str] = []
+
+
 def write(path: str, content: str) -> None:
+    PLANNED.append(path)
+    if not WRITE:
+        return
     target = ROOT / path
     target.parent.mkdir(parents=True, exist_ok=True)
-    target.write_text(content.rstrip() + "\n", encoding="utf-8")
+    target.write_text(content.rstrip() + "\n", encoding="utf-8", newline="\n")
 
 
 def load(path: str) -> Any:
@@ -361,4 +369,10 @@ domain, risk and capability analysis; record material deviations as ADRs.
 
 
 if __name__ == "__main__":
+    import argparse
+    options = argparse.ArgumentParser(description="Merge PALLAQUINO technology expansion packs (dry-run by default).")
+    options.add_argument("--write", action="store_true", help="overwrite registries; default only lists targets")
+    WRITE = options.parse_args().write
     main()
+    if not WRITE:
+        print(f"DRY RUN: {len(PLANNED)} file(s) would be overwritten; review, then re-run with --write")

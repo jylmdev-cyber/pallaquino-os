@@ -57,6 +57,18 @@ jobs:
       - name: Validate architecture fitness
         run: python scripts/architecture_fitness.py
 
+      - name: Scan repository for committed secrets
+        run: python -m pallaquino_cli security audit --target .. --json
+
+      - name: Smoke-test non-editable install
+        run: |
+          python -m venv "$RUNNER_TEMP/wheel-venv"
+          "$RUNNER_TEMP/wheel-venv/bin/python" -m pip install --quiet .
+          "$RUNNER_TEMP/wheel-venv/bin/pallaquino" --version
+          "$RUNNER_TEMP/wheel-venv/bin/pallaquino" validate --integrity-only --json > /dev/null
+          "$RUNNER_TEMP/wheel-venv/bin/pallaquino" init --target "$RUNNER_TEMP/project" --json > /dev/null
+          cd "$RUNNER_TEMP/project" && "$RUNNER_TEMP/wheel-venv/bin/pallaquino" resume --json | grep -q RECONSTRUCTED
+
       - name: Verify committed release artifact
         if: matrix.python-version == '3.14'
         run: python scripts/verify_zip_integrity.py

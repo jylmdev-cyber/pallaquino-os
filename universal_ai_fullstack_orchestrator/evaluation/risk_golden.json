@@ -1,0 +1,20 @@
+{
+  "schema_version": 1,
+  "description": "Risk classification goldens. LOW cases are regressions for substring false positives observed in 0.2.1 (prod->product, auth->authors).",
+  "cases": [
+    {"request": "update product documentation", "level": "LOW"},
+    {"request": "fix typo in authors list", "level": "LOW"},
+    {"request": "reproduce flaky test", "level": "LOW"},
+    {"request": "add product screenshots to the README", "level": "LOW"},
+    {"request": "documentation typo", "level": "LOW"},
+    {"request": "public API integration", "level": "MEDIUM"},
+    {"request": "add webhook integrations", "level": "MEDIUM"},
+    {"request": "role-based login authorization", "level": "HIGH"},
+    {"request": "añadir autenticación con roles", "level": "HIGH"},
+    {"request": "run database migrations", "level": "HIGH"},
+    {"request": "handle payments and refunds", "level": "HIGH"},
+    {"request": "deploy to production", "level": "HIGH"},
+    {"request": "delete production database", "level": "CRITICAL"},
+    {"request": "drop database in staging", "level": "CRITICAL"}
+  ]
+}

@@ -1,12 +1,23 @@
 {
   "schema_version": 1,
-  "level": "LOW",
-  "factors": [],
+  "task": "PAL-005",
+  "level": "HIGH",
+  "factors": [
+    "cli_contract",
+    "project_state_isolation",
+    "security_controls",
+    "release_artifact"
+  ],
   "required_gates": [
     "TEST",
+    "INTEGRATION",
     "LINT_TYPECHECK",
-    "CODE_REVIEW"
+    "BUILD",
+    "SECURITY_CHECK",
+    "CODE_REVIEW",
+    "ROLLBACK_READINESS"
   ],
-  "confidence": "low",
-  "analyzed_at": null
+  "rationale": "Changes CLI defaults, init behavior and security scanners; no data migration, no production target; rollback is a branch revert.",
+  "confidence": "high",
+  "analyzed_at": "2026-10-13"
 }

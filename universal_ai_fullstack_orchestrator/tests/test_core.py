@@ -4,6 +4,7 @@ import json
 import tempfile
 import unittest
 import zipfile
+from datetime import date, timedelta
 from pathlib import Path
 
 from pallaquino_cli.core import (
@@ -17,8 +18,10 @@ ROOT = Path(__file__).resolve().parents[1]
 
 class FrameworkTests(unittest.TestCase):
     def test_all_validators_pass(self) -> None:
-        report = validate_all(ROOT)
+        # Host-dependent checks (local Git identity) are covered by fixtures in test_stabilization.py.
+        report = validate_all(ROOT, include_environment=False)
         self.assertTrue(report["ok"], report)
+        self.assertTrue(all(check["scope"] == "integrity" for check in report["checks"]))
 
     def test_pipeline_is_exact_and_linear_on_success(self) -> None:
         rows = read_json(ROOT / "pipeline/pipeline_definition.json")["stages"]
@@ -102,10 +105,17 @@ class FrameworkTests(unittest.TestCase):
             self.assertIn(str(newest), recovered["invalid_skipped"])
             self.assertTrue(Path(first["path"]).exists())
 
-    def test_stack_snapshot_is_current(self) -> None:
-        status = stack_status(ROOT)
-        self.assertTrue(status["ok"], status)
-        self.assertTrue(all(x["source"].startswith("https://") for x in status["entries"]))
+    def test_stack_freshness_is_clock_independent(self) -> None:
+        # Freshness is evaluated at an explicit date; real staleness is reported by `doctor`/`stack`, not by CI.
+        data = read_json(ROOT / "registry/stack_versions_verified.json")
+        newest = max(date.fromisoformat(x["verified_at"][:10]) for x in data["entries"])
+        oldest = min(date.fromisoformat(x["verified_at"][:10]) for x in data["entries"])
+        fresh = stack_status(ROOT, today=newest)
+        self.assertTrue(all(x["source"].startswith("https://") for x in fresh["entries"]))
+        self.assertTrue(stack_status(ROOT, today=oldest + timedelta(days=data["stale_after_days"]))["ok"])
+        stale = stack_status(ROOT, today=newest + timedelta(days=data["stale_after_days"] + 1))
+        self.assertFalse(stale["ok"])
+        self.assertTrue(all(x["status"] == "STALE" for x in stale["entries"]))
 
     def test_release_archive_is_safe_and_complete(self) -> None:
         with tempfile.TemporaryDirectory() as temp:

@@ -1,5 +1,111 @@
 {
   "schema_version": 1,
   "locks": [],
-  "audit": []
+  "audit": [
+    {
+      "event": "acquire",
+      "path": "pallaquino_cli/core.py",
+      "normalized_path": "pallaquino_cli/core.py",
+      "owner": "claude-c7d622",
+      "task": "PAL-005",
+      "acquired_at": "2026-10-13T14:30:23+00:00",
+      "ttl_minutes": 480
+    },
+    {
+      "event": "acquire",
+      "path": "pallaquino_cli/__main__.py",
+      "normalized_path": "pallaquino_cli/__main__.py",
+      "owner": "claude-c7d622",
+      "task": "PAL-005",
+      "acquired_at": "2026-10-13T14:30:23+00:00",
+      "ttl_minutes": 480
+    },
+    {
+      "event": "acquire",
+      "path": "manifest.json",
+      "normalized_path": "manifest.json",
+      "owner": "claude-c7d622",
+      "task": "PAL-005",
+      "acquired_at": "2026-10-13T14:30:24+00:00",
+      "ttl_minutes": 480
+    },
+    {
+      "event": "acquire",
+      "path": "tests/",
+      "normalized_path": "tests",
+      "owner": "claude-c7d622",
+      "task": "PAL-005",
+      "acquired_at": "2026-10-13T14:30:24+00:00",
+      "ttl_minutes": 480
+    },
+    {
+      "event": "acquire",
+      "path": "scripts/",
+      "normalized_path": "scripts",
+      "owner": "claude-c7d622",
+      "task": "PAL-005",
+      "acquired_at": "2026-10-13T14:30:24+00:00",
+      "ttl_minutes": 480
+    },
+    {
+      "event": "acquire",
+      "path": "evaluation/risk_golden.json",
+      "normalized_path": "evaluation/risk_golden.json",
+      "owner": "claude-c7d622",
+      "task": "PAL-005",
+      "acquired_at": "2026-10-13T14:30:24+00:00",
+      "ttl_minutes": 480
+    },
+    {
+      "event": "acquire",
+      "path": "registry/routing_rules.json",
+      "normalized_path": "registry/routing_rules.json",
+      "owner": "claude-c7d622",
+      "task": "PAL-005",
+      "acquired_at": "2026-10-13T14:30:24+00:00",
+      "ttl_minutes": 480
+    },
+    {
+      "event": "release",
+      "path": "pallaquino_cli/core.py",
+      "owner": "claude-c7d622",
+      "timestamp": "2026-10-13T14:44:35+00:00"
+    },
+    {
+      "event": "release",
+      "path": "pallaquino_cli/__main__.py",
+      "owner": "claude-c7d622",
+      "timestamp": "2026-10-13T14:44:36+00:00"
+    },
+    {
+      "event": "release",
+      "path": "manifest.json",
+      "owner": "claude-c7d622",
+      "timestamp": "2026-10-13T14:44:36+00:00"
+    },
+    {
+      "event": "release",
+      "path": "tests/",
+      "owner": "claude-c7d622",
+      "timestamp": "2026-10-13T14:44:36+00:00"
+    },
+    {
+      "event": "release",
+      "path": "scripts/",
+      "owner": "claude-c7d622",
+      "timestamp": "2026-10-13T14:44:36+00:00"
+    },
+    {
+      "event": "release",
+      "path": "evaluation/risk_golden.json",
+      "owner": "claude-c7d622",
+      "timestamp": "2026-10-13T14:44:36+00:00"
+    },
+    {
+      "event": "release",
+      "path": "registry/routing_rules.json",
+      "owner": "claude-c7d622",
+      "timestamp": "2026-10-13T14:44:36+00:00"
+    }
+  ]
 }

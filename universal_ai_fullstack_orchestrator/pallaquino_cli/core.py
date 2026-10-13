@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import contextlib
+import fnmatch
+import functools
 import hashlib
 import json
 import os
@@ -8,12 +11,14 @@ import shutil
 import subprocess
 import sys
 import tempfile
+import time
 import zipfile
-from datetime import datetime, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
-from typing import Any, Iterable
+from typing import Any, Iterable, Iterator
 
-VERSION = "0.2.1"
+VERSION = "0.3.0"
+ROOT_ENV = "PALLAQUINO_ROOT"
 EXPECTED_AUTHOR = "jimdev"
 EXPECTED_EMAIL = "jylmdev@gmail.com"
 STALE_DAYS = 30
@@ -49,6 +54,47 @@ REQUIRED_SKILL_FIELDS = {
     "context_weight", "risk_level", "dependencies", "conflicts", "provider_neutral",
     "version", "last_reviewed", "deprecated", "superseded_by", "path",
 }
+# Checks whose result depends on the host (Git config, clock) rather than on repository content.
+ENVIRONMENT_VALIDATORS = {"validate_git_authorship"}
+# Per-project files that `init` must regenerate instead of copying from the framework's own state.
+DEFAULT_INSTANCE_STATE = [
+    "PROJECT_CONTEXT.md", "continuity/HANDOFF.json", "continuity/checkpoints/*",
+    "continuity/state/*.md", "evidence/*.json", "changes/*.json", "runtime/capabilities.json",
+    "risk/risk_state.json", "execution/file_locks.json", "execution/.file_locks.mutex",
+    "context/context_state.json", "repository/REPOSITORY_MAP.json", "repository/REPOSITORY_MAP.md",
+    "planning/task_graph.json", "planning/execution_plan.json",
+]
+CONTINUITY_TITLES = {
+    "PROJECT_STATE": "Project state", "CURRENT_TASK": "Current task", "TASK_BOARD": "Task board",
+    "ARCHITECTURE_STATE": "Architecture state", "TECH_STACK_STATE": "Technology stack state",
+    "TEST_STATUS": "Test status", "KNOWN_ISSUES": "Known issues", "PIPELINE_STATE": "Pipeline state",
+    "ASSUMPTIONS": "Assumptions", "OPEN_QUESTIONS": "Open questions",
+    "EXTERNAL_DEPENDENCIES": "External dependencies", "TECHNICAL_DEBT": "Technical debt",
+}
+SECRET_PATTERNS = {
+    "private_key": re.compile(r"-----BEGIN (?:RSA |EC |DSA |OPENSSH |PGP |ENCRYPTED )?PRIVATE KEY-----"),
+    "aws_access_key_id": re.compile(r"\b(?:AKIA|ASIA)[0-9A-Z]{16}\b"),
+    "github_token": re.compile(r"\b(?:gh[pousr]_[A-Za-z0-9]{36,}|github_pat_[A-Za-z0-9_]{22,})\b"),
+    "llm_api_key": re.compile(r"\bsk-(?:ant-|proj-)?[A-Za-z0-9_-]{20,}"),
+    "google_api_key": re.compile(r"\bAIza[0-9A-Za-z_-]{35}\b"),
+    "slack_token": re.compile(r"\bxox[abprs]-[A-Za-z0-9-]{10,}"),
+    "jwt": re.compile(r"\beyJ[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}\.[A-Za-z0-9_-]{10,}"),
+}
+# Quoted `key = "value"` in any file, or unquoted ENV-style `API_KEY=value`; only group "value" is redacted.
+SECRET_ASSIGNMENTS = [
+    re.compile(r"(?i)(?P<key>\b[\w.-]*(?:api[_-]?key|secret|password|passwd|token|private[_-]?key)\b)"
+               r"(?P<sep>\s*[:=]\s*)(?P<quote>['\"])(?P<value>[^\s'\"]{8,})(?P=quote)"),
+    re.compile(r"(?m)^\s*(?:export\s+)?(?P<key>[A-Z0-9_]*(?:API_?KEY|SECRET|PASSWORD|PASSWD|TOKEN|PRIVATE_?KEY)[A-Z0-9_]*)"
+               r"(?P<sep>\s*=\s*)(?P<quote>)(?P<value>[^\s'\"#()\[\]{}]{8,})(?=\s|$)"),
+]
+SECRET_PLACEHOLDERS = re.compile(r"(?i)(example|placeholder|changeme|redacted|dummy|your[_-]|<|\{|xxxx|\*\*\*)")
+SCAN_SUFFIXES = {".py", ".json", ".md", ".toml", ".yml", ".yaml", ".txt", ".cfg", ".ini", ".env", ".sh", ".ps1", ".cmd", ".js", ".ts", ".vue", ".cs", ".java", ".go", ".php", ".rb", ".sql", ".xml", ".properties"}
+SCAN_MAX_BYTES = 1024 * 1024
+FIXED_ZIP_TIME = (1980, 1, 1, 0, 0, 0)
+
+
+class FrameworkRootNotFound(LookupError):
+    """No PALLAQUINO framework root could be resolved from flags, environment or working directory."""
 
 
 def utc_now() -> str:
@@ -57,6 +103,43 @@ def utc_now() -> str:
 
 def framework_root() -> Path:
     return Path(__file__).resolve().parents[1]
+
+
+def is_framework_root(path: Path) -> bool:
+    return (path / "manifest.json").is_file() and (path / "registry").is_dir()
+
+
+def resolve_root(explicit: Path | None = None, cwd: Path | None = None) -> Path:
+    """Resolve the framework root: --root, then $PALLAQUINO_ROOT, then the package checkout, then cwd discovery."""
+    if explicit is not None:
+        candidate = explicit.resolve()
+    elif os.environ.get(ROOT_ENV):
+        candidate = Path(os.environ[ROOT_ENV]).resolve()
+    elif is_framework_root(framework_root()):
+        return framework_root()
+    else:
+        start = (cwd or Path.cwd()).resolve()
+        for folder in (start, *start.parents):
+            for option in (folder / ".pallaquino", folder):
+                if is_framework_root(option):
+                    return option
+        raise FrameworkRootNotFound(
+            f"no PALLAQUINO root found from {start}; pass --root <dir>, set {ROOT_ENV}, "
+            "or run inside a project initialized with `pallaquino init`"
+        )
+    if not is_framework_root(candidate):
+        raise FrameworkRootNotFound(f"{candidate} is not a PALLAQUINO root (expected manifest.json and registry/)")
+    return candidate
+
+
+@functools.lru_cache(maxsize=2048)
+def _term_pattern(term: str) -> re.Pattern[str]:
+    # Whole-token match with an optional English/Spanish plural, so "prod" never matches "product".
+    return re.compile(rf"(?<!\w){re.escape(term.casefold())}(?:s|es)?(?!\w)")
+
+
+def contains_term(normalized: str, term: str) -> bool:
+    return _term_pattern(term).search(normalized) is not None
 
 
 def read_json(path: Path) -> Any:
@@ -68,7 +151,7 @@ def atomic_json(path: Path, value: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     fd, temp_name = tempfile.mkstemp(prefix=f".{path.name}.", suffix=".tmp", dir=path.parent)
     try:
-        with os.fdopen(fd, "w", encoding="utf-8") as handle:
+        with os.fdopen(fd, "w", encoding="utf-8", newline="\n") as handle:
             json.dump(value, handle, indent=2, ensure_ascii=False)
             handle.write("\n")
             handle.flush()
@@ -130,15 +213,17 @@ def detect_capabilities(root: Path, persist: bool = True) -> dict[str, Any]:
     payload = {"schema_version": 1, "detected_at": utc_now(), "provider": "unknown", "capabilities": facts}
     if persist:
         target = root / "runtime" / "capabilities.json"
-        target.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+        target.write_text(json.dumps(payload, indent=2, ensure_ascii=False) + "\n", encoding="utf-8", newline="\n")
     return payload
 
 
 def _iter_repository_files(root: Path) -> list[Path]:
-    ignored = {".git", "__pycache__", ".pytest_cache", "node_modules", ".venv", "dist"}
+    # Mirrors the repository .gitignore so build outputs never reach archives, init copies or scans.
+    ignored = {".git", "__pycache__", ".pytest_cache", ".mypy_cache", ".ruff_cache", "node_modules", ".venv", "venv", "dist", "build"}
     files: list[Path] = []
     for path in root.rglob("*"):
-        if not path.is_file() or any(part in ignored for part in path.parts):
+        parts = path.relative_to(root).parts
+        if not path.is_file() or any(part in ignored or part.endswith(".egg-info") for part in parts):
             continue
         files.append(path)
     return sorted(files, key=lambda p: p.as_posix().casefold())
@@ -173,8 +258,54 @@ def build_repository_map(target: Path, output_root: Path | None = None) -> dict[
     md.extend(f"- {x}" for x in technologies or ["None detected"])
     md.extend(["", "## Entrypoints", ""])
     md.extend(f"- `{x}`" for x in entries or ["None detected"])
-    (destination / "repository" / "REPOSITORY_MAP.md").write_text("\n".join(md) + "\n", encoding="utf-8")
+    (destination / "repository" / "REPOSITORY_MAP.md").write_text("\n".join(md) + "\n", encoding="utf-8", newline="\n")
     return payload
+
+
+def redact(text: str) -> str:
+    """Replace secret-shaped values with a typed marker before text is persisted or printed."""
+    for kind, pattern in SECRET_PATTERNS.items():
+        text = pattern.sub(f"[REDACTED:{kind}]", text)
+    def mask(match: re.Match[str]) -> str:
+        if SECRET_PLACEHOLDERS.search(match.group("value")) or match.group("value").startswith("[REDACTED"):
+            return match.group(0)
+        return f"{match.group('key')}{match.group('sep')}{match.group('quote')}[REDACTED]{match.group('quote')}"
+    for pattern in SECRET_ASSIGNMENTS:
+        text = pattern.sub(mask, text)
+    return text
+
+
+def _secret_kinds(line: str) -> list[str]:
+    kinds = [kind for kind, pattern in SECRET_PATTERNS.items() if pattern.search(line)]
+    for pattern in SECRET_ASSIGNMENTS:
+        if any(not SECRET_PLACEHOLDERS.search(m.group("value")) for m in pattern.finditer(line)):
+            kinds.append("credential_assignment")
+    return kinds
+
+
+def scan_secrets(target: Path) -> dict[str, Any]:
+    """Read-only scan for committed secrets; findings carry path, line and kind but never the value."""
+    findings: list[dict[str, Any]] = []
+    scanned = 0
+    for path in _iter_repository_files(target):
+        name = path.name.casefold()
+        if name.endswith(".example") or ".example." in name:
+            continue
+        if path.suffix.lower() not in SCAN_SUFFIXES and not name.startswith(".env"):
+            continue
+        try:
+            if path.stat().st_size > SCAN_MAX_BYTES:
+                continue
+            raw = path.read_bytes()
+        except OSError:
+            continue
+        if b"\x00" in raw[:1024]:
+            continue
+        scanned += 1
+        for number, line in enumerate(raw.decode("utf-8", errors="ignore").splitlines(), 1):
+            for kind in _secret_kinds(line):
+                findings.append({"path": path.relative_to(target).as_posix(), "line": number, "kind": kind})
+    return {"ok": not findings, "target": str(target.resolve()), "files_scanned": scanned, "findings": findings}
 
 
 def analyze_risk(text: str) -> dict[str, Any]:
@@ -189,7 +320,7 @@ def analyze_risk(text: str) -> dict[str, Any]:
         "data_deletion": ["delete", "deletion", "borrar", "eliminar", "drop table", "drop database"],
         "security": ["security", "vulnerability", "seguridad", "cve"],
     }
-    factors = [factor for factor, terms in factor_terms.items() if any(term in normalized for term in terms)]
+    factors = [factor for factor, terms in factor_terms.items() if any(contains_term(normalized, term) for term in terms)]
     high = {"authentication", "authorization", "payments", "financial_data", "personal_data", "database_migrations", "security"}
     medium = {"public_api", "infrastructure", "external_integrations"}
     level = "LOW"
@@ -197,7 +328,7 @@ def analyze_risk(text: str) -> dict[str, Any]:
         level = "MEDIUM"
     if set(factors) & high or "production" in factors or "data_deletion" in factors:
         level = "HIGH"
-    if "production" in factors and "data_deletion" in factors or "drop database" in normalized or "destroy infrastructure" in normalized:
+    if "production" in factors and "data_deletion" in factors or contains_term(normalized, "drop database") or contains_term(normalized, "destroy infrastructure"):
         level = "CRITICAL"
     gates = {
         "LOW": ["TEST", "LINT_TYPECHECK", "CODE_REVIEW"],
@@ -215,7 +346,7 @@ def route_request(root: Path, text: str) -> dict[str, Any]:
     agent_scores: dict[str, int] = {}
     skill_scores: dict[str, int] = {}
     for rule in rules:
-        hits = sum(1 for word in rule["keywords"] if word.casefold() in normalized)
+        hits = sum(1 for word in rule["keywords"] if contains_term(normalized, word))
         if not hits:
             continue
         matched.append({"rule": rule["id"], "hits": hits})
@@ -374,6 +505,11 @@ def validate_task_graph(root: Path) -> dict[str, Any]:
     ids = [t.get("id") for t in tasks]
     if len(set(ids)) != len(ids): errors.append("duplicate task ID")
     by_id = set(ids)
+    try:
+        agent_ids = {a["id"] for a in read_json(root / "registry" / "agents.json")["agents"]}
+        skill_ids = {s["id"] for s in read_json(root / "registry" / "skills.json")["skills"]}
+    except (OSError, ValueError, KeyError, TypeError):
+        agent_ids = skill_ids = None
     graph: dict[str, list[str]] = {}
     for task in tasks:
         missing = required - task.keys()
@@ -382,6 +518,11 @@ def validate_task_graph(root: Path) -> dict[str, Any]:
         graph[str(task.get("id"))] = deps
         for dep in deps:
             if dep not in by_id: errors.append(f"task {task.get('id')} unknown dependency {dep}")
+        if agent_ids is not None:
+            for aid in task.get("agents", []):
+                if aid not in agent_ids: errors.append(f"task {task.get('id')} unknown agent {aid}")
+            for sid in task.get("skills", []):
+                if sid not in skill_ids: errors.append(f"task {task.get('id')} unknown skill {sid}")
     visiting: set[str] = set(); visited: set[str] = set()
     def visit(node: str) -> None:
         if node in visiting: errors.append(f"cycle at {node}"); return
@@ -421,28 +562,50 @@ def validate_risk(root: Path) -> dict[str, Any]:
     return result("validate_risk", not errors, errors or [f"{len(cases)} golden classifications pass"])
 
 
+CLI_COMMANDS = ["init", "status", "doctor", "analyze", "plan", "agents", "skills", "pipeline", "checkpoint", "handoff", "resume", "validate", "stack", "risk", "graph", "security"]
+# Runs inside a child interpreter whose sys.path[0] is the validated root, so an extracted archive tests its own CLI.
+_CLI_PROBE = """
+import contextlib, io, json, sys
+from pallaquino_cli.__main__ import parser
+failed = []
+for command in json.loads(sys.argv[1]):
+    try:
+        with contextlib.redirect_stdout(io.StringIO()):
+            parser().parse_args([command, "--help"])
+        failed.append(f"{command} --help did not exit")
+    except SystemExit as exc:
+        if exc.code not in (0, None): failed.append(f"{command} --help exited {exc.code}")
+print(json.dumps(failed))
+"""
+
+
 def validate_cli(root: Path) -> dict[str, Any]:
-    errors = []
     env = os.environ.copy()
     env["PYTHONPATH"] = str(root) + os.pathsep + env.get("PYTHONPATH", "")
-    commands = ["init", "status", "doctor", "analyze", "plan", "agents", "skills", "pipeline", "checkpoint", "handoff", "resume", "validate", "stack", "risk", "graph"]
-    for command in commands:
-        proc = subprocess.run([sys.executable, "-m", "pallaquino_cli", command, "--help"], cwd=root, env=env, text=True, capture_output=True, check=False)
-        if proc.returncode != 0: errors.append(f"{command} --help exited {proc.returncode}")
-    return result("validate_cli", not errors, errors or [f"{len(commands)} CLI commands respond to --help"])
+    proc = subprocess.run([sys.executable, "-c", _CLI_PROBE, json.dumps(CLI_COMMANDS)], cwd=root, env=env, text=True, capture_output=True, check=False)
+    if proc.returncode != 0:
+        return result("validate_cli", False, [f"CLI probe exited {proc.returncode}: {proc.stderr.strip()[-500:]}"])
+    errors = json.loads(proc.stdout.strip().splitlines()[-1])
+    return result("validate_cli", not errors, errors or [f"{len(CLI_COMMANDS)} CLI commands respond to --help"])
 
 
 VALIDATORS = [validate_registry, validate_pipeline, validate_continuity, validate_governance, validate_git_authorship, validate_task_graph, validate_repository_map, validate_context, validate_risk, validate_cli]
 
 
-def validate_all(root: Path) -> dict[str, Any]:
-    checks = [validator(root) for validator in VALIDATORS]
+def validate_all(root: Path, include_environment: bool = True) -> dict[str, Any]:
+    """Run validators; `include_environment=False` keeps only checks that depend solely on repository content."""
+    checks = []
+    for validator in VALIDATORS:
+        scope = "environment" if validator.__name__ in ENVIRONMENT_VALIDATORS else "integrity"
+        if scope == "environment" and not include_environment:
+            continue
+        checks.append({**validator(root), "scope": scope})
     return {"ok": all(item["ok"] for item in checks), "checks": checks, "version": VERSION}
 
 
-def stack_status(root: Path) -> dict[str, Any]:
+def stack_status(root: Path, today: date | None = None) -> dict[str, Any]:
     data = read_json(root / "registry" / "stack_versions_verified.json")
-    today = datetime.now(timezone.utc).date()
+    today = today or datetime.now(timezone.utc).date()
     rows = []
     for entry in data["entries"]:
         verified = datetime.fromisoformat(entry["verified_at"]).date()
@@ -452,33 +615,65 @@ def stack_status(root: Path) -> dict[str, Any]:
     return {"entries": rows, "ok": all(x["status"] == "VERIFIED" for x in rows)}
 
 
-def acquire_lock(root: Path, file_path: str, owner: str, task: str, ttl_minutes: int = 60) -> dict[str, Any]:
+def _lock_key(root: Path, file_path: str) -> str:
+    # Root-relative and case-folded: stable across machines and never leaks absolute host paths.
     target = (root / file_path).resolve()
-    try: target.relative_to(root.resolve())
-    except ValueError: raise ValueError("lock path escapes framework root")
-    state_path = root / "execution" / "file_locks.json"
-    state = read_json(state_path)
-    key = str(target).casefold()
-    for lock in state["locks"]:
-        if lock["normalized_path"] == key and lock["owner"] != owner:
-            raise RuntimeError(f"file already reserved by {lock['owner']}")
-        if lock["normalized_path"] == key:
-            return lock
-    lock = {"path": file_path.replace("\\", "/"), "normalized_path": key, "owner": owner, "task": task, "acquired_at": utc_now(), "ttl_minutes": ttl_minutes}
-    state["locks"].append(lock); state.setdefault("audit", []).append({"event": "acquire", **lock})
-    atomic_json(state_path, state)
+    try: return target.relative_to(root.resolve()).as_posix().casefold()
+    except ValueError: raise ValueError("lock path escapes framework root") from None
+
+
+@contextlib.contextmanager
+def _lock_state(root: Path, timeout: float = 10.0, stale_after: float = 60.0) -> Iterator[dict[str, Any]]:
+    """Serialize read-modify-write of file_locks.json across processes with an O_EXCL mutex file."""
+    state_path = root / "execution" / "file_locks.json"; mutex = state_path.with_name(".file_locks.mutex")
+    deadline = time.monotonic() + timeout
+    while True:
+        try:
+            os.close(os.open(mutex, os.O_CREAT | os.O_EXCL | os.O_WRONLY)); break
+        except FileExistsError:
+            with contextlib.suppress(OSError):
+                if time.time() - mutex.stat().st_mtime > stale_after: mutex.unlink(); continue
+            if time.monotonic() > deadline: raise RuntimeError(f"lock registry busy: {mutex}") from None
+            time.sleep(0.05)
+    try:
+        state = read_json(state_path)
+        now = datetime.now(timezone.utc); kept = []
+        for lock in state["locks"]:
+            if Path(lock["normalized_path"]).is_absolute():  # written by <=0.2.1
+                lock["normalized_path"] = _lock_key(root, lock["path"])
+            expires = datetime.fromisoformat(lock["acquired_at"]) + timedelta(minutes=int(lock.get("ttl_minutes", 60)))
+            if expires <= now: state.setdefault("audit", []).append({"event": "expire", "path": lock["path"], "owner": lock["owner"], "timestamp": utc_now()})
+            else: kept.append(lock)
+        state["locks"] = kept
+        yield state
+        atomic_json(state_path, state)
+    finally:
+        with contextlib.suppress(OSError): mutex.unlink()
+
+
+def acquire_lock(root: Path, file_path: str, owner: str, task: str, ttl_minutes: int = 60) -> dict[str, Any]:
+    key = _lock_key(root, file_path)
+    with _lock_state(root) as state:
+        for lock in state["locks"]:
+            if lock["normalized_path"] == key and lock["owner"] != owner:
+                raise RuntimeError(f"file already reserved by {lock['owner']}")
+            if lock["normalized_path"] == key:
+                return lock
+        lock = {"path": file_path.replace("\\", "/"), "normalized_path": key, "owner": owner, "task": task, "acquired_at": utc_now(), "ttl_minutes": ttl_minutes}
+        state["locks"].append(lock); state.setdefault("audit", []).append({"event": "acquire", **lock})
     return lock
 
 
 def release_lock(root: Path, file_path: str, owner: str) -> bool:
-    state_path = root / "execution" / "file_locks.json"; state = read_json(state_path)
-    key = str((root / file_path).resolve()).casefold(); before = len(state["locks"])
-    for lock in state["locks"]:
-        if lock["normalized_path"] == key and lock["owner"] != owner: raise RuntimeError("only lock owner may release")
-    state["locks"] = [x for x in state["locks"] if x["normalized_path"] != key]
-    if len(state["locks"]) != before:
-        state.setdefault("audit", []).append({"event": "release", "path": file_path, "owner": owner, "timestamp": utc_now()}); atomic_json(state_path, state); return True
-    return False
+    key = _lock_key(root, file_path)
+    with _lock_state(root) as state:
+        before = len(state["locks"])
+        for lock in state["locks"]:
+            if lock["normalized_path"] == key and lock["owner"] != owner: raise RuntimeError("only lock owner may release")
+        state["locks"] = [x for x in state["locks"] if x["normalized_path"] != key]
+        released = len(state["locks"]) != before
+        if released: state.setdefault("audit", []).append({"event": "release", "path": file_path.replace("\\", "/"), "owner": owner, "timestamp": utc_now()})
+    return released
 
 
 def make_checkpoint(root: Path, task: str = "UNSPECIFIED") -> dict[str, Any]:
@@ -511,31 +706,116 @@ def resume(root: Path) -> dict[str, Any]:
     return {"status": "RECONSTRUCTED", "checkpoint": None, "state": {"stage": "REQUEST", "confidence": "low"}, "invalid_skipped": invalid}
 
 
-def create_handoff(root: Path) -> dict[str, Any]:
+def _state_text(root: Path, name: str) -> str:
+    path = root / "continuity" / "state" / f"{name}.md"
+    return path.read_text(encoding="utf-8") if path.is_file() else ""
+
+
+def _md_field(text: str, label: str) -> str | None:
+    match = re.search(rf"^- {re.escape(label)}:\s*(.+)$", text, re.M)
+    return match.group(1).strip() if match else None
+
+
+def _md_bullets(text: str) -> list[str]:
+    return [line[2:].strip() for line in text.splitlines() if line.startswith("- ") and not line.startswith("- Confidence:")]
+
+
+def create_handoff(root: Path, next_action: str | None = None, missing: Iterable[str] = (), unverified: Iterable[str] = ()) -> dict[str, Any]:
+    """Build the handoff from recorded state; anything not recorded is marked NOT_RECORDED instead of assumed empty."""
     recovery = resume(root)
-    payload = {"schema_version": 1, "timestamp": utc_now(), "requested": "See CURRENT_TASK.md", "implemented": ["See Git history and task change manifests", "See current registries, evidence, release manifest and repository map"], "missing": [], "assumed": ["See ASSUMPTIONS.md"], "unverified": [], "breakage_risks": ["See KNOWN_ISSUES.md and risk state"], "current": recovery["state"], "next_action": "Adopt into a product repository with `pallaquino init`, select a profile, verify official versions, then run doctor/analyze", "confidence": "high"}
+    current = _state_text(root, "CURRENT_TASK"); task = _md_field(current, "ID")
+    manifest_path = root / "changes" / f"{task}.json" if task else None
+    manifest = read_json(manifest_path) if manifest_path and manifest_path.is_file() else None
+    implemented = (manifest.get("files_created", []) + manifest.get("files_modified", [])) if manifest else [f"NOT_RECORDED: no change manifest changes/{task}.json"]
+    missing, unverified = list(missing), list(unverified)
+    confidence = "low" if recovery["status"] != "RECOVERED" else ("high" if manifest and not unverified else "medium")
+    payload = {
+        "schema_version": 1, "timestamp": utc_now(), "task": task,
+        "requested": _md_field(current, "Objective") or "NOT_RECORDED: CURRENT_TASK.md has no Objective",
+        "implemented": implemented, "missing": missing or ["NOT_RECORDED"], "assumed": _md_bullets(_state_text(root, "ASSUMPTIONS")),
+        "unverified": unverified or ["NOT_RECORDED"], "breakage_risks": _md_bullets(_state_text(root, "KNOWN_ISSUES")),
+        "open_questions": _md_bullets(_state_text(root, "OPEN_QUESTIONS")), "current": recovery["state"],
+        "next_action": next_action or _md_field(_state_text(root, "PIPELINE_STATE"), "Next") or "NOT_RECORDED: state the exact next action",
+        "confidence": confidence,
+    }
     atomic_json(root / "continuity" / "HANDOFF.json", payload); return payload
 
 
-def init_target(source: Path, target: Path) -> dict[str, Any]:
-    target.mkdir(parents=True, exist_ok=True); copied = []; skipped = []
+def instance_state_patterns(source: Path) -> list[str]:
+    try: return list(read_json(source / "manifest.json").get("instance_state", DEFAULT_INSTANCE_STATE))
+    except (OSError, ValueError, AttributeError): return list(DEFAULT_INSTANCE_STATE)
+
+
+def is_instance_state(rel: str, patterns: Iterable[str]) -> bool:
+    return any(fnmatch.fnmatchcase(rel, pattern) for pattern in patterns)
+
+
+def fresh_instance_state(today: str | None = None) -> dict[str, str]:
+    """Clean per-project state written by `init`, so a new project never inherits another project's history."""
+    today = today or datetime.now(timezone.utc).date().isoformat()
+    files: dict[str, str] = {}
+    for name, title in CONTINUITY_TITLES.items():
+        body = {"CURRENT_TASK": "- ID: none\n- Objective: record the first request here\n- Status: NOT_STARTED\n",
+                "PIPELINE_STATE": "- Status: not_started\n- Current stage: REQUEST\n- Next: record the first request, then run doctor and analyze\n"}.get(name, "- Status: not_recorded\n")
+        files[f"continuity/state/{name}.md"] = f"# {title}\n\n{body}- Updated: {today}\n- Confidence: low\n"
+    files["PROJECT_CONTEXT.md"] = "# Project context\n\n- Mode: UNSET\n- Autonomy: STANDARD\n- Objective: UNSET\n- Non-goals: UNSET\n- Confidence: low\n"
+    as_json = lambda value: json.dumps(value, indent=2, ensure_ascii=False) + "\n"
+    files["risk/risk_state.json"] = as_json({"schema_version": 1, "level": "LOW", "factors": [], "required_gates": ["TEST", "LINT_TYPECHECK", "CODE_REVIEW"], "confidence": "low", "analyzed_at": None})
+    files["execution/file_locks.json"] = as_json({"schema_version": 1, "locks": [], "audit": []})
+    files["context/context_state.json"] = as_json({"schema_version": 1, "budget": 100, "used": 0, "pinned": ["policy", "user_request", "decisions"], "loaded": [], "omitted": [], "summaries": []})
+    files["repository/REPOSITORY_MAP.json"] = as_json({"schema_version": 1, "generated_at": None, "root": None, "modules": [], "paths": [], "owners": {}, "technologies": [], "entrypoints": [], "apis": [], "database_models": [], "tests": [], "dependencies": [], "runtime_services": [], "configuration": [], "statistics": {"files": 0, "extensions": {}}})
+    files["repository/REPOSITORY_MAP.md"] = "# Repository map\n\nNot generated yet. Run `pallaquino analyze --target <repository>`.\n"
+    files["planning/task_graph.json"] = as_json({"schema_version": 1, "tasks": []})
+    files["planning/execution_plan.json"] = as_json({"schema_version": 1, "steps": []})
+    return files
+
+
+def init_target(source: Path, target: Path, dry_run: bool = False) -> dict[str, Any]:
+    """Install the framework into <target>/.pallaquino without overwriting files or copying source instance state."""
+    destination = (target / ".pallaquino").resolve()
+    if destination == source.resolve():  # re-running init from inside an initialized project stays a no-op
+        return {"copied": 0, "skipped": 0, "initialized_state": [], "excluded_source_state": 0, "target": str(target.resolve()), "dry_run": dry_run, "already_initialized": True}
+    if source.resolve() in destination.parents:
+        raise ValueError(f"refusing to initialize inside the framework source: {destination}")
+    patterns = instance_state_patterns(source); copied = []; skipped = []; initialized = []; excluded = 0
     for src in _iter_repository_files(source):
         rel = src.relative_to(source)
         if any(part in {"__pycache__", ".git", "tests"} for part in rel.parts): continue
-        dst = target / ".pallaquino" / rel
+        if is_instance_state(rel.as_posix(), patterns): excluded += 1; continue
+        dst = destination / rel
         if dst.exists(): skipped.append(str(dst)); continue
-        dst.parent.mkdir(parents=True, exist_ok=True); shutil.copy2(src, dst); copied.append(str(dst))
-    return {"copied": len(copied), "skipped": len(skipped), "target": str(target.resolve())}
+        if not dry_run: dst.parent.mkdir(parents=True, exist_ok=True); shutil.copy2(src, dst)
+        copied.append(str(dst))
+    for rel, content in fresh_instance_state().items():
+        dst = destination / rel
+        if dst.exists(): skipped.append(str(dst)); continue
+        if not dry_run: dst.parent.mkdir(parents=True, exist_ok=True); dst.write_text(content, encoding="utf-8", newline="\n")
+        initialized.append(rel)
+    payload = {"copied": 0 if dry_run else len(copied), "skipped": len(skipped), "initialized_state": initialized, "excluded_source_state": excluded, "target": str(target.resolve()), "dry_run": dry_run}
+    if dry_run: payload["planned"] = len(copied)
+    return payload
+
+
+def _zip_date_time() -> tuple[int, int, int, int, int, int]:
+    # Fixed (or SOURCE_DATE_EPOCH) timestamps make the archive depend only on content, not on checkout mtimes.
+    epoch = os.environ.get("SOURCE_DATE_EPOCH")
+    if not epoch: return FIXED_ZIP_TIME
+    stamp = datetime.fromtimestamp(max(int(epoch), 315532800), timezone.utc)
+    return (stamp.year, stamp.month, stamp.day, stamp.hour, stamp.minute, stamp.second)
 
 
 def create_archive(root: Path, archive: Path) -> dict[str, Any]:
     exclusions = {".git", "__pycache__", ".pytest_cache", ".env", "dist"}
-    archive.parent.mkdir(parents=True, exist_ok=True)
+    archive.parent.mkdir(parents=True, exist_ok=True); date_time = _zip_date_time()
     with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
         for path in _iter_repository_files(root):
             rel = path.relative_to(root)
             if any(part in exclusions for part in rel.parts) or path.resolve() == archive.resolve() or path.suffix == ".sha256": continue
-            zf.write(path, (Path(root.name) / rel).as_posix())
+            if path.name.startswith(".env") and path.name != ".env.example": continue
+            data = path.read_bytes()
+            info = zipfile.ZipInfo((Path(root.name) / rel).as_posix(), date_time=date_time)
+            info.create_system = 3; info.external_attr = (0o100755 if data.startswith(b"#!") else 0o100644) << 16
+            zf.writestr(info, data, compress_type=zipfile.ZIP_DEFLATED, compresslevel=9)
     with zipfile.ZipFile(archive, "r") as zf:
         bad = zf.testzip(); names = zf.namelist()
         traversal = [n for n in names if Path(n).is_absolute() or ".." in Path(n).parts or "\\" in n]

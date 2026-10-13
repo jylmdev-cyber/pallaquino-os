@@ -36,6 +36,279 @@
         "SECURITY_CHECK",
         "CODE_REVIEW"
       ]
+    },
+    {
+      "id": "PAL-005-AUDIT",
+      "title": "Evidence-backed audit and baseline",
+      "domain": "framework",
+      "dependencies": [],
+      "blocked_by": [],
+      "parallelizable": false,
+      "priority": "P0",
+      "risk": "LOW",
+      "agents": [
+        "project_analyzer",
+        "governance_auditor"
+      ],
+      "skills": [
+        "evidence_validation_expert",
+        "test_gap_analysis_expert"
+      ],
+      "files": [
+        "../docs/AUDIT_REPORT.md"
+      ],
+      "acceptance_criteria": [
+        "every finding cites a reproducible command or file",
+        "baseline metrics recorded"
+      ],
+      "quality_gates": [
+        "CODE_REVIEW"
+      ]
+    },
+    {
+      "id": "PAL-005-CI",
+      "title": "Remove wall-clock and host-identity coupling from the test suite",
+      "domain": "quality",
+      "dependencies": [
+        "PAL-005-AUDIT"
+      ],
+      "blocked_by": [],
+      "parallelizable": false,
+      "priority": "P0",
+      "risk": "MEDIUM",
+      "agents": [
+        "qa_engineer"
+      ],
+      "skills": [
+        "testing_strategy_expert"
+      ],
+      "files": [
+        "pallaquino_cli/core.py",
+        "tests/test_core.py"
+      ],
+      "acceptance_criteria": [
+        "suite passes in a clean clone without git identity",
+        "stale snapshot still reported by doctor/stack"
+      ],
+      "quality_gates": [
+        "TEST",
+        "LINT_TYPECHECK",
+        "CODE_REVIEW",
+        "BUILD"
+      ]
+    },
+    {
+      "id": "PAL-005-RISK",
+      "title": "Token-boundary matching for risk and routing classifiers",
+      "domain": "orchestration",
+      "dependencies": [
+        "PAL-005-AUDIT"
+      ],
+      "blocked_by": [],
+      "parallelizable": true,
+      "priority": "P0",
+      "risk": "MEDIUM",
+      "agents": [
+        "ai_evaluation_engineer"
+      ],
+      "skills": [
+        "llm_evaluation_expert",
+        "risk_analysis_expert"
+      ],
+      "files": [
+        "pallaquino_cli/core.py",
+        "evaluation/risk_golden.json",
+        "registry/routing_rules.json"
+      ],
+      "acceptance_criteria": [
+        "documented false positives classify LOW",
+        "existing risk and routing goldens still pass"
+      ],
+      "quality_gates": [
+        "TEST",
+        "LINT_TYPECHECK",
+        "CODE_REVIEW"
+      ]
+    },
+    {
+      "id": "PAL-005-INIT",
+      "title": "Project isolation and dry-run for init",
+      "domain": "continuity",
+      "dependencies": [
+        "PAL-005-AUDIT"
+      ],
+      "blocked_by": [],
+      "parallelizable": true,
+      "priority": "P0",
+      "risk": "HIGH",
+      "agents": [
+        "continuity_manager",
+        "security_architect"
+      ],
+      "skills": [
+        "context_management_expert",
+        "application_security_expert"
+      ],
+      "files": [
+        "pallaquino_cli/core.py",
+        "pallaquino_cli/__main__.py",
+        "manifest.json"
+      ],
+      "acceptance_criteria": [
+        "init never copies framework instance state",
+        "resume in a fresh project is RECONSTRUCTED",
+        "init --dry-run writes nothing",
+        "initialized project validates"
+      ],
+      "quality_gates": [
+        "TEST",
+        "LINT_TYPECHECK",
+        "CODE_REVIEW",
+        "SECURITY_CHECK"
+      ]
+    },
+    {
+      "id": "PAL-005-ROOT",
+      "title": "Framework root discovery and actionable CLI errors",
+      "domain": "developer_experience",
+      "dependencies": [
+        "PAL-005-AUDIT"
+      ],
+      "blocked_by": [],
+      "parallelizable": true,
+      "priority": "P0",
+      "risk": "MEDIUM",
+      "agents": [
+        "platform_engineer"
+      ],
+      "skills": [
+        "python_expert"
+      ],
+      "files": [
+        "pallaquino_cli/__main__.py",
+        "pallaquino_cli/core.py"
+      ],
+      "acceptance_criteria": [
+        "non-editable install resolves root via --root, env or cwd",
+        "missing root yields actionable message, exit 2"
+      ],
+      "quality_gates": [
+        "TEST",
+        "LINT_TYPECHECK",
+        "CODE_REVIEW",
+        "BUILD"
+      ]
+    },
+    {
+      "id": "PAL-005-SEC",
+      "title": "Secret scanning, evidence redaction, honest fitness report, safe generators, lock TTL",
+      "domain": "security",
+      "dependencies": [
+        "PAL-005-AUDIT"
+      ],
+      "blocked_by": [],
+      "parallelizable": true,
+      "priority": "P0",
+      "risk": "HIGH",
+      "agents": [
+        "security_architect",
+        "adversarial_reviewer"
+      ],
+      "skills": [
+        "application_security_expert",
+        "supply_chain_security_expert"
+      ],
+      "files": [
+        "pallaquino_cli/core.py",
+        "scripts/architecture_fitness.py",
+        "scripts/evidence.py",
+        "scripts/scaffold_framework.py",
+        "scripts/expand_catalog.py"
+      ],
+      "acceptance_criteria": [
+        "secrets redacted before persistence",
+        "fitness reports enforced vs declared rules",
+        "generators default to dry-run",
+        "expired locks reclaimable, release path-checked"
+      ],
+      "quality_gates": [
+        "TEST",
+        "LINT_TYPECHECK",
+        "CODE_REVIEW",
+        "SECURITY_CHECK",
+        "ADVERSARIAL_REVIEW"
+      ]
+    },
+    {
+      "id": "PAL-005-REL",
+      "title": "Reproducible archive, honest handoff, 0.3.0 metadata",
+      "domain": "release",
+      "dependencies": [
+        "PAL-005-CI",
+        "PAL-005-RISK",
+        "PAL-005-INIT",
+        "PAL-005-ROOT",
+        "PAL-005-SEC"
+      ],
+      "blocked_by": [],
+      "parallelizable": false,
+      "priority": "P0",
+      "risk": "MEDIUM",
+      "agents": [
+        "release_manager"
+      ],
+      "skills": [
+        "release_management_expert",
+        "git_release_expert"
+      ],
+      "files": [
+        "pallaquino_cli/core.py",
+        "releases/0.3.0.json",
+        "../PALLAQUINO_autonomous_engineering_os.zip"
+      ],
+      "acceptance_criteria": [
+        "two builds of identical content have identical SHA-256",
+        "archive validates after extraction"
+      ],
+      "quality_gates": [
+        "TEST",
+        "LINT_TYPECHECK",
+        "CODE_REVIEW",
+        "BUILD"
+      ]
+    },
+    {
+      "id": "PAL-005-DOCS",
+      "title": "Architecture, roadmap, ADRs, security, changelog, migration guide",
+      "domain": "documentation",
+      "dependencies": [
+        "PAL-005-REL"
+      ],
+      "blocked_by": [],
+      "parallelizable": false,
+      "priority": "P0",
+      "risk": "LOW",
+      "agents": [
+        "documentation_engineer"
+      ],
+      "skills": [
+        "specification_drift_expert"
+      ],
+      "files": [
+        "../docs/",
+        "../CHANGELOG.md",
+        "../SECURITY.md",
+        "../MIGRATION_GUIDE.md",
+        "../README.md"
+      ],
+      "acceptance_criteria": [
+        "docs separate implemented, experimental and planned",
+        "no unverified claims"
+      ],
+      "quality_gates": [
+        "CODE_REVIEW",
+        "SPECIFICATION_DRIFT"
+      ]
     }
   ]
 }

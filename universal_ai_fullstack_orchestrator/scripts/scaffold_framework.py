@@ -12,13 +12,21 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 TODAY = "2026-08-31"
-VERSION = "0.2.1"
+VERSION = "0.3.0"
+
+
+# Dry-run unless --write is passed: this generator overwrites curated policies, registries and state.
+WRITE = False
+PLANNED: list[str] = []
 
 
 def write(path: str, content: str) -> None:
+    PLANNED.append(path)
+    if not WRITE:
+        return
     target = ROOT / path
     target.parent.mkdir(parents=True, exist_ok=True)
-    target.write_text(content.rstrip() + "\n", encoding="utf-8")
+    target.write_text(content.rstrip() + "\n", encoding="utf-8", newline="\n")
 
 
 def dump(path: str, value: object) -> None:
@@ -487,8 +495,14 @@ def main() -> None:
     generate_pipeline_planning()
     generate_state_architecture()
     generate_evaluations()
-    print(f"PALLAQUINO {VERSION} scaffold materialized at {ROOT}")
+    print(f"PALLAQUINO {VERSION} scaffold {'materialized' if WRITE else 'planned'} at {ROOT}")
 
 
 if __name__ == "__main__":
+    import argparse
+    options = argparse.ArgumentParser(description="Materialize PALLAQUINO declarative assets (dry-run by default).")
+    options.add_argument("--write", action="store_true", help="overwrite files; default only lists targets")
+    WRITE = options.parse_args().write
     main()
+    if not WRITE:
+        print(f"DRY RUN: {len(PLANNED)} file(s) would be overwritten; review, then re-run with --write")

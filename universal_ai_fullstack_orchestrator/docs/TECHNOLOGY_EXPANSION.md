@@ -84,7 +84,8 @@ security patch and compatibility; then record concrete versions in
 The expansion is reproducible and idempotent:
 
 ```console
-python scripts/expand_catalog.py
+python scripts/expand_catalog.py          # dry-run: lists files it would rewrite
+python scripts/expand_catalog.py --write  # apply after reviewing
 python scripts/validate_registry.py
 python -m unittest discover -s tests -v
 ```

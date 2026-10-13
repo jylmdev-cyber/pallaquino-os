@@ -32,6 +32,284 @@
         "SECURITY_CHECK",
         "CODE_REVIEW"
       ]
+    },
+    {
+      "task": "PAL-005-AUDIT",
+      "agent": "project_analyzer",
+      "skills": [
+        "evidence_validation_expert",
+        "test_gap_analysis_expert"
+      ],
+      "inputs": [
+        "prompt-v03.md (user request)",
+        "docs/AUDIT_REPORT.md"
+      ],
+      "expected_files": [
+        "../docs/AUDIT_REPORT.md"
+      ],
+      "dependencies": [],
+      "commands": [
+        "python -m unittest discover -s tests -v",
+        "python scripts/validate_all.py",
+        "python scripts/architecture_fitness.py"
+      ],
+      "tests": [
+        "every finding cites a reproducible command or file",
+        "baseline metrics recorded"
+      ],
+      "gates": [
+        "CODE_REVIEW"
+      ]
+    },
+    {
+      "task": "PAL-005-CI",
+      "agent": "qa_engineer",
+      "skills": [
+        "testing_strategy_expert"
+      ],
+      "inputs": [
+        "prompt-v03.md (user request)",
+        "docs/AUDIT_REPORT.md"
+      ],
+      "expected_files": [
+        "pallaquino_cli/core.py",
+        "tests/test_core.py"
+      ],
+      "dependencies": [
+        "PAL-005-AUDIT"
+      ],
+      "commands": [
+        "python -m unittest discover -s tests -v",
+        "python scripts/validate_all.py",
+        "python scripts/architecture_fitness.py"
+      ],
+      "tests": [
+        "suite passes in a clean clone without git identity",
+        "stale snapshot still reported by doctor/stack"
+      ],
+      "gates": [
+        "TEST",
+        "LINT_TYPECHECK",
+        "CODE_REVIEW",
+        "BUILD"
+      ]
+    },
+    {
+      "task": "PAL-005-RISK",
+      "agent": "ai_evaluation_engineer",
+      "skills": [
+        "llm_evaluation_expert",
+        "risk_analysis_expert"
+      ],
+      "inputs": [
+        "prompt-v03.md (user request)",
+        "docs/AUDIT_REPORT.md"
+      ],
+      "expected_files": [
+        "pallaquino_cli/core.py",
+        "evaluation/risk_golden.json",
+        "registry/routing_rules.json"
+      ],
+      "dependencies": [
+        "PAL-005-AUDIT"
+      ],
+      "commands": [
+        "python -m unittest discover -s tests -v",
+        "python scripts/validate_all.py",
+        "python scripts/architecture_fitness.py"
+      ],
+      "tests": [
+        "documented false positives classify LOW",
+        "existing risk and routing goldens still pass"
+      ],
+      "gates": [
+        "TEST",
+        "LINT_TYPECHECK",
+        "CODE_REVIEW"
+      ]
+    },
+    {
+      "task": "PAL-005-INIT",
+      "agent": "continuity_manager",
+      "skills": [
+        "context_management_expert",
+        "application_security_expert"
+      ],
+      "inputs": [
+        "prompt-v03.md (user request)",
+        "docs/AUDIT_REPORT.md"
+      ],
+      "expected_files": [
+        "pallaquino_cli/core.py",
+        "pallaquino_cli/__main__.py",
+        "manifest.json"
+      ],
+      "dependencies": [
+        "PAL-005-AUDIT"
+      ],
+      "commands": [
+        "python -m unittest discover -s tests -v",
+        "python scripts/validate_all.py",
+        "python scripts/architecture_fitness.py"
+      ],
+      "tests": [
+        "init never copies framework instance state",
+        "resume in a fresh project is RECONSTRUCTED",
+        "init --dry-run writes nothing",
+        "initialized project validates"
+      ],
+      "gates": [
+        "TEST",
+        "LINT_TYPECHECK",
+        "CODE_REVIEW",
+        "SECURITY_CHECK"
+      ]
+    },
+    {
+      "task": "PAL-005-ROOT",
+      "agent": "platform_engineer",
+      "skills": [
+        "python_expert"
+      ],
+      "inputs": [
+        "prompt-v03.md (user request)",
+        "docs/AUDIT_REPORT.md"
+      ],
+      "expected_files": [
+        "pallaquino_cli/__main__.py",
+        "pallaquino_cli/core.py"
+      ],
+      "dependencies": [
+        "PAL-005-AUDIT"
+      ],
+      "commands": [
+        "python -m unittest discover -s tests -v",
+        "python scripts/validate_all.py",
+        "python scripts/architecture_fitness.py"
+      ],
+      "tests": [
+        "non-editable install resolves root via --root, env or cwd",
+        "missing root yields actionable message, exit 2"
+      ],
+      "gates": [
+        "TEST",
+        "LINT_TYPECHECK",
+        "CODE_REVIEW",
+        "BUILD"
+      ]
+    },
+    {
+      "task": "PAL-005-SEC",
+      "agent": "security_architect",
+      "skills": [
+        "application_security_expert",
+        "supply_chain_security_expert"
+      ],
+      "inputs": [
+        "prompt-v03.md (user request)",
+        "docs/AUDIT_REPORT.md"
+      ],
+      "expected_files": [
+        "pallaquino_cli/core.py",
+        "scripts/architecture_fitness.py",
+        "scripts/evidence.py",
+        "scripts/scaffold_framework.py",
+        "scripts/expand_catalog.py"
+      ],
+      "dependencies": [
+        "PAL-005-AUDIT"
+      ],
+      "commands": [
+        "python -m unittest discover -s tests -v",
+        "python scripts/validate_all.py",
+        "python scripts/architecture_fitness.py"
+      ],
+      "tests": [
+        "secrets redacted before persistence",
+        "fitness reports enforced vs declared rules",
+        "generators default to dry-run",
+        "expired locks reclaimable, release path-checked"
+      ],
+      "gates": [
+        "TEST",
+        "LINT_TYPECHECK",
+        "CODE_REVIEW",
+        "SECURITY_CHECK",
+        "ADVERSARIAL_REVIEW"
+      ]
+    },
+    {
+      "task": "PAL-005-REL",
+      "agent": "release_manager",
+      "skills": [
+        "release_management_expert",
+        "git_release_expert"
+      ],
+      "inputs": [
+        "prompt-v03.md (user request)",
+        "docs/AUDIT_REPORT.md"
+      ],
+      "expected_files": [
+        "pallaquino_cli/core.py",
+        "releases/0.3.0.json",
+        "../PALLAQUINO_autonomous_engineering_os.zip"
+      ],
+      "dependencies": [
+        "PAL-005-CI",
+        "PAL-005-RISK",
+        "PAL-005-INIT",
+        "PAL-005-ROOT",
+        "PAL-005-SEC"
+      ],
+      "commands": [
+        "python -m unittest discover -s tests -v",
+        "python scripts/validate_all.py",
+        "python scripts/architecture_fitness.py"
+      ],
+      "tests": [
+        "two builds of identical content have identical SHA-256",
+        "archive validates after extraction"
+      ],
+      "gates": [
+        "TEST",
+        "LINT_TYPECHECK",
+        "CODE_REVIEW",
+        "BUILD"
+      ]
+    },
+    {
+      "task": "PAL-005-DOCS",
+      "agent": "documentation_engineer",
+      "skills": [
+        "specification_drift_expert"
+      ],
+      "inputs": [
+        "prompt-v03.md (user request)",
+        "docs/AUDIT_REPORT.md"
+      ],
+      "expected_files": [
+        "../docs/",
+        "../CHANGELOG.md",
+        "../SECURITY.md",
+        "../MIGRATION_GUIDE.md",
+        "../README.md"
+      ],
+      "dependencies": [
+        "PAL-005-REL"
+      ],
+      "commands": [
+        "python -m unittest discover -s tests -v",
+        "python scripts/validate_all.py",
+        "python scripts/architecture_fitness.py"
+      ],
+      "tests": [
+        "docs separate implemented, experimental and planned",
+        "no unverified claims"
+      ],
+      "gates": [
+        "CODE_REVIEW",
+        "SPECIFICATION_DRIFT"
+      ]
     }
   ]
 }
