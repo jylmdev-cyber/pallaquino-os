@@ -8,8 +8,8 @@ from pathlib import Path
 from . import __version__
 from .core import (
     ROOT_ENV, FrameworkRootNotFound, analyze_risk, build_repository_map, create_handoff,
-    detect_capabilities, init_target, make_checkpoint, read_json, resolve_root, resume,
-    route_request, scan_secrets, stack_status, validate_all,
+    detect_capabilities, git_identity_status, init_target, make_checkpoint, read_json, resolve_root,
+    resume, route_request, scan_secrets, set_git_identity, stack_status, validate_all,
 )
 
 ROOT_HELP = f"PALLAQUINO/framework root (default: ${ROOT_ENV}, the package checkout, then ./.pallaquino or a parent)"
@@ -33,6 +33,7 @@ def parser() -> argparse.ArgumentParser:
         ("validate", "run all framework validators"), ("stack", "show verified stack freshness"),
         ("risk", "classify request risk"), ("graph", "show and validate the task graph"),
         ("security", "read-only security audit (secret scan) of a target"),
+        ("identity", "show, set or apply the project commit identity"),
     ]:
         item = subs.add_parser(name, help=help_text); add_common(item)
         if name == "analyze": item.add_argument("--target", type=Path, default=Path.cwd())
@@ -42,6 +43,10 @@ def parser() -> argparse.ArgumentParser:
         if name == "security":
             item.add_argument("action", nargs="?", choices=["audit"], default="audit")
             item.add_argument("--target", type=Path, default=Path.cwd())
+        if name == "identity":
+            item.add_argument("--name", help="set the expected author name (requires --email)")
+            item.add_argument("--email", help="set the expected author email (requires --name)")
+            item.add_argument("--apply-local", action="store_true", help="write it to the repository-local Git config (never global)")
         if name == "handoff":
             item.add_argument("--next-action", help="exact next action for the receiving agent")
             item.add_argument("--missing", action="append", default=[], help="requested but not implemented (repeatable)")
@@ -85,6 +90,10 @@ def main(argv: list[str] | None = None) -> int:
         elif command == "validate": payload = validate_all(root, include_environment=not args.integrity_only)
         elif command == "stack": payload = stack_status(root)
         elif command == "security": payload = scan_secrets(args.target.resolve())
+        elif command == "identity":
+            if (args.name is None) != (args.email is None): raise ValueError("--name and --email must be given together")
+            if args.name is not None: set_git_identity(root, args.name, args.email)
+            payload = git_identity_status(root, apply_local=args.apply_local)
         elif command == "risk":
             text = " ".join(args.request) if args.request else sys.stdin.read(); payload = analyze_risk(text); payload["routing"] = route_request(root, text)
         elif command == "graph":

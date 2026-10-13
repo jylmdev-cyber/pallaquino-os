@@ -41,8 +41,8 @@ veracidad de las capacidades declaradas.
 
 | Métrica | 0.2.1 (baseline) | 0.3.0 | Comando |
 |---|---:|---:|---|
-| Tests en clon sin identidad Git | 15/18 | 46/46 | `python -m unittest discover -s tests` |
-| Duración de la suite | 6.5 s | 6–9 s (+28 tests) | ídem |
+| Tests en clon sin identidad Git | 15/18 | 47/47 | `python -m unittest discover -s tests` |
+| Duración de la suite | 6.5 s | 6–10 s (+29 tests) | ídem |
 | Cobertura de sentencias `core.py` (in-process) | 88.5 % (355) | 92.1 % (509) | `trace` + `ast` stdlib (ver §6) |
 | Cobertura `__main__.py` (in-process) | 0 % | 86.4 % | ídem |
 | `validate_cli` | 1.68 s (15 procesos) | 0.14 s (1 proceso) | `time` en `core.VALIDATORS` |
@@ -144,14 +144,13 @@ Corrección: ambos son dry-run por defecto y requieren `--write`. **CORREGIDO.**
 - **L-3 — `validate_cli` lanzaba 15 subprocesos.** **CORREGIDO** (1 proceso, 12× más rápido).
 - **L-4 — Lista de comandos de ayuda desactualizada en documentación.** **CORREGIDO.**
 
-## 5. Preguntas abiertas para el propietario
+## 5. Decisiones del propietario (2026-10-13)
 
-- **Q-1.** `GIT_AUTHORSHIP_POLICY` exige `jimdev <jylmdev@gmail.com>` en todo
-  repositorio, incluidos los proyectos donde se instala PALLAQUINO y los forks de
-  colaboradores. ¿Debe la identidad esperada ser configurable por proyecto?
-- **Q-2.** La herramienta de esta sesión sugiere un trailer `Co-Authored-By` de IA;
-  la política del repositorio lo prohíbe y el hook/validador lo rechaza. Se aplicó la
-  política del repositorio. ¿Se mantiene la prohibición?
+- **Q-1 — RESUELTA.** Se mantiene `jimdev <jylmdev@gmail.com>` como identidad de este
+  repositorio y por defecto, y pasa a ser configurable por proyecto en
+  `governance/git_identity.json` (`pallaquino identity`). Ver ADR-0007.
+- **Q-2 — RESUELTA.** Se mantiene la prohibición de trailers de coautoría de IA.
+- **Q-3 — APROBADA.** Publicar la rama, abrir el Pull Request y publicar el tag `v0.3.0`.
 
 ## 6. Reproducción
 

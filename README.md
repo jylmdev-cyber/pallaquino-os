@@ -10,7 +10,7 @@
   <img alt="Agents" src="https://img.shields.io/badge/agents-59-7B61FF">
   <img alt="Skills" src="https://img.shields.io/badge/skills-90-00A67E">
   <img alt="Technologies" src="https://img.shields.io/badge/technologies-46-F97316">
-  <img alt="Tests" src="https://img.shields.io/badge/tests-46%20passing-2EA44F">
+  <img alt="Tests" src="https://img.shields.io/badge/tests-47%20passing-2EA44F">
   <img alt="License" src="https://img.shields.io/badge/license-MIT-blue">
   <img alt="Provider neutral" src="https://img.shields.io/badge/AI-provider--neutral-111827">
   <a href="https://github.com/jylmdev-cyber/pallaquino-os/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/jylmdev-cyber/pallaquino-os/actions/workflows/ci.yml/badge.svg"></a>
@@ -204,8 +204,19 @@ prueba la instalación no editable y comprueba el ZIP.
 
 ## Configurar la identidad de Git
 
-La utilidad escribe **solo** `user.name` y `user.email` en la configuración local
-del repositorio; no modifica la identidad global del equipo:
+La identidad esperada de cada proyecto vive en
+`universal_ai_fullstack_orchestrator/governance/git_identity.json`
+(`jimdev <jylmdev@gmail.com>` por defecto y en este repositorio):
+
+```bash
+cd universal_ai_fullstack_orchestrator
+python -m pallaquino_cli identity                        # muestra esperada vs. local
+python -m pallaquino_cli identity --apply-local          # la aplica solo en la config local
+python -m pallaquino_cli identity --name "Equipo" --email "equipo@example.com"  # otro proyecto
+```
+
+La utilidad de la raíz escribe **solo** `user.name` y `user.email` en la configuración
+local del repositorio; no modifica la identidad global del equipo:
 
 ```bash
 python scripts/configure_git_identity.py \

@@ -22,13 +22,15 @@ Fase 1 (auditoría y estabilización) del pedido v0.3. Detalle y evidencia en
 
 - `pallaquino security [audit] --target <dir>`: escaneo de secretos de solo lectura
   que informa ruta, línea y tipo, nunca el valor.
+- Identidad de commit configurable por proyecto en `governance/git_identity.json`
+  (jimdev por defecto) y comando `pallaquino identity [--name --email] [--apply-local]`.
 - `init --dry-run`, `validate --integrity-only` y `handoff --next-action/--missing/--unverified`.
 - Resolución del root por `$PALLAQUINO_ROOT` y descubrimiento de `./.pallaquino`.
 - `manifest.json#instance_state` y estado limpio para proyectos nuevos.
-- `evaluation/risk_golden.json` y 28 tests nuevos (46 en total).
+- `evaluation/risk_golden.json` y 29 tests nuevos (47 en total).
 - CI: escaneo de secretos del repositorio y smoke test de instalación no editable.
 - `docs/AUDIT_REPORT.md`, `docs/ARCHITECTURE.md`, `docs/ROADMAP.md`, `docs/adr/`,
-  `docs/DEMO.md` y `MIGRATION_GUIDE.md`.
+  `docs/DEMO.md` y `MIGRATION_GUIDE.md`; ADR-0001 a ADR-0007.
 - Sección pública para apoyar voluntariamente el proyecto mediante PayPal.
 
 ### Changed

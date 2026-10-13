@@ -8,7 +8,8 @@
     "isolated init with dry-run",
     "framework root discovery for non-editable installs",
     "derived handoff fields",
-    "integrity-only validation"
+    "integrity-only validation",
+    "per-project commit identity with jimdev default (`pallaquino identity`)"
   ],
   "fixes": [
     "clock- and host-independent test suite",
@@ -28,7 +29,7 @@
     "CI scans the repository for secrets and smoke-tests a non-editable install"
   ],
   "tests": [
-    "46 framework tests",
+    "47 framework tests",
     "9 integrity validators plus Git authorship in CI",
     "architecture fitness",
     "release archive integrity"
@@ -42,7 +43,6 @@
   "rollback": "Revert the PAL-005 commits on branch claude/pallaquino-engineering-os-c7d622. Release all file locks first: 0.2.1 does not recognize the root-relative lock keys written by 0.3.0. No other data migration is involved.",
   "known_issues": [
     "Stack snapshot STALE since 2026-09-30 (PAL-006)",
-    "Owner identity policy vs contributor identity (Q-1)",
     "Agent/skill contracts v2 pending (Phase 2)"
   ]
 }

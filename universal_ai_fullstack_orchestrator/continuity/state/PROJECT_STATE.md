@@ -10,5 +10,5 @@
 - Stack profiles: 6
 - Domain packs: 7
 - Pipeline stages: 32 base stages plus 14 conditional gates
-- CLI commands: 16 (new: `security`; new flags: `init --dry-run`, `validate --integrity-only`, `handoff --next-action/--missing/--unverified`)
+- CLI commands: 17 (new: `security`, `identity`; new flags: `init --dry-run`, `validate --integrity-only`, `handoff --next-action/--missing/--unverified`)
 - Confidence: high

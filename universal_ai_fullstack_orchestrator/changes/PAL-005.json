@@ -10,7 +10,9 @@
     "../docs/ROADMAP.md",
     "../docs/DEMO.md",
     "../docs/adr/ADR-0001..0006",
-    "../MIGRATION_GUIDE.md"
+    "../MIGRATION_GUIDE.md",
+    "governance/git_identity.json",
+    "../docs/adr/ADR-0007-per-project-commit-identity.md"
   ],
   "files_modified": [
     "pallaquino_cli/core.py",
@@ -41,7 +43,11 @@
     "../CITATION.cff",
     "../docs/GITHUB_RELEASE_CHECKLIST.md",
     "../PALLAQUINO_autonomous_engineering_os.zip",
-    "../PALLAQUINO_autonomous_engineering_os.sha256"
+    "../PALLAQUINO_autonomous_engineering_os.sha256",
+    "governance/GIT_AUTHORSHIP_POLICY.md",
+    "PROJECT_OWNERSHIP.md",
+    "scripts/commit_as_jimdev.py",
+    "docs/TUTORIAL_DE_PROMPTS.md"
   ],
   "files_deleted": [],
   "migrations": [
@@ -49,10 +55,11 @@
   ],
   "dependencies": [],
   "endpoints": [
-    "CLI: new `security [audit]`; new flags `init --dry-run`, `validate --integrity-only`, `handoff --next-action/--missing/--unverified`; exit code 2 for unresolvable root"
+    "CLI: new `security [audit]`; new flags `init --dry-run`, `validate --integrity-only`, `handoff --next-action/--missing/--unverified`; exit code 2 for unresolvable root",
+    "CLI: new `identity [--name --email] [--apply-local]`"
   ],
   "tests": [
-    "46 tests (28 new): classifier boundaries, init isolation, root resolution, secret scanning/redaction, generator dry-run, locks (TTL, confinement, 8-process concurrency, legacy keys), Git authorship fixture, archive determinism and exclusions, task graph references, derived handoff, in-process CLI contracts"
+    "47 tests (29 new), including per-project identity configuration and local apply"
   ],
   "docs": [
     "audit report with evidence",
@@ -70,7 +77,9 @@
     "ADR-0004 root resolution order",
     "ADR-0005 deterministic archive",
     "ADR-0006 generators dry-run by default",
-    "Minor release 0.3.0; no tag or publication without approval",
-    "No AI co-author trailer, per repository policy (OPEN_QUESTIONS Q-2)"
+    "Minor release 0.3.0",
+    "ADR-0007 per-project commit identity, jimdev default (owner decision Q-1)",
+    "AI co-author trailers remain forbidden (owner decision Q-2)",
+    "Owner approved branch push, Pull Request and tag v0.3.0 (Q-3)"
   ]
 }

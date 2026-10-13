@@ -90,6 +90,10 @@ class CliInProcessTests(unittest.TestCase):
             for command, key in (("doctor", "capabilities"), ("stack", "entries")):  # exit 1 when the snapshot is stale
                 code, out = self.call(command, "--root", str(project), "--json")
                 self.assertIn(code, (0, 1)); self.assertIn(key, json.loads(out))
+            code, out = self.call("identity", "--name", "Ada Dev", "--email", "ada@example.com", "--root", str(project), "--json")
+            self.assertEqual(code, 1)  # temp project is not a Git repository
+            self.assertEqual(json.loads(out)["expected"]["name"], "Ada Dev")
+            self.assertEqual(self.call("identity", "--name", "Solo", "--root", str(project), "--json")[0], 1)
             code, _ = self.call("status", "--root", temp)
             self.assertEqual(code, 2)
 

@@ -38,9 +38,8 @@ jobs:
           cache-dependency-path: universal_ai_fullstack_orchestrator/pyproject.toml
 
       - name: Configure validation identity locally
-        run: |
-          git config --local user.name "jimdev"
-          git config --local user.email "jylmdev@gmail.com"
+        # Applies governance/git_identity.json (jimdev by default) to the local config only.
+        run: python -m pallaquino_cli identity --apply-local --json
 
       - name: Install package
         run: python -m pip install -e .

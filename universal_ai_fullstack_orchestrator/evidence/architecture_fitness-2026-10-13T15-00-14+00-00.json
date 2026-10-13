@@ -1,0 +1,13 @@
+{
+  "gate": "ARCHITECTURE_FITNESS",
+  "command": [
+    "python",
+    "scripts/architecture_fitness.py"
+  ],
+  "timestamp": "2026-10-13T15:00:14+00:00",
+  "agent": "security_architect",
+  "exit_code": 0,
+  "result": "passed",
+  "summary": "{\n  \"ok\": true,\n  \"rules\": 4,\n  \"enforced\": [\n    \"no_secrets\"\n  ],\n  \"not_enforced\": [\n    {\n      \"rule\": \"domain_no_infrastructure\",\n      \"reason\": \"no static analyzer implemented; product repositories must supply one\"\n    },\n    {\n      \"rule\": \"frontend_no_database\",\n      \"reason\": \"no static analyzer implemented; product repositories must supply one\"\n    },\n    {\n      \"rule\": \"module_boundaries\",\n      \"reason\": \"no static analyzer implemented; product repositories must supply one\"\n    }\n  ],\n  \"files_scanned\": 363,\n  \"violations\": []\n}\n",
+  "artifact": null
+}

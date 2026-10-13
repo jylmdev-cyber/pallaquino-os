@@ -9,5 +9,5 @@
 - Mode and autonomy: BROWNFIELD with UPDATE_PALLAQUINO gates, STANDARD
 - Checkpoint: generated for PAL-005 after finalization
 - Handoff: `continuity/HANDOFF.json`
-- Release: 0.3.0 artifact built and verified locally; not tagged or published
-- Next: owner reviews branch `claude/pallaquino-engineering-os-c7d622`, answers Q-1 and Q-2, approves merge and the `v0.3.0` tag; then PAL-006 (stack re-verification) and PAL-007 (Phase 2)
+- Release: 0.3.0 artifact built and verified; publication approved (branch push, Pull Request, tag `v0.3.0`)
+- Next: owner reviews and merges the Pull Request with a merge commit (keeps the tagged commit in `main`); optionally publish the GitHub Release for `v0.3.0`; then PAL-006 (stack re-verification) and PAL-007 (Phase 2)

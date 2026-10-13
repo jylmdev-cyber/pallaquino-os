@@ -19,8 +19,11 @@ from typing import Any, Iterable, Iterator
 
 VERSION = "0.3.0"
 ROOT_ENV = "PALLAQUINO_ROOT"
+# Default commit identity; each project may override it in IDENTITY_FILE (see GIT_AUTHORSHIP_POLICY.md).
 EXPECTED_AUTHOR = "jimdev"
 EXPECTED_EMAIL = "jylmdev@gmail.com"
+IDENTITY_FILE = "governance/git_identity.json"
+EMAIL_PATTERN = re.compile(r"[^@\s<>]+@[^@\s<>]+\.[^@\s<>]+")
 STALE_DAYS = 30
 STAGES = [
     "REQUEST", "CONTINUITY_RECOVERY", "CAPABILITY_DETECTION", "REPOSITORY_ANALYSIS",
@@ -476,9 +479,50 @@ def validate_continuity(root: Path) -> dict[str, Any]:
     return result("validate_continuity", not missing, missing or [f"{len(CONTINUITY_FILES)} state files present"])
 
 
+def _identity_errors(name: Any, email: Any) -> list[str]:
+    errors = []
+    if not isinstance(name, str) or not name.strip() or any(ch in name for ch in "\r\n<>"): errors.append("identity name must be a non-empty single line without <>")
+    if not isinstance(email, str) or not EMAIL_PATTERN.fullmatch(email): errors.append("identity email is not a valid address")
+    return errors
+
+
+def load_git_identity(root: Path) -> dict[str, Any]:
+    """Expected commit identity for this project: governance/git_identity.json, else the jimdev default."""
+    path = root / IDENTITY_FILE
+    if not path.is_file():
+        return {"name": EXPECTED_AUTHOR, "email": EXPECTED_EMAIL, "source": "default", "errors": []}
+    try: data = read_json(path)
+    except (OSError, ValueError) as exc: return {"name": EXPECTED_AUTHOR, "email": EXPECTED_EMAIL, "source": IDENTITY_FILE, "errors": [f"cannot read {IDENTITY_FILE}: {exc}"]}
+    data = data if isinstance(data, dict) else {}
+    return {"name": data.get("name"), "email": data.get("email"), "source": IDENTITY_FILE, "errors": _identity_errors(data.get("name"), data.get("email"))}
+
+
+def set_git_identity(root: Path, name: str, email: str) -> dict[str, Any]:
+    name = name.strip(); email = email.strip(); errors = _identity_errors(name, email)
+    if errors: raise ValueError("; ".join(errors))
+    atomic_json(root / IDENTITY_FILE, {"schema_version": 1, "name": name, "email": email})
+    return load_git_identity(root)
+
+
+def git_identity_status(root: Path, apply_local: bool = False) -> dict[str, Any]:
+    """Compare the expected identity with the repository-local Git config; optionally set the local config only."""
+    expected = load_git_identity(root)
+    if expected["errors"]: raise ValueError("; ".join(expected["errors"]))
+    if run_git(root, "rev-parse", "--is-inside-work-tree").returncode != 0:
+        return {"ok": False, "expected": expected, "local": None, "matches": False, "applied": False, "error": "not a Git repository"}
+    if apply_local:
+        for key, value in (("user.name", expected["name"]), ("user.email", expected["email"])):
+            if run_git(root, "config", "--local", key, value).returncode != 0: raise RuntimeError(f"cannot set local {key}")
+    local = {"name": run_git(root, "config", "--local", "--get", "user.name").stdout.strip(), "email": run_git(root, "config", "--local", "--get", "user.email").stdout.strip()}
+    matches = local == {"name": expected["name"], "email": expected["email"]}
+    return {"ok": matches, "expected": expected, "local": local, "matches": matches, "applied": apply_local, "repository": str(git_repository_root(root))}
+
+
 def validate_governance(root: Path) -> dict[str, Any]:
     missing = [f for f in GOVERNANCE_FILES if not (root / "governance" / f).is_file()]
-    return result("validate_governance", not missing, missing or [f"{len(GOVERNANCE_FILES)} governance policies present"])
+    identity = load_git_identity(root)
+    errors = missing + identity["errors"]
+    return result("validate_governance", not errors, errors or [f"{len(GOVERNANCE_FILES)} governance policies present; identity from {identity['source']}"])
 
 
 def validate_git_authorship(root: Path) -> dict[str, Any]:
@@ -486,10 +530,12 @@ def validate_git_authorship(root: Path) -> dict[str, Any]:
     probe = run_git(root, "rev-parse", "--is-inside-work-tree")
     if probe.returncode != 0:
         return result("validate_git_authorship", False, ["not a Git repository"])
+    expected = load_git_identity(root)
+    if expected["errors"]: return result("validate_git_authorship", False, expected["errors"])
     name = run_git(root, "config", "--local", "--get", "user.name").stdout.strip()
     email = run_git(root, "config", "--local", "--get", "user.email").stdout.strip()
-    if name != EXPECTED_AUTHOR: errors.append(f"local user.name is {name!r}, expected {EXPECTED_AUTHOR!r}")
-    if email != EXPECTED_EMAIL: errors.append(f"local user.email is {email!r}, expected {EXPECTED_EMAIL!r}")
+    if name != expected["name"]: errors.append(f"local user.name is {name!r}, expected {expected['name']!r} ({expected['source']})")
+    if email != expected["email"]: errors.append(f"local user.email is {email!r}, expected {expected['email']!r} ({expected['source']})")
     log = run_git(root, "log", "--format=%an <%ae>%n%B", "--all")
     if log.returncode == 0:
         forbidden = re.compile(r"Co-authored-by:\s*(Claude|ChatGPT|Gemini|Grok|Mistral|Copilot)", re.I)
@@ -562,7 +608,7 @@ def validate_risk(root: Path) -> dict[str, Any]:
     return result("validate_risk", not errors, errors or [f"{len(cases)} golden classifications pass"])
 
 
-CLI_COMMANDS = ["init", "status", "doctor", "analyze", "plan", "agents", "skills", "pipeline", "checkpoint", "handoff", "resume", "validate", "stack", "risk", "graph", "security"]
+CLI_COMMANDS = ["init", "status", "doctor", "analyze", "plan", "agents", "skills", "pipeline", "checkpoint", "handoff", "resume", "validate", "stack", "risk", "graph", "security", "identity"]
 # Runs inside a child interpreter whose sys.path[0] is the validated root, so an extracted archive tests its own CLI.
 _CLI_PROBE = """
 import contextlib, io, json, sys

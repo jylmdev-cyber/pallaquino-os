@@ -106,6 +106,111 @@
       "path": "registry/routing_rules.json",
       "owner": "claude-c7d622",
       "timestamp": "2026-10-13T14:44:36+00:00"
+    },
+    {
+      "event": "acquire",
+      "path": "pallaquino_cli/core.py",
+      "normalized_path": "pallaquino_cli/core.py",
+      "owner": "claude-c7d622",
+      "task": "PAL-005-ID",
+      "acquired_at": "2026-10-13T14:57:13+00:00",
+      "ttl_minutes": 240
+    },
+    {
+      "event": "acquire",
+      "path": "pallaquino_cli/__main__.py",
+      "normalized_path": "pallaquino_cli/__main__.py",
+      "owner": "claude-c7d622",
+      "task": "PAL-005-ID",
+      "acquired_at": "2026-10-13T14:57:14+00:00",
+      "ttl_minutes": 240
+    },
+    {
+      "event": "acquire",
+      "path": "governance/",
+      "normalized_path": "governance",
+      "owner": "claude-c7d622",
+      "task": "PAL-005-ID",
+      "acquired_at": "2026-10-13T14:57:14+00:00",
+      "ttl_minutes": 240
+    },
+    {
+      "event": "acquire",
+      "path": "scripts/commit_as_jimdev.py",
+      "normalized_path": "scripts/commit_as_jimdev.py",
+      "owner": "claude-c7d622",
+      "task": "PAL-005-ID",
+      "acquired_at": "2026-10-13T14:57:14+00:00",
+      "ttl_minutes": 240
+    },
+    {
+      "event": "acquire",
+      "path": "scripts/scaffold_framework.py",
+      "normalized_path": "scripts/scaffold_framework.py",
+      "owner": "claude-c7d622",
+      "task": "PAL-005-ID",
+      "acquired_at": "2026-10-13T14:57:14+00:00",
+      "ttl_minutes": 240
+    },
+    {
+      "event": "acquire",
+      "path": "tests/",
+      "normalized_path": "tests",
+      "owner": "claude-c7d622",
+      "task": "PAL-005-ID",
+      "acquired_at": "2026-10-13T14:57:14+00:00",
+      "ttl_minutes": 240
+    },
+    {
+      "event": "acquire",
+      "path": "PROJECT_OWNERSHIP.md",
+      "normalized_path": "project_ownership.md",
+      "owner": "claude-c7d622",
+      "task": "PAL-005-ID",
+      "acquired_at": "2026-10-13T14:57:14+00:00",
+      "ttl_minutes": 240
+    },
+    {
+      "event": "release",
+      "path": "pallaquino_cli/core.py",
+      "owner": "claude-c7d622",
+      "timestamp": "2026-10-13T15:00:03+00:00"
+    },
+    {
+      "event": "release",
+      "path": "pallaquino_cli/__main__.py",
+      "owner": "claude-c7d622",
+      "timestamp": "2026-10-13T15:00:03+00:00"
+    },
+    {
+      "event": "release",
+      "path": "governance/",
+      "owner": "claude-c7d622",
+      "timestamp": "2026-10-13T15:00:03+00:00"
+    },
+    {
+      "event": "release",
+      "path": "scripts/commit_as_jimdev.py",
+      "owner": "claude-c7d622",
+      "timestamp": "2026-10-13T15:00:03+00:00"
+    },
+    {
+      "event": "release",
+      "path": "scripts/scaffold_framework.py",
+      "owner": "claude-c7d622",
+      "timestamp": "2026-10-13T15:00:03+00:00"
+    },
+    {
+      "event": "release",
+      "path": "tests/",
+      "owner": "claude-c7d622",
+      "timestamp": "2026-10-13T15:00:04+00:00"
+    },
+    {
+      "event": "release",
+      "path": "PROJECT_OWNERSHIP.md",
+      "owner": "claude-c7d622",
+      "timestamp": "2026-10-13T15:00:04+00:00"
     }
   ]
 }

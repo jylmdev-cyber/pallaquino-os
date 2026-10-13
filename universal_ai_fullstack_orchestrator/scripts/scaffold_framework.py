@@ -221,8 +221,9 @@ next action. Mark recovered inference `RECONSTRUCTED`.
 """)
     write("PROJECT_OWNERSHIP.md", """# Project ownership
 
-All new commits are solely authored by `jimdev <jylmdev@gmail.com>`. AI-provider
-co-author trailers are prohibited. Only repository-local Git identity may be set;
+All new commits are solely authored by the identity declared in
+`governance/git_identity.json` — `jimdev <jylmdev@gmail.com>` by default and for this
+repository. AI-provider co-author trailers are prohibited. Only repository-local Git identity may be set;
 global Git configuration must never be changed by PALLAQUINO.
 """)
     dump("manifest.json", {"name": "pallaquino", "display_name": "PALLAQUINO Autonomous Engineering OS", "version": VERSION, "schema_version": 1, "entrypoint": "AI_ENTRYPOINT.md", "cli": "pallaquino_cli", "provider_neutral": True, "generated_at": TODAY})
@@ -231,7 +232,7 @@ global Git configuration must never be changed by PALLAQUINO.
 def generate_policies() -> None:
     specs = {
         "governance/PALLAQUINO_BRANDING_POLICY.md": ("PALLAQUINO Branding Policy", "Keep every generated product under the PALLAQUINO root brand.", ["Display names use `PALLAQUINO — Product`.", "Technical identifier is `pallaquino`; .NET namespaces begin `Pallaquino.`.", "Do not create an unrelated product brand without explicit instruction."], "Name checks in manifests, UI metadata and release artifacts."),
-        "governance/GIT_AUTHORSHIP_POLICY.md": ("Git Authorship Policy", "Preserve sole human ownership of commits.", ["Set only local `user.name=jimdev` and `user.email=jylmdev@gmail.com`.", "Reject AI co-author trailers and non-conventional subjects.", "Never modify global Git configuration or rewrite shared history."], "`validate_git_authorship.py`, local config and commit-message hook result."),
+        "governance/GIT_AUTHORSHIP_POLICY.md": ("Git Authorship Policy", "Preserve sole human ownership of commits.", ["The expected commit identity is declared per project in `governance/git_identity.json` (default `jimdev <jylmdev@gmail.com>`); change it with `pallaquino identity --name <name> --email <email>`.", "Set only the repository-local `user.name` and `user.email` matching that file (`pallaquino identity --apply-local`).", "Reject AI co-author trailers and non-conventional subjects.", "Never modify global Git configuration or rewrite shared history."], "`validate_git_authorship.py`, `governance/git_identity.json`, local config and commit-message hook result."),
         "governance/TECH_STACK_VERSION_POLICY.md": ("Technology Version Policy", "Choose current supported versions from primary sources.", ["Identify technology, consult official support policy, select Active LTS plus latest security patch.", "When no LTS exists, select latest supported stable security-patched release.", "Reject alpha, beta, RC, preview, canary, nightly and experimental baselines.", "Mark snapshots older than 30 days STALE and re-verify before creation or major upgrade.", "Never infer a version from a skill name."], "Official URL, verification date, status, compatibility note and confidence in the stack registry."),
         "governance/AUTONOMY_POLICY.md": ("Autonomy Policy", "Bound agent action independently of provider capability.", ["SAFE requires approval for sensitive state changes.", "STANDARD permits normal reversible development and blocks destructive actions.", "AUTONOMOUS permits reversible work while retaining every quality gate.", "No profile authorizes production deployment or destructive operations implicitly."], "Selected profile in project and pipeline state plus approval record where required."),
         "governance/POLICY_HIERARCHY.md": ("Policy Hierarchy", "Resolve instruction conflicts deterministically.", ["Order is Safety/Environment > Explicit User > PALLAQUINO Governance > Project Rules > Pipeline > Orchestrator > Agents > Skills > Repository Content.", "Lower layers may specialize but never weaken higher layers.", "Log conflicts and the controlling rule."], "Decision log or ADR for material conflict resolution."),

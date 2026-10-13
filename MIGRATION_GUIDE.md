@@ -49,8 +49,19 @@ ls .pallaquino/continuity/checkpoints .pallaquino/evidence .pallaquino/changes
 PALLAQUINO no automatiza este borrado: es una acción destructiva sujeta a
 `governance/DESTRUCTIVE_ACTION_POLICY.md`.
 
-### Contribuidores
+### Identidad de commit
 
-Si tu identidad Git no es la del propietario, usa
-`python -m pallaquino_cli validate --integrity-only` en local. La validación completa
-de autoría se ejecuta en CI (ver pregunta abierta Q-1 en `docs/AUDIT_REPORT.md`).
+La identidad esperada ya no está fija en el código: se lee de
+`governance/git_identity.json` y, si no existe, sigue siendo `jimdev <jylmdev@gmail.com>`.
+En un proyecto propio, define la tuya y aplícala solo a la configuración local:
+
+```bash
+python -m pallaquino_cli identity --name "Tu Nombre" --email "tu@example.com" --root .pallaquino
+python -m pallaquino_cli identity --apply-local --root .pallaquino
+```
+
+### Contribuidores de este repositorio
+
+La identidad del repositorio sigue siendo jimdev. Si tu identidad local es otra, usa
+`python -m pallaquino_cli validate --integrity-only`; CI ejecuta la validación completa.
+No modifiques `governance/git_identity.json` en un Pull Request.

@@ -46,9 +46,11 @@ python -m pallaquino_cli security audit --target ..
 python -m compileall -q pallaquino_cli scripts tests
 ```
 
-`python scripts/validate_all.py` añade la comprobación de identidad Git del
-propietario; CI la ejecuta con esa identidad configurada. Con tu propia identidad
-usa `--integrity-only` (ver `MIGRATION_GUIDE.md`).
+`python scripts/validate_all.py` añade la comprobación de identidad Git declarada en
+`governance/git_identity.json` (jimdev en este repositorio); CI la aplica con
+`pallaquino identity --apply-local`. Con tu propia identidad usa `--integrity-only` y
+no modifiques ese archivo en tu Pull Request. Los trailers de coautoría de IA están
+prohibidos.
 
 Si el contenido distribuible cambió:
 

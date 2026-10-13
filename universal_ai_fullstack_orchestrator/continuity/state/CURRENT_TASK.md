@@ -6,7 +6,7 @@
 - Autonomy: STANDARD (reversible work on branch `claude/pallaquino-engineering-os-c7d622`; no push, tag, release publication or destructive action)
 - Scope: evidence-backed audit; fix confirmed HIGH findings (CI time bomb, host-coupled tests, classifier false positives, cross-project state leakage in `init`, broken non-editable install, unreproducible archive, unguarded generators); core security hardening; architecture/roadmap/ADR/migration documentation; 0.3.0 local artifact
 - Out of scope (later phases): orchestration engine, project memory, provider adapters, plugin/MCP system, project factory, dashboard, stack version refresh (UPGRADE mode)
-- Status: COMPLETE on branch (merge, tag and publication await human approval)
+- Status: COMPLETE; publication approved 2026-10-13 (branch, Pull Request, tag `v0.3.0`)
 - Risk: HIGH (CLI defaults, init behavior, security scanners); no data migration or production target
 - Acceptance: all tests pass in a clean clone; documented false positives fixed; init isolates state; two identical builds share a SHA-256; generators write nothing without --write; docs state implemented vs planned
 - Confidence: high

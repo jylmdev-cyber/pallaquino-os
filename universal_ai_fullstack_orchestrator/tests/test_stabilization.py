@@ -17,8 +17,9 @@ from unittest import mock
 from pallaquino_cli import core
 from pallaquino_cli.core import (
     FrameworkRootNotFound, acquire_lock, analyze_risk, create_archive, create_handoff,
-    init_target, read_json, redact, release_lock, resolve_root, resume, route_request,
-    scan_secrets, validate_all, validate_git_authorship, validate_task_graph,
+    git_identity_status, init_target, load_git_identity, read_json, redact, release_lock,
+    resolve_root, resume, route_request, scan_secrets, set_git_identity, validate_all,
+    validate_git_authorship, validate_task_graph,
 )
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -215,6 +216,21 @@ class EnvironmentValidatorTests(unittest.TestCase):
             self.assertTrue(validate_git_authorship(repo)["ok"])
             self.git(repo, "commit", "--allow-empty", "--quiet", "-m", "chore: second\n\nCo-authored-by: " + "Claude <x@example.com>")
             self.assertFalse(validate_git_authorship(repo)["ok"])
+
+    def test_identity_is_configurable_per_project_with_jimdev_default(self) -> None:
+        self.assertEqual((load_git_identity(ROOT)["name"], load_git_identity(ROOT)["email"]), (core.EXPECTED_AUTHOR, core.EXPECTED_EMAIL))
+        with tempfile.TemporaryDirectory() as temp:
+            init_target(ROOT, Path(temp)); project = Path(temp) / ".pallaquino"
+            self.assertEqual(load_git_identity(project)["name"], "jimdev")  # new projects inherit the default
+            self.git(Path(temp), "init", "--quiet")
+            set_git_identity(project, "Ada Dev", "ada@example.com")
+            self.assertFalse(validate_git_authorship(project)["ok"])
+            status = git_identity_status(project, apply_local=True)
+            self.assertTrue(status["matches"]); self.assertEqual(status["local"], {"name": "Ada Dev", "email": "ada@example.com"})
+            self.assertTrue(validate_git_authorship(project)["ok"])
+            with self.assertRaises(ValueError): set_git_identity(project, "Ada", "not-an-email")
+            (project / core.IDENTITY_FILE).write_text('{"name": "", "email": "x"}', encoding="utf-8")
+            self.assertFalse(validate_all(project, include_environment=False)["ok"])
 
     def test_scopes_are_labelled(self) -> None:
         report = validate_all(ROOT)

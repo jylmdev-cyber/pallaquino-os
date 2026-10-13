@@ -7,7 +7,7 @@
 - PAL-002 — Spanish prompt tutorial and distribution refresh: DONE
 - PAL-003 — Technology, agent and stack-profile expansion: DONE after final archive verification
 - PAL-004 — Public GitHub repository preparation and 0.2.1 patch release: DONE after full validation and archive verification
-- PAL-005 — v0.3 Phase 1: audit and stabilization (0.3.0): DONE on branch; merge, tag and publication await human approval
+- PAL-005 — v0.3 Phase 1: audit and stabilization (0.3.0): DONE; branch, Pull Request and tag `v0.3.0` published with owner approval; merge pending review
 - PAL-006 — Re-verify the stack snapshot against official sources (UPGRADE mode, SAFE autonomy): TODO
 - PAL-007 — v0.3 Phase 2: contracts v2, orchestration engine, project memory, provider interface: TODO (depends on PAL-005 merge)
 - Blocked tasks: none

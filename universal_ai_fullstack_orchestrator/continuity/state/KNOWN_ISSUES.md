@@ -1,7 +1,7 @@
 # Known issues
 
 - Stack snapshot (verified 2026-08-31) is STALE since 2026-09-30; `doctor` and `stack` exit 1 until PAL-006 re-verifies it.
-- `validate_all.py` fails for anyone whose local Git identity is not the owner identity; contributors use `--integrity-only` (OPEN_QUESTIONS Q-1).
+- In this repository `validate_all.py` expects the identity in `governance/git_identity.json` (jimdev); contributors with another local identity use `--integrity-only`.
 - Agent and skill files are templates whose only specific content is one sentence; inputs, outputs, tools, activation and success criteria are missing (Phase 2 contracts v2).
 - Checkpoint SHA-256 detects accidental corruption, not deliberate tampering (hash chain planned for Phase 2).
 - Only `no_secrets` of the 4 declared fitness rules has an implementation.
