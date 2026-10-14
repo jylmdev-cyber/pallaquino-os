@@ -1,0 +1,72 @@
+---
+title: Tu primer plan (DAG)
+description: De una solicitud a un grafo de tareas validado, con agentes, dependencias, herramientas y niveles paralelos.
+sidebar:
+  order: 1
+lesson:
+  id: orquestacion-plan
+  path: orquestacion
+  difficulty: intermedio
+  duration: 15
+  objectives:
+    - Generar un plan con pallaquino plan y entender cada campo
+    - Leer los niveles del DAG y el camino crítico
+    - Saber que planificar nunca ejecuta nada
+  prerequisites:
+    - agentes-seleccion
+  status: disponible
+  since: 0.4.0
+  next: orquestacion-ejecutar
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import DagPlayer from '../../../components/DagPlayer.vue';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+```bash
+python -m pallaquino_cli plan "Analiza el repositorio actual, identifica problemas de calidad, revisa el estado de Git y genera un informe técnico" --json
+```
+
+La salida es un contrato `plan` con:
+
+| Campo | Contenido |
+|---|---|
+| `plan_id` | Identificador para ejecutarlo después |
+| `intent` | Intención principal, complejidad, capacidades, riesgo y permisos necesarios |
+| `tasks` | Cada tarea con `agent`, `executor`, `dependencies`, `permissions` y `routing` (método y motivos) |
+| `dag` | `order`, `levels` (tareas paralelizables), `critical_path` y `max_parallelism` |
+| `validation` | Errores y avisos; un plan con errores no se puede ejecutar |
+| `approvals_required` | Tareas que esperarán aprobación humana |
+
+<Aside type="note" title="Planificar no ejecuta nada">
+	`plan` guarda el plan en la memoria del proyecto (`memory/pallaquino.db`) para poder ejecutarlo después. No ejecuta tareas ni modifica
+	ningún archivo de tu código.
+</Aside>
+
+## Recorre el plan real
+
+Este es el plan que produjo la orden anterior en un clon limpio. Pulsa **Avanzar un paso del scheduler** para ver cómo lo recorrería el scheduler:
+las tareas de un mismo nivel pueden ejecutarse en paralelo.
+
+<DagPlayer client:visible />
+
+Observa el aviso de validación: `T03: using fallback tool core.files.search for quality_scan`. Sin un servidor MCP de calidad autorizado,
+el planificador usa una herramienta builtin equivalente y lo declara. En la ruta 7 conectarás ese servidor.
+
+## Tipos de ejecutor
+
+| `executor` | Qué ejecuta |
+|---|---|
+| `internal` | Lógica del propio motor (por ejemplo, descubrir el proyecto o redactar el informe) |
+| `tool` | Herramientas a través de la pasarela (`core.git.status`, `core.files.search`…) |
+| `command` | Un comando real, como la batería de tests del proyecto |
+| `agent` | El proveedor de IA configurado; con `mock`, la tarea queda simulada |
+
+## Ejercicio
+
+En tu proyecto, planifica una solicitud real con `--workspace ..` desde `.pallaquino`. ¿Cuántos niveles tiene el DAG? ¿Qué tareas
+requieren `write_files`?
+
+**Siguiente:** [Ejecutar, aprobar y reanudar](../ejecutar/).
+
+<LessonComplete client:load lessonId="orquestacion-plan" />

@@ -1,0 +1,71 @@
+---
+title: La estructura del framework
+description: Qué hay en cada carpeta de universal_ai_fullstack_orchestrator y cuáles vas a tocar de verdad.
+sidebar:
+  order: 3
+lesson:
+  id: instalacion-estructura
+  path: instalacion
+  difficulty: principiante
+  duration: 12
+  objectives:
+    - Orientarte en las carpetas del framework
+    - Saber qué archivos son estado del proyecto y cuáles son definición del framework
+  prerequisites:
+    - instalacion-primera-vez
+  status: disponible
+  since: 0.5.0
+  next: instalacion-configurar-proyecto
+---
+
+import { Aside, FileTree } from '@astrojs/starlight/components';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+El repositorio tiene dos partes: la carpeta **`universal_ai_fullstack_orchestrator/`** (el framework que se copia en tus proyectos) y
+la documentación del repositorio (`docs/`, `README.md`, `CHANGELOG.md`). Este portal vive en `academy/` y no se copia en ningún proyecto.
+
+<FileTree>
+- pallaquino-os/
+  - universal_ai_fullstack_orchestrator/ el framework
+    - AI_ENTRYPOINT.md lo primero que lee un agente
+    - QUICK_START.md
+    - manifest.json identifica la raíz del framework
+    - pallaquino_cli/ la CLI y los motores (Python, solo biblioteca estándar)
+    - agents/ 59 roles en Markdown (prompt_agent_*.md)
+    - skills/ 90 skills, cada una con su SKILL.md
+    - registry/ catálogos JSON: agentes, skills, contratos, reglas de enrutamiento, tecnologías
+    - pipeline/ pipeline_definition.json y gates
+    - governance/ políticas, identidad de commits y proveedores
+    - continuity/ estado, checkpoints y handoff
+    - planning/ grafo de tareas y plan de ejecución
+    - repository/ mapa del repositorio (lo escribe analyze)
+    - memory/ base de datos de memoria del proyecto (se crea al usarla)
+    - evidence/ evidencias de comandos ejecutados
+    - examples/ servidor MCP de prueba y plugin de ejemplo
+    - scripts/ validadores, demo y herramientas de mantenimiento
+    - tests/ la batería de tests del framework
+  - docs/ arquitectura, ADR, tutoriales y seguridad
+  - academy/ este portal
+</FileTree>
+
+## Definición frente a estado
+
+| Tipo | Carpetas | ¿Lo editas tú? |
+|---|---|---|
+| **Definición del framework** | `agents/`, `skills/`, `registry/`, `pipeline/`, `governance/*.md`, `pallaquino_cli/` | Solo si extiendes el framework (ruta 9) |
+| **Estado de tu proyecto** | `continuity/state/`, `planning/`, `repository/`, `memory/`, `evidence/`, `risk/risk_state.json` | Lo escriben la CLI y el agente |
+| **Configuración** | `governance/git_identity.json`, `governance/providers.json` | Sí, con comandos (`identity`) o editando el JSON |
+
+<Aside>
+	Cuando ejecutas `init`, el estado del framework **no** se copia: tu proyecto empieza con estado limpio. Por eso la salida de `init`
+	muestra `"excluded_source_state"` (archivos de estado omitidos) e `"initialized_state"` (archivos recién creados).
+</Aside>
+
+## Ejercicio
+
+Abre `AI_ENTRYPOINT.md` en tu clon y localiza el orden de lectura que exige a los agentes. ¿Qué archivo se lee justo después de las
+políticas?
+
+**Siguiente:** [Configura tu proyecto](../configurar-proyecto/).
+
+<LessonComplete client:load lessonId="instalacion-estructura" />

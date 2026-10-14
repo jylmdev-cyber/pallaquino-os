@@ -1,0 +1,77 @@
+---
+title: ¿Qué es PALLAQUINO?
+description: Un framework en Python que da a los agentes de IA un método de ingeniería verificable, con gobernanza, evidencia y continuidad.
+sidebar:
+  order: 1
+lesson:
+  id: introduccion-que-es
+  path: introduccion
+  difficulty: principiante
+  duration: 8
+  objectives:
+    - Explicar en una frase qué es PALLAQUINO
+    - Distinguir lo que hace el framework de lo que hace el agente de IA
+    - Saber qué partes funcionan sin IA y sin red
+  status: disponible
+  since: 0.2.1
+  next: introduccion-problemas
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import LessonComplete from '../../../components/LessonComplete.vue';
+import meta from '../../../data/generated/meta.json';
+
+**PALLAQUINO Autonomous Engineering OS** es un framework en Python que convierte el trabajo de un agente de IA (Codex, ChatGPT,
+Claude, Gemini u otro) en un proceso de ingeniería **verificable**: cada solicitud se clasifica por riesgo, se planifica como un grafo
+de tareas, se asigna a roles especializados, pasa por gates de calidad y deja evidencia, checkpoints y handoffs.
+
+Piensa en él como un **sistema operativo de trabajo** para agentes: no escribe el código por sí mismo, sino que establece el método,
+las reglas y los controles con los que se escribe.
+
+## Qué contiene
+
+| Pieza | Qué es | Cuántos hay hoy |
+|---|---|---|
+| Agentes | Roles acotados con contrato: entradas, salidas, herramientas permitidas y límite de riesgo. | {meta.counts.agents} |
+| Skills | Procedimientos especializados que se cargan solo cuando son relevantes. | {meta.counts.skills} |
+| Pipeline | Etapas estrictas desde la solicitud hasta el handoff, con retornos ante fallos. | {meta.counts.pipeline_stages} etapas |
+| CLI | La herramienta de línea de comandos `pallaquino` (o `python -m pallaquino_cli`). | {meta.counts.commands} comandos |
+| Herramientas | Operaciones gobernadas (archivos, Git, SQLite, GitHub) que pasan por una pasarela de permisos. | {meta.counts.builtin_tools} builtin |
+
+Estos números no están escritos a mano: se generan del código fuente de PALLAQUINO {meta.framework_version}.
+
+## Qué hace el framework y qué hace la IA
+
+| PALLAQUINO (determinista, sin IA) | El agente de IA o tú |
+|---|---|
+| Clasificar el riesgo de una solicitud | Entender el problema de negocio |
+| Validar el registro, los contratos y el pipeline | Escribir y modificar código |
+| Planificar el DAG de tareas y elegir agentes por reglas | Tomar decisiones de diseño |
+| Ejecutar tests y herramientas con permisos | Revisar y aprobar lo crítico |
+| Guardar memoria, checkpoints y evidencia | Publicar, desplegar, hacer push |
+
+<Aside title="Funciona sin IA y sin red">
+	La CLI usa únicamente la biblioteca estándar de Python. Sin un proveedor real, las tareas de agente las responde el proveedor
+	`mock` y quedan marcadas como `simulated: true`. PALLAQUINO nunca las presenta como trabajo hecho.
+</Aside>
+
+## Ejemplo
+
+Esta orden clasifica el riesgo de una solicitud sin llamar a ninguna IA:
+
+```bash
+python -m pallaquino_cli risk "agregar autenticación basada en roles" --json
+```
+
+El resultado real es `"level": "HIGH"`, con los gates `TEST`, `SECURITY_CHECK`, `CODE_REVIEW` y otros obligatorios, y propone los
+agentes `backend_engineer`, `qa_engineer` y `security_architect`. Lo ejecutarás tú mismo en la ruta de instalación.
+
+## Comprueba lo aprendido
+
+- ¿Puedes explicar a un compañero qué es PALLAQUINO en una frase?
+- ¿Qué parte del trabajo **no** hace el framework?
+
+**Resumen:** PALLAQUINO es el método y los controles; el agente de IA (o tú) aporta el trabajo creativo.
+**Siguiente:** [Problemas que resuelve](../problemas-que-resuelve/).
+
+<LessonComplete client:load lessonId="introduccion-que-es" />

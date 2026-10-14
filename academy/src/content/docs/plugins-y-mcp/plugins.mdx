@@ -1,0 +1,100 @@
+---
+title: Crea tu primer plugin
+description: Genera, prueba, instala, confía, habilita y autoriza un plugin, con los resultados reales de cada paso.
+sidebar:
+  order: 4
+lesson:
+  id: plugins-crear
+  path: plugins-y-mcp
+  difficulty: avanzado
+  duration: 25
+  objectives:
+    - Generar el esqueleto de un plugin y probarlo aislado
+    - Recorrer el ciclo instalar, confiar, habilitar y autorizar
+    - Entender la confianza ligada al hash del contenido
+  prerequisites:
+    - herramientas-ejecutar
+  status: disponible
+  since: 0.5.0
+  next: proveedores
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+Comprobado el 2026-10-14 desde la carpeta `.pallaquino` de un proyecto, creando el plugin en `../my-plugin`.
+
+## Paso a paso
+
+<Steps>
+
+1. ### Genera el esqueleto
+
+	```bash
+	python -m pallaquino_cli plugin create ../my-plugin --id acme.text_tools --author Ana
+	python -m pallaquino_cli plugin create ../my-plugin --id acme.text_tools --author Ana --write
+	```
+
+	Sin `--write` solo lista los archivos (simulación). Con `--write` crea `pyproject.toml`, `README.md`, `src/acme_text_tools/plugin.toml`
+	(el manifiesto), `src/acme_text_tools/__init__.py` (con la herramienta `hello`), `tests/test_plugin.py` y `examples/README.md`.
+
+2. ### Valida y prueba aislado
+
+	```bash
+	python -m pallaquino_cli plugin validate ../my-plugin/src/acme_text_tools
+	python -m pallaquino_cli plugin test ../my-plugin/src/acme_text_tools
+	```
+
+	**Resultado:** `"ok": true` con su `content_hash`, y después `"tools": ["hello"]`, `"health": {"ok": true}` e `"isolated": true`: el
+	plugin se ejecuta en un subproceso separado.
+
+3. ### Instala
+
+	```bash
+	python -m pallaquino_cli plugins install ../my-plugin/src/acme_text_tools
+	```
+
+	Estado `INSTALLED`. Se copia en `plugins/acme.text_tools/0.1.0/`; no se ejecuta nada.
+
+4. ### Confía y habilita
+
+	```bash
+	python -m pallaquino_cli plugins enable acme.text_tools
+	```
+
+	Falla con código 1: *a plugin without a trust policy never executes*. Registra la confianza y vuelve a intentarlo:
+
+	```bash
+	python -m pallaquino_cli plugins trust acme.text_tools --approved-by Ana
+	python -m pallaquino_cli plugins enable acme.text_tools
+	```
+
+	Estado `ENABLED`.
+
+5. ### Autoriza y usa
+
+	```bash
+	python -m pallaquino_cli tools run plugin.acme.text_tools.hello --args '{"name":"Ana"}' --json
+	```
+
+	`DENIED` con código 5: confiable no es autorizado. Concede un grant y repite:
+
+	```bash
+	python -m pallaquino_cli permissions grant 'plugin.acme.text_tools.*' --json
+	python -m pallaquino_cli tools run plugin.acme.text_tools.hello --args '{"name":"Ana"}' --json
+	```
+
+	`COMPLETED` con `{"greeting": "Hello, Ana!"}`.
+
+</Steps>
+
+<Aside type="caution" title="La confianza está ligada al hash">
+	Si cambias el código instalado, el hash deja de coincidir y el plugin pasa a `QUARANTINED` al habilitarlo o activarlo. Revísalo y
+	vuelve a ejecutar `plugins trust`. Para retirarlo: `plugins uninstall acme.text_tools --yes` (borra solo `plugins/acme.text_tools/`).
+</Aside>
+
+Más detalles en la guía del SDK del repositorio: `docs/sdk/PLUGIN_DEVELOPMENT_GUIDE.md` y `docs/sdk/PLUGIN_MANIFEST_REFERENCE.md`.
+
+**Siguiente:** [Proveedores de IA](../proveedores/).
+
+<LessonComplete client:load lessonId="plugins-crear" />

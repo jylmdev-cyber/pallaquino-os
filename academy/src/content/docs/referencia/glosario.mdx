@@ -1,0 +1,31 @@
+---
+title: Glosario
+description: Los términos de PALLAQUINO en orden alfabético.
+sidebar:
+  order: 6
+---
+
+| Término | Significado |
+|---|---|
+| **Agente** | Rol acotado con contrato que realiza o revisa una tarea. |
+| **Aprobación por llamada** (`per_call`) | Autorización humana ligada al SHA-256 de una herramienta y sus argumentos; se consume al usarse. |
+| **Checkpoint** | Instantánea duradera suficiente para reanudar tras una interrupción. |
+| **Contrato v2** | Entradas, salidas, capacidades, herramientas, límite de riesgo y activación de un agente o skill. |
+| **DAG** | Grafo dirigido sin ciclos de las tareas de un plan. |
+| **Evidencia** | Resultado real de un comando que respalda que algo ocurrió. |
+| **Gate** | Condición respaldada por evidencia para avanzar en el pipeline. |
+| **Grant** | Permiso acotado (herramienta, principal, operación, días, usos) para usar una herramienta. |
+| **Handoff** | Declaración neutral de lo hecho, lo pendiente y lo no verificado para quien continúe. |
+| **Lease** | Reserva temporal de una ejecución por un proceso; impide que dos procesos la ejecuten a la vez. |
+| **Mapa del repositorio** | Inventario generado de módulos (`analyze`). |
+| **MCP** | *Model Context Protocol*; PALLAQUINO implementa un cliente de la revisión 2026-07-28. |
+| **mock** | Proveedor offline y determinista; sus respuestas quedan `simulated: true`. |
+| **Pasarela de herramientas** | Punto por el que pasa toda llamada a herramientas; deniega por defecto. |
+| **Pin** (fijar) | Aceptar la definición revisada de una herramienta MCP; si cambia, deja de usarse. |
+| **Pipeline** | Etapas estrictas de `REQUEST` a `HANDOFF` con retornos de remediación. |
+| **Plugin** | Paquete que aporta herramientas; solo se ejecuta con una política de confianza ligada a su hash. |
+| **RECONSTRUCTED** | Información inferida de artefactos, no confirmada. |
+| **Riesgo** | Clasificación determinista y monótona: `LOW`, `MEDIUM`, `HIGH`, `CRITICAL`. |
+| **Skill** | Procedimiento especializado que se carga solo cuando es relevante. |
+| **untrusted** | Marca de los datos externos (memoria, salidas, descripciones) que nunca se tratan como instrucciones. |
+| **Workspace** | Carpeta del proyecto sobre la que actúan las herramientas. |

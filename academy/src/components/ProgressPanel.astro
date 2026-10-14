@@ -1,0 +1,15 @@
+---
+/** Progress dashboard: lesson list comes from the content collection, so the percentage always matches the published lessons. */
+import { getCollection } from 'astro:content';
+import LearningProgress from './LearningProgress.vue';
+import { PATHS } from '../lib/paths';
+
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const order = new Map(PATHS.map((p) => [p.id, p.order]));
+const lessons = (await getCollection('docs', (e) => Boolean(e.data.lesson) && !e.id.startsWith('en/')))
+	.map((e) => ({ id: e.data.lesson!.id, title: e.data.title, path: e.data.lesson!.path, href: `${base}/${e.id}/`, order: e.data.sidebar?.order ?? 99 }))
+	.sort((a, b) => (order.get(a.path)! - order.get(b.path)!) || a.order - b.order)
+	.map(({ order: _o, ...rest }) => rest);
+---
+
+<LearningProgress client:load lessons={lessons} />

@@ -1,0 +1,66 @@
+---
+title: Evaluación de la ruta 3
+description: Comprueba que dominas los comandos esenciales de la CLI.
+sidebar:
+  order: 6
+lesson:
+  id: cli-evaluacion
+  path: cli
+  difficulty: intermedio
+  duration: 8
+  objectives:
+    - Demostrar que sabes elegir y leer los comandos esenciales
+  prerequisites:
+    - cli-automatizacion
+  status: disponible
+  since: 0.5.0
+  next: agentes-que-son
+---
+
+import QuizPlayer from '../../../components/QuizPlayer.vue';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+<QuizPlayer client:load id="quiz-cli" title="Dominio de la CLI" questions={[
+	{
+		question: '¿Qué comando comprueba solo el contenido del framework, sin depender de tu equipo?',
+		options: [
+			{ text: 'validate --integrity-only --json', correct: true, why: 'Omite los validadores de scope environment.' },
+			{ text: 'doctor', correct: false, why: 'doctor incluye las comprobaciones de entorno.' },
+			{ text: 'stack --json', correct: false, why: 'stack informa de versiones verificadas.' },
+		],
+	},
+	{
+		question: '¿Qué comando escribe archivos en el repositorio?',
+		options: [
+			{ text: 'risk', correct: false, why: 'risk solo clasifica.' },
+			{ text: 'analyze', correct: true, why: 'Escribe repository/REPOSITORY_MAP.json y .md.' },
+			{ text: 'security audit', correct: false, why: 'Es de solo lectura.' },
+		],
+	},
+	{
+		question: 'security audit encuentra un token. ¿Qué muestra?',
+		options: [
+			{ text: 'El valor del token para que lo revoques', correct: false, why: 'Nunca muestra el valor.' },
+			{ text: 'La ruta, la línea y el tipo, y termina con código 1', correct: true, why: 'Así lo verificó la demostración del framework.' },
+			{ text: 'Nada: solo cambia el código de salida', correct: false, why: 'Informa cada hallazgo sin el valor.' },
+		],
+	},
+	{
+		question: 'Un checkpoint muestra "git_diff": "RECONSTRUCTED: unavailable". ¿Qué significa?',
+		options: [
+			{ text: 'El checkpoint está corrupto', correct: false, why: 'Un checkpoint corrupto se omite en resume.' },
+			{ text: 'Ese dato no se pudo confirmar y está marcado como inferido', correct: true, why: 'RECONSTRUCTED distingue inferencia de estado confirmado.' },
+			{ text: 'Git no está instalado', correct: false, why: 'Puede ocurrir, por ejemplo, en un repositorio sin commits.' },
+		],
+	},
+	{
+		question: '¿Dónde van las opciones --json y --root?',
+		options: [
+			{ text: 'Antes del comando', correct: false, why: 'argparse las rechaza ahí: unrecognized arguments.' },
+			{ text: 'Después del comando', correct: true, why: 'Son opciones de cada subcomando.' },
+			{ text: 'En un archivo de configuración', correct: false, why: 'Se pasan en la línea de comandos.' },
+		],
+	},
+]} />
+
+<LessonComplete client:load lessonId="cli-evaluacion" />

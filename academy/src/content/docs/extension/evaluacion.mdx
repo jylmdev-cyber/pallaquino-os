@@ -1,0 +1,59 @@
+---
+title: Evaluación de la ruta 9
+description: Evaluación final para el nivel PALLAQUINO Contributor.
+sidebar:
+  order: 5
+lesson:
+  id: extension-evaluacion
+  path: extension
+  difficulty: avanzado
+  duration: 8
+  objectives:
+    - Demostrar que sabes extender PALLAQUINO respetando sus principios
+  prerequisites:
+    - hoja-de-ruta
+  status: disponible
+  since: 0.5.0
+---
+
+import QuizPlayer from '../../../components/QuizPlayer.vue';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+<QuizPlayer client:load id="quiz-extension" title="Extensión del framework" questions={[
+	{
+		question: 'Quieres añadir una dependencia de PyPI al núcleo. ¿Qué dice la arquitectura?',
+		options: [
+			{ text: 'Está permitido si es popular', correct: false, why: 'El núcleo no tiene dependencias de ejecución.' },
+			{ text: 'El núcleo usa solo la biblioteca estándar; lo externo va en plugins o servidores MCP', correct: true, why: 'Es un principio que no cambia.' },
+			{ text: 'Solo en Windows', correct: false, why: 'El principio es el mismo en todas las plataformas.' },
+		],
+	},
+	{
+		question: 'Añadiste un agente y contracts --json lo lista en unreachable. ¿Qué falta?',
+		options: [
+			{ text: 'Activarlo desde una regla de enrutamiento, un perfil o una etapa del pipeline', correct: true, why: 'Nada lo selecciona todavía.' },
+			{ text: 'Reiniciar la CLI', correct: false, why: 'La CLI lee el registro en cada ejecución.' },
+			{ text: 'Publicar una release', correct: false, why: 'No tiene relación.' },
+		],
+	},
+	{
+		question: 'python scripts/build_contracts.py sin argumentos…',
+		options: [
+			{ text: 'reescribe los contratos', correct: false, why: 'Los generadores trabajan en seco por defecto.' },
+			{ text: 'informa de los cambios sin escribir; --write los aplica', correct: true, why: 'Así se revisa antes de escribir.' },
+			{ text: 'borra los contratos curados', correct: false, why: 'Los campos curados se conservan.' },
+		],
+	},
+	{
+		question: 'En tu pull request, ¿puedes cambiar governance/git_identity.json a tu nombre?',
+		options: [
+			{ text: 'Sí, para que pase validate', correct: false, why: 'Usa --integrity-only en tu equipo.' },
+			{ text: 'No; la identidad del repositorio la gestiona la CI', correct: true, why: 'Lo indica la guía de contribución.' },
+			{ text: 'Solo si es tu primer pull request', correct: false, why: 'La regla es la misma siempre.' },
+		],
+	},
+]} />
+
+Con el 90 % de las lecciones completadas alcanzas el nivel **PALLAQUINO Contributor**. Consulta tu nivel en [Tu progreso](../../progreso/).
+
+<LessonComplete client:load lessonId="extension-evaluacion" />

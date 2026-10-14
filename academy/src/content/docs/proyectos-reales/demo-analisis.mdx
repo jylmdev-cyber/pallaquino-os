@@ -1,0 +1,68 @@
+---
+title: "Demo: análisis de un repositorio"
+description: La demostración end-to-end offline que combina Git, sistema de archivos y un servidor MCP bajo permisos.
+sidebar:
+  order: 2
+lesson:
+  id: demo-analisis
+  path: proyectos-reales
+  difficulty: intermedio
+  duration: 15
+  objectives:
+    - Ejecutar la demostración end-to-end del framework
+    - Interpretar sus doce comprobaciones
+  prerequisites:
+    - proyecto-python
+  status: disponible
+  since: 0.5.0
+  next: compatibilidad
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+Desde `universal_ai_fullstack_orchestrator`:
+
+```bash
+python scripts/run_codebase_analysis_demo.py
+```
+
+La demo procesa la solicitud *"Analiza el repositorio actual, identifica problemas de calidad, revisa el estado de Git y genera un informe
+técnico"*. Por dentro:
+
+1. inicializa un proyecto desechable con `init` (no escribe estado en el repositorio analizado);
+2. configura, revisa, clasifica y fija el servidor MCP de prueba;
+3. crea un grant acotado;
+4. planifica y ejecuta, con las herramientas de Git, sistema de archivos y MCP pasando por la pasarela;
+5. comprueba el informe, la auditoría, las métricas y la memoria;
+6. compara el `git status` del repositorio analizado antes y después.
+
+Sin claves de API, sin red y sin servicios comerciales.
+
+## Resultado
+
+Al ejecutarla el 2026-10-14 terminó con código 0 y estas comprobaciones, todas `true`:
+
+| Comprobación | Resultado |
+|---|---|
+| mcp server configured | ✓ |
+| MCP 2026-07-28 connection over stdio | ✓ |
+| catalog reviewed and pinned | ✓ |
+| scoped grant created | ✓ |
+| intent analysed and agents routed | ✓ |
+| tool router selected git and MCP tools | ✓ |
+| execution completed without simulation | ✓ |
+| MCP tool executed through the gateway | ✓ |
+| report written with a passed quality gate | ✓ |
+| project memory recorded the report | ✓ |
+| unauthorized write blocked | ✓ |
+| analysed repository not modified | ✓ |
+
+<Aside>
+	El informe incluye hallazgos con su evidencia (por ejemplo, el identificador de la llamada a `mcp.quality.quality_scan`) y recuerda que
+	la salida de las herramientas es un dato no confiable. Los hallazgos dependen del contenido de tu copia del repositorio.
+</Aside>
+
+**Siguiente:** [Compatibilidad con otros stacks](../compatibilidad/).
+
+<LessonComplete client:load lessonId="demo-analisis" />

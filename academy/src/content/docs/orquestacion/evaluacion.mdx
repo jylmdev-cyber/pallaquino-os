@@ -1,0 +1,58 @@
+---
+title: Evaluación de la ruta 5
+description: Comprueba que sabes planificar, ejecutar, aprobar y seguir una ejecución.
+sidebar:
+  order: 5
+lesson:
+  id: orquestacion-evaluacion
+  path: orquestacion
+  difficulty: intermedio
+  duration: 8
+  objectives:
+    - Demostrar que dominas el ciclo plan, run, approve y resume
+  prerequisites:
+    - orquestacion-seguimiento
+  status: disponible
+  since: 0.5.0
+  next: memoria-proyecto
+---
+
+import QuizPlayer from '../../../components/QuizPlayer.vue';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+<QuizPlayer client:load id="quiz-orquestacion" title="Pipelines y orquestación" questions={[
+	{
+		question: 'run termina con código 3. ¿Qué haces?',
+		options: [
+			{ text: 'Revisar qué tarea espera aprobación, aprobarla con approve y continuar con resume', correct: true, why: 'El código 3 es WAITING_APPROVAL o pausa.' },
+			{ text: 'Volver a ejecutar run con --force', correct: false, why: '--force sirve para tomar una ejecución con lease activo, no para saltar aprobaciones.' },
+			{ text: 'Nada: el plan ha fallado', correct: false, why: 'Un fallo es el código 1.' },
+		],
+	},
+	{
+		question: 'Las tareas de un mismo nivel del DAG…',
+		options: [
+			{ text: 'pueden ejecutarse en paralelo', correct: true, why: 'No dependen entre sí.' },
+			{ text: 'se ejecutan siempre en orden alfabético', correct: false, why: 'El orden lo dan las dependencias.' },
+			{ text: 'requieren aprobación', correct: false, why: 'La aprobación depende de las herramientas gobernadas.' },
+		],
+	},
+	{
+		question: 'Una tarea release_publish aprobada y respondida por mock…',
+		options: [
+			{ text: 'publica la versión', correct: false, why: 'mock no hace nada real.' },
+			{ text: 'queda COMPLETED con simulated: true y no publica nada', correct: true, why: 'Así se comportó la ejecución real de la lección.' },
+			{ text: 'falla', correct: false, why: 'Termina sin error, pero simulada.' },
+		],
+	},
+	{
+		question: '¿Qué significa failure_return_to en una etapa?',
+		options: [
+			{ text: 'La etapa de remediación a la que se vuelve si el gate falla', correct: true, why: 'Los gates fallidos nunca se saltan.' },
+			{ text: 'La etapa que se omite', correct: false, why: 'El pipeline es estricto.' },
+			{ text: 'El número de reintentos', correct: false, why: 'Los reintentos son de las tareas del scheduler.' },
+		],
+	},
+]} />
+
+<LessonComplete client:load lessonId="orquestacion-evaluacion" />

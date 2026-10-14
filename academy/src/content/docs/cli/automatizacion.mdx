@@ -1,0 +1,76 @@
+---
+title: JSON, códigos de salida y automatización
+description: Usa la salida --json y los códigos de salida para integrar PALLAQUINO en scripts y en tu CI.
+sidebar:
+  order: 5
+lesson:
+  id: cli-automatizacion
+  path: cli
+  difficulty: intermedio
+  duration: 12
+  objectives:
+    - Encadenar comandos según su código de salida
+    - Leer campos de la salida JSON desde un script
+    - Añadir una comprobación de integridad a tu CI
+  prerequisites:
+    - cli-continuidad
+  status: disponible
+  since: 0.5.0
+  next: cli-evaluacion
+---
+
+import { Tabs, TabItem } from '@astrojs/starlight/components';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+## Comprobar el resultado
+
+<Tabs syncKey="shell">
+	<TabItem label="Bash">
+		```bash
+		python -m pallaquino_cli validate --integrity-only --json > validacion.json
+		echo $?
+		```
+	</TabItem>
+	<TabItem label="PowerShell">
+		```powershell
+		python -m pallaquino_cli validate --integrity-only --json > validacion.json
+		$LASTEXITCODE
+		```
+	</TabItem>
+</Tabs>
+
+`0` significa que todo pasó. Cualquier otro valor detiene un script con `set -e` o un paso de CI.
+
+## Leer un campo del JSON
+
+Sin dependencias, con el propio Python:
+
+```bash
+python -m pallaquino_cli risk "borrar la base de datos de producción" --json > riesgo.json
+python -c "import json; print(json.load(open('riesgo.json'))['level'])"
+```
+
+Resultado: `CRITICAL`.
+
+## Una comprobación en tu CI
+
+Un paso de integración continua que falle si el framework de tu proyecto pierde integridad, ejecutado desde `.pallaquino`:
+
+```yaml
+- name: PALLAQUINO integrity
+  working-directory: .pallaquino
+  run: python -m pallaquino_cli validate --integrity-only --json
+- name: Secret scan
+  working-directory: .pallaquino
+  run: python -m pallaquino_cli security audit --target .. --json
+```
+
+Ambos son de solo lectura y no necesitan red ni credenciales.
+
+## Ejercicio
+
+Escribe un script que ejecute `risk` sobre una solicitud y termine con error si el nivel es `CRITICAL`.
+
+**Siguiente:** [Evaluación de la ruta 3](../evaluacion/).
+
+<LessonComplete client:load lessonId="cli-automatizacion" />

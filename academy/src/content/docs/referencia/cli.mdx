@@ -1,0 +1,26 @@
+---
+title: Referencia de la CLI
+description: Todos los comandos, acciones y opciones de la CLI de PALLAQUINO, generados del analizador de argumentos real.
+sidebar:
+  order: 1
+tableOfContents: false
+---
+
+import CommandExplorer from '../../../components/CommandExplorer.vue';
+import meta from '../../../data/generated/meta.json';
+
+Esta referencia se genera recorriendo el analizador de argumentos (`argparse`) de PALLAQUINO {meta.framework_version} con
+`npm run data`. Si un comando o una opción no aparece aquí, no existe en esa versión.
+
+<CommandExplorer client:load />
+
+## Códigos de salida
+
+| Código | Significado |
+|---:|---|
+| 0 | Completado / correcto |
+| 1 | Fallo o error |
+| 2 | Raíz del framework no encontrada (también, argumentos no válidos) |
+| 3 | Esperando aprobación o en pausa |
+| 4 | Cancelado |
+| 5 | Permiso denegado por la pasarela de herramientas |

@@ -1,0 +1,58 @@
+---
+title: Evaluación de la ruta 4
+description: Comprueba que sabes cómo se definen, se eligen y se limitan los agentes.
+sidebar:
+  order: 5
+lesson:
+  id: agentes-evaluacion
+  path: agentes-y-skills
+  difficulty: intermedio
+  duration: 6
+  objectives:
+    - Demostrar que entiendes la selección y los contratos de agentes
+  prerequisites:
+    - agentes-contratos
+  status: disponible
+  since: 0.5.0
+  next: orquestacion-plan
+---
+
+import QuizPlayer from '../../../components/QuizPlayer.vue';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+<QuizPlayer client:load id="quiz-agentes" title="Agentes y skills" questions={[
+	{
+		question: '¿Dónde se definen las palabras clave que activan agentes?',
+		options: [
+			{ text: 'registry/routing_rules.json', correct: true, why: 'Cada regla tiene keywords, agents y skills.' },
+			{ text: 'En el prompt del proveedor de IA', correct: false, why: 'La selección es determinista e independiente del proveedor.' },
+			{ text: 'En governance/providers.json', correct: false, why: 'Ese archivo configura proveedores.' },
+		],
+	},
+	{
+		question: 'En agents match, ¿qué indica la lista redundant?',
+		options: [
+			{ text: 'Agentes rechazados por riesgo', correct: false, why: 'Eso iría en rejected.' },
+			{ text: 'Candidatos que cubrían una capacidad con menor puntuación', correct: true, why: 'Se registran para que la elección sea explicable.' },
+			{ text: 'Agentes obsoletos', correct: false, why: 'Los obsoletos se marcan deprecated en el registro.' },
+		],
+	},
+	{
+		question: 'Un agente tiene risk_limit HIGH. ¿Qué significa?',
+		options: [
+			{ text: 'Que es peligroso usarlo', correct: false, why: 'Es un límite, no una advertencia.' },
+			{ text: 'Que puede actuar hasta riesgo HIGH, pero no en CRITICAL', correct: true, why: 'El límite acota en qué trabajo puede intervenir.' },
+			{ text: 'Que siempre requiere aprobación humana', correct: false, why: 'La aprobación depende de la herramienta y del riesgo de la solicitud.' },
+		],
+	},
+	{
+		question: 'Una skill…',
+		options: [
+			{ text: 'es un procedimiento que se carga solo cuando es relevante', correct: true, why: 'Así se ahorra contexto.' },
+			{ text: 'ejecuta tareas del plan por sí misma', correct: false, why: 'Las tareas las ejecutan agentes o comandos.' },
+			{ text: 'es un plugin', correct: false, why: 'Los plugins aportan herramientas; las skills, conocimiento.' },
+		],
+	},
+]} />
+
+<LessonComplete client:load lessonId="agentes-evaluacion" />

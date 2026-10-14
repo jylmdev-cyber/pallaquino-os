@@ -1,0 +1,90 @@
+---
+title: Ejecutar, aprobar y reanudar
+description: run con --dry-run, la espera de aprobación para herramientas gobernadas, approve y resume, con resultados reales.
+sidebar:
+  order: 2
+lesson:
+  id: orquestacion-ejecutar
+  path: orquestacion
+  difficulty: intermedio
+  duration: 20
+  objectives:
+    - Revisar un plan con run --dry-run antes de ejecutarlo
+    - Ejecutar un plan e interpretar su código de salida
+    - Aprobar una herramienta gobernada y reanudar la ejecución
+  prerequisites:
+    - orquestacion-plan
+  status: disponible
+  since: 0.4.0
+  next: orquestacion-gates
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+Los resultados de esta lección se obtuvieron el 2026-10-14 en el proyecto de ejemplo del framework (una calculadora en Python con tests),
+ejecutando desde su carpeta `.pallaquino`. El recorrido completo, con salidas grabadas, está en
+[Proyecto Python de principio a fin](../../proyectos-reales/proyecto-python/).
+
+## Paso a paso
+
+<Steps>
+
+1. ### Revisa sin ejecutar
+
+	```bash
+	python -m pallaquino_cli run --plan <plan_id> --dry-run --json
+	```
+
+	Muestra `levels`, `approvals_required` y, en `would_run`, cada tarea con su agente, ejecutor, herramientas y si requiere aprobación.
+
+2. ### Ejecuta
+
+	```bash
+	python -m pallaquino_cli run --plan <plan_id> --json
+	```
+
+	| Código | Estado |
+	|---:|---|
+	| 0 | `COMPLETED` |
+	| 1 | `FAILED` |
+	| 3 | `WAITING_APPROVAL` o en pausa |
+	| 4 | `CANCELLED` |
+
+	`--max-workers` limita la concurrencia (por defecto, 4).
+
+3. ### Aprueba lo gobernado
+
+	Con la solicitud `"prepare the release 1.2.0 of the calculator"`, el plan incluye la tarea `T05 release_publish` con
+	`approval_required: ["release_publish"]`. La ejecución real se detuvo así (código 3):
+
+	```text
+	T01 COMPLETED · T02 COMPLETED · T03 COMPLETED (simulated) · T04 COMPLETED (simulated) · T05 WAITING_APPROVAL
+	```
+
+	Para aprobarla y continuar:
+
+	```bash
+	python -m pallaquino_cli approve --execution <execution_id> --task T05 --json
+	python -m pallaquino_cli resume --execution <execution_id> --json
+	```
+
+	La aprobación queda registrada con su alcance (`"scope": ["release_publish"]`) y la ejecución termina en `COMPLETED`.
+
+</Steps>
+
+<Aside type="caution" title="Aprobado no significa publicado">
+	En esta ejecución, `T05` la respondió el proveedor `mock`, así que quedó `simulated: true`: **no se publicó nada**. Las herramientas
+	gobernadas (`deploy`, `release_publish`, `infrastructure_apply`, `database_migration_apply`, `git_push`) siempre esperan tu
+	aprobación; ningún comando las autoriza por sí solo.
+</Aside>
+
+## Reanudar tras una interrupción
+
+Si el proceso se interrumpe, `resume --execution <id>` reconcilia las tareas que quedaron a medias y continúa. Si otro proceso sigue
+activo, se niega (`ExecutionLocked`); usa `--force` solo si sabes que ese proceso terminó. `--retry-failed` devuelve las tareas `FAILED`
+a `READY`. Lo verás en detalle en la ruta 6.
+
+**Siguiente:** [El pipeline y los quality gates](../pipeline-y-gates/).
+
+<LessonComplete client:load lessonId="orquestacion-ejecutar" />

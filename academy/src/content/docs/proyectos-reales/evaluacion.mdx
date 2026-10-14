@@ -1,0 +1,50 @@
+---
+title: Evaluación de la ruta 8
+description: Comprueba que sabes qué hace PALLAQUINO en un proyecto real y qué no.
+sidebar:
+  order: 4
+lesson:
+  id: proyectos-evaluacion
+  path: proyectos-reales
+  difficulty: intermedio
+  duration: 6
+  objectives:
+    - Demostrar que distingues lo real, lo simulado y lo no verificado
+  prerequisites:
+    - compatibilidad
+  status: disponible
+  since: 0.5.0
+  next: arquitectura-interna
+---
+
+import QuizPlayer from '../../../components/QuizPlayer.vue';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+<QuizPlayer client:load id="quiz-proyectos" title="Proyectos reales" questions={[
+	{
+		question: 'En la ejecución del proyecto de ejemplo con mock, ¿qué tareas fueron reales?',
+		options: [
+			{ text: 'Todas', correct: false, why: 'Las tareas de agente quedaron simulated: true.' },
+			{ text: 'El análisis del proyecto (T01) y la ejecución de los tests (T05)', correct: true, why: 'Ambas tienen simulated: false.' },
+			{ text: 'Ninguna', correct: false, why: 'El análisis y los tests se ejecutaron de verdad.' },
+		],
+	},
+	{
+		question: 'Tu proyecto Django guarda los tests en app/tests.py. ¿Qué pasará al planificar?',
+		options: [
+			{ text: 'PALLAQUINO detecta python manage.py test', correct: false, why: 'Hoy no detecta ese comando.' },
+			{ text: 'El plan avisa de que no detectó un comando de tests', correct: true, why: 'Solo detecta tests/test*.py y package.json con script test.' },
+			{ text: 'Genera los tests automáticamente', correct: false, why: 'Con mock, ninguna tarea de agente cambia código.' },
+		],
+	},
+	{
+		question: '¿Puede PALLAQUINO 0.5.0 generar un proyecto Nuxt desde cero?',
+		options: [
+			{ text: 'Sí, con plan', correct: false, why: 'plan no genera proyectos.' },
+			{ text: 'No; la Project Factory está prevista para 0.6.0', correct: true, why: 'Hoy conoce el stack para elegir agentes y skills.' },
+			{ text: 'Sí, con init', correct: false, why: 'init copia el framework en un proyecto existente.' },
+		],
+	},
+]} />
+
+<LessonComplete client:load lessonId="proyectos-evaluacion" />

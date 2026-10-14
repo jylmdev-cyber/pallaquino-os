@@ -1,0 +1,22 @@
+---
+title: Videos (guiones)
+description: Guiones y storyboards preparados para futuros videos tutoriales. Los videos aún no se han grabado.
+sidebar:
+  order: 1
+---
+
+import { Aside, LinkCard, CardGrid } from '@astrojs/starlight/components';
+
+<Aside type="caution" title="Todavía no hay videos">
+	Esta sección contiene **solo guiones**: texto narrado, acciones en pantalla y comandos verificados. Ningún video se ha grabado ni
+	publicado. Cuando exista uno, se enlazará desde su guion.
+</Aside>
+
+Cada guion incluye duración estimada, objetivo, requisitos, escenas con narración y acción en pantalla, los comandos exactos (todos
+existentes en la CLI) y el resultado que debe verse.
+
+<CardGrid>
+	<LinkCard title="Instala y ejecuta PALLAQUINO por primera vez" href="instalacion/" description="≈ 6 min · Principiante" />
+	<LinkCard title="Tu primer plan multiagente" href="primer-plan/" description="≈ 7 min · Intermedio" />
+	<LinkCard title="Herramientas, plugins y MCP sin riesgos" href="herramientas/" description="≈ 8 min · Avanzado" />
+</CardGrid>

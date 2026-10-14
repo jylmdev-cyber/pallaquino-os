@@ -1,0 +1,61 @@
+---
+title: Contratos de agentes y skills
+description: Qué garantiza un contrato v2, la diferencia entre curado y derivado, y cómo consultarlo con contracts.
+sidebar:
+  order: 4
+lesson:
+  id: agentes-contratos
+  path: agentes-y-skills
+  difficulty: intermedio
+  duration: 12
+  objectives:
+    - Leer el contrato completo de un agente
+    - Distinguir contratos curados de derivados
+  prerequisites:
+    - agentes-seleccion
+  status: disponible
+  since: 0.4.0
+  next: agentes-evaluacion
+---
+
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+```bash
+python -m pallaquino_cli contracts --id backend_engineer --json
+```
+
+Extracto real:
+
+```json
+{
+  "kind": "agent",
+  "contract": {
+    "id": "backend_engineer",
+    "contract_version": 2,
+    "description": "Implement domain and service behavior with explicit contracts, authorization checks and failure handling.",
+    "capabilities": ["code", "test"],
+    "inputs": ["API and domain contracts", "authorization rules", "task scope and acceptance criteria", "…"],
+    "outputs": ["service changes with tests", "updated API contract", "evidence record for every executed check", "…"],
+    "dependencies": { "skills": ["risk_analysis_expert"], "technologies": [] },
+    "tools": { "allowed": ["read_repository", "run_tests", "write_files", "git_commit", "…"], "approval_required": [] },
+    "risk_limit": "HIGH",
+    "activation": { "routing_rules": ["django_auth", "restobar", "spring_java"], "profiles": ["nextjs_saas", "…"] }
+  }
+}
+```
+
+## Curado frente a derivado
+
+```bash
+python -m pallaquino_cli contracts --json
+```
+
+- **Curados**: escritos y revisados a mano. Hoy, 13 contratos de rol de agentes.
+- **Derivados**: generados a partir del registro (el resto de agentes y todas las skills).
+- **untested**: contratos sin casos de prueba propios. La lista es pública en la salida; no se oculta.
+
+Un contrato no autoriza nada por sí mismo: las herramientas siguen pasando por la pasarela de permisos (ruta 7).
+
+**Siguiente:** [Evaluación de la ruta 4](../evaluacion/).
+
+<LessonComplete client:load lessonId="agentes-contratos" />

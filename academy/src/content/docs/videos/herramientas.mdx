@@ -1,0 +1,23 @@
+---
+title: "Guion: herramientas, plugins y MCP sin riesgos"
+description: Guion y storyboard (no grabado) del video sobre la pasarela de herramientas, plugins y MCP.
+sidebar:
+  order: 4
+---
+
+**Estado:** guion preparado, video no grabado. **Duración estimada:** 8 minutos. **Nivel:** avanzado.
+**Objetivo:** mostrar la denegación por defecto, el ciclo de confianza de un plugin y la revisión de un servidor MCP.
+**Lecciones asociadas:** [Herramientas y permisos](../../plugins-y-mcp/herramientas-y-permisos/),
+[Conecta un servidor MCP](../../plugins-y-mcp/mcp/) y [Crea tu primer plugin](../../plugins-y-mcp/plugins/).
+
+| # | Duración | Narración | En pantalla | Comando |
+|---:|---|---|---|---|
+| 1 | 0:45 | Denegar por defecto: una escritura sin grant | `"outcome": "denied"` | `python -m pallaquino_cli tools check core.files.write --no-plugins --args '{"path": "a.txt", "content": "x"}' --json` |
+| 2 | 1:00 | Las tres políticas, con el simulador | Simulador de permisos | — |
+| 3 | 1:00 | Añadimos el servidor MCP de prueba y lo probamos | `protocol_version 2026-07-28` | `python -m pallaquino_cli mcp test quality` |
+| 4 | 1:00 | Revisamos el catálogo: todo llega como no confiable | `"status": "new"`, `"trust": "untrusted"` | `python -m pallaquino_cli mcp tools quality` |
+| 5 | 0:30 | Fijamos solo lo revisado | Digest fijado | `python -m pallaquino_cli mcp pin quality --tool quality_scan` |
+| 6 | 1:15 | Plugin: crear, probar aislado, instalar | `"isolated": true`, `INSTALLED` | `python -m pallaquino_cli plugin test ../my-plugin/src/acme_text_tools` |
+| 7 | 1:00 | Sin confianza no se ejecuta; confiable no es autorizado | Código 1, después código 5 | `python -m pallaquino_cli plugins enable acme.text_tools` |
+| 8 | 0:45 | Grant y uso | `{"greeting": "Hello, Ana!"}` | `python -m pallaquino_cli tools run plugin.acme.text_tools.hello --args '{"name":"Ana"}' --json` |
+| 9 | 0:45 | Auditoría | Registro de llamadas | `python -m pallaquino_cli tools calls --json` |

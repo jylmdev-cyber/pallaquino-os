@@ -1,0 +1,57 @@
+---
+title: El pipeline y los quality gates
+description: Las etapas del pipeline estricto, qué exige cada gate y a qué etapa se vuelve cuando falla.
+sidebar:
+  order: 3
+lesson:
+  id: orquestacion-gates
+  path: orquestacion
+  difficulty: intermedio
+  duration: 15
+  objectives:
+    - Recorrer las etapas del pipeline de REQUEST a HANDOFF
+    - Explicar qué ocurre cuando un gate falla
+  prerequisites:
+    - orquestacion-ejecutar
+  status: disponible
+  since: 0.2.1
+  next: orquestacion-seguimiento
+---
+
+import QualityGates from '../../../components/QualityGates.vue';
+import LessonComplete from '../../../components/LessonComplete.vue';
+import meta from '../../../data/generated/meta.json';
+
+El pipeline (`pipeline/pipeline_definition.json`) tiene {meta.counts.pipeline_stages} etapas. Cada una declara:
+
+- `success_to`: la etapa siguiente si se supera;
+- `failure_return_to`: la etapa de **remediación** a la que se vuelve si falla;
+- `evidence_required`: si hace falta evidencia para darla por superada;
+- `agents`: los roles que la ejecutan o revisan, cuando aplica.
+
+## Simula un gate
+
+Marca uno o varios gates como fallidos y observa a qué etapa vuelve el trabajo. Los destinos son los reales del pipeline.
+
+<QualityGates client:visible />
+
+## Ver el pipeline desde la CLI
+
+```bash
+python -m pallaquino_cli pipeline --json
+```
+
+Devuelve las etapas con su orden, tipo y transiciones. La tabla completa está en la [referencia del pipeline](../../referencia/pipeline/).
+
+## El riesgo decide qué gates aplican
+
+`risk` devuelve `required_gates`. Una solicitud `LOW` exige, por ejemplo, `TEST`, `LINT_TYPECHECK` y `CODE_REVIEW`; una `CRITICAL` añade
+`SECURITY_AUDIT`, `MIGRATION_SAFETY`, `ROLLBACK_READINESS` y `HUMAN_APPROVAL`.
+
+## Ejercicio
+
+¿A qué etapa vuelve el trabajo si falla `SECURITY_CHECK`? Compruébalo en el simulador y en `pipeline --json`.
+
+**Siguiente:** [Seguimiento de ejecuciones](../seguimiento/).
+
+<LessonComplete client:load lessonId="orquestacion-gates" />

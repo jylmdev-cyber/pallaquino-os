@@ -1,0 +1,13 @@
+{
+  "framework_version": "0.5.0",
+  "source": "universal_ai_fullstack_orchestrator",
+  "counts": {
+    "commands": 30,
+    "agents": 59,
+    "skills": 90,
+    "pipeline_stages": 32,
+    "builtin_tools": 19,
+    "technologies": 46,
+    "profiles": 6
+  }
+}

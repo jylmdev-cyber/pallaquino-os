@@ -1,0 +1,53 @@
+---
+title: Límites y casos de uso
+description: Para qué conviene usar PALLAQUINO, para qué no, y qué partes son reales, simuladas o futuras.
+sidebar:
+  order: 5
+lesson:
+  id: introduccion-limites
+  path: introduccion
+  difficulty: principiante
+  duration: 8
+  objectives:
+    - Decidir si PALLAQUINO encaja en tu proyecto
+    - Distinguir funciones disponibles, simuladas y planificadas
+  prerequisites:
+    - introduccion-como-funciona
+  status: disponible
+  since: 0.5.0
+  next: introduccion-evaluacion
+---
+
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+## Cuándo encaja
+
+- Trabajas con agentes de IA y quieres que su trabajo sea **auditable**: planes, evidencias, handoffs.
+- Necesitas controles de **riesgo** y **aprobación humana** para cambios sensibles.
+- Quieres **continuidad** entre sesiones o entre proveedores de IA distintos.
+- Quieres conectar herramientas (Git, archivos, SQLite, servidores MCP, plugins) con **permisos explícitos**.
+
+## Cuándo no encaja (todavía)
+
+- Esperas que el framework **genere un proyecto completo** por sí solo: la *Project Factory* está planificada para 0.6.0.
+- Buscas un **panel visual**: el Control Center está planificado para 0.7.0.
+- Necesitas un proveedor comercial de IA integrado: hoy existen el proveedor `mock` (offline, simulado) y `ollama` (local, desactivado
+  por defecto). Los adaptadores comerciales están pendientes.
+
+## Real, simulado y planificado
+
+| Estado | Ejemplos |
+|---|---|
+| **Real** (funciona hoy) | Riesgo, validadores, plan y DAG, scheduler, ejecución de tests, memoria, pasarela de herramientas, plugins, cliente MCP, auditoría de secretos |
+| **Simulado** (sin proveedor real) | Las tareas de agente que responde `mock`: quedan `simulated: true` y no modifican el código |
+| **Planificado** | Project Factory (0.6.0), Control Center visual (0.7.0), adaptadores comerciales |
+
+El estado exacto de cada función por versión está en [Versiones y estado](../../referencia/versiones/).
+
+## Ejercicio
+
+Elige un proyecto tuyo y responde: ¿qué te aportaría hoy PALLAQUINO? ¿Qué parte tendrías que hacer tú?
+
+**Siguiente:** [Evaluación de la ruta](../evaluacion/).
+
+<LessonComplete client:load lessonId="introduccion-limites" />

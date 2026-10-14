@@ -1,0 +1,91 @@
+---
+title: Errores frecuentes de instalación
+description: Los mensajes que más aparecen al instalar y configurar PALLAQUINO, por qué ocurren y cómo resolverlos.
+sidebar:
+  order: 5
+lesson:
+  id: instalacion-errores
+  path: instalacion
+  difficulty: principiante
+  duration: 10
+  objectives:
+    - Diagnosticar los errores de instalación más habituales
+    - Interpretar los códigos de salida de la CLI
+  prerequisites:
+    - instalacion-configurar-proyecto
+  status: disponible
+  since: 0.5.0
+  next: cli-introduccion
+---
+
+import QuizPlayer from '../../../components/QuizPlayer.vue';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+## Códigos de salida
+
+Todos los comandos devuelven un código que puedes comprobar con `echo $?` (Bash) o `$LASTEXITCODE` (PowerShell).
+
+| Código | Significado |
+|---:|---|
+| 0 | Completado / correcto |
+| 1 | Fallo o error (incluido un validador que no pasa) |
+| 2 | Raíz del framework no encontrada, o argumentos no válidos |
+| 3 | Esperando aprobación o en pausa |
+| 4 | Cancelado |
+| 5 | Permiso denegado por la pasarela de herramientas |
+
+## Mensajes y soluciones
+
+### `No module named pallaquino_cli`
+
+Ejecutas `python -m pallaquino_cli` desde una carpeta que no contiene el paquete. Sitúate en `universal_ai_fullstack_orchestrator`
+(clon del framework) o en `.pallaquino` (tu proyecto), o instala el paquete con
+`python -m pip install -e ./universal_ai_fullstack_orchestrator`.
+
+### `pallaquino: error: unrecognized arguments: …`
+
+La opción no existe para ese subcomando o está antes de él. Las opciones como `--json` y `--root` van **después** del subcomando:
+
+```bash
+python -m pallaquino_cli validate --json
+```
+
+Consulta las opciones de cada comando con `python -m pallaquino_cli <comando> --help` o en la [referencia de la CLI](../../referencia/cli/).
+
+### `… is not a PALLAQUINO root (expected manifest.json and registry/)`
+
+La ruta pasada con `--root` (o `PALLAQUINO_ROOT`) no es una raíz del framework. Código de salida 2. Apunta a la carpeta que contiene
+`manifest.json`: `universal_ai_fullstack_orchestrator` o `.pallaquino`.
+
+### `validate_git_authorship` falla
+
+- **En el clon del framework:** es lo esperado. Usa `validate --integrity-only --json`.
+- **En tu proyecto:** fija tu identidad (lección [Configura tu proyecto](../configurar-proyecto/)).
+- **Con `not a Git repository`:** tu proyecto aún no es un repositorio Git; ejecuta `git init` en él.
+
+### El comando `pallaquino` usa otra carpeta
+
+Con el paquete instalado, la raíz por defecto es el checkout del paquete. Añade `--root .pallaquino` o define `PALLAQUINO_ROOT`.
+
+<QuizPlayer client:visible id="quiz-instalacion-errores" title="¿Sabrías resolverlo?" questions={[
+	{
+		question: 'Ejecutas "python -m pallaquino_cli --json validate" y obtienes "unrecognized arguments: --json". ¿Qué haces?',
+		options: [
+			{ text: 'Reinstalar Python', correct: false, why: 'Python funciona; el problema es el orden de los argumentos.' },
+			{ text: 'Poner la opción después del subcomando: validate --json', correct: true, why: '--json pertenece a cada subcomando.' },
+			{ text: 'Usar --format json', correct: false, why: 'Esa opción no existe.' },
+		],
+	},
+	{
+		question: 'Un comando termina con código 5. ¿Qué ha pasado?',
+		options: [
+			{ text: 'La pasarela de herramientas denegó el permiso', correct: true, why: 'Es el código de permiso denegado.' },
+			{ text: 'La ejecución se canceló', correct: false, why: 'Eso es el código 4.' },
+			{ text: 'No se encontró la raíz', correct: false, why: 'Eso es el código 2.' },
+		],
+	},
+]} />
+
+**Siguiente ruta:** [Dominio de la CLI](../../cli/introduccion/).
+
+<LessonComplete client:load lessonId="instalacion-errores" />

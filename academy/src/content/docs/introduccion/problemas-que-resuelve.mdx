@@ -1,0 +1,53 @@
+---
+title: Problemas que resuelve
+description: Por qué los agentes de IA necesitan gobernanza, evidencia y continuidad, y cómo responde PALLAQUINO a cada problema.
+sidebar:
+  order: 2
+lesson:
+  id: introduccion-problemas
+  path: introduccion
+  difficulty: principiante
+  duration: 8
+  objectives:
+    - Reconocer los fallos típicos del trabajo con agentes de IA
+    - Relacionar cada fallo con el mecanismo de PALLAQUINO que lo controla
+  prerequisites:
+    - introduccion-que-es
+  status: disponible
+  since: 0.2.1
+  next: introduccion-conceptos
+---
+
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+Un agente de IA puede escribir mucho código muy rápido. Los problemas aparecen cuando nadie puede comprobar **qué** hizo, **por qué**
+y **si funciona**. PALLAQUINO responde a cada uno con un mecanismo concreto.
+
+| Problema frecuente | Mecanismo de PALLAQUINO | Dónde lo verás |
+|---|---|---|
+| El agente dice "tests pasando" sin haberlos ejecutado | **Evidencia**: ningún gate se da por superado sin el resultado real del comando | `scripts/evidence.py`, la tarea `verify` de un plan |
+| Cambios peligrosos (producción, borrado de datos) sin control | **Riesgo determinista** con gates obligatorios y aprobación humana | `risk`, `approve` |
+| Se pierde el contexto al cerrar la sesión o cambiar de agente | **Continuidad**: checkpoints, handoffs y ejecuciones reanudables | `checkpoint`, `handoff`, `resume` |
+| Un solo agente "hace de todo" sin especialización | **Agentes y skills** con contrato, elegidos por reglas | `agents match`, `contracts` |
+| Herramientas con acceso total al sistema | **Pasarela de herramientas**: denegación por defecto, grants acotados, aprobación por llamada | `tools`, `permissions` |
+| Contenido externo con instrucciones ocultas (prompt injection) | **Datos no confiables**: memoria, salidas de herramientas y descripciones MCP se marcan `untrusted` | `memory search`, `mcp tools` |
+| Atarse a un proveedor de IA concreto | **Neutralidad de proveedor**: el mismo flujo con cualquier agente, o sin ninguno | `providers` |
+
+## Ejemplo: un riesgo que no se puede saltar
+
+```bash
+python -m pallaquino_cli risk "borrar la base de datos de producción" --json
+```
+
+Resultado real: `"level": "CRITICAL"` y entre los gates obligatorios aparece `HUMAN_APPROVAL`. Ningún comando de PALLAQUINO autoriza
+por sí solo un despliegue a producción o una acción destructiva.
+
+## Ejercicio
+
+Piensa en la última vez que usaste un asistente de IA para programar. ¿Cuál de los problemas de la tabla te encontraste? Anota qué
+mecanismo lo habría evitado.
+
+**Resumen:** PALLAQUINO no hace al agente más listo; lo hace **verificable**.
+**Siguiente:** [Conceptos clave](../conceptos-clave/).
+
+<LessonComplete client:load lessonId="introduccion-problemas" />

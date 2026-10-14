@@ -1,0 +1,267 @@
+---
+title: Instala y ejecuta PALLAQUINO por primera vez
+description: Tutorial completo para Windows, Linux y macOS, desde descargar el proyecto hasta preparar tu propio repositorio, con resultados reales.
+sidebar:
+  order: 2
+  badge:
+    text: Esencial
+    variant: tip
+lesson:
+  id: instalacion-primera-vez
+  path: instalacion
+  difficulty: principiante
+  duration: 30
+  objectives:
+    - Descargar PALLAQUINO y ejecutar su CLI sin instalar dependencias
+    - Interpretar el diagnóstico y las validaciones, incluido el aviso de identidad Git
+    - Generar el mapa del repositorio y clasificar el riesgo de una solicitud
+    - Simular la instalación del framework en tu propio proyecto
+  prerequisites:
+    - Python 3.11 o superior y Git instalados
+  status: disponible
+  since: 0.5.0
+  next: instalacion-estructura
+---
+
+import { Aside, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import Transcript from '../../../components/Transcript.astro';
+import CheckList from '../../../components/CheckList.vue';
+import QuizPlayer from '../../../components/QuizPlayer.vue';
+import InteractiveTerminal from '../../../components/InteractiveTerminal.vue';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+## Qué vas a conseguir
+
+Al terminar tendrás PALLAQUINO descargado, habrás comprobado que el framework está íntegro, habrás generado un mapa de tu repositorio
+y sabrás cómo instalarlo en un proyecto propio sin sobrescribir nada.
+
+**No necesitas instalar dependencias**: la CLI usa solo la biblioteca estándar de Python. Todos los resultados que verás son reales,
+grabados en un clon limpio con PALLAQUINO 0.5.0.
+
+<Aside type="tip" title="¿Prefieres probar antes sin instalar nada?">
+	Haz el mismo recorrido en la [terminal interactiva](../../practica/terminal/) con el reto *Instala y ejecuta PALLAQUINO por primera vez*.
+</Aside>
+
+## Paso a paso
+
+<Steps>
+
+1. ### Verifica los requisitos
+
+	```bash
+	python --version
+	git --version
+	```
+
+	**Qué hace:** muestra las versiones de Python y Git.
+	**Resultado esperado:** `Python 3.11` o superior y `git version 2.x`. Si alguno falla, sigue la lección [Requisitos del sistema](../requisitos/).
+
+2. ### Descarga el proyecto
+
+	```bash
+	git clone https://github.com/jylmdev-cyber/pallaquino-os.git
+	```
+
+	**Qué hace:** copia el repositorio completo en una carpeta nueva llamada `pallaquino-os`.
+	**Resultado esperado:** Git muestra el progreso (`Cloning into 'pallaquino-os'...`) y termina sin errores.
+
+	<Aside type="caution" title="Windows: rutas largas">
+		Si Git informa `Filename too long`, activa las rutas largas con `git config --global core.longpaths true` y clona en una carpeta
+		corta como `C:\dev`.
+	</Aside>
+
+3. ### Entra en la carpeta del framework
+
+	```bash
+	cd pallaquino-os/universal_ai_fullstack_orchestrator
+	```
+
+	**Qué hace:** te sitúa en la carpeta que contiene el paquete `pallaquino_cli`.
+	**Por qué importa:** sin instalar el paquete, `python -m pallaquino_cli` solo funciona **desde esta carpeta**. En cualquier otra verás
+	`No module named pallaquino_cli`.
+
+	<Tabs syncKey="os">
+		<TabItem label="Windows (PowerShell)">
+			```powershell
+			cd pallaquino-os\universal_ai_fullstack_orchestrator
+			```
+		</TabItem>
+		<TabItem label="Git Bash · Linux · macOS">
+			```bash
+			cd pallaquino-os/universal_ai_fullstack_orchestrator
+			```
+		</TabItem>
+	</Tabs>
+
+4. ### Comprueba la CLI (no hay dependencias que instalar)
+
+	```bash
+	python -m pallaquino_cli --version
+	```
+
+	<Transcript id="version" />
+
+	**Qué hace:** confirma que Python encuentra la CLI y muestra su versión. Ver la lista de comandos: `python -m pallaquino_cli --help`.
+
+	**Opcional — comando `pallaquino`:** si prefieres escribir `pallaquino` en lugar de `python -m pallaquino_cli`, instala el paquete en
+	modo editable desde la carpeta `pallaquino-os`. Esto sí escribe en tu entorno de Python, por eso es mejor hacerlo dentro de un
+	entorno virtual:
+
+	```bash
+	python -m pip install -e ./universal_ai_fullstack_orchestrator
+	```
+
+5. ### Ejecuta el diagnóstico
+
+	```bash
+	python -m pallaquino_cli doctor
+	```
+
+	**Qué hace:** ejecuta todos los validadores del framework y comprueba tu entorno.
+
+	<Transcript id="doctor" lines={58} />
+
+	<Aside type="note" title="¿Por qué &quot;ok&quot;: false?">
+		En un clon recién descargado el diagnóstico termina con código **1** por **un solo motivo**: `validate_git_authorship`, una
+		comprobación de **entorno** (`"scope": "environment"`). Verifica que los commits del repositorio del framework usen la identidad de
+		su mantenedor. No indica un problema en tu descarga: todas las comprobaciones de `"scope": "integrity"` pasan. No cambies tu
+		identidad Git para "arreglarlo"; en el paso siguiente verás cómo comprobar solo la integridad.
+	</Aside>
+
+6. ### Valida la integridad del framework
+
+	```bash
+	python -m pallaquino_cli validate --integrity-only --json
+	```
+
+	**Qué hace:** ejecuta solo las validaciones de contenido (registro, contratos, pipeline, continuidad, gobernanza, grafo de tareas…),
+	que no dependen de tu equipo.
+	**Resultado esperado:** `"ok": true` y código de salida **0**.
+
+	<Transcript id="validate-integrity" lines={40} />
+
+	`python -m pallaquino_cli validate --json` ejecuta además las comprobaciones de entorno; en un clon nuevo devuelve código 1 por el
+	mismo motivo que `doctor`.
+
+7. ### Analiza el repositorio
+
+	```bash
+	python -m pallaquino_cli analyze
+	```
+
+	**Qué hace:** recorre la carpeta y genera un mapa de módulos con propietarios. Lo imprime y lo guarda en
+	`repository/REPOSITORY_MAP.json` y `repository/REPOSITORY_MAP.md`.
+
+	<Transcript id="analyze" lines={30} />
+
+	<Aside type="caution" title="Este comando escribe archivos">
+		Como esos dos archivos ya existen en el repositorio, después de `analyze` Git los mostrará como modificados. Es lo esperado. Para
+		devolverlos a su estado original: `git checkout -- repository/`.
+	</Aside>
+
+8. ### Clasifica el riesgo de una solicitud
+
+	```bash
+	python -m pallaquino_cli risk "agregar autenticación basada en roles" --json
+	```
+
+	**Qué hace:** clasifica la solicitud de forma determinista (sin IA), indica qué gates de calidad exige y qué agentes y skills
+	propone. No modifica nada.
+
+	<Transcript id="risk" lines={40} />
+
+	Prueba también con `"borrar la base de datos de producción"`: el nivel sube a `CRITICAL` y aparece `HUMAN_APPROVAL`.
+
+9. ### Simula la instalación en tu propio proyecto
+
+	```bash
+	python -m pallaquino_cli init --target ../mi-proyecto --dry-run --json
+	```
+
+	**Qué hace:** calcula qué copiaría en `../mi-proyecto/.pallaquino` **sin escribir nada** (`"dry_run": true`). Los archivos existentes
+	nunca se sobrescriben y el estado del proyecto empieza limpio.
+
+	<Transcript id="init-dry-run" />
+
+	Cuando estés conforme, repite el comando sin `--dry-run`. La lección [Configura tu proyecto](../configurar-proyecto/) explica qué
+	hacer después: usar `--root .pallaquino` y fijar **tu** identidad de commits.
+
+10. ### Comprueba que todo ha ido bien
+
+	<CheckList client:load group="instalacion-primera-vez" title="Lista de verificación" items={[
+		{ id: 'version', label: 'python -m pallaquino_cli --version muestra la versión' },
+		{ id: 'doctor', label: 'doctor solo falla en validate_git_authorship (entorno)' },
+		{ id: 'integrity', label: 'validate --integrity-only --json devuelve "ok": true' },
+		{ id: 'analyze', label: 'analyze generó el mapa (y sé restaurarlo con git checkout)' },
+		{ id: 'risk', label: 'risk clasificó la solicitud como HIGH' },
+		{ id: 'init', label: 'init --dry-run muestra lo que copiaría sin escribir nada' },
+	]} />
+
+</Steps>
+
+## Errores frecuentes
+
+| Mensaje | Causa | Solución |
+|---|---|---|
+| `No module named pallaquino_cli` | Estás fuera de `universal_ai_fullstack_orchestrator` y el paquete no está instalado. | Entra en esa carpeta (paso 3) o instala el paquete (paso 4, opcional). |
+| `python` no se reconoce / `command not found` | Python no está en el `PATH` o se llama `python3`. | Usa `python3` en Linux/macOS; en Windows reinstala con *Add python.exe to PATH*. |
+| `pallaquino: error: unrecognized arguments: --json` | La opción no existe para ese comando, o está antes del subcomando. | Las opciones van **después** del subcomando: `validate --json`, no `--json validate`. Consulta `python -m pallaquino_cli <comando> --help`. |
+| `doctor` / `validate --json` terminan con código 1 | Solo la comprobación de entorno `validate_git_authorship`. | Esperado en el clon del framework. Comprueba la integridad con `validate --integrity-only --json`. |
+| `git status` muestra `repository/REPOSITORY_MAP.*` modificados | `analyze` regenera el mapa. | Esperado. Restaura con `git checkout -- repository/` si no quieres conservar el cambio. |
+| `Filename too long` al clonar (Windows) | Rutas de más de 260 caracteres. | `git config --global core.longpaths true` y clona en una carpeta corta. |
+
+Más casos en [Solución de problemas](../../referencia/solucion-de-problemas/).
+
+## Ejercicio práctico
+
+Completa el reto guiado en la terminal simulada. Cada paso se valida y queda registrado en tu progreso.
+
+<InteractiveTerminal client:visible challenge="reto-primera-instalacion" />
+
+## Evaluación
+
+<QuizPlayer client:visible id="quiz-instalacion-primera-vez" title="Comprueba lo aprendido" questions={[
+	{
+		question: '¿Desde qué carpeta funciona python -m pallaquino_cli sin instalar el paquete?',
+		options: [
+			{ text: 'pallaquino-os/universal_ai_fullstack_orchestrator', correct: true, why: 'Es la carpeta que contiene el paquete pallaquino_cli.' },
+			{ text: 'Desde cualquier carpeta', correct: false, why: 'Sin instalar, Python solo encuentra el paquete en la carpeta que lo contiene.' },
+			{ text: 'pallaquino-os/academy', correct: false, why: 'Esa carpeta contiene este portal, no la CLI.' },
+		],
+	},
+	{
+		question: 'En un clon nuevo, doctor termina con "ok": false. ¿Qué significa?',
+		options: [
+			{ text: 'La descarga está corrupta y hay que volver a clonar', correct: false, why: 'Todas las comprobaciones de integridad pasan.' },
+			{ text: 'Solo falla validate_git_authorship, una comprobación de entorno', correct: true, why: 'Verifica la identidad de commits del mantenedor; no afecta a tu uso.' },
+			{ text: 'Falta instalar dependencias con pip', correct: false, why: 'PALLAQUINO no tiene dependencias de ejecución.' },
+		],
+	},
+	{
+		question: '¿Qué comando comprueba solo la integridad del framework?',
+		options: [
+			{ text: 'python -m pallaquino_cli validate --integrity-only --json', correct: true, why: 'Omite las comprobaciones de entorno y devuelve 0 en un clon limpio.' },
+			{ text: 'python -m pallaquino_cli doctor --integrity', correct: false, why: 'doctor no tiene esa opción.' },
+			{ text: 'python -m pallaquino_cli status', correct: false, why: 'status muestra el estado del pipeline, no valida.' },
+		],
+	},
+	{
+		question: '¿Qué hace init --target ../mi-proyecto --dry-run?',
+		options: [
+			{ text: 'Copia el framework y sobrescribe los archivos existentes', correct: false, why: 'init nunca sobrescribe, y con --dry-run no escribe nada.' },
+			{ text: 'Muestra lo que copiaría en .pallaquino sin escribir nada', correct: true, why: '"dry_run": true y "copied": 0 lo confirman.' },
+			{ text: 'Crea un repositorio Git nuevo', correct: false, why: 'init no ejecuta git init.' },
+		],
+	},
+]} />
+
+## Resumen
+
+- PALLAQUINO funciona con Python 3.11+ y Git, sin dependencias.
+- `doctor` y `validate --json` incluyen una comprobación de entorno que falla en el clon del framework; `validate --integrity-only`
+  comprueba lo que importa.
+- `analyze` escribe el mapa del repositorio; `risk` no modifica nada; `init --dry-run` simula la instalación.
+
+**Siguiente paso:** [La estructura del framework](../estructura/).
+
+<LessonComplete client:load lessonId="instalacion-primera-vez" />

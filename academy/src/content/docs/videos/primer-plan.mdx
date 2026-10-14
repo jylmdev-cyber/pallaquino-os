@@ -1,0 +1,22 @@
+---
+title: "Guion: tu primer plan multiagente"
+description: Guion y storyboard (no grabado) del video sobre plan, ejecución y aprobación.
+sidebar:
+  order: 3
+---
+
+**Estado:** guion preparado, video no grabado. **Duración estimada:** 7 minutos. **Nivel:** intermedio.
+**Objetivo:** planificar y ejecutar una funcionalidad en el proyecto de ejemplo y distinguir lo real de lo simulado.
+**Lecciones asociadas:** [Proyecto Python de principio a fin](../../proyectos-reales/proyecto-python/) y
+[Ejecutar, aprobar y reanudar](../../orquestacion/ejecutar/).
+
+| # | Duración | Narración | En pantalla | Comando |
+|---:|---|---|---|---|
+| 1 | 0:30 | El proyecto de ejemplo: una calculadora con tests | Editor con `calc.py` y `tests/` | — |
+| 2 | 0:45 | Instalamos PALLAQUINO en el proyecto | `"copied": 383` | `python -m pallaquino_cli init --target ../calc --json` |
+| 3 | 1:00 | Planificamos; planificar no ejecuta nada | Plan de 7 tareas, recorrido visual del DAG | `python -m pallaquino_cli plan "add a multiply function to the calculator module with tests" --workspace .. --json` |
+| 4 | 0:45 | Revisamos en seco | `would_run` | `python -m pallaquino_cli run --plan <plan_id> --dry-run --json` |
+| 5 | 1:00 | Ejecutamos. Resaltar `simulated` en cada tarea | `COMPLETED`; T01 y T05 reales | `python -m pallaquino_cli run --plan <plan_id> --json` |
+| 6 | 1:15 | Una tarea gobernada: la release espera aprobación | `WAITING_APPROVAL`, código 3 | `python -m pallaquino_cli approve --execution <execution_id> --task T05 --json` |
+| 7 | 0:45 | Informe y memoria | Resultado de los tests en memoria | `python -m pallaquino_cli executions report <execution_id> --json` |
+| 8 | 0:20 | Resumen: aprobado no significa publicado | Aviso de la lección | — |

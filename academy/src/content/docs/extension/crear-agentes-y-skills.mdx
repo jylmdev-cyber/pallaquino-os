@@ -1,0 +1,72 @@
+---
+title: Crear agentes y skills
+description: Qué archivos definen un agente o una skill, cómo se regeneran los contratos y cómo validar el resultado.
+sidebar:
+  order: 2
+lesson:
+  id: crear-agentes-y-skills
+  path: extension
+  difficulty: avanzado
+  duration: 25
+  objectives:
+    - Añadir un agente o una skill al registro con sus archivos
+    - Regenerar y validar los contratos sin perder los campos curados
+  prerequisites:
+    - arquitectura-interna
+    - agentes-contratos
+  status: disponible
+  since: 0.4.0
+  next: contribuir
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+## Paso a paso
+
+<Steps>
+
+1. ### Escribe la definición
+
+	- **Agente:** `agents/prompt_agent_<id>.md`, con cabecera YAML (`id`, `category`, `provider_neutral`, `version`, `last_reviewed`) y las
+	  secciones *Mission* y *Operating contract*. Toma como modelo `agents/prompt_agent_backend_engineer.md`.
+	- **Skill:** `skills/<id>/SKILL.md`, con la misma cabecera y las secciones de guía especializada, flujo obligatorio y estándar de
+	  evidencia. Modelo: `skills/django_expert/SKILL.md`.
+
+2. ### Regístralo
+
+	Añade la entrada a `registry/agents.json` o `registry/skills.json`. Un agente declara, entre otros: `path`, `category`, `domains`,
+	`capabilities`, `required_skills`, `can_write_code`, `can_review`, `can_deploy`, `risk_limit` y `context_weight`.
+
+3. ### Hazlo alcanzable
+
+	Un agente que nada activa es *inalcanzable*. Añádelo a una regla de `registry/routing_rules.json`, a un perfil o a una etapa del
+	pipeline. `contracts --json` lista los inalcanzables en `unreachable`.
+
+4. ### Regenera los contratos
+
+	```bash
+	python scripts/build_contracts.py
+	python scripts/build_contracts.py --write
+	```
+
+	El primero informa de los cambios (en seco); el segundo los escribe. Los campos curados a mano se conservan.
+
+5. ### Valida
+
+	```bash
+	python -m pallaquino_cli validate --integrity-only --json
+	python -m pallaquino_cli contracts --id <id> --json
+	python -m unittest discover -s tests
+	```
+
+</Steps>
+
+<Aside type="caution">
+	Los cambios en registros, enrutamiento, riesgo o gates necesitan tests o casos dorados, y una tecnología nueva queda en
+	`VERIFY_BEFORE_USE` hasta verificar sus fuentes oficiales (guía de contribución del repositorio).
+</Aside>
+
+**Siguiente:** [Contribuir a PALLAQUINO](../contribuir/).
+
+<LessonComplete client:load lessonId="crear-agentes-y-skills" />

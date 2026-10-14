@@ -1,0 +1,2258 @@
+{
+  "program": "pallaquino",
+  "module": "python -m pallaquino_cli",
+  "version": "0.5.0",
+  "commands": [
+    {
+      "name": "agents",
+      "help": "list registered agents or match a request to agents",
+      "arguments": [
+        {
+          "name": "root",
+          "flags": [
+            "--root"
+          ],
+          "positional": false,
+          "help": "PALLAQUINO/framework root (default: $PALLAQUINO_ROOT, the package checkout, then ./.pallaquino or a parent)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "json",
+          "flags": [
+            "--json"
+          ],
+          "positional": false,
+          "help": "emit machine-readable JSON",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "action",
+          "flags": [],
+          "positional": true,
+          "help": null,
+          "required": false,
+          "choices": [
+            "list",
+            "match"
+          ],
+          "nargs": "?",
+          "default": "list",
+          "takes_value": true
+        },
+        {
+          "name": "text",
+          "flags": [],
+          "positional": true,
+          "help": "request text for `agents match`",
+          "required": false,
+          "choices": null,
+          "nargs": "*",
+          "default": null,
+          "takes_value": true
+        }
+      ]
+    },
+    {
+      "name": "analyze",
+      "help": "build a repository map",
+      "arguments": [
+        {
+          "name": "root",
+          "flags": [
+            "--root"
+          ],
+          "positional": false,
+          "help": "PALLAQUINO/framework root (default: $PALLAQUINO_ROOT, the package checkout, then ./.pallaquino or a parent)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "json",
+          "flags": [
+            "--json"
+          ],
+          "positional": false,
+          "help": "emit machine-readable JSON",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "target",
+          "flags": [
+            "--target"
+          ],
+          "positional": false,
+          "help": null,
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        }
+      ]
+    },
+    {
+      "name": "approve",
+      "help": "approve governed tools of a waiting task",
+      "arguments": [
+        {
+          "name": "root",
+          "flags": [
+            "--root"
+          ],
+          "positional": false,
+          "help": "PALLAQUINO/framework root (default: $PALLAQUINO_ROOT, the package checkout, then ./.pallaquino or a parent)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "json",
+          "flags": [
+            "--json"
+          ],
+          "positional": false,
+          "help": "emit machine-readable JSON",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "execution",
+          "flags": [
+            "--execution"
+          ],
+          "positional": false,
+          "help": "execution ID",
+          "required": true,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "approve",
+          "flags": [
+            "--task"
+          ],
+          "positional": false,
+          "help": "task ID whose governed tools you explicitly approve (repeatable)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        }
+      ]
+    },
+    {
+      "name": "cancel",
+      "help": "cancel an execution",
+      "arguments": [
+        {
+          "name": "root",
+          "flags": [
+            "--root"
+          ],
+          "positional": false,
+          "help": "PALLAQUINO/framework root (default: $PALLAQUINO_ROOT, the package checkout, then ./.pallaquino or a parent)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "json",
+          "flags": [
+            "--json"
+          ],
+          "positional": false,
+          "help": "emit machine-readable JSON",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "execution",
+          "flags": [
+            "--execution"
+          ],
+          "positional": false,
+          "help": "execution ID",
+          "required": true,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        }
+      ]
+    },
+    {
+      "name": "checkpoint",
+      "help": "create a continuity checkpoint",
+      "arguments": [
+        {
+          "name": "root",
+          "flags": [
+            "--root"
+          ],
+          "positional": false,
+          "help": "PALLAQUINO/framework root (default: $PALLAQUINO_ROOT, the package checkout, then ./.pallaquino or a parent)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "json",
+          "flags": [
+            "--json"
+          ],
+          "positional": false,
+          "help": "emit machine-readable JSON",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "task",
+          "flags": [
+            "--task"
+          ],
+          "positional": false,
+          "help": null,
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": "UNSPECIFIED",
+          "takes_value": true
+        }
+      ]
+    },
+    {
+      "name": "contracts",
+      "help": "report agent/skill contract coverage or show one verified contract",
+      "arguments": [
+        {
+          "name": "root",
+          "flags": [
+            "--root"
+          ],
+          "positional": false,
+          "help": "PALLAQUINO/framework root (default: $PALLAQUINO_ROOT, the package checkout, then ./.pallaquino or a parent)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "json",
+          "flags": [
+            "--json"
+          ],
+          "positional": false,
+          "help": "emit machine-readable JSON",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "id",
+          "flags": [
+            "--id"
+          ],
+          "positional": false,
+          "help": "show one agent or skill contract after verifying its source",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        }
+      ]
+    },
+    {
+      "name": "doctor",
+      "help": "diagnose framework and environment",
+      "arguments": [
+        {
+          "name": "root",
+          "flags": [
+            "--root"
+          ],
+          "positional": false,
+          "help": "PALLAQUINO/framework root (default: $PALLAQUINO_ROOT, the package checkout, then ./.pallaquino or a parent)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "json",
+          "flags": [
+            "--json"
+          ],
+          "positional": false,
+          "help": "emit machine-readable JSON",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        }
+      ]
+    },
+    {
+      "name": "executions",
+      "help": "list executions or report, trace and export one",
+      "arguments": [
+        {
+          "name": "root",
+          "flags": [
+            "--root"
+          ],
+          "positional": false,
+          "help": "PALLAQUINO/framework root (default: $PALLAQUINO_ROOT, the package checkout, then ./.pallaquino or a parent)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "json",
+          "flags": [
+            "--json"
+          ],
+          "positional": false,
+          "help": "emit machine-readable JSON",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "action",
+          "flags": [],
+          "positional": true,
+          "help": null,
+          "required": true,
+          "choices": [
+            "list",
+            "report",
+            "trace",
+            "metrics",
+            "export"
+          ],
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "execution_id",
+          "flags": [],
+          "positional": true,
+          "help": null,
+          "required": false,
+          "choices": null,
+          "nargs": "?",
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "output",
+          "flags": [
+            "--output"
+          ],
+          "positional": false,
+          "help": "JSONL path for export",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        }
+      ]
+    },
+    {
+      "name": "graph",
+      "help": "show and validate the task graph",
+      "arguments": [
+        {
+          "name": "root",
+          "flags": [
+            "--root"
+          ],
+          "positional": false,
+          "help": "PALLAQUINO/framework root (default: $PALLAQUINO_ROOT, the package checkout, then ./.pallaquino or a parent)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "json",
+          "flags": [
+            "--json"
+          ],
+          "positional": false,
+          "help": "emit machine-readable JSON",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        }
+      ]
+    },
+    {
+      "name": "handoff",
+      "help": "create a provider-neutral handoff",
+      "arguments": [
+        {
+          "name": "root",
+          "flags": [
+            "--root"
+          ],
+          "positional": false,
+          "help": "PALLAQUINO/framework root (default: $PALLAQUINO_ROOT, the package checkout, then ./.pallaquino or a parent)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "json",
+          "flags": [
+            "--json"
+          ],
+          "positional": false,
+          "help": "emit machine-readable JSON",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "next_action",
+          "flags": [
+            "--next-action"
+          ],
+          "positional": false,
+          "help": "exact next action for the receiving agent",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "missing",
+          "flags": [
+            "--missing"
+          ],
+          "positional": false,
+          "help": "requested but not implemented (repeatable)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "unverified",
+          "flags": [
+            "--unverified"
+          ],
+          "positional": false,
+          "help": "implemented but not verified (repeatable)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        }
+      ]
+    },
+    {
+      "name": "identity",
+      "help": "show, set or apply the project commit identity",
+      "arguments": [
+        {
+          "name": "root",
+          "flags": [
+            "--root"
+          ],
+          "positional": false,
+          "help": "PALLAQUINO/framework root (default: $PALLAQUINO_ROOT, the package checkout, then ./.pallaquino or a parent)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "json",
+          "flags": [
+            "--json"
+          ],
+          "positional": false,
+          "help": "emit machine-readable JSON",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "name",
+          "flags": [
+            "--name"
+          ],
+          "positional": false,
+          "help": "set the expected author name (requires --email)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "email",
+          "flags": [
+            "--email"
+          ],
+          "positional": false,
+          "help": "set the expected author email (requires --name)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "apply_local",
+          "flags": [
+            "--apply-local"
+          ],
+          "positional": false,
+          "help": "write it to the repository-local Git config (never global)",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        }
+      ]
+    },
+    {
+      "name": "init",
+      "help": "copy PALLAQUINO into a repository",
+      "arguments": [
+        {
+          "name": "root",
+          "flags": [
+            "--root"
+          ],
+          "positional": false,
+          "help": "PALLAQUINO/framework root (default: $PALLAQUINO_ROOT, the package checkout, then ./.pallaquino or a parent)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "json",
+          "flags": [
+            "--json"
+          ],
+          "positional": false,
+          "help": "emit machine-readable JSON",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "target",
+          "flags": [
+            "--target"
+          ],
+          "positional": false,
+          "help": null,
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "dry_run",
+          "flags": [
+            "--dry-run"
+          ],
+          "positional": false,
+          "help": "report what would be written without writing",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        }
+      ]
+    },
+    {
+      "name": "mcp",
+      "help": "configure, test and review MCP server connections",
+      "arguments": [
+        {
+          "name": "root",
+          "flags": [
+            "--root"
+          ],
+          "positional": false,
+          "help": "PALLAQUINO/framework root (default: $PALLAQUINO_ROOT, the package checkout, then ./.pallaquino or a parent)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "json",
+          "flags": [
+            "--json"
+          ],
+          "positional": false,
+          "help": "emit machine-readable JSON",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "action",
+          "flags": [],
+          "positional": true,
+          "help": null,
+          "required": true,
+          "choices": [
+            "servers",
+            "add",
+            "inspect",
+            "test",
+            "tools",
+            "pin",
+            "remove",
+            "doctor",
+            "enable",
+            "disable",
+            "auth",
+            "logout"
+          ],
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "server_id",
+          "flags": [],
+          "positional": true,
+          "help": null,
+          "required": false,
+          "choices": null,
+          "nargs": "?",
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "stdio",
+          "flags": [
+            "--stdio"
+          ],
+          "positional": false,
+          "help": "(add) command that starts a local stdio server; must be last",
+          "required": false,
+          "choices": null,
+          "nargs": "...",
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "url",
+          "flags": [
+            "--url"
+          ],
+          "positional": false,
+          "help": "(add) Streamable HTTP endpoint",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "mode",
+          "flags": [
+            "--mode"
+          ],
+          "positional": false,
+          "help": null,
+          "required": false,
+          "choices": [
+            "auto",
+            "modern",
+            "legacy"
+          ],
+          "nargs": null,
+          "default": "auto",
+          "takes_value": true
+        },
+        {
+          "name": "credential_ref",
+          "flags": [
+            "--credential-ref"
+          ],
+          "positional": false,
+          "help": "(add) env:VAR or vault:<server_id>",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "issuer",
+          "flags": [
+            "--issuer"
+          ],
+          "positional": false,
+          "help": "(add) authorization server issuer for vault tokens",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "allow_http_loopback",
+          "flags": [
+            "--allow-http-loopback"
+          ],
+          "positional": false,
+          "help": "(add) allow plain http to a loopback server",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "classify",
+          "flags": [
+            "--classify"
+          ],
+          "positional": false,
+          "help": "(add) human classification of a server tool, with optional functional tags",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "trusted",
+          "flags": [
+            "--trusted"
+          ],
+          "positional": false,
+          "help": "(add) mark the server as trusted (annotations are still never trusted)",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "timeout",
+          "flags": [
+            "--timeout"
+          ],
+          "positional": false,
+          "help": null,
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": 30,
+          "takes_value": true
+        },
+        {
+          "name": "tool",
+          "flags": [
+            "--tool"
+          ],
+          "positional": false,
+          "help": "(pin) pin only these tools",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "client_id",
+          "flags": [
+            "--client-id"
+          ],
+          "positional": false,
+          "help": "(auth) pre-registered client ID or Client ID Metadata Document URL",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "workspace",
+          "flags": [
+            "--workspace"
+          ],
+          "positional": false,
+          "help": "project directory tools act on (default: the project of --root, else cwd)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        }
+      ]
+    },
+    {
+      "name": "memory",
+      "help": "inspect, search and manage project memory",
+      "arguments": [
+        {
+          "name": "root",
+          "flags": [
+            "--root"
+          ],
+          "positional": false,
+          "help": "PALLAQUINO/framework root (default: $PALLAQUINO_ROOT, the package checkout, then ./.pallaquino or a parent)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "json",
+          "flags": [
+            "--json"
+          ],
+          "positional": false,
+          "help": "emit machine-readable JSON",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "action",
+          "flags": [],
+          "positional": true,
+          "help": null,
+          "required": true,
+          "choices": [
+            "status",
+            "search",
+            "inspect",
+            "verify",
+            "delete",
+            "purge"
+          ],
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "query",
+          "flags": [],
+          "positional": true,
+          "help": "search terms",
+          "required": false,
+          "choices": null,
+          "nargs": "*",
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "id",
+          "flags": [
+            "--id"
+          ],
+          "positional": false,
+          "help": "record ID for inspect/delete",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "category",
+          "flags": [
+            "--category"
+          ],
+          "positional": false,
+          "help": null,
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "limit",
+          "flags": [
+            "--limit"
+          ],
+          "positional": false,
+          "help": null,
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": 10,
+          "takes_value": true
+        },
+        {
+          "name": "include_stale",
+          "flags": [
+            "--include-stale"
+          ],
+          "positional": false,
+          "help": null,
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "expired",
+          "flags": [
+            "--expired"
+          ],
+          "positional": false,
+          "help": "purge expired records",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "older_than",
+          "flags": [
+            "--older-than"
+          ],
+          "positional": false,
+          "help": "purge records older than N days",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "yes",
+          "flags": [
+            "--yes"
+          ],
+          "positional": false,
+          "help": "confirm a destructive memory operation",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        }
+      ]
+    },
+    {
+      "name": "pause",
+      "help": "pause an execution",
+      "arguments": [
+        {
+          "name": "root",
+          "flags": [
+            "--root"
+          ],
+          "positional": false,
+          "help": "PALLAQUINO/framework root (default: $PALLAQUINO_ROOT, the package checkout, then ./.pallaquino or a parent)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "json",
+          "flags": [
+            "--json"
+          ],
+          "positional": false,
+          "help": "emit machine-readable JSON",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "execution",
+          "flags": [
+            "--execution"
+          ],
+          "positional": false,
+          "help": "execution ID",
+          "required": true,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        }
+      ]
+    },
+    {
+      "name": "permissions",
+      "help": "list, grant, revoke and audit tool permissions",
+      "arguments": [
+        {
+          "name": "root",
+          "flags": [
+            "--root"
+          ],
+          "positional": false,
+          "help": "PALLAQUINO/framework root (default: $PALLAQUINO_ROOT, the package checkout, then ./.pallaquino or a parent)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "json",
+          "flags": [
+            "--json"
+          ],
+          "positional": false,
+          "help": "emit machine-readable JSON",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "action",
+          "flags": [],
+          "positional": true,
+          "help": null,
+          "required": true,
+          "choices": [
+            "list",
+            "inspect",
+            "grant",
+            "revoke",
+            "history"
+          ],
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "target",
+          "flags": [],
+          "positional": true,
+          "help": "tool ID or namespace wildcard (grant), grant ID (revoke, inspect)",
+          "required": false,
+          "choices": null,
+          "nargs": "?",
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "principal",
+          "flags": [
+            "--principal"
+          ],
+          "positional": false,
+          "help": "agent ID or * (grant)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": "*",
+          "takes_value": true
+        },
+        {
+          "name": "operation",
+          "flags": [
+            "--operation"
+          ],
+          "positional": false,
+          "help": "operation class (grant)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "days",
+          "flags": [
+            "--days"
+          ],
+          "positional": false,
+          "help": null,
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": 7,
+          "takes_value": true
+        },
+        {
+          "name": "max_uses",
+          "flags": [
+            "--max-uses"
+          ],
+          "positional": false,
+          "help": null,
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "reason",
+          "flags": [
+            "--reason"
+          ],
+          "positional": false,
+          "help": null,
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": "",
+          "takes_value": true
+        },
+        {
+          "name": "all",
+          "flags": [
+            "--all"
+          ],
+          "positional": false,
+          "help": "include expired, revoked and used entries",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "workspace",
+          "flags": [
+            "--workspace"
+          ],
+          "positional": false,
+          "help": "project directory tools act on (default: the project of --root, else cwd)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        }
+      ]
+    },
+    {
+      "name": "pipeline",
+      "help": "show strict pipeline state",
+      "arguments": [
+        {
+          "name": "root",
+          "flags": [
+            "--root"
+          ],
+          "positional": false,
+          "help": "PALLAQUINO/framework root (default: $PALLAQUINO_ROOT, the package checkout, then ./.pallaquino or a parent)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "json",
+          "flags": [
+            "--json"
+          ],
+          "positional": false,
+          "help": "emit machine-readable JSON",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        }
+      ]
+    },
+    {
+      "name": "plan",
+      "help": "plan a request (DAG of tasks) or show the legacy execution plan",
+      "arguments": [
+        {
+          "name": "root",
+          "flags": [
+            "--root"
+          ],
+          "positional": false,
+          "help": "PALLAQUINO/framework root (default: $PALLAQUINO_ROOT, the package checkout, then ./.pallaquino or a parent)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "json",
+          "flags": [
+            "--json"
+          ],
+          "positional": false,
+          "help": "emit machine-readable JSON",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "request",
+          "flags": [],
+          "positional": true,
+          "help": "request to plan; without it, show the legacy execution plan",
+          "required": false,
+          "choices": null,
+          "nargs": "*",
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "workspace",
+          "flags": [
+            "--workspace"
+          ],
+          "positional": false,
+          "help": "project directory the plan targets (default: the project of --root, else cwd)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "ai",
+          "flags": [
+            "--ai"
+          ],
+          "positional": false,
+          "help": "AI-assisted intent analysis with the configured provider (risk stays deterministic)",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        }
+      ]
+    },
+    {
+      "name": "plugin",
+      "help": "plugin SDK: create, validate or test a plugin",
+      "arguments": [
+        {
+          "name": "root",
+          "flags": [
+            "--root"
+          ],
+          "positional": false,
+          "help": "PALLAQUINO/framework root (default: $PALLAQUINO_ROOT, the package checkout, then ./.pallaquino or a parent)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "json",
+          "flags": [
+            "--json"
+          ],
+          "positional": false,
+          "help": "emit machine-readable JSON",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "action",
+          "flags": [],
+          "positional": true,
+          "help": null,
+          "required": true,
+          "choices": [
+            "create",
+            "validate",
+            "test"
+          ],
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "target",
+          "flags": [],
+          "positional": true,
+          "help": "plugin directory (create: project directory to scaffold)",
+          "required": true,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "plugin_id",
+          "flags": [
+            "--id"
+          ],
+          "positional": false,
+          "help": "plugin ID for create, e.g. acme.text_tools",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "name",
+          "flags": [
+            "--name"
+          ],
+          "positional": false,
+          "help": null,
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "author",
+          "flags": [
+            "--author"
+          ],
+          "positional": false,
+          "help": null,
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": "unknown",
+          "takes_value": true
+        },
+        {
+          "name": "plugin_type",
+          "flags": [
+            "--type"
+          ],
+          "positional": false,
+          "help": null,
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": "TOOL_PLUGIN",
+          "takes_value": true
+        },
+        {
+          "name": "write",
+          "flags": [
+            "--write"
+          ],
+          "positional": false,
+          "help": "write the scaffold (default: dry run)",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        }
+      ]
+    },
+    {
+      "name": "plugins",
+      "help": "discover, validate, trust, enable and manage plugins",
+      "arguments": [
+        {
+          "name": "root",
+          "flags": [
+            "--root"
+          ],
+          "positional": false,
+          "help": "PALLAQUINO/framework root (default: $PALLAQUINO_ROOT, the package checkout, then ./.pallaquino or a parent)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "json",
+          "flags": [
+            "--json"
+          ],
+          "positional": false,
+          "help": "emit machine-readable JSON",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "action",
+          "flags": [],
+          "positional": true,
+          "help": null,
+          "required": true,
+          "choices": [
+            "list",
+            "discover",
+            "inspect",
+            "validate",
+            "enable",
+            "disable",
+            "doctor",
+            "install",
+            "update",
+            "rollback",
+            "uninstall",
+            "trust",
+            "untrust",
+            "health"
+          ],
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "target",
+          "flags": [],
+          "positional": true,
+          "help": "plugin ID, or a plugin directory/archive for install and update",
+          "required": false,
+          "choices": null,
+          "nargs": "?",
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "sha256",
+          "flags": [
+            "--sha256"
+          ],
+          "positional": false,
+          "help": "expected SHA-256 of the archive (required) or of the directory content",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "path",
+          "flags": [
+            "--path"
+          ],
+          "positional": false,
+          "help": "extra site directory to discover installed distributions from",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "approved_by",
+          "flags": [
+            "--approved-by"
+          ],
+          "positional": false,
+          "help": "who approves the trust entry (plugins trust)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "capability",
+          "flags": [
+            "--capability"
+          ],
+          "positional": false,
+          "help": "capability to allow (plugins trust; default: what the manifest requests)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "yes",
+          "flags": [
+            "--yes"
+          ],
+          "positional": false,
+          "help": "confirm uninstall",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "workspace",
+          "flags": [
+            "--workspace"
+          ],
+          "positional": false,
+          "help": "project directory tools act on (default: the project of --root, else cwd)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        }
+      ]
+    },
+    {
+      "name": "providers",
+      "help": "list providers or diagnose their configuration",
+      "arguments": [
+        {
+          "name": "root",
+          "flags": [
+            "--root"
+          ],
+          "positional": false,
+          "help": "PALLAQUINO/framework root (default: $PALLAQUINO_ROOT, the package checkout, then ./.pallaquino or a parent)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "json",
+          "flags": [
+            "--json"
+          ],
+          "positional": false,
+          "help": "emit machine-readable JSON",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "action",
+          "flags": [],
+          "positional": true,
+          "help": null,
+          "required": true,
+          "choices": [
+            "list",
+            "doctor"
+          ],
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        }
+      ]
+    },
+    {
+      "name": "resume",
+      "help": "resume an execution (--execution) or recover the newest checkpoint",
+      "arguments": [
+        {
+          "name": "root",
+          "flags": [
+            "--root"
+          ],
+          "positional": false,
+          "help": "PALLAQUINO/framework root (default: $PALLAQUINO_ROOT, the package checkout, then ./.pallaquino or a parent)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "json",
+          "flags": [
+            "--json"
+          ],
+          "positional": false,
+          "help": "emit machine-readable JSON",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "execution",
+          "flags": [
+            "--execution"
+          ],
+          "positional": false,
+          "help": "execution ID",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "approve",
+          "flags": [
+            "--approve"
+          ],
+          "positional": false,
+          "help": "task ID whose governed tools you explicitly approve (repeatable)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "max_workers",
+          "flags": [
+            "--max-workers"
+          ],
+          "positional": false,
+          "help": "concurrency limit (default 4)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "force",
+          "flags": [
+            "--force"
+          ],
+          "positional": false,
+          "help": "take over an execution whose runner lease is still valid",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "retry_failed",
+          "flags": [
+            "--retry-failed"
+          ],
+          "positional": false,
+          "help": "move FAILED tasks back to READY",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        }
+      ]
+    },
+    {
+      "name": "risk",
+      "help": "classify request risk",
+      "arguments": [
+        {
+          "name": "root",
+          "flags": [
+            "--root"
+          ],
+          "positional": false,
+          "help": "PALLAQUINO/framework root (default: $PALLAQUINO_ROOT, the package checkout, then ./.pallaquino or a parent)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "json",
+          "flags": [
+            "--json"
+          ],
+          "positional": false,
+          "help": "emit machine-readable JSON",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "request",
+          "flags": [],
+          "positional": true,
+          "help": "request text",
+          "required": false,
+          "choices": null,
+          "nargs": "*",
+          "default": null,
+          "takes_value": true
+        }
+      ]
+    },
+    {
+      "name": "run",
+      "help": "execute a validated plan",
+      "arguments": [
+        {
+          "name": "root",
+          "flags": [
+            "--root"
+          ],
+          "positional": false,
+          "help": "PALLAQUINO/framework root (default: $PALLAQUINO_ROOT, the package checkout, then ./.pallaquino or a parent)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "json",
+          "flags": [
+            "--json"
+          ],
+          "positional": false,
+          "help": "emit machine-readable JSON",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "approve",
+          "flags": [
+            "--approve"
+          ],
+          "positional": false,
+          "help": "task ID whose governed tools you explicitly approve (repeatable)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "max_workers",
+          "flags": [
+            "--max-workers"
+          ],
+          "positional": false,
+          "help": "concurrency limit (default 4)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "force",
+          "flags": [
+            "--force"
+          ],
+          "positional": false,
+          "help": "take over an execution whose runner lease is still valid",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "plan",
+          "flags": [
+            "--plan"
+          ],
+          "positional": false,
+          "help": "plan ID from `pallaquino plan`",
+          "required": true,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "dry_run",
+          "flags": [
+            "--dry-run"
+          ],
+          "positional": false,
+          "help": "show what would run without running it",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        }
+      ]
+    },
+    {
+      "name": "security",
+      "help": "read-only security audit (secret scan) of a target",
+      "arguments": [
+        {
+          "name": "root",
+          "flags": [
+            "--root"
+          ],
+          "positional": false,
+          "help": "PALLAQUINO/framework root (default: $PALLAQUINO_ROOT, the package checkout, then ./.pallaquino or a parent)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "json",
+          "flags": [
+            "--json"
+          ],
+          "positional": false,
+          "help": "emit machine-readable JSON",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "action",
+          "flags": [],
+          "positional": true,
+          "help": null,
+          "required": false,
+          "choices": [
+            "audit"
+          ],
+          "nargs": "?",
+          "default": "audit",
+          "takes_value": true
+        },
+        {
+          "name": "target",
+          "flags": [
+            "--target"
+          ],
+          "positional": false,
+          "help": null,
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        }
+      ]
+    },
+    {
+      "name": "skills",
+      "help": "list registered skills",
+      "arguments": [
+        {
+          "name": "root",
+          "flags": [
+            "--root"
+          ],
+          "positional": false,
+          "help": "PALLAQUINO/framework root (default: $PALLAQUINO_ROOT, the package checkout, then ./.pallaquino or a parent)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "json",
+          "flags": [
+            "--json"
+          ],
+          "positional": false,
+          "help": "emit machine-readable JSON",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "action",
+          "flags": [],
+          "positional": true,
+          "help": null,
+          "required": false,
+          "choices": [
+            "list"
+          ],
+          "nargs": "?",
+          "default": "list",
+          "takes_value": true
+        }
+      ]
+    },
+    {
+      "name": "stack",
+      "help": "show verified stack freshness",
+      "arguments": [
+        {
+          "name": "root",
+          "flags": [
+            "--root"
+          ],
+          "positional": false,
+          "help": "PALLAQUINO/framework root (default: $PALLAQUINO_ROOT, the package checkout, then ./.pallaquino or a parent)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "json",
+          "flags": [
+            "--json"
+          ],
+          "positional": false,
+          "help": "emit machine-readable JSON",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        }
+      ]
+    },
+    {
+      "name": "status",
+      "help": "show current framework state",
+      "arguments": [
+        {
+          "name": "root",
+          "flags": [
+            "--root"
+          ],
+          "positional": false,
+          "help": "PALLAQUINO/framework root (default: $PALLAQUINO_ROOT, the package checkout, then ./.pallaquino or a parent)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "json",
+          "flags": [
+            "--json"
+          ],
+          "positional": false,
+          "help": "emit machine-readable JSON",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "execution",
+          "flags": [
+            "--execution"
+          ],
+          "positional": false,
+          "help": "execution ID",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        }
+      ]
+    },
+    {
+      "name": "tools",
+      "help": "list, inspect, check, route and run tools through the gateway",
+      "arguments": [
+        {
+          "name": "root",
+          "flags": [
+            "--root"
+          ],
+          "positional": false,
+          "help": "PALLAQUINO/framework root (default: $PALLAQUINO_ROOT, the package checkout, then ./.pallaquino or a parent)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "json",
+          "flags": [
+            "--json"
+          ],
+          "positional": false,
+          "help": "emit machine-readable JSON",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "action",
+          "flags": [],
+          "positional": true,
+          "help": null,
+          "required": true,
+          "choices": [
+            "list",
+            "inspect",
+            "check",
+            "run",
+            "route",
+            "calls",
+            "metrics"
+          ],
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "tool_id",
+          "flags": [],
+          "positional": true,
+          "help": null,
+          "required": false,
+          "choices": null,
+          "nargs": "?",
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "args",
+          "flags": [
+            "--args"
+          ],
+          "positional": false,
+          "help": "JSON arguments",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": "{}",
+          "takes_value": true
+        },
+        {
+          "name": "approve",
+          "flags": [
+            "--approve"
+          ],
+          "positional": false,
+          "help": "approve this exact call (per-call approval recorded with its argument digest)",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "capability",
+          "flags": [
+            "--capability"
+          ],
+          "positional": false,
+          "help": "(route, list) capability filter",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "source",
+          "flags": [
+            "--source"
+          ],
+          "positional": false,
+          "help": null,
+          "required": false,
+          "choices": [
+            "builtin",
+            "plugin",
+            "mcp"
+          ],
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "sensitive",
+          "flags": [
+            "--sensitive"
+          ],
+          "positional": false,
+          "help": null,
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "no_plugins",
+          "flags": [
+            "--no-plugins"
+          ],
+          "positional": false,
+          "help": "do not start enabled plugins",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "workspace",
+          "flags": [
+            "--workspace"
+          ],
+          "positional": false,
+          "help": "project directory tools act on (default: the project of --root, else cwd)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        }
+      ]
+    },
+    {
+      "name": "validate",
+      "help": "run all framework validators",
+      "arguments": [
+        {
+          "name": "root",
+          "flags": [
+            "--root"
+          ],
+          "positional": false,
+          "help": "PALLAQUINO/framework root (default: $PALLAQUINO_ROOT, the package checkout, then ./.pallaquino or a parent)",
+          "required": false,
+          "choices": null,
+          "nargs": null,
+          "default": null,
+          "takes_value": true
+        },
+        {
+          "name": "json",
+          "flags": [
+            "--json"
+          ],
+          "positional": false,
+          "help": "emit machine-readable JSON",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        },
+        {
+          "name": "integrity_only",
+          "flags": [
+            "--integrity-only"
+          ],
+          "positional": false,
+          "help": "skip host-dependent checks such as local Git identity",
+          "required": false,
+          "choices": null,
+          "nargs": 0,
+          "default": false,
+          "takes_value": false
+        }
+      ]
+    }
+  ],
+  "exit_codes": {
+    "0": "completado / correcto",
+    "1": "fallo o error",
+    "2": "raíz del framework no encontrada",
+    "3": "esperando aprobación o en pausa",
+    "4": "cancelado",
+    "5": "permiso denegado (pasarela de herramientas)"
+  }
+}

@@ -1,0 +1,26 @@
+---
+/**
+ * Starlight MarkdownContent override. Wide tables scroll horizontally inside the page; a scroll container must be reachable from
+ * the keyboard (WCAG 2.1.1). Only tables that actually overflow at the current width become focusable, so narrow tables add no
+ * extra tab stops.
+ */
+import Default from '@astrojs/starlight/components/MarkdownContent.astro';
+---
+
+<Default><slot /></Default>
+
+<script>
+	function markScrollableTables() {
+		for (const table of document.querySelectorAll<HTMLTableElement>('.sl-markdown-content table')) {
+			if (table.scrollWidth > table.clientWidth + 1) {
+				table.tabIndex = 0;
+				if (!table.hasAttribute('aria-label')) table.setAttribute('aria-label', 'Tabla con desplazamiento horizontal');
+			} else if (table.getAttribute('aria-label') === 'Tabla con desplazamiento horizontal') {
+				table.removeAttribute('tabindex');
+				table.removeAttribute('aria-label');
+			}
+		}
+	}
+	markScrollableTables();
+	addEventListener('resize', markScrollableTables);
+</script>

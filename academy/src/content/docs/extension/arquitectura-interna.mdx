@@ -1,0 +1,58 @@
+---
+title: Arquitectura interna
+description: Los paquetes de pallaquino_cli, qué responsabilidad tiene cada uno y los principios que no cambian.
+sidebar:
+  order: 1
+lesson:
+  id: arquitectura-interna
+  path: extension
+  difficulty: avanzado
+  duration: 20
+  objectives:
+    - Situar cada responsabilidad en su paquete de pallaquino_cli
+    - Conocer los principios de diseño que cualquier extensión debe respetar
+  prerequisites:
+    - plugins-crear
+  status: disponible
+  since: 0.5.0
+  next: crear-agentes-y-skills
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+Todo el código está en `universal_ai_fullstack_orchestrator/pallaquino_cli/` y usa solo la biblioteca estándar.
+
+| Paquete o módulo | Responsabilidad |
+|---|---|
+| `__main__.py`, `cli_orchestration.py`, `cli_platform.py` | Definición de la CLI (argparse) y despacho de comandos |
+| `core.py` | Raíz del framework, validadores, riesgo, identidad, init, checkpoints y handoffs |
+| `contracts.py` | Contratos v2 de agentes y skills: derivación y validación |
+| `orchestration/` | `intent` (intención), `routing` (agentes), `planning` (DAG), `scheduler`, `executors`, `observability` |
+| `memory/` | Memoria del proyecto en SQLite (`store.py`) |
+| `providers/` | Interfaz de proveedores, `mock`, `ollama` y router |
+| `tools/` | Registro, esquemas, permisos, enrutamiento y pasarela de herramientas |
+| `mcp/` | Cliente y servidor MCP, transportes, autenticación y política de red |
+| `extensions/` | Descubrimiento, manifiesto, versión y gestión de plugins |
+| `integrations/` | Adaptadores de sistema de archivos, Git, SQLite y GitHub |
+| `sdk/` | SDK de plugins: andamiaje, ejecución aislada y utilidades de prueba |
+
+## Principios
+
+- **Sin dependencias de ejecución**: solo la biblioteca estándar de Python 3.11+.
+- **Neutralidad de proveedor**: el motor no depende de ningún modelo concreto.
+- **Denegación por defecto** para herramientas; los datos externos nunca son instrucciones.
+- **Evidencia antes que afirmaciones**; lo inferido se marca `RECONSTRUCTED`.
+- **Generadores en seco por defecto**: los scripts que reescriben archivos exigen `--write`.
+
+Las decisiones están registradas como ADR en `docs/adr/` (de ADR-0001 a ADR-0016) y la arquitectura en `docs/ARCHITECTURE.md` y
+`docs/architecture/`.
+
+<Aside type="tip">
+	Antes de cambiar el núcleo, ejecuta `python scripts/architecture_fitness.py`: comprueba las reglas de arquitectura de
+	`architecture/fitness_rules.json`.
+</Aside>
+
+**Siguiente:** [Crear agentes y skills](../crear-agentes-y-skills/).
+
+<LessonComplete client:load lessonId="arquitectura-interna" />

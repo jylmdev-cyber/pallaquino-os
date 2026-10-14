@@ -1,0 +1,26 @@
+---
+title: "Guion: instala y ejecuta PALLAQUINO por primera vez"
+description: Guion y storyboard (no grabado) del video de instalación.
+sidebar:
+  order: 2
+---
+
+**Estado:** guion preparado, video no grabado. **Duración estimada:** 6 minutos. **Nivel:** principiante.
+**Objetivo:** que quien lo vea clone PALLAQUINO, compruebe su integridad y simule la instalación en un proyecto.
+**Requisitos:** Python 3.11+ y Git. **Lección asociada:** [Instala y ejecuta PALLAQUINO por primera vez](../../instalacion/primera-instalacion/).
+
+| # | Duración | Narración | En pantalla | Comando |
+|---:|---|---|---|---|
+| 1 | 0:30 | Qué es PALLAQUINO y qué conseguirás en seis minutos | Portada de la academia | — |
+| 2 | 0:30 | Comprobamos Python y Git | Terminal | `python --version`, `git --version` |
+| 3 | 0:45 | Descargamos el repositorio | Progreso de Git | `git clone https://github.com/jylmdev-cyber/pallaquino-os.git` |
+| 4 | 0:30 | Entramos en la carpeta del framework; sin ella, Python no encuentra el módulo | Árbol de carpetas | `cd pallaquino-os/universal_ai_fullstack_orchestrator` |
+| 5 | 0:30 | Sin dependencias: comprobamos la versión | `pallaquino 0.5.0` | `python -m pallaquino_cli --version` |
+| 6 | 1:00 | El diagnóstico. Resaltar el único fallo, de entorno, y por qué es normal | Salida JSON con `validate_git_authorship` resaltado | `python -m pallaquino_cli doctor` |
+| 7 | 0:45 | Comprobamos solo la integridad: todo pasa | `"ok": true`, código 0 | `python -m pallaquino_cli validate --integrity-only --json` |
+| 8 | 0:45 | Clasificamos el riesgo de una solicitud | `"level": "HIGH"` y gates | `python -m pallaquino_cli risk "agregar autenticación basada en roles" --json` |
+| 9 | 0:45 | Simulamos la instalación en un proyecto: no se escribe nada | `"dry_run": true` | `python -m pallaquino_cli init --target ../mi-proyecto --dry-run --json` |
+| 10 | 0:20 | Resumen y siguiente lección | Lista de verificación de la academia | — |
+
+**Comprobaciones antes de grabar:** volver a capturar las salidas con `npm run transcripts` y usar las de la versión vigente; no mostrar
+rutas personales ni identidades reales.

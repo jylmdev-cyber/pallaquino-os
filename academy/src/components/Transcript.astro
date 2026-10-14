@@ -1,0 +1,22 @@
+---
+/** A recorded CLI transcript (real output captured from a clean clone), labelled with its capture date. */
+import transcripts from '../data/transcripts.json';
+
+interface Props { id: string; lines?: number }
+const { id, lines } = Astro.props;
+const record = [...transcripts.commands, ...transcripts.project].find((t) => t.id === id);
+if (!record) throw new Error(`unknown transcript ${id}`);
+const output = lines ? record.output.split('\n').slice(0, lines).join('\n') + (record.output.split('\n').length > lines ? '\n…' : '') : record.output;
+---
+
+<figure class="transcript">
+	<figcaption>Resultado real (grabado el {transcripts.captured_on}, {transcripts.platform}) · código de salida {record.exit_code}</figcaption>
+	<pre tabindex="0" aria-label={`Salida de ${record.command}`}><code>{output}</code></pre>
+</figure>
+
+<style>
+	.transcript { margin: 1rem 0; border: 1px solid var(--sl-color-gray-5); border-radius: 0.6rem; overflow: hidden; }
+	figcaption { font-size: var(--sl-text-xs); padding: 0.35rem 0.75rem; background: var(--sl-color-gray-6); color: var(--sl-color-gray-2); }
+	pre { margin: 0; padding: 0.75rem; max-height: 22rem; overflow: auto; font-size: 0.8rem; background: #0b1020; color: #e6edf3; }
+	pre:focus-visible { outline: 3px solid var(--sl-color-accent-high); outline-offset: -3px; }
+</style>

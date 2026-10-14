@@ -1,0 +1,315 @@
+{
+  "name": "PALLAQUINO strict pipeline",
+  "stages": [
+    {
+      "id": "REQUEST",
+      "order": 1,
+      "kind": "input",
+      "success_to": "CONTINUITY_RECOVERY",
+      "failure_return_to": null,
+      "evidence_required": false
+    },
+    {
+      "id": "CONTINUITY_RECOVERY",
+      "order": 2,
+      "kind": "gate",
+      "success_to": "CAPABILITY_DETECTION",
+      "failure_return_to": "REQUEST",
+      "evidence_required": true
+    },
+    {
+      "id": "CAPABILITY_DETECTION",
+      "order": 3,
+      "kind": "gate",
+      "success_to": "REPOSITORY_ANALYSIS",
+      "failure_return_to": "CONTINUITY_RECOVERY",
+      "evidence_required": true
+    },
+    {
+      "id": "REPOSITORY_ANALYSIS",
+      "order": 4,
+      "kind": "gate",
+      "success_to": "REPOSITORY_MAP",
+      "failure_return_to": "CAPABILITY_DETECTION",
+      "evidence_required": true,
+      "agents": [
+        "project_analyzer",
+        "codebase_explorer"
+      ]
+    },
+    {
+      "id": "REPOSITORY_MAP",
+      "order": 5,
+      "kind": "gate",
+      "success_to": "STACK_VERSION_AUDIT",
+      "failure_return_to": "REPOSITORY_ANALYSIS",
+      "evidence_required": true
+    },
+    {
+      "id": "STACK_VERSION_AUDIT",
+      "order": 6,
+      "kind": "gate",
+      "success_to": "RISK_ANALYSIS",
+      "failure_return_to": "PLAN",
+      "evidence_required": true,
+      "agents": [
+        "dependency_governance_agent"
+      ]
+    },
+    {
+      "id": "RISK_ANALYSIS",
+      "order": 7,
+      "kind": "gate",
+      "success_to": "PLAN",
+      "failure_return_to": "PLAN",
+      "evidence_required": true,
+      "agents": [
+        "risk_analyst"
+      ]
+    },
+    {
+      "id": "PLAN",
+      "order": 8,
+      "kind": "gate",
+      "success_to": "DOMAIN_IDENTIFICATION",
+      "failure_return_to": "REQUEST",
+      "evidence_required": false,
+      "agents": [
+        "pipeline_manager"
+      ]
+    },
+    {
+      "id": "DOMAIN_IDENTIFICATION",
+      "order": 9,
+      "kind": "gate",
+      "success_to": "TASK_GRAPH",
+      "failure_return_to": "PLAN",
+      "evidence_required": true
+    },
+    {
+      "id": "TASK_GRAPH",
+      "order": 10,
+      "kind": "gate",
+      "success_to": "AGENT_SELECTION",
+      "failure_return_to": "PLAN",
+      "evidence_required": true,
+      "agents": [
+        "execution_coordinator"
+      ]
+    },
+    {
+      "id": "AGENT_SELECTION",
+      "order": 11,
+      "kind": "gate",
+      "success_to": "SKILL_SELECTION",
+      "failure_return_to": "TASK_GRAPH",
+      "evidence_required": true
+    },
+    {
+      "id": "SKILL_SELECTION",
+      "order": 12,
+      "kind": "gate",
+      "success_to": "CONTEXT_PREPARATION",
+      "failure_return_to": "AGENT_SELECTION",
+      "evidence_required": true
+    },
+    {
+      "id": "CONTEXT_PREPARATION",
+      "order": 13,
+      "kind": "gate",
+      "success_to": "DELEGATION",
+      "failure_return_to": "SKILL_SELECTION",
+      "evidence_required": true
+    },
+    {
+      "id": "DELEGATION",
+      "order": 14,
+      "kind": "gate",
+      "success_to": "IMPLEMENTATION",
+      "failure_return_to": "CONTEXT_PREPARATION",
+      "evidence_required": false,
+      "agents": [
+        "execution_coordinator"
+      ]
+    },
+    {
+      "id": "IMPLEMENTATION",
+      "order": 15,
+      "kind": "gate",
+      "success_to": "INTEGRATION",
+      "failure_return_to": "PLAN",
+      "evidence_required": false
+    },
+    {
+      "id": "INTEGRATION",
+      "order": 16,
+      "kind": "gate",
+      "success_to": "MIGRATION_SAFETY",
+      "failure_return_to": "IMPLEMENTATION",
+      "evidence_required": true,
+      "agents": [
+        "execution_coordinator",
+        "conflict_resolver"
+      ]
+    },
+    {
+      "id": "MIGRATION_SAFETY",
+      "order": 17,
+      "kind": "gate",
+      "success_to": "TEST",
+      "failure_return_to": "IMPLEMENTATION",
+      "evidence_required": true
+    },
+    {
+      "id": "TEST",
+      "order": 18,
+      "kind": "gate",
+      "success_to": "TEST_GAP_ANALYSIS",
+      "failure_return_to": "IMPLEMENTATION",
+      "evidence_required": true
+    },
+    {
+      "id": "TEST_GAP_ANALYSIS",
+      "order": 19,
+      "kind": "gate",
+      "success_to": "LINT_TYPECHECK",
+      "failure_return_to": "TEST",
+      "evidence_required": true,
+      "agents": [
+        "test_gap_analyzer"
+      ]
+    },
+    {
+      "id": "LINT_TYPECHECK",
+      "order": 20,
+      "kind": "gate",
+      "success_to": "BUILD",
+      "failure_return_to": "IMPLEMENTATION",
+      "evidence_required": true
+    },
+    {
+      "id": "BUILD",
+      "order": 21,
+      "kind": "gate",
+      "success_to": "SECURITY_CHECK",
+      "failure_return_to": "IMPLEMENTATION",
+      "evidence_required": true
+    },
+    {
+      "id": "SECURITY_CHECK",
+      "order": 22,
+      "kind": "gate",
+      "success_to": "ADVERSARIAL_REVIEW",
+      "failure_return_to": "IMPLEMENTATION",
+      "evidence_required": true
+    },
+    {
+      "id": "ADVERSARIAL_REVIEW",
+      "order": 23,
+      "kind": "gate",
+      "success_to": "CODE_REVIEW",
+      "failure_return_to": "IMPLEMENTATION",
+      "evidence_required": true,
+      "agents": [
+        "adversarial_reviewer"
+      ]
+    },
+    {
+      "id": "CODE_REVIEW",
+      "order": 24,
+      "kind": "gate",
+      "success_to": "SPECIFICATION_DRIFT",
+      "failure_return_to": "IMPLEMENTATION",
+      "evidence_required": true,
+      "agents": [
+        "code_quality_reviewer"
+      ]
+    },
+    {
+      "id": "SPECIFICATION_DRIFT",
+      "order": 25,
+      "kind": "gate",
+      "success_to": "ACCEPTANCE_VALIDATION",
+      "failure_return_to": "PLAN",
+      "evidence_required": true,
+      "agents": [
+        "specification_drift_detector"
+      ]
+    },
+    {
+      "id": "ACCEPTANCE_VALIDATION",
+      "order": 26,
+      "kind": "gate",
+      "success_to": "DOCUMENTATION",
+      "failure_return_to": "IMPLEMENTATION",
+      "evidence_required": true,
+      "agents": [
+        "governance_auditor"
+      ]
+    },
+    {
+      "id": "DOCUMENTATION",
+      "order": 27,
+      "kind": "gate",
+      "success_to": "ROLLBACK_READINESS",
+      "failure_return_to": "IMPLEMENTATION",
+      "evidence_required": false,
+      "agents": [
+        "documentation_engineer"
+      ]
+    },
+    {
+      "id": "ROLLBACK_READINESS",
+      "order": 28,
+      "kind": "gate",
+      "success_to": "STATE_UPDATE",
+      "failure_return_to": "IMPLEMENTATION",
+      "evidence_required": true,
+      "agents": [
+        "rollback_readiness_reviewer"
+      ]
+    },
+    {
+      "id": "STATE_UPDATE",
+      "order": 29,
+      "kind": "gate",
+      "success_to": "GIT_COMMIT",
+      "failure_return_to": "DOCUMENTATION",
+      "evidence_required": true,
+      "agents": [
+        "pipeline_manager",
+        "continuity_manager"
+      ]
+    },
+    {
+      "id": "GIT_COMMIT",
+      "order": 30,
+      "kind": "gate",
+      "success_to": "CHECKPOINT",
+      "failure_return_to": "STATE_UPDATE",
+      "evidence_required": true
+    },
+    {
+      "id": "CHECKPOINT",
+      "order": 31,
+      "kind": "gate",
+      "success_to": "HANDOFF",
+      "failure_return_to": "STATE_UPDATE",
+      "evidence_required": true,
+      "agents": [
+        "continuity_manager"
+      ]
+    },
+    {
+      "id": "HANDOFF",
+      "order": 32,
+      "kind": "terminal",
+      "success_to": null,
+      "failure_return_to": "CHECKPOINT",
+      "evidence_required": false,
+      "agents": [
+        "continuity_manager"
+      ]
+    }
+  ]
+}

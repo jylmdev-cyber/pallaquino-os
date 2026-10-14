@@ -1,0 +1,79 @@
+---
+title: Cómo está organizada la CLI
+description: La forma de cada orden, la ayuda integrada, las opciones comunes --json y --root, y los comandos agrupados por tarea.
+sidebar:
+  order: 1
+lesson:
+  id: cli-introduccion
+  path: cli
+  difficulty: principiante
+  duration: 10
+  objectives:
+    - Leer y escribir órdenes con la forma pallaquino <comando> [opciones]
+    - Encontrar la ayuda de cualquier comando
+    - Situar cada comando en su grupo de tareas
+  prerequisites:
+    - instalacion-primera-vez
+  status: disponible
+  since: 0.5.0
+  next: cli-diagnostico
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import LessonComplete from '../../../components/LessonComplete.vue';
+import meta from '../../../data/generated/meta.json';
+
+## La forma de una orden
+
+```text
+python -m pallaquino_cli <comando> [acción] [argumentos] [opciones]
+```
+
+Con el paquete instalado, `pallaquino` equivale a `python -m pallaquino_cli`. Ejemplos reales:
+
+```bash
+python -m pallaquino_cli validate --integrity-only --json
+python -m pallaquino_cli agents match "agregar autenticación basada en roles" --json
+python -m pallaquino_cli memory search arquitectura --json
+```
+
+- **Comando**: `validate`, `agents`, `memory`… Hay {meta.counts.commands}.
+- **Acción**: algunos comandos agrupan varias (`agents list|match`, `memory status|search|inspect|verify|delete|purge`).
+- **Opciones**: empiezan por `--` y van **después** del comando.
+
+## La ayuda integrada
+
+```bash
+python -m pallaquino_cli --help
+python -m pallaquino_cli memory --help
+```
+
+La primera lista los comandos; la segunda, las acciones y opciones de uno concreto. La [referencia de la CLI](../../referencia/cli/) muestra
+lo mismo, generado del código.
+
+## Opciones presentes en todos los comandos
+
+| Opción | Para qué |
+|---|---|
+| `--json` | Salida JSON legible por máquinas (para scripts y para agentes). |
+| `--root RUTA` | Raíz del framework. Por defecto: `$PALLAQUINO_ROOT`, luego el checkout del paquete, luego `./.pallaquino` o una carpeta superior. |
+
+## Los comandos por tarea
+
+| Tarea | Comandos |
+|---|---|
+| Diagnóstico y estado | `doctor`, `validate`, `status`, `stack`, `pipeline`, `graph`, `contracts`, `identity` |
+| Análisis | `analyze`, `risk`, `agents`, `skills`, `security` |
+| Planificar y ejecutar | `plan`, `run`, `approve`, `pause`, `cancel`, `resume`, `executions` |
+| Continuidad | `checkpoint`, `handoff`, `resume` |
+| Memoria y proveedores | `memory`, `providers` |
+| Herramientas y extensiones | `tools`, `permissions`, `plugins`, `plugin`, `mcp` |
+| Instalación en proyectos | `init` |
+
+<Aside type="tip">
+	En la [terminal interactiva](../../practica/terminal/) puedes pulsar **Tab** para completar comandos y acciones reales.
+</Aside>
+
+**Siguiente:** [Diagnóstico y estado](../diagnostico-y-estado/).
+
+<LessonComplete client:load lessonId="cli-introduccion" />

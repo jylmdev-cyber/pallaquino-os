@@ -1,0 +1,70 @@
+---
+title: Evaluación de la ruta 1
+description: Comprueba que entiendes qué es PALLAQUINO, qué problemas resuelve y cómo funciona.
+sidebar:
+  order: 6
+lesson:
+  id: introduccion-evaluacion
+  path: introduccion
+  difficulty: principiante
+  duration: 6
+  objectives:
+    - Demostrar que entiendes los conceptos básicos antes de instalar
+  prerequisites:
+    - introduccion-limites
+  status: disponible
+  since: 0.5.0
+  next: instalacion-requisitos
+---
+
+import QuizPlayer from '../../../components/QuizPlayer.vue';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+Necesitas un **70 %** para dar la evaluación por superada. Puedes repetirla; se guarda tu mejor resultado en este navegador.
+
+<QuizPlayer client:load id="quiz-introduccion" title="Introducción a PALLAQUINO" questions={[
+	{
+		question: '¿Qué describe mejor a PALLAQUINO?',
+		options: [
+			{ text: 'Un modelo de IA que escribe código', correct: false, why: 'PALLAQUINO no es un modelo; funciona con cualquier agente o sin ninguno.' },
+			{ text: 'Un framework que hace verificable el trabajo de los agentes de IA', correct: true, why: 'Aporta método, gobernanza, evidencia y continuidad.' },
+			{ text: 'Un servicio en la nube de pago', correct: false, why: 'Es un framework local que usa solo la biblioteca estándar de Python.' },
+		],
+	},
+	{
+		question: 'Una tarea respondida por el proveedor mock aparece como…',
+		options: [
+			{ text: 'simulated: true', correct: true, why: 'Nunca se presenta como trabajo real.' },
+			{ text: 'COMPLETED sin ninguna marca', correct: false, why: 'Puede estar COMPLETED, pero siempre con simulated: true.' },
+			{ text: 'FAILED', correct: false, why: 'La simulación no es un fallo; es una respuesta sin cambios.' },
+		],
+	},
+	{
+		question: '¿Qué hace "pallaquino plan"?',
+		options: [
+			{ text: 'Planifica y ejecuta las tareas', correct: false, why: 'La ejecución es un paso aparte: pallaquino run --plan.' },
+			{ text: 'Genera un DAG validado sin ejecutar nada', correct: true, why: 'Planificar nunca ejecuta.' },
+			{ text: 'Despliega el proyecto', correct: false, why: 'Ningún comando autoriza por sí solo un despliegue.' },
+		],
+	},
+	{
+		question: 'Una solicitud de borrar datos de producción se clasifica como…',
+		options: [
+			{ text: 'LOW', correct: false, why: 'Producción y borrado de datos son factores gobernados.' },
+			{ text: 'HIGH', correct: false, why: 'La combinación llega al nivel máximo.' },
+			{ text: 'CRITICAL, con HUMAN_APPROVAL obligatorio', correct: true, why: 'Es la salida real de risk para esa solicitud.' },
+		],
+	},
+	{
+		question: '¿Qué es un handoff?',
+		options: [
+			{ text: 'Una copia de seguridad del repositorio', correct: false, why: 'No copia código.' },
+			{ text: 'Una declaración de lo hecho, lo pendiente y lo no verificado para quien continúe', correct: true, why: 'Es neutral respecto al proveedor.' },
+			{ text: 'Un commit automático', correct: false, why: 'PALLAQUINO no hace commits ni push por su cuenta.' },
+		],
+	},
+]} />
+
+<LessonComplete client:load lessonId="introduccion-evaluacion" />
+
+**Siguiente ruta:** [Instalación y configuración](../../instalacion/requisitos/).

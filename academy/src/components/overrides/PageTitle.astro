@@ -1,0 +1,78 @@
+---
+/**
+ * Starlight PageTitle override: breadcrumbs plus the lesson card (difficulty, duration, status, version, objectives,
+ * prerequisites) for pages that declare `lesson` frontmatter. Everything else renders like the default title.
+ */
+import { getCollection } from 'astro:content';
+import { DIFFICULTY_LABEL, STATUS_LABEL, pathById } from '../../lib/paths';
+
+const { entry } = Astro.locals.starlightRoute;
+const lesson = entry.data.lesson;
+// A prerequisite is either free text or another lesson's id; lesson ids become links to that lesson.
+const lessonPages = lesson ? await getCollection('docs', (e) => Boolean(e.data.lesson) && !e.id.startsWith('en/')) : [];
+const prerequisites = (lesson?.prerequisites ?? []).map((p: string) => {
+	const page = lessonPages.find((e) => e.data.lesson!.id === p);
+	return page ? { text: page.data.title, href: `${import.meta.env.BASE_URL.replace(/\/$/, '')}/${page.id}/` } : { text: p, href: null };
+});
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const segments = entry.id.split('/').filter(Boolean);
+const section = segments.length > 1 ? segments[0] : null;
+const route = lesson ? pathById(lesson.path) : section ? pathById(section) : undefined;
+const SECTION_LABEL: Record<string, string> = { practica: 'Práctica interactiva', referencia: 'Referencia', videos: 'Videos (guiones)', en: 'English' };
+const sectionLabel = route ? `${route.order} · ${route.title}` : section ? SECTION_LABEL[section] : null;
+const isHome = entry.id === 'index' || entry.id === '';
+// Learning paths link to the routes overview; other sections link to their index page only when one exists.
+const sectionHasIndex = !route && section ? (await getCollection('docs', (e) => e.id === section)).length > 0 : false;
+const sectionHref = route ? `${base}/rutas/` : sectionHasIndex ? `${base}/${section}/` : null;
+---
+
+{
+	!isHome && (
+		<nav class="breadcrumbs" aria-label="Ruta de navegación">
+			<ol>
+				<li><a href={`${base}/`}>Inicio</a></li>
+				{sectionLabel && <li>{sectionHref ? <a href={sectionHref}>{sectionLabel}</a> : sectionLabel}</li>}
+				<li aria-current="page">{entry.data.title}</li>
+			</ol>
+		</nav>
+	)
+}
+<h1 id="_top">{entry.data.title}</h1>
+{
+	lesson && (
+		<div class="lesson-card" role="group" aria-label="Información de la lección">
+			<ul class="badges">
+				<li class={`badge diff-${lesson.difficulty}`}>Nivel: {DIFFICULTY_LABEL[lesson.difficulty]}</li>
+				<li class="badge">⏱ {lesson.duration} min</li>
+				<li class={`badge status-${lesson.status}`}>{STATUS_LABEL[lesson.status]}</li>
+				<li class="badge">Desde PALLAQUINO {lesson.since}</li>
+			</ul>
+			<details open>
+				<summary>¿Qué aprenderás?</summary>
+				<ul>{lesson.objectives.map((o: string) => <li>{o}</li>)}</ul>
+				{prerequisites.length > 0 && (
+					<>
+						<p class="prereq-title">Requisitos previos</p>
+						<ul>{prerequisites.map((p) => <li>{p.href ? <a href={p.href}>{p.text}</a> : p.text}</li>)}</ul>
+					</>
+				)}
+			</details>
+		</div>
+	)
+}
+
+<style>
+	h1 { margin-top: 0.5rem; font-size: var(--sl-text-h1); line-height: var(--sl-line-height-headings); font-weight: 600; color: var(--sl-color-white); }
+	.breadcrumbs ol { list-style: none; display: flex; flex-wrap: wrap; gap: 0.35rem; padding: 0; margin: 0.5rem 0 0; font-size: var(--sl-text-sm); }
+	.breadcrumbs li + li::before { content: '›'; margin-inline-end: 0.35rem; color: var(--sl-color-gray-3); }
+	.breadcrumbs a { color: var(--sl-color-text-accent); }
+	.breadcrumbs [aria-current='page'] { color: var(--sl-color-gray-2); }
+	.lesson-card { border: 1px solid var(--sl-color-gray-5); border-radius: 0.75rem; padding: 0.75rem 1rem; margin-top: 1rem; background: var(--sl-color-gray-6); }
+	.badges { list-style: none; display: flex; flex-wrap: wrap; gap: 0.5rem; padding: 0; margin: 0 0 0.5rem; }
+	.badge { font-size: var(--sl-text-xs); border: 1px solid var(--sl-color-gray-4); border-radius: 1rem; padding: 0.15rem 0.6rem; margin: 0; }
+	.diff-principiante { border-color: var(--academy-success); } .diff-intermedio { border-color: var(--academy-info); } .diff-avanzado { border-color: var(--academy-warning); }
+	.status-disponible { border-color: var(--academy-success); } .status-experimental, .status-proximamente { border-color: var(--academy-warning); } .status-deprecado { border-color: var(--academy-danger); }
+	.lesson-card summary { cursor: pointer; font-weight: 600; }
+	.lesson-card ul { margin: 0.25rem 0 0; }
+	.prereq-title { font-weight: 600; margin: 0.5rem 0 0; }
+</style>

@@ -1,0 +1,3003 @@
+[
+  {
+    "id": "accounting_domain_expert",
+    "name": "Accounting Domain Expert",
+    "description": "Enforce balanced postings, immutable audit, currencies, business dates, period close, adjustments and reconciliation.",
+    "category": "domain",
+    "domains": [
+      "accounting",
+      "erp"
+    ],
+    "capabilities": [
+      "ledger",
+      "period",
+      "reconcile"
+    ],
+    "technologies": [],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "domain",
+      "accounting",
+      "erp"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "adversarial_review_expert",
+    "name": "Adversarial Review Expert",
+    "description": "Probe malformed inputs, boundary values, concurrency, retries, partial failure, privilege changes and data-integrity invariants.",
+    "category": "security",
+    "domains": [
+      "security"
+    ],
+    "capabilities": [
+      "attack",
+      "fuzz"
+    ],
+    "technologies": [],
+    "risk_level": "HIGH",
+    "tags": [
+      "security",
+      "security"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "ai_cost_optimization_expert",
+    "name": "Ai Cost Optimization Expert",
+    "description": "Attribute token, model, retrieval and tool cost per workflow; optimize only with quality and latency regression evidence.",
+    "category": "operations",
+    "domains": [
+      "ai",
+      "cost"
+    ],
+    "capabilities": [
+      "budget",
+      "measure",
+      "optimize"
+    ],
+    "technologies": [],
+    "risk_level": "HIGH",
+    "tags": [
+      "operations",
+      "ai",
+      "cost"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "ai_guardrails_expert",
+    "name": "Ai Guardrails Expert",
+    "description": "Layer input, policy, tool and output controls around explicit risks; measure false positives, bypasses and safe failure behavior.",
+    "category": "security",
+    "domains": [
+      "ai",
+      "governance"
+    ],
+    "capabilities": [
+      "policy",
+      "moderate",
+      "evaluate"
+    ],
+    "technologies": [],
+    "risk_level": "HIGH",
+    "tags": [
+      "security",
+      "ai",
+      "governance"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "angular_expert",
+    "name": "Angular Expert",
+    "description": "Use standalone boundaries, typed forms and dependency injection deliberately; keep domain state independent from components and framework lifecycle.",
+    "category": "frontend",
+    "domains": [
+      "web",
+      "enterprise"
+    ],
+    "capabilities": [
+      "components",
+      "routing",
+      "test"
+    ],
+    "technologies": [
+      "angular",
+      "typescript"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "frontend",
+      "web",
+      "enterprise"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "api_contract_expert",
+    "name": "Api Contract Expert",
+    "description": "Diff contracts for removed routes/fields, changed types, new required inputs and status semantics; provide a migration path for breaking changes.",
+    "category": "backend",
+    "domains": [
+      "api"
+    ],
+    "capabilities": [
+      "openapi",
+      "compatibility"
+    ],
+    "technologies": [],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "backend",
+      "api"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "application_security_expert",
+    "name": "Application Security Expert",
+    "description": "Apply least privilege, deny by default, validate at trust boundaries and test authorization separately from authentication.",
+    "category": "security",
+    "domains": [
+      "security"
+    ],
+    "capabilities": [
+      "threat_model",
+      "review"
+    ],
+    "technologies": [],
+    "risk_level": "HIGH",
+    "tags": [
+      "security",
+      "security"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "architecture_fitness_expert",
+    "name": "Architecture Fitness Expert",
+    "description": "Encode important boundaries as deterministic checks with actionable paths; avoid rules that cannot be automatically or independently verified.",
+    "category": "architecture",
+    "domains": [
+      "architecture"
+    ],
+    "capabilities": [
+      "boundaries",
+      "validate"
+    ],
+    "technologies": [],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "architecture",
+      "architecture"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "argocd_expert",
+    "name": "Argocd Expert",
+    "description": "Make desired state and promotion observable; constrain automated sync, drift correction and pruning according to environment risk.",
+    "category": "platform",
+    "domains": [
+      "deployment",
+      "kubernetes"
+    ],
+    "capabilities": [
+      "gitops",
+      "sync",
+      "rollback"
+    ],
+    "technologies": [
+      "argocd",
+      "kubernetes"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "platform",
+      "deployment",
+      "kubernetes"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "aws_expert",
+    "name": "Aws Expert",
+    "description": "Design account, IAM, network, encryption, logging and service limits explicitly; prefer managed services only when ownership and exit cost are understood.",
+    "category": "cloud",
+    "domains": [
+      "cloud",
+      "infrastructure"
+    ],
+    "capabilities": [
+      "iam",
+      "network",
+      "operate"
+    ],
+    "technologies": [
+      "aws"
+    ],
+    "risk_level": "HIGH",
+    "tags": [
+      "cloud",
+      "cloud",
+      "infrastructure"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "azure_expert",
+    "name": "Azure Expert",
+    "description": "Integrate tenant identity, subscriptions, policy, private connectivity and diagnostics with clear responsibility and cost boundaries.",
+    "category": "cloud",
+    "domains": [
+      "cloud",
+      "enterprise"
+    ],
+    "capabilities": [
+      "identity",
+      "network",
+      "operate"
+    ],
+    "technologies": [
+      "azure"
+    ],
+    "risk_level": "HIGH",
+    "tags": [
+      "cloud",
+      "cloud",
+      "enterprise"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "backup_recovery_expert",
+    "name": "Backup Recovery Expert",
+    "description": "Set RPO/RTO, encrypt and isolate backups, verify completeness and regularly restore into a controlled environment with evidence.",
+    "category": "operations",
+    "domains": [
+      "database",
+      "reliability"
+    ],
+    "capabilities": [
+      "backup",
+      "restore",
+      "exercise"
+    ],
+    "technologies": [],
+    "risk_level": "HIGH",
+    "tags": [
+      "operations",
+      "database",
+      "reliability"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "clickhouse_expert",
+    "name": "Clickhouse Expert",
+    "description": "Choose sort and partition keys from workload evidence, control cardinality and mutation cost, and validate retention and replication.",
+    "category": "data",
+    "domains": [
+      "analytics",
+      "database"
+    ],
+    "capabilities": [
+      "model",
+      "query",
+      "operate"
+    ],
+    "technologies": [
+      "clickhouse"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "data",
+      "analytics",
+      "database"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "cloud_cost_optimization_expert",
+    "name": "Cloud Cost Optimization Expert",
+    "description": "Attribute cost to owner and workload, forecast scenarios and enforce anomaly/budget guardrails while preserving SLO and security constraints.",
+    "category": "operations",
+    "domains": [
+      "cloud",
+      "cost"
+    ],
+    "capabilities": [
+      "forecast",
+      "budget",
+      "optimize"
+    ],
+    "technologies": [
+      "aws",
+      "azure",
+      "gcp"
+    ],
+    "risk_level": "HIGH",
+    "tags": [
+      "operations",
+      "cloud",
+      "cost"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "context_management_expert",
+    "name": "Context Management Expert",
+    "description": "Pin safety rules, decisions and current contracts; rank remaining context by relevance per token cost and record omissions.",
+    "category": "context",
+    "domains": [
+      "context"
+    ],
+    "capabilities": [
+      "budget",
+      "summarize"
+    ],
+    "technologies": [],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "context",
+      "context"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "crm_domain_expert",
+    "name": "Crm Domain Expert",
+    "description": "Define account/contact identity, ownership, consent, activity history, pipeline transitions and forecast semantics.",
+    "category": "domain",
+    "domains": [
+      "crm",
+      "saas"
+    ],
+    "capabilities": [
+      "account",
+      "pipeline",
+      "activity"
+    ],
+    "technologies": [],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "domain",
+      "crm",
+      "saas"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "data_modeling_expert",
+    "name": "Data Modeling Expert",
+    "description": "Translate business invariants into explicit entities, keys, constraints, histories and ownership; separate operational and analytical models.",
+    "category": "data",
+    "domains": [
+      "data",
+      "database"
+    ],
+    "capabilities": [
+      "model",
+      "invariants",
+      "review"
+    ],
+    "technologies": [],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "data",
+      "data",
+      "database"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "data_privacy_expert",
+    "name": "Data Privacy Expert",
+    "description": "Inventory data purpose and sensitivity, minimize collection, constrain access, define retention/deletion and test subject-right workflows.",
+    "category": "security",
+    "domains": [
+      "privacy",
+      "data"
+    ],
+    "capabilities": [
+      "classify",
+      "minimize",
+      "retain"
+    ],
+    "technologies": [],
+    "risk_level": "HIGH",
+    "tags": [
+      "security",
+      "privacy",
+      "data"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "database_performance_expert",
+    "name": "Database Performance Expert",
+    "description": "Measure representative queries, plans, waits and cardinality; optimize the workload while accounting for write, storage and maintenance cost.",
+    "category": "database",
+    "domains": [
+      "database",
+      "performance"
+    ],
+    "capabilities": [
+      "profile",
+      "index",
+      "capacity"
+    ],
+    "technologies": [
+      "postgresql",
+      "mysql",
+      "sql_server"
+    ],
+    "risk_level": "HIGH",
+    "tags": [
+      "database",
+      "database",
+      "performance"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "dependency_governance_expert",
+    "name": "Dependency Governance Expert",
+    "description": "Require a written need, maintenance signal, security and license review, size impact, compatibility and alternatives.",
+    "category": "security",
+    "domains": [
+      "dependencies"
+    ],
+    "capabilities": [
+      "audit",
+      "license"
+    ],
+    "technologies": [],
+    "risk_level": "HIGH",
+    "tags": [
+      "security",
+      "dependencies"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "distributed_systems_expert",
+    "name": "Distributed Systems Expert",
+    "description": "State consistency, availability and partition assumptions; design timeouts, retries, deduplication and reconciliation before introducing distribution.",
+    "category": "architecture",
+    "domains": [
+      "distributed_systems"
+    ],
+    "capabilities": [
+      "consistency",
+      "resilience",
+      "review"
+    ],
+    "technologies": [],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "architecture",
+      "distributed_systems"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "django_expert",
+    "name": "Django Expert",
+    "description": "Keep views thin, domain rules explicit and queries bounded; use Django migrations and authorization primitives while verifying the selected supported version.",
+    "category": "backend",
+    "domains": [
+      "backend",
+      "web"
+    ],
+    "capabilities": [
+      "orm",
+      "auth",
+      "test"
+    ],
+    "technologies": [
+      "django",
+      "python"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "backend",
+      "backend",
+      "web"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "docker_expert",
+    "name": "Docker Expert",
+    "description": "Build minimal non-root images, pin important bases, separate build/runtime stages, add health checks and avoid baking secrets into layers.",
+    "category": "platform",
+    "domains": [
+      "deployment"
+    ],
+    "capabilities": [
+      "container",
+      "compose"
+    ],
+    "technologies": [
+      "docker_engine",
+      "docker_compose"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "platform",
+      "deployment"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "dotnet_expert",
+    "name": "Dotnet Expert",
+    "description": "Target an active supported release, use dependency injection and cancellation correctly, and keep domain code independent of ASP.NET and persistence.",
+    "category": "backend",
+    "domains": [
+      "backend"
+    ],
+    "capabilities": [
+      "aspnet",
+      "test"
+    ],
+    "technologies": [
+      "dotnet"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "backend",
+      "backend"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "ecommerce_domain_expert",
+    "name": "Ecommerce Domain Expert",
+    "description": "Protect price snapshots, promotions, stock reservation, order states, fulfillment, returns and payment reconciliation.",
+    "category": "domain",
+    "domains": [
+      "ecommerce"
+    ],
+    "capabilities": [
+      "catalog",
+      "order",
+      "payment"
+    ],
+    "technologies": [],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "domain",
+      "ecommerce"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "erp_domain_expert",
+    "name": "Erp Domain Expert",
+    "description": "Preserve immutable audit trails, balanced financial movements, inventory consistency and explicit business dates/currencies.",
+    "category": "domain",
+    "domains": [
+      "erp"
+    ],
+    "capabilities": [
+      "accounting",
+      "inventory"
+    ],
+    "technologies": [],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "domain",
+      "erp"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "event_driven_architecture_expert",
+    "name": "Event Driven Architecture Expert",
+    "description": "Publish facts with clear ownership and schemas; distinguish commands from events and define delivery, ordering, privacy and replay semantics.",
+    "category": "architecture",
+    "domains": [
+      "events",
+      "integration"
+    ],
+    "capabilities": [
+      "event_model",
+      "contract",
+      "review"
+    ],
+    "technologies": [
+      "kafka",
+      "rabbitmq"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "architecture",
+      "events",
+      "integration"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "evidence_validation_expert",
+    "name": "Evidence Validation Expert",
+    "description": "Record exact command, timestamp, agent, exit code, result, summary and artifact; never convert an unrun gate into passed.",
+    "category": "quality",
+    "domains": [
+      "evidence"
+    ],
+    "capabilities": [
+      "capture",
+      "verify"
+    ],
+    "technologies": [],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "quality",
+      "evidence"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "fintech_domain_expert",
+    "name": "Fintech Domain Expert",
+    "description": "Use precise money types, immutable ledgers, idempotent operations, reconciliation and explicit pending/failure states.",
+    "category": "domain",
+    "domains": [
+      "fintech",
+      "payments"
+    ],
+    "capabilities": [
+      "ledger",
+      "payment",
+      "risk"
+    ],
+    "technologies": [],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "domain",
+      "fintech",
+      "payments"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "flutter_expert",
+    "name": "Flutter Expert",
+    "description": "Separate presentation, domain and platform services; test lifecycle, navigation, accessibility and platform differences without hiding them behind abstractions.",
+    "category": "mobile",
+    "domains": [
+      "mobile"
+    ],
+    "capabilities": [
+      "ui",
+      "state",
+      "test"
+    ],
+    "technologies": [
+      "flutter",
+      "dart"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "mobile",
+      "mobile"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "frontend_accessibility_expert",
+    "name": "Frontend Accessibility Expert",
+    "description": "Verify semantic structure, names, focus order, keyboard operation, contrast, error association and reduced-motion behavior.",
+    "category": "frontend",
+    "domains": [
+      "web"
+    ],
+    "capabilities": [
+      "wcag",
+      "keyboard"
+    ],
+    "technologies": [],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "frontend",
+      "web"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "gcp_expert",
+    "name": "Gcp Expert",
+    "description": "Use projects, service accounts, organization policy and audit logging to create explicit trust and billing boundaries.",
+    "category": "cloud",
+    "domains": [
+      "cloud",
+      "data"
+    ],
+    "capabilities": [
+      "iam",
+      "network",
+      "operate"
+    ],
+    "technologies": [
+      "gcp"
+    ],
+    "risk_level": "HIGH",
+    "tags": [
+      "cloud",
+      "cloud",
+      "data"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "git_release_expert",
+    "name": "Git Release Expert",
+    "description": "Use conventional commits, preserve the configured human author, reject AI co-author trailers and avoid rewriting shared history.",
+    "category": "release",
+    "domains": [
+      "release"
+    ],
+    "capabilities": [
+      "git",
+      "commit"
+    ],
+    "technologies": [],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "release",
+      "release"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "github_actions_expert",
+    "name": "Github Actions Expert",
+    "description": "Pin actions proportionally, minimize token permissions, isolate untrusted contributions and preserve artifact provenance and evidence.",
+    "category": "platform",
+    "domains": [
+      "ci",
+      "release"
+    ],
+    "capabilities": [
+      "ci",
+      "security",
+      "artifact"
+    ],
+    "technologies": [
+      "github_actions"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "platform",
+      "ci",
+      "release"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "go_expert",
+    "name": "Go Expert",
+    "description": "Prefer simple packages and explicit errors; bound goroutines, propagate context cancellation, prevent leaks and test race-sensitive behavior.",
+    "category": "language",
+    "domains": [
+      "backend",
+      "platform"
+    ],
+    "capabilities": [
+      "concurrency",
+      "api",
+      "test"
+    ],
+    "technologies": [
+      "go"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "language",
+      "backend",
+      "platform"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "healthcare_domain_expert",
+    "name": "Healthcare Domain Expert",
+    "description": "Separate clinical facts from workflow, enforce consent and least privilege, preserve provenance and make safety-critical changes reviewable.",
+    "category": "domain",
+    "domains": [
+      "healthcare"
+    ],
+    "capabilities": [
+      "privacy",
+      "clinical",
+      "audit"
+    ],
+    "technologies": [],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "domain",
+      "healthcare"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "helm_expert",
+    "name": "Helm Expert",
+    "description": "Keep values schemas explicit, render and validate manifests before release, and avoid templates that hide unsafe defaults.",
+    "category": "platform",
+    "domains": [
+      "deployment",
+      "kubernetes"
+    ],
+    "capabilities": [
+      "template",
+      "release",
+      "rollback"
+    ],
+    "technologies": [
+      "helm",
+      "kubernetes"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "platform",
+      "deployment",
+      "kubernetes"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "idempotency_expert",
+    "name": "Idempotency Expert",
+    "description": "Define operation identity, result retention and concurrency semantics so duplicate requests or messages cannot duplicate effects.",
+    "category": "reliability",
+    "domains": [
+      "api",
+      "events",
+      "payments"
+    ],
+    "capabilities": [
+      "deduplicate",
+      "retry",
+      "test"
+    ],
+    "technologies": [],
+    "risk_level": "HIGH",
+    "tags": [
+      "reliability",
+      "api",
+      "events",
+      "payments"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "kafka_expert",
+    "name": "Kafka Expert",
+    "description": "Define partition keys, ordering, retention, consumer ownership and replay behavior; monitor lag and protect schema compatibility.",
+    "category": "integration",
+    "domains": [
+      "events",
+      "distributed_systems"
+    ],
+    "capabilities": [
+      "stream",
+      "schema",
+      "operate"
+    ],
+    "technologies": [
+      "kafka"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "integration",
+      "events",
+      "distributed_systems"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "kotlin_android_expert",
+    "name": "Kotlin Android Expert",
+    "description": "Use lifecycle-aware state and structured concurrency; test process death, configuration changes, permissions and background constraints.",
+    "category": "mobile",
+    "domains": [
+      "android",
+      "mobile"
+    ],
+    "capabilities": [
+      "ui",
+      "lifecycle",
+      "test"
+    ],
+    "technologies": [
+      "kotlin"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "mobile",
+      "android",
+      "mobile"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "kubernetes_expert",
+    "name": "Kubernetes Expert",
+    "description": "Set requests/limits, probes, disruption budgets and security contexts; design rollout, rollback and network policy before production use.",
+    "category": "platform",
+    "domains": [
+      "deployment",
+      "cloud"
+    ],
+    "capabilities": [
+      "orchestration",
+      "security",
+      "operate"
+    ],
+    "technologies": [
+      "kubernetes"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "platform",
+      "deployment",
+      "cloud"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "laravel_expert",
+    "name": "Laravel Expert",
+    "description": "Use policies for authorization, validate request boundaries, control Eloquent query shape and make jobs idempotent and retry-safe.",
+    "category": "backend",
+    "domains": [
+      "backend",
+      "web"
+    ],
+    "capabilities": [
+      "api",
+      "orm",
+      "queue"
+    ],
+    "technologies": [
+      "php",
+      "laravel"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "backend",
+      "backend",
+      "web"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "llm_evaluation_expert",
+    "name": "Llm Evaluation Expert",
+    "description": "Use representative frozen cases, deterministic assertions where possible, blinded review where necessary and confidence intervals for noisy metrics.",
+    "category": "quality",
+    "domains": [
+      "ai",
+      "testing"
+    ],
+    "capabilities": [
+      "dataset",
+      "score",
+      "regress"
+    ],
+    "technologies": [],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "quality",
+      "ai",
+      "testing"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "logistics_domain_expert",
+    "name": "Logistics Domain Expert",
+    "description": "Model shipment custody, events, time windows, capacity, route changes, exceptions and proof of delivery.",
+    "category": "domain",
+    "domains": [
+      "logistics"
+    ],
+    "capabilities": [
+      "shipment",
+      "tracking",
+      "optimization"
+    ],
+    "technologies": [],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "domain",
+      "logistics"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "manufacturing_domain_expert",
+    "name": "Manufacturing Domain Expert",
+    "description": "Protect BOM versions, work orders, material consumption, lot traceability, yields, quality holds and costing.",
+    "category": "domain",
+    "domains": [
+      "manufacturing",
+      "erp"
+    ],
+    "capabilities": [
+      "bom",
+      "production",
+      "quality"
+    ],
+    "technologies": [],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "domain",
+      "manufacturing",
+      "erp"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "mcp_expert",
+    "name": "Mcp Expert",
+    "description": "Expose narrow, well-described tools with least privilege, validated arguments, bounded outputs and clear read/write side effects.",
+    "category": "ai",
+    "domains": [
+      "ai",
+      "integration"
+    ],
+    "capabilities": [
+      "tool",
+      "permission",
+      "protocol"
+    ],
+    "technologies": [
+      "mcp"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "ai",
+      "ai",
+      "integration"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "microservices_expert",
+    "name": "Microservices Expert",
+    "description": "Require independent ownership and deployment benefits before splitting services; budget network failure, observability and data ownership costs.",
+    "category": "architecture",
+    "domains": [
+      "distributed_systems",
+      "backend"
+    ],
+    "capabilities": [
+      "boundaries",
+      "api",
+      "operate"
+    ],
+    "technologies": [
+      "kubernetes"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "architecture",
+      "distributed_systems",
+      "backend"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "migration_safety_expert",
+    "name": "Migration Safety Expert",
+    "description": "Separate expand/backfill/contract; assess table size, locks, old/new code coexistence, backups, throttling and rollback.",
+    "category": "database",
+    "domains": [
+      "database"
+    ],
+    "capabilities": [
+      "migration",
+      "online_change"
+    ],
+    "technologies": [],
+    "risk_level": "HIGH",
+    "tags": [
+      "database",
+      "database"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "mobile_offline_sync_expert",
+    "name": "Mobile Offline Sync Expert",
+    "description": "Define local source of truth, operation identity, ordering and conflict policy; test retries, clock drift, partial sync and schema upgrades.",
+    "category": "mobile",
+    "domains": [
+      "mobile",
+      "distributed_systems"
+    ],
+    "capabilities": [
+      "offline",
+      "sync",
+      "conflict"
+    ],
+    "technologies": [],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "mobile",
+      "mobile",
+      "distributed_systems"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "mobile_security_expert",
+    "name": "Mobile Security Expert",
+    "description": "Protect tokens and local data, minimize permissions, validate deep links and transport trust, and assume clients can be inspected or modified.",
+    "category": "security",
+    "domains": [
+      "mobile",
+      "security"
+    ],
+    "capabilities": [
+      "storage",
+      "permission",
+      "review"
+    ],
+    "technologies": [
+      "flutter",
+      "react_native",
+      "swiftui",
+      "kotlin"
+    ],
+    "risk_level": "HIGH",
+    "tags": [
+      "security",
+      "mobile",
+      "security"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "model_routing_expert",
+    "name": "Model Routing Expert",
+    "description": "Route by measured capability, latency, privacy and cost; test fallback semantics and avoid silently weakening safety or output contracts.",
+    "category": "ai",
+    "domains": [
+      "ai",
+      "platform"
+    ],
+    "capabilities": [
+      "route",
+      "fallback",
+      "evaluate"
+    ],
+    "technologies": [],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "ai",
+      "ai",
+      "platform"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "modular_monolith_expert",
+    "name": "Modular Monolith Expert",
+    "description": "Enforce module contracts and data ownership in one deployable, preserving a low-cost path to later extraction without premature distribution.",
+    "category": "architecture",
+    "domains": [
+      "architecture",
+      "backend"
+    ],
+    "capabilities": [
+      "modules",
+      "boundaries",
+      "test"
+    ],
+    "technologies": [],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "architecture",
+      "architecture",
+      "backend"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "mongodb_expert",
+    "name": "Mongodb Expert",
+    "description": "Model documents from atomic access patterns, enforce schemas and indexes, and plan shard keys, transactions and migration compatibility deliberately.",
+    "category": "database",
+    "domains": [
+      "database"
+    ],
+    "capabilities": [
+      "document",
+      "index",
+      "migration"
+    ],
+    "technologies": [
+      "mongodb"
+    ],
+    "risk_level": "HIGH",
+    "tags": [
+      "database",
+      "database"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "mysql_expert",
+    "name": "Mysql Expert",
+    "description": "Design with engine, collation and isolation behavior in mind; inspect execution plans and use online-compatible schema changes with verified backups.",
+    "category": "database",
+    "domains": [
+      "database"
+    ],
+    "capabilities": [
+      "sql",
+      "index",
+      "migration"
+    ],
+    "technologies": [
+      "mysql"
+    ],
+    "risk_level": "HIGH",
+    "tags": [
+      "database",
+      "database"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "nextjs_expert",
+    "name": "Nextjs Expert",
+    "description": "Choose server, client and edge execution intentionally; make caching, revalidation, authentication and streaming behavior observable and testable.",
+    "category": "frontend",
+    "domains": [
+      "web",
+      "saas"
+    ],
+    "capabilities": [
+      "ssr",
+      "routing",
+      "cache"
+    ],
+    "technologies": [
+      "nextjs",
+      "react",
+      "nodejs",
+      "typescript"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "frontend",
+      "web",
+      "saas"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "nginx_expert",
+    "name": "Nginx Expert",
+    "description": "Configure forwarding trust, timeouts, body limits, TLS and health behavior explicitly; test real client IP and failure propagation.",
+    "category": "platform",
+    "domains": [
+      "web",
+      "network"
+    ],
+    "capabilities": [
+      "proxy",
+      "tls",
+      "performance"
+    ],
+    "technologies": [
+      "nginx"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "platform",
+      "web",
+      "network"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "nodejs_expert",
+    "name": "Nodejs Expert",
+    "description": "Prefer Active LTS, deterministic lockfiles, ESM-aware tooling and explicit async error handling; audit install scripts and transitive dependencies.",
+    "category": "runtime",
+    "domains": [
+      "frontend",
+      "backend"
+    ],
+    "capabilities": [
+      "node",
+      "package"
+    ],
+    "technologies": [
+      "nodejs"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "runtime",
+      "frontend",
+      "backend"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "nuxt_expert",
+    "name": "Nuxt Expert",
+    "description": "Separate server/client boundaries, use composables deliberately, protect hydration and SEO, and verify the stable supported Nuxt release before scaffolding.",
+    "category": "frontend",
+    "domains": [
+      "frontend",
+      "web"
+    ],
+    "capabilities": [
+      "ssr",
+      "routing",
+      "test"
+    ],
+    "technologies": [
+      "nuxt",
+      "nodejs"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "frontend",
+      "frontend",
+      "web"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "observability_expert",
+    "name": "Observability Expert",
+    "description": "Design telemetry from operator questions, propagate correlation IDs, avoid secret/PII leakage and alert on symptoms users feel.",
+    "category": "operations",
+    "domains": [
+      "observability"
+    ],
+    "capabilities": [
+      "logs",
+      "metrics",
+      "traces"
+    ],
+    "technologies": [],
+    "risk_level": "HIGH",
+    "tags": [
+      "operations",
+      "observability"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "openid_connect_expert",
+    "name": "Openid Connect Expert",
+    "description": "Validate issuer, audience, nonce, state, PKCE and redirect boundaries; separate authentication claims from application authorization.",
+    "category": "security",
+    "domains": [
+      "identity",
+      "api"
+    ],
+    "capabilities": [
+      "oauth",
+      "sso",
+      "authorization"
+    ],
+    "technologies": [
+      "openid_connect"
+    ],
+    "risk_level": "HIGH",
+    "tags": [
+      "security",
+      "identity",
+      "api"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "opensearch_expert",
+    "name": "Opensearch Expert",
+    "description": "Design mappings and lifecycle before indexing; bound query cost, shard growth, refresh behavior and sensitive-data exposure.",
+    "category": "data",
+    "domains": [
+      "search",
+      "observability"
+    ],
+    "capabilities": [
+      "index",
+      "query",
+      "operate"
+    ],
+    "technologies": [
+      "opensearch"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "data",
+      "search",
+      "observability"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "outbox_pattern_expert",
+    "name": "Outbox Pattern Expert",
+    "description": "Atomically persist domain change and event intent, then publish idempotently with monitoring, cleanup and replay controls.",
+    "category": "integration",
+    "domains": [
+      "events",
+      "database"
+    ],
+    "capabilities": [
+      "transaction",
+      "publish",
+      "reconcile"
+    ],
+    "technologies": [
+      "postgresql",
+      "mysql",
+      "sql_server"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "integration",
+      "events",
+      "database"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "playwright_expert",
+    "name": "Playwright Expert",
+    "description": "Test user-visible outcomes with resilient locators, isolated data and trace artifacts across browsers; avoid arbitrary sleeps.",
+    "category": "testing",
+    "domains": [
+      "web",
+      "testing"
+    ],
+    "capabilities": [
+      "e2e",
+      "browser",
+      "accessibility"
+    ],
+    "technologies": [
+      "playwright"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "testing",
+      "web",
+      "testing"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "postgresql_expert",
+    "name": "Postgresql Expert",
+    "description": "Use constraints for invariants, inspect query plans and lock behavior, and always target the latest supported minor of the selected major.",
+    "category": "database",
+    "domains": [
+      "database"
+    ],
+    "capabilities": [
+      "sql",
+      "index",
+      "migration"
+    ],
+    "technologies": [
+      "postgresql"
+    ],
+    "risk_level": "HIGH",
+    "tags": [
+      "database",
+      "database"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "prompt_security_expert",
+    "name": "Prompt Security Expert",
+    "description": "Separate trusted instructions from untrusted content, constrain tool/data access and test direct, indirect and encoded prompt-injection attacks.",
+    "category": "security",
+    "domains": [
+      "ai",
+      "security"
+    ],
+    "capabilities": [
+      "injection",
+      "exfiltration",
+      "review"
+    ],
+    "technologies": [],
+    "risk_level": "HIGH",
+    "tags": [
+      "security",
+      "ai",
+      "security"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "python_expert",
+    "name": "Python Expert",
+    "description": "Use explicit types and exceptions, pathlib and isolated environments; target the latest supported stable patch compatible with dependencies.",
+    "category": "language",
+    "domains": [
+      "backend",
+      "automation"
+    ],
+    "capabilities": [
+      "python",
+      "test"
+    ],
+    "technologies": [
+      "python"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "language",
+      "backend",
+      "automation"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "rabbitmq_expert",
+    "name": "Rabbitmq Expert",
+    "description": "Design exchanges, acknowledgements, prefetch, dead-letter and retry topology to avoid message loss and poison-message loops.",
+    "category": "integration",
+    "domains": [
+      "events",
+      "distributed_systems"
+    ],
+    "capabilities": [
+      "queue",
+      "routing",
+      "retry"
+    ],
+    "technologies": [
+      "rabbitmq"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "integration",
+      "events",
+      "distributed_systems"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "rag_expert",
+    "name": "Rag Expert",
+    "description": "Preserve source identity and permissions through chunking, indexing and retrieval; measure relevance and require citations for grounded answers.",
+    "category": "ai",
+    "domains": [
+      "ai",
+      "retrieval"
+    ],
+    "capabilities": [
+      "ingest",
+      "retrieve",
+      "ground"
+    ],
+    "technologies": [
+      "vector_database"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "ai",
+      "ai",
+      "retrieval"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "react_expert",
+    "name": "React Expert",
+    "description": "Model UI as accessible components with explicit state ownership, stable identities and effect boundaries; measure rendering before memoizing.",
+    "category": "frontend",
+    "domains": [
+      "web"
+    ],
+    "capabilities": [
+      "components",
+      "state",
+      "test"
+    ],
+    "technologies": [
+      "react"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "frontend",
+      "web"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "react_native_expert",
+    "name": "React Native Expert",
+    "description": "Control JS/native boundaries, lifecycle and rendering; profile real devices and test permissions, upgrades and degraded networks.",
+    "category": "mobile",
+    "domains": [
+      "mobile"
+    ],
+    "capabilities": [
+      "ui",
+      "native_bridge",
+      "test"
+    ],
+    "technologies": [
+      "react_native",
+      "react",
+      "nodejs",
+      "typescript"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "mobile",
+      "mobile"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "redis_expert",
+    "name": "Redis Expert",
+    "description": "Define key lifecycle, eviction, consistency and failure behavior; never treat cache locks as safe without ownership tokens and expiry analysis.",
+    "category": "data",
+    "domains": [
+      "cache",
+      "distributed_systems"
+    ],
+    "capabilities": [
+      "cache",
+      "lock",
+      "queue"
+    ],
+    "technologies": [
+      "redis"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "data",
+      "cache",
+      "distributed_systems"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "release_management_expert",
+    "name": "Release Management Expert",
+    "description": "Infer PATCH/MINOR/MAJOR from contract impact, link evidence, migrations and rollback, and preserve known issues.",
+    "category": "release",
+    "domains": [
+      "release"
+    ],
+    "capabilities": [
+      "semver",
+      "manifest"
+    ],
+    "technologies": [],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "release",
+      "release"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "restobar_domain_expert",
+    "name": "Restobar Domain Expert",
+    "description": "Model menus, modifiers, tables, kitchen flow, split payments, cash shifts, recipes, stock consumption and audit.",
+    "category": "domain",
+    "domains": [
+      "restobar",
+      "erp"
+    ],
+    "capabilities": [
+      "pos",
+      "inventory",
+      "cash"
+    ],
+    "technologies": [],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "domain",
+      "restobar",
+      "erp"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "risk_analysis_expert",
+    "name": "Risk Analysis Expert",
+    "description": "Use monotonic factor scoring; explain matched factors, confidence and mandatory gates. Never downgrade an unknown destructive operation.",
+    "category": "risk",
+    "domains": [
+      "risk"
+    ],
+    "capabilities": [
+      "classify",
+      "gate"
+    ],
+    "technologies": [],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "risk",
+      "risk"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "rollback_strategy_expert",
+    "name": "Rollback Strategy Expert",
+    "description": "Define trigger, owner, time bound and tested reversal for code, data, config and rollout; distinguish rollback from forward repair.",
+    "category": "operations",
+    "domains": [
+      "deployment"
+    ],
+    "capabilities": [
+      "rollback",
+      "flags"
+    ],
+    "technologies": [],
+    "risk_level": "HIGH",
+    "tags": [
+      "operations",
+      "deployment"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "saas_tenancy_expert",
+    "name": "Saas Tenancy Expert",
+    "description": "Make tenant scope unavoidable in storage and authorization; test cross-tenant denial, lifecycle deletion and entitlement changes.",
+    "category": "architecture",
+    "domains": [
+      "saas"
+    ],
+    "capabilities": [
+      "tenancy",
+      "entitlements"
+    ],
+    "technologies": [],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "architecture",
+      "saas"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "specification_drift_expert",
+    "name": "Specification Drift Expert",
+    "description": "Build a bidirectional trace matrix from user outcome to tests and docs; classify missing, extra and contradictory behavior.",
+    "category": "quality",
+    "domains": [
+      "requirements"
+    ],
+    "capabilities": [
+      "trace",
+      "compare"
+    ],
+    "technologies": [],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "quality",
+      "requirements"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "spring_boot_expert",
+    "name": "Spring Boot Expert",
+    "description": "Keep domain logic outside controllers and ORM entities; make transactions, authorization, validation and actuator exposure explicit.",
+    "category": "backend",
+    "domains": [
+      "backend",
+      "enterprise"
+    ],
+    "capabilities": [
+      "api",
+      "security",
+      "persistence"
+    ],
+    "technologies": [
+      "java",
+      "spring_boot"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "backend",
+      "backend",
+      "enterprise"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "sql_server_expert",
+    "name": "Sql Server Expert",
+    "description": "Use constraints and execution plans, understand isolation and locking, and design online deployments, backups and recovery for the selected edition.",
+    "category": "database",
+    "domains": [
+      "database",
+      "enterprise"
+    ],
+    "capabilities": [
+      "sql",
+      "index",
+      "migration"
+    ],
+    "technologies": [
+      "sql_server"
+    ],
+    "risk_level": "HIGH",
+    "tags": [
+      "database",
+      "database",
+      "enterprise"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "structured_output_expert",
+    "name": "Structured Output Expert",
+    "description": "Use explicit versioned schemas, reject invalid output safely and separate syntactic repair from semantic acceptance.",
+    "category": "ai",
+    "domains": [
+      "ai",
+      "api"
+    ],
+    "capabilities": [
+      "schema",
+      "validate",
+      "repair"
+    ],
+    "technologies": [],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "ai",
+      "ai",
+      "api"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "supply_chain_security_expert",
+    "name": "Supply Chain Security Expert",
+    "description": "Prefer locked and verified artifacts; audit packages and images, generate an SBOM when material, and isolate build provenance.",
+    "category": "security",
+    "domains": [
+      "dependencies"
+    ],
+    "capabilities": [
+      "sbom",
+      "audit"
+    ],
+    "technologies": [],
+    "risk_level": "HIGH",
+    "tags": [
+      "security",
+      "dependencies"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "swiftui_expert",
+    "name": "Swiftui Expert",
+    "description": "Model state ownership and navigation explicitly, respect platform conventions and test accessibility, concurrency and persistence behavior.",
+    "category": "mobile",
+    "domains": [
+      "ios",
+      "mobile"
+    ],
+    "capabilities": [
+      "ui",
+      "state",
+      "test"
+    ],
+    "technologies": [
+      "swiftui"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "mobile",
+      "ios",
+      "mobile"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "task_graph_expert",
+    "name": "Task Graph Expert",
+    "description": "Validate references and cycles; expose critical path, blocked tasks and file-conflict constraints before parallel execution.",
+    "category": "planning",
+    "domains": [
+      "planning"
+    ],
+    "capabilities": [
+      "dag",
+      "schedule"
+    ],
+    "technologies": [],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "planning",
+      "planning"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "terraform_expert",
+    "name": "Terraform Expert",
+    "description": "Use reviewed plans, remote protected state, constrained modules and immutable inputs; never apply destructive infrastructure changes implicitly.",
+    "category": "platform",
+    "domains": [
+      "infrastructure",
+      "cloud"
+    ],
+    "capabilities": [
+      "iac",
+      "plan",
+      "state"
+    ],
+    "technologies": [
+      "terraform"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "platform",
+      "infrastructure",
+      "cloud"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "test_gap_analysis_expert",
+    "name": "Test Gap Analysis Expert",
+    "description": "Inspect changed branches, failures, integrations and risk factors; prioritize behavior gaps over raw line coverage.",
+    "category": "testing",
+    "domains": [
+      "testing"
+    ],
+    "capabilities": [
+      "coverage",
+      "mutation"
+    ],
+    "technologies": [],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "testing",
+      "testing"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "testing_strategy_expert",
+    "name": "Testing Strategy Expert",
+    "description": "Use the cheapest test that proves behavior, control nondeterminism and cover negative paths at high-risk boundaries.",
+    "category": "testing",
+    "domains": [
+      "testing"
+    ],
+    "capabilities": [
+      "unit",
+      "integration",
+      "e2e"
+    ],
+    "technologies": [],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "testing",
+      "testing"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "tool_calling_expert",
+    "name": "Tool Calling Expert",
+    "description": "Define strict schemas and side-effect metadata, validate targets and make approval and idempotency requirements machine-readable.",
+    "category": "ai",
+    "domains": [
+      "ai",
+      "integration"
+    ],
+    "capabilities": [
+      "schema",
+      "permission",
+      "execute"
+    ],
+    "technologies": [
+      "mcp"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "ai",
+      "ai",
+      "integration"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "typescript_expert",
+    "name": "Typescript Expert",
+    "description": "Prefer strict types, narrow unknown data at boundaries and avoid unsound assertions; choose a compiler compatible with the framework toolchain.",
+    "category": "language",
+    "domains": [
+      "frontend",
+      "backend"
+    ],
+    "capabilities": [
+      "types",
+      "build"
+    ],
+    "technologies": [
+      "typescript"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "language",
+      "frontend",
+      "backend"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "ubuntu_server_expert",
+    "name": "Ubuntu Server Expert",
+    "description": "Use supported LTS images, minimal packages, unattended security strategy, non-root services and documented kernel/reboot handling.",
+    "category": "platform",
+    "domains": [
+      "infrastructure"
+    ],
+    "capabilities": [
+      "os",
+      "hardening"
+    ],
+    "technologies": [
+      "ubuntu"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "platform",
+      "infrastructure"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "vector_database_expert",
+    "name": "Vector Database Expert",
+    "description": "Select metric, dimensions and index from measured recall/latency; enforce tenant filters, deletion and embedding-version migration.",
+    "category": "data",
+    "domains": [
+      "ai",
+      "database"
+    ],
+    "capabilities": [
+      "embedding",
+      "index",
+      "retrieve"
+    ],
+    "technologies": [
+      "vector_database",
+      "postgresql"
+    ],
+    "risk_level": "MEDIUM",
+    "tags": [
+      "data",
+      "ai",
+      "database"
+    ],
+    "inputs": [
+      "scoped task and declared technologies",
+      "verified stack versions"
+    ],
+    "outputs": [
+      "specialized guidance applied to the task",
+      "risks, compatibility constraints and evidence commands"
+    ],
+    "dependencies": [],
+    "curation": "derived",
+    "deprecated": false
+  }
+]
