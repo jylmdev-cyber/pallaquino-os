@@ -133,7 +133,9 @@ class SecretHandlingTests(unittest.TestCase):
     def test_tracked_text_has_no_control_characters(self) -> None:
         # Regression: a shell "\a" escape once wrote a BEL byte into CHANGELOG.md.
         repo = ROOT.parent
-        names = subprocess.run(["git", "-C", str(repo), "ls-files"], capture_output=True, text=True, check=True).stdout.splitlines()
+        listing = subprocess.run(["git", "-C", str(repo), "ls-files"], capture_output=True, text=True)
+        if listing.returncode != 0: self.skipTest("not a Git checkout (for example, an extracted release archive)")
+        names = listing.stdout.splitlines()
         bad = [name for name in names if Path(name).suffix.lower() not in {".zip", ".png", ".jpg", ".gif", ".webp"}
                and any(b < 32 and b not in (9, 10, 13) for b in (repo / name).read_bytes())]
         self.assertEqual(bad, [])

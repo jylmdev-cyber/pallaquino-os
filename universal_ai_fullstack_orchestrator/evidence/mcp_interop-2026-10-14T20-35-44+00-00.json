@@ -1,0 +1,16 @@
+{
+  "gate": "MCP_INTEROP",
+  "command": [
+    "C:\\Users\\User\\AppData\\Local\\Temp/claude/C--jimdev-proyectos-completos-pallaquino-os--claude-worktrees-pallaquino-engineering-os-c7d622/fa07c7c8-5cfc-4df9-b2c9-7ce31980712d/scratchpad/v5/Scripts/python",
+    "-m",
+    "unittest",
+    "tests.test_mcp_interop_official_sdk",
+    "-v"
+  ],
+  "timestamp": "2026-10-14T20:35:44+00:00",
+  "agent": "integration_engineer",
+  "exit_code": 0,
+  "result": "passed",
+  "summary": "test_official_client_against_pallaquino_http_server (tests.test_mcp_interop_official_sdk.OfficialSdkClientInteropTest.test_official_client_against_pallaquino_http_server) ... ok\ntest_official_client_against_pallaquino_stdio_server (tests.test_mcp_interop_official_sdk.OfficialSdkClientInteropTest.test_official_client_against_pallaquino_stdio_server) ... ok\ntest_legacy_handshake_against_a_dual_era_server (tests.test_mcp_interop_official_sdk.OfficialSdkInteropTest.test_legacy_handshake_against_a_dual_era_server) ... ok\ntest_modern_discovery_list_and_call (tests.test_mcp_interop_official_sdk.OfficialSdkInteropTest.test_modern_discovery_list_and_call) ... ok\ntest_pallaquino_client_against_official_streamable_http_server (tests.test_mcp_interop_official_sdk.OfficialSdkInteropTest.test_pallaquino_client_against_official_streamable_http_server) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 3.685s\n\nOK\n",
+  "artifact": "tests/test_mcp_interop_official_sdk.py"
+}

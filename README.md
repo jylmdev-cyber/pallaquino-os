@@ -5,14 +5,15 @@
 </p>
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-0.4.0-0A7BBB">
+  <img alt="Version" src="https://img.shields.io/badge/version-0.5.0-0A7BBB">
   <img alt="Python" src="https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white">
   <img alt="Agents" src="https://img.shields.io/badge/agents-59-7B61FF">
   <img alt="Skills" src="https://img.shields.io/badge/skills-90-00A67E">
   <img alt="Technologies" src="https://img.shields.io/badge/technologies-46-F97316">
-  <img alt="Tests" src="https://img.shields.io/badge/tests-154%20passing-2EA44F">
+  <img alt="Tests" src="https://img.shields.io/badge/tests-242%20passing-2EA44F">
   <img alt="License" src="https://img.shields.io/badge/license-MIT-blue">
   <img alt="Provider neutral" src="https://img.shields.io/badge/AI-provider--neutral-111827">
+  <img alt="MCP" src="https://img.shields.io/badge/MCP-2026--07--28-0F766E">
   <a href="https://github.com/jylmdev-cyber/pallaquino-os/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/jylmdev-cyber/pallaquino-os/actions/workflows/ci.yml/badge.svg"></a>
 </p>
 
@@ -22,7 +23,7 @@ un grafo de tareas, ejecuta gates de calidad y conserva evidencia, checkpoints y
 handoffs. No es solamente una colección de prompts: incluye CLI en Python,
 registros validados, políticas, evaluaciones y empaquetado reproducible.
 
-> **Estado (0.4.0):** el framework es utilizable y auto-validable. El snapshot de
+> **Estado (0.5.0, candidato local):** el framework es utilizable y auto-validable. El snapshot de
 > versiones se re-verificó el 14 de octubre de 2026 contra fuentes oficiales (`PAL-006`)
 > y caduca a los 30 días.
 > Todo perfil está marcado `VERIFY_BEFORE_USE`. Lo implementado, experimental y
@@ -50,6 +51,12 @@ registros validados, políticas, evaluaciones y empaquetado reproducible.
   integridad verificada y contenido recuperado tratado como no confiable.
 - **Proveedores**: contrato estable, adaptador `mock` determinista y adaptador local
   Ollama; fallback solo autorizado y sin enviar datos a servicios remotos sin permiso.
+- **Plataforma extensible (0.5.0)**: plugins descubiertos por metadatos sin ejecutar
+  código, ligados a una política de confianza por hash y ejecutados en un proceso aislado;
+  cliente MCP para la revisión 2026-07-28 (stdio y Streamable HTTP, con compatibilidad legacy);
+  registro unificado de herramientas, pasarela de permisos (deny by default, grants con
+  alcance, aprobaciones por llamada) y pasarela de ejecución auditada; adaptadores de
+  filesystem, Git, SQLite y GitHub; SDK de plugins con plantilla y harness de pruebas.
 - Neutralidad de proveedor: el agente activo (Codex, ChatGPT, Claude, Gemini u otro)
   lee las políticas y usa el CLI. Sin un proveedor real, las tareas de agente se
   simulan y se marcan como simuladas.
@@ -68,6 +75,7 @@ python -m pallaquino_cli validate --json
 python -m pallaquino_cli analyze
 python -m pallaquino_cli risk "agregar autenticación basada en roles"
 python -m pallaquino_cli security audit --target ..
+python scripts/run_codebase_analysis_demo.py   # demo end-to-end offline (0.5.0)
 ```
 
 Instalación opcional (editable o normal):
@@ -107,6 +115,25 @@ pallaquino memory search arquitectura                 # memoria persistente (dat
 
 Arquitectura: [`docs/architecture/ORCHESTRATION_ENGINE.md`](docs/architecture/ORCHESTRATION_ENGINE.md).
 Primer uso guiado: [`docs/tutorials/FIRST_MULTI_AGENT_EXECUTION.md`](docs/tutorials/FIRST_MULTI_AGENT_EXECUTION.md).
+
+Plugins, MCP y herramientas (0.5.0):
+
+```text
+pallaquino tools list                                  # herramientas builtin, de plugins y MCP, con política y riesgo
+pallaquino mcp add quality --stdio python examples/mcp_servers/quality_server.py
+pallaquino mcp test quality && pallaquino mcp tools quality && pallaquino mcp pin quality
+pallaquino permissions grant mcp.quality.quality_scan --principal project_analyzer
+pallaquino plugin create ./mi-plugin --id acme.text_tools --write
+pallaquino plugins install ./mi-plugin/src/acme_text_tools && pallaquino plugins trust acme.text_tools --approved-by yo
+python scripts/run_codebase_analysis_demo.py           # demo end-to-end offline (git + filesystem + MCP)
+```
+
+Arquitectura: [`PLUGIN_ARCHITECTURE`](docs/architecture/PLUGIN_ARCHITECTURE.md),
+[`MCP_CLIENT_ARCHITECTURE`](docs/architecture/MCP_CLIENT_ARCHITECTURE.md),
+[`TOOL_EXECUTION_GATEWAY`](docs/architecture/TOOL_EXECUTION_GATEWAY.md). Tutoriales:
+[`CREATE_FIRST_PLUGIN`](docs/tutorials/CREATE_FIRST_PLUGIN.md),
+[`CONNECT_MCP_SERVER`](docs/tutorials/CONNECT_MCP_SERVER.md),
+[`EXECUTE_TOOL_SAFELY`](docs/tutorials/EXECUTE_TOOL_SAFELY.md).
 
 La política superior vive en
 [`AI_ENTRYPOINT.md`](universal_ai_fullstack_orchestrator/AI_ENTRYPOINT.md). Los
@@ -187,6 +214,9 @@ versiones oficiales, compatibilidad, amenazas, datos y estrategia de rollback.
 │   ├── governance/                      # políticas superiores
 │   ├── evaluation/                      # casos dorados
 │   ├── pallaquino_cli/                  # CLI sin dependencias externas
+│   │   ├── orchestration/ memory/ providers/   # motor 0.4.0
+│   │   └── tools/ mcp/ extensions/ integrations/ sdk/   # plataforma extensible 0.5.0
+│   ├── examples/                        # plugin de ejemplo y servidor MCP de prueba
 │   ├── scripts/                         # validación y release
 │   └── tests/                           # suite automatizada
 ├── PALLAQUINO_autonomous_engineering_os.zip
@@ -202,6 +232,7 @@ python -m unittest discover -s tests -v
 python scripts/validate_all.py            # colaboradores: pallaquino validate --integrity-only
 python scripts/architecture_fitness.py
 python -m pallaquino_cli security audit --target ..
+python scripts/run_codebase_analysis_demo.py   # demo end-to-end offline (0.5.0)
 python scripts/package_release.py
 python scripts/verify_zip_integrity.py
 ```

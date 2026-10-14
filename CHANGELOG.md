@@ -8,10 +8,92 @@ Los cambios relevantes de este proyecto se documentan aquí. El formato sigue
 
 ### Planned
 
-- Fase 3 (0.5.0): ejecutor externo para asistentes sin API, Extension System, adaptadores
-  comerciales verificados, MCP y optimización de la persistencia del scheduler
-  (ver `docs/roadmap/ROADMAP_V040_TO_V050.md`).
+- 0.6.0, Autonomous Project Factory (ver `docs/roadmap/ROADMAP_V050_TO_V060.md`).
+- Arrastrado desde la Fase 3: ejecutor externo para asistentes sin API, adaptadores comerciales verificados, `subscriptions/listen`
+  y optimización de la persistencia del scheduler.
 - Publicación en PyPI y firma de artefactos.
+
+## [0.5.0] - 2026-10-14
+
+Ecosistema de plugins, cliente MCP 2026-07-28, registro unificado de herramientas y gobernanza (pedido v0.5.0).
+Ver `docs/releases/RELEASE_V050.md`, ADR-0013 a ADR-0016 y `MIGRATION_GUIDE.md`.
+
+### Added
+
+- Universal Plugin Manager (`extensions/`):
+  - manifiesto `plugin.toml` v1 con 11 tipos;
+  - SemVer y compatibilidad;
+  - descubrimiento por entry points `pallaquino.plugins` y `plugins/` sin importar código;
+  - ciclo de vida con 11 estados;
+  - política de confianza ligada al hash (`governance/plugin_trust.json`) y cuarentena;
+  - instalación desde un directorio o un ZIP con SHA-256 sin ejecutar scripts;
+  - actualización con rollback y desinstalación acotada.
+- Ejecución aislada de plugins: subproceso `python -I` con entorno saneado que sirve el plugin como servidor MCP stdio; el catálogo vivo
+  se compara con el manifiesto.
+- Plugin Development SDK (`sdk/`): `Plugin`, `ToolCall`, `ToolResult`, runner aislado, `PluginHarness` y scaffolding (`pallaquino plugin
+  create`). Plugin de ejemplo `examples/pallaquino-example-plugin`, instalable con pip.
+- MCP Integration Engine (`mcp/`), cliente y servidor de referencia con la stdlib para la revisión 2026-07-28:
+  - `server/discover`, `_meta` por petición y negociación de versión;
+  - fallback legacy a `initialize` en stdio y HTTP;
+  - tools, resources, prompts, MRTR, Tasks, progreso y cancelación;
+  - cabeceras `Mcp-Method`, `Mcp-Name` y `Mcp-Param-*`;
+  - paginación y caché `ttlMs`;
+  - validación de esquemas y de tamaños.
+- Connection Registry: estados, diagnóstico, revisión y fijación del catálogo con digest (detección de rug pull y de tool poisoning),
+  clasificación humana de herramientas (`--classify`) y puente al registro.
+- OAuth 2.1 y Credential Manager:
+  - RFC 9728, RFC 8414/OIDC en el orden especificado, `issuer` exacto, PKCE S256, `resource` (RFC 8707) e `iss` (RFC 9207);
+  - flujo loopback, refresh, revocación y step-up;
+  - credenciales por referencia (`env:`/`vault:`) ligadas a un servidor y un emisor.
+- Política de red anti-SSRF: solo HTTPS, sin direcciones privadas, loopback ni link-local, IP fijada y sin redirecciones.
+- Unified Tool Registry, contrato `tool` v1: 12 capacidades, 5 clases de operación, riesgo y aprobación derivados (no se pueden debilitar)
+  y etiquetas `provides`.
+- Zero-Trust Tool Governance:
+  - deny by default;
+  - políticas `contract`, `grant` (alcance, caducidad, usos, revocación) y `per_call` (ligada al digest de los argumentos y de un solo uso);
+  - puente con los grants de tarea de los contratos v2.
+- Tool Execution Gateway, flujo de 12 pasos:
+  - write-ahead, idempotencia, timeout y cancelación;
+  - validación de la salida, redacción y detección de inyección;
+  - auditoría (`tool_calls` y eventos) y `traceparent` W3C.
+- Tool Router: local primero, permisos en seco, exclusión de remotos con datos sensibles e historial auditado; nunca inventa herramientas.
+- Adaptadores builtin:
+  - filesystem, con confinamiento, archivos sensibles y escrituras gobernadas;
+  - Git, de solo lectura más `stage` gobernado;
+  - SQLite, de solo lectura en tres capas;
+  - GitHub, de solo lectura y deshabilitado por defecto.
+- Orquestación: ejecutor `tool` y pasos `git_inspect`, `quality_scan` y `report`. El planner resuelve las herramientas con el router y el
+  informe técnico tiene quality gate.
+- CLI: `plugins`, `plugin`, `mcp`, `tools` y `permissions` (exit 3 si falta aprobación, 5 si se deniega).
+- Demo end-to-end offline `scripts/run_codebase_analysis_demo.py` y servidor de prueba `examples/mcp_servers/quality_server.py`.
+- Store: migración 3 (`platform_docs`, `tool_calls`).
+- `governance/TOOL_AND_EXTENSION_POLICY.md` y `governance/integrations.json`.
+
+### Changed
+
+- Versión 0.5.0. `pyproject.toml` incluye los subpaquetes `tools`, `mcp`, `extensions`, `integrations` y `sdk`.
+- `plugins/*` y `governance/plugin_trust.json` son estado de instancia (`init`, Git y el ZIP los excluyen).
+
+### Fixed
+
+- El ZIP de release omitía el paquete `pallaquino_cli/memory/`: la exclusión del estado de instancia `memory/` se aplicaba a cualquier
+  profundidad. Afecta al ZIP publicado de 0.4.0, donde los comandos de orquestación fallan con `ModuleNotFoundError`; el repositorio y
+  el tag `v0.4.0` no están afectados. Ahora `memory/`, `logs/` y `plugins/` se excluyen solo en la raíz del framework, y un test exige que
+  el archivo contenga todos los paquetes de `pyproject.toml`.
+- `core.git.status` y `core.git.log` informan de un workspace sin Git como un hecho (`repository: false`) en lugar de fallar.
+- El confinamiento al workspace rechaza en todas las plataformas las rutas con letra de unidad (`C:\...`) y las UNC (`\\host\...`).
+  En POSIX se trataban como nombres relativos dentro del workspace; no permitían escapar, pero la decisión dependía del sistema operativo.
+  Lo detectó el primer CI en Linux.
+
+### Security
+
+- Interoperabilidad verificada con el SDK oficial `mcp` 2.3.0 en las dos direcciones (stdio y Streamable HTTP, moderno y legacy).
+- 88 tests nuevos, con escenarios adversariales: prompt injection, tool poisoning, rug pull, SSRF, credential leakage, path traversal,
+  confused deputy, escalada, permiso caducado, operación destructiva sin aprobación, plugin malicioso y ZIP con traversal.
+
+### Not included
+
+- `subscriptions/listen`; adaptadores Docker y cloud; drivers de PostgreSQL y MySQL; sandbox del sistema operativo para plugins.
 
 ## [0.4.0] - 2026-10-14
 

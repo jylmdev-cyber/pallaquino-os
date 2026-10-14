@@ -30,7 +30,13 @@ Pendiente de aprobación humana: merge, tag `v0.3.0`, GitHub Release.
 
 Objetivos: cobertura ≥ 90 % en cada módulo nuevo (cumplido: 94,4 % total, todos ≥ 90 %); suite < 15 s (no cumplido en Windows: 48 s con 154 tests; pendiente medir en CI Linux).
 
-## Fase 3 — Extensibilidad (0.5.0)
+## Fase 3 — Extensibilidad (0.5.0) — CANDIDATO LOCAL (PAL-011)
+
+Entregado (ver `docs/releases/RELEASE_V050.md`): sistema de plugins con confianza por hash y aislamiento por proceso, cliente MCP
+2026-07-28, registro y pasarelas de herramientas, OAuth, adaptadores de filesystem, Git, SQLite y GitHub, SDK y demo end-to-end. Siguen
+pendientes el ejecutor externo, los adaptadores comerciales y la optimización del scheduler (ver `docs/roadmap/ROADMAP_V050_TO_V060.md`).
+
+Planteamiento original:
 
 - Extension System: manifiesto validado, versión y compatibilidad, permisos por
   herramienta (denegación por defecto), procedencia (hash fijado), activar/desactivar.

@@ -13,4 +13,16 @@
 - 0.4.0: tasks answered by the mock provider are simulated; the real-provider reference variant was not executed (no Ollama or credentials on this host).
 - 0.4.0: memory/state checksums are unkeyed; scheduler throughput is bounded by per-transition SQLite commits (~84 tasks/s, 4 workers).
 - 0.4.0: a task that exceeds its timeout keeps running in its thread; its late result is discarded but its effects are not undone.
+- The published v0.4.0 release ZIP lacks `pallaquino_cli/memory/` (orchestration commands fail from the extracted archive). The repository and
+  tag are complete; the archive defect is fixed in 0.5.0. A corrected 0.4.x archive, or a note on the v0.4.0 release, needs the owner's decision.
+- 0.5.0:
+  - interoperability with the official MCP SDK v2 is verified locally (5/5 with `mcp` 2.3.0) but is not part of CI (the SDK is not a dependency);
+  - plugins run in a separate process but not in an OS sandbox; a trusted plugin has the user's file permissions;
+  - the file credential vault is not encrypted (OS permissions only); prefer `env:` references or keyring;
+  - builtin adapter timeouts are cooperative;
+  - `subscriptions/listen` is not implemented;
+  - symbolic-link escape tests are skipped on hosts that cannot create links (this Windows host); they run on Linux CI;
+  - inherited Windows flake: SQLite WAL cleanup in `test_scheduler` sometimes fails with WinError 32 (seen once in the source tree and once in the
+    extracted archive on 2026-10-14); watch CI;
+  - with an editable install, the default root is the package checkout (ADR-0004); use `--root .pallaquino` or `PALLAQUINO_ROOT` in projects.
 - Confidence: high

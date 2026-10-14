@@ -7,7 +7,7 @@ import sys
 from pathlib import Path
 
 from . import __version__
-from . import cli_orchestration
+from . import cli_orchestration, cli_platform
 from .core import (
     ROOT_ENV, FrameworkRootNotFound, analyze_risk, build_repository_map, create_handoff,
     detect_capabilities, git_identity_status, init_target, make_checkpoint, read_json, resolve_root,
@@ -40,8 +40,11 @@ def parser() -> argparse.ArgumentParser:
         ("run", "execute a validated plan"), ("cancel", "cancel an execution"), ("pause", "pause an execution"),
         ("approve", "approve governed tools of a waiting task"), ("memory", "inspect, search and manage project memory"),
         ("providers", "list providers or diagnose their configuration"), ("executions", "list executions or report, trace and export one"),
+        ("plugins", "discover, validate, trust, enable and manage plugins"), ("plugin", "plugin SDK: create, validate or test a plugin"),
+        ("mcp", "configure, test and review MCP server connections"), ("tools", "list, inspect, check, route and run tools through the gateway"),
+        ("permissions", "list, grant, revoke and audit tool permissions"),
     ]:
-        item = subs.add_parser(name, help=help_text); add_common(item); cli_orchestration.add_arguments(name, item)
+        item = subs.add_parser(name, help=help_text); add_common(item); cli_orchestration.add_arguments(name, item); cli_platform.add_arguments(name, item)
         if name == "analyze": item.add_argument("--target", type=Path, default=Path.cwd())
         if name == "risk": item.add_argument("request", nargs="*", help="request text")
         if name == "checkpoint": item.add_argument("--task", default="UNSPECIFIED")
@@ -80,6 +83,10 @@ def main(argv: list[str] | None = None) -> int:
     args = parser().parse_args(argv); command = args.command
     try:
         root = resolve_root(args.root)
+        if cli_platform.handles(command):
+            payload, code = cli_platform.handle(command, args, root)
+            emit(payload, args.json)
+            return code if code is not None else (1 if isinstance(payload, dict) and payload.get("ok") is False else 0)
         if cli_orchestration.handles(command, args):
             payload, code = cli_orchestration.handle(command, args, root)
             emit(payload, args.json)
@@ -116,6 +123,8 @@ def main(argv: list[str] | None = None) -> int:
         else: raise ValueError(f"unsupported command: {command}")
     except FrameworkRootNotFound as exc:
         return fail(args, str(exc), 2)
+    except PermissionError as exc:
+        return fail(args, str(exc), cli_platform.EXIT_DENIED)
     except (OSError, ValueError, KeyError, RuntimeError, LookupError, sqlite3.Error) as exc:
         return fail(args, str(exc), 1)
     emit(payload, args.json)

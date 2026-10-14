@@ -1,13 +1,21 @@
 # Pipeline state
 
-- Status: complete for PAL-009 (0.3.2)
+- Status: complete for PAL-011 (0.5.0 local release candidate)
 - Updated: 2026-10-14
 - Confidence: high
 - Current stage: HANDOFF
 - Last confirmed stage: HANDOFF
-- Failed gates remediated: STACK_VERSION_AUDIT (snapshot STALE) re-verified in PAL-006
-- Mode and autonomy: MAINTENANCE, STANDARD
-- Checkpoint: generated for PAL-009
+- Gates:
+  - passed locally: TEST, LINT_TYPECHECK (compileall), SECURITY_CHECK (secret scan 0 findings, fitness 0 violations), ADVERSARIAL_REVIEW (suite), BUILD (reproducible ZIP);
+  - CODE_REVIEW: self-review only.
+- Failed gates remediated:
+  - CRLF written by edit scripts on Windows, normalized to LF before packaging;
+  - plugin install lost the package directory name;
+  - a header-precedence bug in the reference server;
+  - `permissions grant` not seeing plugin tools;
+  - `--approve` approving unregistered tools.
+- Mode and autonomy: BROWNFIELD, STANDARD
+- Checkpoint: generated for PAL-011
 - Handoff: `continuity/HANDOFF.json`
-- Release: 0.3.2 tagged and released with verified assets
-- Next: PAL-007 (Phase 2, starting with agent/skill contracts v2); next stack re-verification due 2026-11-13
+- Release: 0.5.0 publication approved by the owner on 2026-10-14 (pull request, merge after green CI, tag `v0.5.0`, GitHub Release)
+- Next: publish 0.5.0 as approved and add the v0.4.0 archive note; next stack re-verification due 2026-11-13

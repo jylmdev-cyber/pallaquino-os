@@ -62,11 +62,30 @@ def _providers(root: Path) -> tuple[dict[str, Any], dict[str, Any]]:
     return config, {name: build_provider(name, s, root) for name, s in config["providers"].items() if s.get("enabled")}
 
 
-def _scheduler(root: Path, store: Any, workspace: Path, args: argparse.Namespace):
+def _platform(root: Path, store: Any, workspace: Path, *, plugins: bool = False):
+    """The 0.5.0 tool platform for plans with tool tasks; plugin processes start only when a task uses a plugin tool."""
+    from .platform import Platform
+    platform = Platform(root, workspace=workspace, store=store)
+    _OPEN.append(platform); platform.load(activate_plugins=plugins)
+    return platform
+
+
+_OPEN: list[Any] = []
+
+
+def _needs_platform(tasks: list[dict[str, Any]]) -> tuple[bool, bool]:
+    tool_tasks = [t for t in tasks if t["executor"]["kind"] == "tool"]
+    uses_plugins = any(str(r.get("tool_id") or "").startswith("plugin.") for t in tool_tasks for r in t["executor"].get("resolved") or [])
+    return bool(tool_tasks), uses_plugins
+
+
+def _scheduler(root: Path, store: Any, workspace: Path, args: argparse.Namespace, tasks: list[dict[str, Any]] | None = None):
     from .orchestration.scheduler import Scheduler
     config, providers = _providers(root)
     settings = {"max_workers": args.max_workers} if getattr(args, "max_workers", None) else {}
-    return Scheduler(root, store, workspace=workspace, providers=providers, provider_config=config, settings=settings)
+    needed, plugins = _needs_platform(tasks or [])
+    platform = _platform(root, store, workspace, plugins=plugins) if needed else None
+    return Scheduler(root, store, workspace=workspace, providers=providers, provider_config=config, settings=settings, platform=platform)
 
 
 def handles(command: str, args: argparse.Namespace) -> bool:
@@ -102,19 +121,21 @@ def handle(command: str, args: argparse.Namespace, root: Path) -> tuple[Any, int
                     def complete(self, request):
                         return complete_with_fallback(config, providers, request)[0]
                 intent = analyze_intent(root, " ".join(args.request), workspace=workspace, provider=_Routed(), mode="ai_assisted")
-            plan = build_plan(root, " ".join(args.request), workspace=workspace, intent=intent, history=store)
+            platform = _platform(root, store, workspace)
+            try: plan = build_plan(root, " ".join(args.request), workspace=workspace, intent=intent, history=store, platform=platform)
+            finally: platform.plugins.stop_all(); platform.connections.close_all()
             store.save_plan(plan); store.add_event("plan_created", data={"plan_id": plan["plan_id"], "status": plan["status"], "tasks": len(plan["tasks"])})
             return plan, 0 if plan["status"] == "PLANNED" else 1
         if command == "run":
             plan = store.load_plan(args.plan); workspace = Path(plan["workspace"] or _default_workspace(root))
-            scheduler = _scheduler(root, store, workspace, args)
+            scheduler = _scheduler(root, store, workspace, args, plan["tasks"])
             if args.dry_run: return scheduler.preview(plan), 0 if plan["status"] == "PLANNED" else 1
             execution = scheduler.create_execution(plan, approvals=args.approve)
             report = scheduler.run(execution["execution_id"], force=args.force)
             return report, EXECUTION_EXIT.get(report["status"], 1)
         if command in ("status", "resume", "cancel", "pause", "approve"):
             execution = store.load_execution(args.execution); workspace = Path(execution["workspace"])
-            scheduler = _scheduler(root, store, workspace, args)
+            scheduler = _scheduler(root, store, workspace, args, store.load_tasks(args.execution) if command in ("resume",) else None)
             if command == "status":
                 from .orchestration.observability import metrics
                 return {"execution": {k: execution[k] for k in ("execution_id", "plan_id", "status", "approvals", "flags", "usage", "updated_at")},
@@ -149,5 +170,6 @@ def handle(command: str, args: argparse.Namespace, root: Path) -> tuple[Any, int
             output = args.output or root / "logs" / f"{args.execution_id}.jsonl"
             return {"exported": export_jsonl(store, args.execution_id, output), "path": str(output)}, None
     finally:
+        while _OPEN: _OPEN.pop().close()  # stops plugin processes and MCP connections; the store is closed below
         store.close()
     raise ValueError(f"unsupported command: {command}")

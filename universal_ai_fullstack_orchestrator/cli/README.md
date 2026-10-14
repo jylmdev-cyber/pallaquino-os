@@ -12,3 +12,10 @@ Orchestration commands (0.4.0): `plan "<request>"`, `run --plan <id> [--dry-run]
 Without the new arguments, `plan`, `status`, `resume`, `agents` and `skills` keep their 0.3 output.
 Exit codes for executions: 0 completed, 1 failed or error, 2 root not found, 3 waiting for approval or paused, 4 cancelled.
 
+Platform commands (0.5.0):
+`plugins list|discover|inspect|validate|enable|disable|doctor|install|update|rollback|uninstall|trust|untrust|health`,
+`plugin create|validate|test <dir>`, `mcp servers|add|inspect|test|tools|pin|remove|doctor|enable|disable|auth|logout`,
+`tools list|inspect|check|run|route|calls|metrics` and `permissions list|inspect|grant|revoke|history`.
+`mcp add --stdio <command...>` takes the rest of the line, so put it last. `tools run` exits 3 when the call needs a per-call approval
+(re-run with `--approve` to approve exactly those arguments) and 5 when the gateway denies it; any `PermissionError` also exits 5.
+

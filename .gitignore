@@ -22,6 +22,9 @@ Thumbs.db
 # PALLAQUINO runtime state (per project)
 universal_ai_fullstack_orchestrator/memory/
 universal_ai_fullstack_orchestrator/logs/
+universal_ai_fullstack_orchestrator/plugins/
+universal_ai_fullstack_orchestrator/governance/plugin_trust.json
 .pallaquino/memory/
 .pallaquino/logs/
+.pallaquino/plugins/
 memory/*.db*

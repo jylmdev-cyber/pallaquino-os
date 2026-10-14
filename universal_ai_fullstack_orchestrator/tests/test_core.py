@@ -128,6 +128,13 @@ class FrameworkTests(unittest.TestCase):
                 self.assertIn(f"{ROOT.name}/manifest.json", names)
                 self.assertIsNone(zf.testzip())
                 self.assertFalse(any(".git/" in name or ".." in Path(name).parts for name in names))
+                # Regression (0.4.0 archive): every package declared in pyproject.toml must ship, including `pallaquino_cli.memory`.
+                import tomllib
+                packages = tomllib.loads((ROOT / "pyproject.toml").read_text(encoding="utf-8"))["tool"]["setuptools"]["packages"]
+                for package in packages:
+                    self.assertIn(f"{ROOT.name}/{package.replace('.', '/')}/__init__.py", names, package)
+                self.assertIn(f"{ROOT.name}/pallaquino_cli/memory/store.py", names)
+                self.assertFalse(any(name.startswith(f"{ROOT.name}/memory/") or name.startswith(f"{ROOT.name}/logs/") for name in names), "root runtime state stays out")
 
 
 if __name__ == "__main__":

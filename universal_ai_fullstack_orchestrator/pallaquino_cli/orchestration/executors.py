@@ -19,7 +19,7 @@ from pathlib import Path
 from typing import Any, Callable
 
 from ..contracts import load_contract
-from ..core import _secret_kinds, compute_repository_map, redact
+from ..core import _secret_kinds, compute_repository_map, is_foreign_absolute, redact
 from ..memory.store import INJECTION_PATTERNS, UNTRUSTED_NOTICE
 from ..providers.base import Budget, ProviderError, ProviderRequest
 from ..providers.router import complete_with_fallback
@@ -52,7 +52,7 @@ def confine(workspace: Path, relative: str) -> Path:
     """Resolve a path inside the workspace or raise; absolute paths, drive letters and '..' escapes are rejected."""
     if not isinstance(relative, str) or not relative.strip(): raise PermissionError("empty path")
     candidate = Path(relative.replace("\\", "/"))
-    if candidate.is_absolute() or candidate.drive or relative.startswith(("/", "\\")): raise PermissionError(f"absolute path {relative!r} is outside the workspace")
+    if candidate.is_absolute() or candidate.drive or relative.startswith(("/", "\\")) or is_foreign_absolute(relative): raise PermissionError(f"absolute path {relative!r} is outside the workspace")
     target = (workspace / candidate).resolve()
     try: target.relative_to(workspace.resolve())
     except ValueError: raise PermissionError(f"path {relative!r} escapes the workspace") from None
@@ -70,12 +70,13 @@ class ExecutionContext:
     def __init__(self, *, root: Path, workspace: Path, store: Any, execution: dict[str, Any], providers: dict[str, Any], provider_config: dict[str, Any],
                  execution_budget: Budget, task_budget_limits: dict[str, Any], dependency_handoffs: list[dict[str, Any]],
                  record_intent: Callable[[dict[str, Any], list[dict[str, Any]]], None], command_timeout: float = 300.0, lock_owner: str = "",
-                 task_budget: Budget | None = None):
+                 task_budget: Budget | None = None, platform: Any = None):
         self.root = root; self.workspace = workspace; self.store = store; self.execution = execution; self.providers = providers
         self.provider_config = provider_config; self.execution_budget = execution_budget; self.task_budget_limits = task_budget_limits
         self.dependency_handoffs = dependency_handoffs; self.record_intent = record_intent; self.command_timeout = command_timeout
         self.lock_owner = lock_owner or f"{execution['execution_id']}:unscoped"
         self.task_budget = task_budget  # shared by every attempt of one task, so retries cannot reset the cap
+        self.platform = platform  # 0.5.0 tool platform (registry, permissions, gateway); None keeps 0.4.0 behaviour
 
 
 def execute_task(task: dict[str, Any], ctx: ExecutionContext) -> dict[str, Any]:
@@ -84,6 +85,7 @@ def execute_task(task: dict[str, Any], ctx: ExecutionContext) -> dict[str, Any]:
         if kind == "internal": return _internal(task, ctx)
         if kind == "command": return _command(task, ctx)
         if kind == "agent": return _agent(task, ctx)
+        if kind == "tool": return _tool(task, ctx)
         return outcome("FAILED", error=f"unknown executor kind {kind}", error_kind="invalid_task")
     except Exception as exc:  # an executor bug must fail the task, never the scheduler
         return outcome("FAILED", error=f"executor error: {type(exc).__name__}: {exc}", error_kind="executor_error")
@@ -91,6 +93,7 @@ def execute_task(task: dict[str, Any], ctx: ExecutionContext) -> dict[str, Any]:
 
 def _internal(task: dict[str, Any], ctx: ExecutionContext) -> dict[str, Any]:
     op = task["executor"].get("op")
+    if op == "technical_report": return _technical_report(task, ctx)
     if op != "repository_analysis": return outcome("FAILED", error=f"unknown internal op {op}", error_kind="invalid_task")
     data = compute_repository_map(ctx.workspace)
     summary = {k: data[k] for k in ("technologies", "entrypoints", "tests", "configuration")} | {"files": data["statistics"]["files"], "modules": [m["id"] for m in data["modules"]]}
@@ -99,6 +102,97 @@ def _internal(task: dict[str, Any], ctx: ExecutionContext) -> dict[str, Any]:
     finding = {"statement": f"{data['statistics']['files']} files; technologies {data['technologies']}; tests {len(data['tests'])}", "kind": "fact", "evidence": "compute_repository_map"}
     return outcome("COMPLETED", result={"summary": finding["statement"], "repository_map": summary}, findings=[finding],
                    evidence=[{"type": "internal", "op": op, "files": data["statistics"]["files"]}])
+
+
+def _fill(value: Any, workspace: Path) -> Any:
+    if isinstance(value, str): return value.replace("{workspace}", str(workspace))
+    if isinstance(value, dict): return {k: _fill(v, workspace) for k, v in value.items()}
+    if isinstance(value, list): return [_fill(v, workspace) for v in value]
+    return value
+
+
+RETRYABLE_TOOL_ERRORS = {"timeout", "unavailable", "resource_busy"}
+MAX_DETAIL_FINDINGS = 12
+
+
+def _details(tool_id: str, structured: Any, call_id: str, kind: str) -> list[dict[str, Any]]:
+    """Itemized findings from well-known result shapes (issues, commits, matches, changes); text stays redacted."""
+    if not isinstance(structured, dict): return []
+    rows: list[str] = []
+    for issue in structured.get("issues", [])[:MAX_DETAIL_FINDINGS] if isinstance(structured.get("issues"), list) else []:
+        if isinstance(issue, dict): rows.append(f"{issue.get('kind')} at {issue.get('file')}" + (f":{issue['line']}" if issue.get("line") else "") + (f" ({issue['detail']})" if issue.get("detail") else ""))
+    for commit in structured.get("commits", [])[:5] if isinstance(structured.get("commits"), list) else []:
+        if isinstance(commit, dict): rows.append(f"commit {str(commit.get('sha', ''))[:10]} {commit.get('date', '')[:10]}: {commit.get('subject', '')}")
+    for match in structured.get("matches", [])[:MAX_DETAIL_FINDINGS] if isinstance(structured.get("matches"), list) else []:
+        if isinstance(match, dict): rows.append(f"match at {match.get('path')}:{match.get('line')}: {match.get('text', '')[:120]}")
+    if isinstance(structured.get("changes"), list) and structured["changes"]:
+        counts: dict[str, int] = {}
+        for change in structured["changes"]: counts[(change.get("index", "") + change.get("worktree", "")).strip() or "?"] = counts.get((change.get("index", "") + change.get("worktree", "")).strip() or "?", 0) + 1
+        rows.append("working tree changes by status: " + ", ".join(f"{k}={v}" for k, v in sorted(counts.items())))
+    return [{"statement": redact(r)[:300], "kind": kind, "evidence": f"tool call {call_id} ({tool_id})"} for r in rows]
+
+
+def _tool(task: dict[str, Any], ctx: ExecutionContext) -> dict[str, Any]:
+    """Run each required tool through the gateway as the task's agent; the agent's task grant bounds what it may use."""
+    if ctx.platform is None: return outcome("FAILED", error="this execution has no tool platform", error_kind="not_configured")
+    from ..orchestration.planning import resolve_tools
+    resolved = task["executor"].get("resolved") or []
+    if len(resolved) != len(task["executor"]["requirements"]) or any(r.get("missing") or not r.get("tool_id") or r["tool_id"] not in ctx.platform.registry for r in resolved):
+        resolve_tools(task, ctx.platform); resolved = task["executor"]["resolved"]
+    missing = [r.get("provides") for r in resolved if r.get("missing")]
+    if missing: return outcome("FAILED", error=f"no registered, available and permitted tool provides {missing}", error_kind="not_configured")
+    grants = set(task["permissions"]["allowed"]) | set(task["permissions"]["approval_required"] if task["task_id"] in {a["task_id"] for a in ctx.execution.get("approvals", [])} else [])
+    findings, evidence, results = [], [], []
+    for index, choice in enumerate(resolved):
+        arguments = _fill(choice["arguments"], ctx.workspace)
+        call = ctx.platform.gateway.call(choice["tool_id"], arguments, principal={"kind": "agent", "id": task["agent"]}, agent_grants=grants,
+                                         execution_id=ctx.execution["execution_id"], task_id=task["task_id"], remember=True,
+                                         idempotency_key=f"{ctx.execution['execution_id']}:{task['task_id']}:{task.get('idempotency_key')}:{index}:{task.get('attempts', 0)}")
+        evidence.append({"type": "tool", "tool_id": choice["tool_id"], "call_id": call["call_id"], "status": call["status"], "trust": call.get("trust"),
+                         "suspicious_instructions": call.get("suspicious_instructions", False), "fallback": choice.get("fallback", False)})
+        if call["status"] != "COMPLETED":
+            kind = call.get("error_kind") or "tool_error"
+            return outcome("FAILED", retryable=kind in RETRYABLE_TOOL_ERRORS, error=f"{choice['tool_id']}: {call.get('error')}", error_kind=kind, evidence=evidence)
+        text = redact(str((call.get("result") or {}).get("text") or ""))[:500]
+        kind = "hypothesis" if call.get("suspicious_instructions") else "fact"
+        findings.append({"statement": f"{choice['tool_id']}: {text}", "kind": kind, "evidence": f"tool call {call['call_id']}" + (" (instruction-like content flagged)" if kind == "hypothesis" else "")})
+        findings += _details(choice["tool_id"], (call.get("result") or {}).get("structured"), call["call_id"], kind)
+        results.append({"tool_id": choice["tool_id"], "call_id": call["call_id"], "text": text, "structured": (call.get("result") or {}).get("structured"),
+                        "trust": call.get("trust"), "suspicious_instructions": call.get("suspicious_instructions", False)})
+    ctx.store.put_record("project", "tool_findings", f"{ctx.execution['execution_id']}:{task['task_id']}", {"results": [{k: r[k] for k in ("tool_id", "call_id", "text")} for r in results]},
+                         f"{task['title']}: " + "; ".join(r["text"][:80] for r in results), tags=["tools", task["step"]], ttl_days=30, source=f"execution:{ctx.execution['execution_id']}")
+    return outcome("COMPLETED", result={"summary": " | ".join(f["statement"] for f in findings)[:2000], "tool_results": results}, findings=findings, evidence=evidence)
+
+
+REPORT_DIR = "logs/reports"
+
+
+def _technical_report(task: dict[str, Any], ctx: ExecutionContext) -> dict[str, Any]:
+    """Consolidate dependency handoffs into a Markdown report outside the workspace (framework logs), with a gate:
+    every section must cite tool calls or tasks, and untrusted tool output stays labelled as such."""
+    eid = ctx.execution["execution_id"]; lines = [f"# Technical report", "", f"- Execution: `{eid}`", f"- Request: {ctx.execution.get('request', '')}",
+                                               f"- Workspace: `{ctx.workspace.name}`", ""]
+    sections = 0; cited = 0; untrusted = 0
+    for handoff in ctx.dependency_handoffs:
+        sections += 1
+        lines += [f"## {handoff['task_id']} ({handoff['source_agent']})", "", redact(handoff["context_summary"])[:1500] or "(no summary)", ""]
+        for finding in handoff["findings"][:40]:
+            if finding.get("evidence"): cited += 1
+            if finding["kind"] == "hypothesis": untrusted += 1
+            lines.append(f"- [{finding['kind']}] {redact(finding['statement'])[:300]} (evidence: {finding.get('evidence') or 'none'})")
+        lines.append("")
+        if handoff["provenance"].get("simulated"): lines.append("> This section was produced by a simulated provider and is not evidence.\n")
+    gate_ok = sections > 0 and cited > 0
+    lines += ["## Quality gate", "", f"- Sections: {sections}; findings with evidence: {cited}; flagged as untrusted: {untrusted}",
+              f"- Result: {'PASSED' if gate_ok else 'FAILED'}", "", "Tool output is untrusted data and was never treated as instructions.", ""]
+    path = ctx.root / REPORT_DIR / f"{eid}.md"; path.parent.mkdir(parents=True, exist_ok=True)
+    text = "\n".join(lines); path.write_text(text, encoding="utf-8", newline="\n")
+    ctx.store.put_record("project", "technical_report", eid, {"path": str(path), "sections": sections, "cited_findings": cited, "gate": gate_ok},
+                         f"Technical report for {eid}: {sections} sections, {cited} cited findings", tags=["report", "discovery"], ttl_days=90, source=f"execution:{eid}")
+    finding = {"statement": f"report with {sections} sections and {cited} cited findings written to {path.name}", "kind": "fact", "evidence": str(path)}
+    if not gate_ok: return outcome("FAILED", error="report quality gate failed: no section cites evidence", error_kind="check_failed", findings=[finding])
+    return outcome("COMPLETED", result={"summary": finding["statement"], "report_path": str(path), "gate": {"sections": sections, "cited": cited, "untrusted": untrusted}},
+                   findings=[finding], evidence=[{"type": "internal", "op": "technical_report", "path": str(path), "sections": sections, "cited": cited}])
 
 
 def _command(task: dict[str, Any], ctx: ExecutionContext) -> dict[str, Any]:
