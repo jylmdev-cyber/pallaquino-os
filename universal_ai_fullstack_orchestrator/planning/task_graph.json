@@ -590,6 +590,49 @@
         "CODE_REVIEW",
         "BUILD"
       ]
+    },
+    {
+      "id": "PAL-012",
+      "title": "PALLAQUINO Interactive Learning Academy (static portal, tutorials, simulators, progress)",
+      "domain": "documentation",
+      "dependencies": [
+        "PAL-011"
+      ],
+      "blocked_by": [],
+      "parallelizable": false,
+      "priority": "P1",
+      "risk": "MEDIUM",
+      "agents": [
+        "documentation_engineer",
+        "frontend_engineer",
+        "ux_ui_designer",
+        "qa_engineer"
+      ],
+      "skills": [
+        "frontend_accessibility_expert",
+        "testing_strategy_expert",
+        "test_gap_analysis_expert"
+      ],
+      "files": [
+        "../academy/",
+        "../docs/learning/",
+        "../docs/adr/ADR-0017-learning-academy-stack.md",
+        "../.github/workflows/academy.yml"
+      ],
+      "acceptance_criteria": [
+        "the 15 criteria of the academy request section 25",
+        "first functional increment of section 23 with tests",
+        "every taught command exists in the generated CLI reference",
+        "static build passes; no paid services; no publication without approval"
+      ],
+      "quality_gates": [
+        "TEST",
+        "LINT_TYPECHECK",
+        "ACCESSIBILITY",
+        "DOCS_VALIDATION",
+        "BUILD",
+        "CODE_REVIEW"
+      ]
     }
   ]
 }

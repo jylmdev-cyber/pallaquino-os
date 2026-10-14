@@ -1,0 +1,37 @@
+{
+  "gate": "ACCESSIBILITY",
+  "command": [
+    "in-browser axe-core 4.14.0 run (academy dev server, Claude desktop built-in browser), every sidebar page in an iframe"
+  ],
+  "timestamp": "2026-10-14T23:20:00+00:00",
+  "agent": "qa_engineer",
+  "exit_code": null,
+  "result": "passed with 1 upstream finding",
+  "recorded_by": "manual: the sweep runs in a browser, not through scripts/evidence.py; numbers copied from its output",
+  "summary": {
+    "pages": 63,
+    "passes": [
+      "dark theme @1280px",
+      "light theme @1280px",
+      "light theme @375px (also checked for horizontal page overflow)"
+    ],
+    "rule_tags": [
+      "wcag2a",
+      "wcag2aa",
+      "wcag21a",
+      "wcag21aa",
+      "wcag22aa",
+      "best-practice"
+    ],
+    "violations_after_fixes": {
+      "label-content-name-mismatch (Starlight search button: visible 'Ctrl K' hint outside the accessible name 'Buscar'; aria-keyshortcuts present)": "63 pages at 1280px in each theme; 0 at 375px (hint hidden)"
+    },
+    "fixed_during_sweep": [
+      "color-contrast 4.49:1 of Starlight dark gray-3 on gray-6 -> token #9298a2 (5.21:1), dark theme only",
+      "scrollable-region-focusable: wide tables (focusable only when they overflow), DAG columns, transcript blocks; code blocks wrap",
+      "heading-order and empty table headers in 8 pages"
+    ],
+    "horizontal_overflow_at_375px": 0
+  },
+  "artifact": "academy"
+}

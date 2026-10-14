@@ -443,6 +443,43 @@
         "CODE_REVIEW",
         "BUILD"
       ]
+    },
+    {
+      "task": "PAL-012",
+      "agent": "documentation_engineer",
+      "skills": [
+        "frontend_accessibility_expert",
+        "testing_strategy_expert"
+      ],
+      "inputs": [
+        "academy master prompt",
+        "real CLI, registries and docs of 0.5.0"
+      ],
+      "expected_files": [
+        "../academy/",
+        "../docs/learning/"
+      ],
+      "dependencies": [
+        "PAL-011"
+      ],
+      "commands": [
+        "python ../academy/scripts/generate_data.py --check",
+        "npm --prefix ../academy run check",
+        "npm --prefix ../academy test",
+        "npm --prefix ../academy run build",
+        "npm --prefix ../academy run validate"
+      ],
+      "tests": [
+        "unit, component, accessibility, content and link validation, build smoke"
+      ],
+      "gates": [
+        "TEST",
+        "LINT_TYPECHECK",
+        "ACCESSIBILITY",
+        "DOCS_VALIDATION",
+        "BUILD",
+        "CODE_REVIEW"
+      ]
     }
   ]
 }
