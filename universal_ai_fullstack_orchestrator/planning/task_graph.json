@@ -523,6 +523,73 @@
         "CODE_REVIEW",
         "BUILD"
       ]
+    },
+    {
+      "id": "PAL-011",
+      "title": "v0.5.0 plugin ecosystem, MCP client, tool registry and governance gateway",
+      "domain": "extensibility",
+      "dependencies": [
+        "PAL-010"
+      ],
+      "blocked_by": [],
+      "parallelizable": false,
+      "priority": "P0",
+      "risk": "HIGH",
+      "agents": [
+        "framework_maintainer",
+        "integration_engineer",
+        "security_architect",
+        "identity_access_engineer",
+        "observability_engineer",
+        "qa_engineer"
+      ],
+      "skills": [
+        "mcp_expert",
+        "tool_calling_expert",
+        "prompt_security_expert",
+        "supply_chain_security_expert",
+        "api_contract_expert",
+        "application_security_expert"
+      ],
+      "files": [
+        "pallaquino_cli/extensions/",
+        "pallaquino_cli/mcp/",
+        "pallaquino_cli/tools/",
+        "pallaquino_cli/integrations/",
+        "pallaquino_cli/sdk/",
+        "pallaquino_cli/cli_platform.py",
+        "pallaquino_cli/memory/store.py",
+        "pallaquino_cli/orchestration/",
+        "pallaquino_cli/__main__.py",
+        "governance/",
+        "examples/pallaquino-example-plugin/",
+        "tests/",
+        "../docs/"
+      ],
+      "acceptance_criteria": [
+        "plugins discovered from metadata without importing code",
+        "manifests validated; incompatible plugins rejected",
+        "trusted plugins enable/disable; a plugin without a trust policy never executes",
+        "MCP 2026-07-28 client over stdio and Streamable HTTP",
+        "tools discovered from real test servers; inputs and outputs validated",
+        "every tool call passes the permission gateway; unauthorized calls blocked",
+        "adversarial suite (injection, poisoning, SSRF, traversal, leakage, escalation, expired grants) passes",
+        "agent engine uses an authorized tool",
+        "SDK-built plugin works from an isolated installation",
+        "audit trail persisted",
+        "offline end-to-end codebase analysis passes",
+        "no v0.4.0 regression",
+        "docs describe implemented behaviour",
+        "reproducible archive with SHA-256"
+      ],
+      "quality_gates": [
+        "TEST",
+        "LINT_TYPECHECK",
+        "SECURITY_CHECK",
+        "ADVERSARIAL_REVIEW",
+        "CODE_REVIEW",
+        "BUILD"
+      ]
     }
   ]
 }

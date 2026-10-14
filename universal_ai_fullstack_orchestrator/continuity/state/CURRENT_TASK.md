@@ -1,11 +1,20 @@
 # Current task
 
-- ID: PAL-010
-- Objective: evolve PALLAQUINO to 0.4.0 (orchestration engine, persistent memory, provider abstraction) per the v0.4.0 master request
+- ID: PAL-011
+- Objective: evolve PALLAQUINO to 0.5.0 (plugin ecosystem, MCP client, unified tool registry, permission and execution gateway, plugin SDK, integration adapters) per the v0.5.0 master request
 - Mode: BROWNFIELD
-- Autonomy: STANDARD (publication approved by the owner on 2026-10-14: PR, merge after green CI, tag `v0.4.0`, GitHub Release)
-- Scope: intent analyzer, agent router, task planner, multi-agent scheduler, executors, project memory, providers (mock, Ollama), observability, CLI, docs
-- Status: COMPLETE once the pull request passes CI and is merged, and tag `v0.4.0` with its GitHub Release is published and verified
-- Risk: HIGH (new execution engine with write access to workspaces), mitigated by deny-by-default grants, approvals and the adversarial suite
-- Acceptance: 154 tests pass; reference scenario offline passes; real-provider variant reported as not executed
-- Confidence: high for implemented behaviour; unverified on Linux and with a real model
+- Autonomy: STANDARD. Local work only: no push, release, package publication or installation of unknown code without explicit owner approval (request sections 19, 24, 26)
+- Base: `main` at `4ffde70` (v0.4.0 published 2026-10-14); branch `feat/v0.5.0-extensions`
+- Baseline (2026-10-14T17:10Z): 154/154 tests OK on Windows py3.11.15; `validate --integrity-only` OK; `architecture_fitness` OK. `validate_all` fails only its environment check here because this worktree has no repository-local Git identity.
+- Scope:
+  - extension manifest, discovery from metadata (entry points `pallaquino.plugins` and project `plugins/`), lifecycle state machine, trust policy and process isolation;
+  - stdlib MCP client for revision 2026-07-28 (stdio and Streamable HTTP, `server/discover`, tools, resources, prompts, MRTR, cancellation, Tasks extension), with a legacy `initialize` fallback;
+  - connection registry, network policy and OAuth/credential manager;
+  - unified tool registry, tool router, permission gateway and execution gateway, wired into planner, executors and scheduler;
+  - filesystem, Git, SQLite and GitHub (read-only) adapters;
+  - plugin SDK with an example plugin; observability; `plugins`, `mcp`, `tools`, `permissions` and `plugin` CLI commands;
+  - offline end-to-end codebase-analysis demo; docs; release candidate.
+- Out of scope (documented, not implemented): Docker and cloud adapters, PostgreSQL/MySQL drivers, commercial providers, `subscriptions/listen`, OS-level sandboxing.
+- Risk: HIGH. External code and remote servers become executable surfaces. Mitigations: deny-by-default grants, approvals bound to an argument digest, untrusted descriptions and results, SSRF guard, process isolation, catalog pinning, redaction, and an adversarial suite.
+- Acceptance: the 20 criteria of request section 23. Any criterion that fails makes the result an incomplete candidate, and the blockers are reported.
+- Confidence: high for scope and plan

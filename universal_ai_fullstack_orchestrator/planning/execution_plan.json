@@ -401,6 +401,48 @@
         "BUILD",
         "SECURITY_CHECK"
       ]
+    },
+    {
+      "task": "PAL-011",
+      "agent": "framework_maintainer",
+      "skills": [
+        "mcp_expert",
+        "tool_calling_expert",
+        "prompt_security_expert"
+      ],
+      "inputs": [
+        "v0.5.0 master implementation request",
+        "MCP specification 2026-07-28",
+        "docs/roadmap/ROADMAP_V040_TO_V050.md"
+      ],
+      "expected_files": [
+        "pallaquino_cli/extensions/",
+        "pallaquino_cli/mcp/",
+        "pallaquino_cli/tools/",
+        "pallaquino_cli/integrations/",
+        "pallaquino_cli/sdk/"
+      ],
+      "dependencies": [
+        "PAL-010"
+      ],
+      "commands": [
+        "python -m unittest discover -s tests -v",
+        "python scripts/validate_all.py",
+        "python scripts/architecture_fitness.py",
+        "python scripts/run_codebase_analysis_demo.py",
+        "python scripts/package_release.py"
+      ],
+      "tests": [
+        "plugin, MCP, tool gateway, adversarial, integration, compatibility suites"
+      ],
+      "gates": [
+        "TEST",
+        "LINT_TYPECHECK",
+        "SECURITY_CHECK",
+        "ADVERSARIAL_REVIEW",
+        "CODE_REVIEW",
+        "BUILD"
+      ]
     }
   ]
 }

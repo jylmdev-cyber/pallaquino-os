@@ -1,6 +1,63 @@
 {
   "schema_version": 1,
-  "locks": [],
+  "locks": [
+    {
+      "path": "pallaquino_cli/__main__.py",
+      "normalized_path": "pallaquino_cli/__main__.py",
+      "owner": "claude-c7d622",
+      "task": "PAL-011",
+      "acquired_at": "2026-10-14T17:16:05+00:00",
+      "ttl_minutes": 720
+    },
+    {
+      "path": "pallaquino_cli/memory/store.py",
+      "normalized_path": "pallaquino_cli/memory/store.py",
+      "owner": "claude-c7d622",
+      "task": "PAL-011",
+      "acquired_at": "2026-10-14T17:16:05+00:00",
+      "ttl_minutes": 720
+    },
+    {
+      "path": "pallaquino_cli/orchestration/executors.py",
+      "normalized_path": "pallaquino_cli/orchestration/executors.py",
+      "owner": "claude-c7d622",
+      "task": "PAL-011",
+      "acquired_at": "2026-10-14T17:16:05+00:00",
+      "ttl_minutes": 720
+    },
+    {
+      "path": "pallaquino_cli/orchestration/planning.py",
+      "normalized_path": "pallaquino_cli/orchestration/planning.py",
+      "owner": "claude-c7d622",
+      "task": "PAL-011",
+      "acquired_at": "2026-10-14T17:16:05+00:00",
+      "ttl_minutes": 720
+    },
+    {
+      "path": "pallaquino_cli/orchestration/scheduler.py",
+      "normalized_path": "pallaquino_cli/orchestration/scheduler.py",
+      "owner": "claude-c7d622",
+      "task": "PAL-011",
+      "acquired_at": "2026-10-14T17:16:06+00:00",
+      "ttl_minutes": 720
+    },
+    {
+      "path": "pyproject.toml",
+      "normalized_path": "pyproject.toml",
+      "owner": "claude-c7d622",
+      "task": "PAL-011",
+      "acquired_at": "2026-10-14T17:16:06+00:00",
+      "ttl_minutes": 720
+    },
+    {
+      "path": "manifest.json",
+      "normalized_path": "manifest.json",
+      "owner": "claude-c7d622",
+      "task": "PAL-011",
+      "acquired_at": "2026-10-14T17:16:06+00:00",
+      "ttl_minutes": 720
+    }
+  ],
   "audit": [
     {
       "event": "acquire",
@@ -211,6 +268,69 @@
       "path": "PROJECT_OWNERSHIP.md",
       "owner": "claude-c7d622",
       "timestamp": "2026-10-13T15:00:04+00:00"
+    },
+    {
+      "event": "acquire",
+      "path": "pallaquino_cli/__main__.py",
+      "normalized_path": "pallaquino_cli/__main__.py",
+      "owner": "claude-c7d622",
+      "task": "PAL-011",
+      "acquired_at": "2026-10-14T17:16:05+00:00",
+      "ttl_minutes": 720
+    },
+    {
+      "event": "acquire",
+      "path": "pallaquino_cli/memory/store.py",
+      "normalized_path": "pallaquino_cli/memory/store.py",
+      "owner": "claude-c7d622",
+      "task": "PAL-011",
+      "acquired_at": "2026-10-14T17:16:05+00:00",
+      "ttl_minutes": 720
+    },
+    {
+      "event": "acquire",
+      "path": "pallaquino_cli/orchestration/executors.py",
+      "normalized_path": "pallaquino_cli/orchestration/executors.py",
+      "owner": "claude-c7d622",
+      "task": "PAL-011",
+      "acquired_at": "2026-10-14T17:16:05+00:00",
+      "ttl_minutes": 720
+    },
+    {
+      "event": "acquire",
+      "path": "pallaquino_cli/orchestration/planning.py",
+      "normalized_path": "pallaquino_cli/orchestration/planning.py",
+      "owner": "claude-c7d622",
+      "task": "PAL-011",
+      "acquired_at": "2026-10-14T17:16:05+00:00",
+      "ttl_minutes": 720
+    },
+    {
+      "event": "acquire",
+      "path": "pallaquino_cli/orchestration/scheduler.py",
+      "normalized_path": "pallaquino_cli/orchestration/scheduler.py",
+      "owner": "claude-c7d622",
+      "task": "PAL-011",
+      "acquired_at": "2026-10-14T17:16:06+00:00",
+      "ttl_minutes": 720
+    },
+    {
+      "event": "acquire",
+      "path": "pyproject.toml",
+      "normalized_path": "pyproject.toml",
+      "owner": "claude-c7d622",
+      "task": "PAL-011",
+      "acquired_at": "2026-10-14T17:16:06+00:00",
+      "ttl_minutes": 720
+    },
+    {
+      "event": "acquire",
+      "path": "manifest.json",
+      "normalized_path": "manifest.json",
+      "owner": "claude-c7d622",
+      "task": "PAL-011",
+      "acquired_at": "2026-10-14T17:16:06+00:00",
+      "ttl_minutes": 720
     }
   ]
 }
