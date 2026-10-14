@@ -304,8 +304,8 @@ class PluginManager:
             plugin_dir = roots[0]
         elif source.is_dir():
             if not (source / MANIFEST_FILE).is_file(): raise PluginError(f"{source} has no {MANIFEST_FILE}")
-            shutil.copytree(source, staging / "x", symlinks=False, ignore=shutil.ignore_patterns("__pycache__", "*.pyc", ".git", ".venv", "venv", "build", "dist", "*.egg-info"))
-            plugin_dir = staging / "x"
+            plugin_dir = staging / "x" / source.name  # keep the directory name: a manifest inside its package must stay importable
+            shutil.copytree(source, plugin_dir, symlinks=False, ignore=shutil.ignore_patterns("__pycache__", "*.pyc", ".git", ".venv", "venv", "build", "dist", "*.egg-info"))
             if sha256 and content_hash(plugin_dir) != sha256.lower(): raise PluginError("directory content hash does not match the expected --sha256")
         else: raise PluginError(f"{source} does not exist")
         if any(p.is_symlink() for p in plugin_dir.rglob("*")): raise PluginError("plugin sources must not contain symbolic links")

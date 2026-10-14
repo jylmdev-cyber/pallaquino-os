@@ -73,7 +73,7 @@ def validate_manifest(manifest: dict[str, Any], *, framework_version: str = __ve
     for field in ("name", "description", "author"): _str(plugin.get(field), f"plugin.{field}", errors, max_len=2000 if field == "description" else 200)
     version = _str(plugin.get("version"), "plugin.version", errors, max_len=64)
     if version:
-        try: Version(version)
+        try: Version(version, strict=True)
         except ValueError as exc: errors.append(str(exc))
     plugin_type = plugin.get("type")
     if plugin_type not in PLUGIN_TYPES: errors.append(f"plugin.type must be one of {PLUGIN_TYPES}")

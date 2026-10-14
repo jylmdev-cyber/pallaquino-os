@@ -59,7 +59,11 @@ def diff(args: dict[str, Any], ctx: ToolContext) -> dict[str, Any]:
 def log(args: dict[str, Any], ctx: ToolContext) -> dict[str, Any]:
     argv = ["log", f"--max-count={args.get('max_count', 20)}", "--format=%H%x1f%an%x1f%aI%x1f%s"]
     if args.get("path"): argv += ["--", confine(ctx.workspace, args["path"], allow_root=True).relative_to(ctx.workspace.resolve()).as_posix() or "."]
-    commits = [dict(zip(("sha", "author", "date", "subject"), line.split("\x1f"))) for line in _git(ctx, *argv).splitlines() if line]
+    try: output = _git(ctx, *argv)
+    except GitError as exc:
+        if "does not have any commits" not in str(exc): raise
+        output = ""  # a repository without commits has an empty history, not a failure
+    commits = [dict(zip(("sha", "author", "date", "subject"), line.split("\x1f"))) for line in output.splitlines() if line]
     return tool_result(text=f"{len(commits)} commits", structured={"commits": commits})
 
 

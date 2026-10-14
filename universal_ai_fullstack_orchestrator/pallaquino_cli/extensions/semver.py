@@ -12,9 +12,10 @@ _COMPARATOR = re.compile(r"^(>=|<=|==|!=|>|<|\^|~|=)?\s*(.+)$")
 class Version:
     __slots__ = ("major", "minor", "patch", "pre")
 
-    def __init__(self, text: str):
+    def __init__(self, text: str, *, strict: bool = False):
+        """`strict` requires MAJOR.MINOR.PATCH (plugin versions); ranges may abbreviate (`^1.2`)."""
         match = _VERSION.match(text.strip()) if isinstance(text, str) else None
-        if not match: raise ValueError(f"invalid semantic version {text!r}")
+        if not match or (strict and (match.group(2) is None or match.group(3) is None)): raise ValueError(f"invalid semantic version {text!r}")
         self.major, self.minor, self.patch = (int(match.group(i) or 0) for i in (1, 2, 3))
         self.pre = tuple(int(p) if p.isdigit() else p for p in match.group(4).split(".")) if match.group(4) else ()
 

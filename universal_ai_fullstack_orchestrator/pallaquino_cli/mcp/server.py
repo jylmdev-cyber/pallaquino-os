@@ -316,6 +316,10 @@ class McpHttpServer:
             def do_DELETE(self): outer._send_json(self, 405, None)
             def do_POST(self): outer._post(self)
         self.httpd = ThreadingHTTPServer((host, port), Handler); self.httpd.daemon_threads = True
+        default_error = self.httpd.handle_error
+        def handle_error(request, client_address):  # a client closing its stream is a cancellation, not a server error
+            if not isinstance(sys.exc_info()[1], (ConnectionError, TimeoutError)): default_error(request, client_address)
+        self.httpd.handle_error = handle_error
         self.thread: threading.Thread | None = None
 
     @property
@@ -387,7 +391,8 @@ class McpHttpServer:
         version = headers.get("mcp-protocol-version"); method = headers.get("mcp-method")
         if version is None or method is None: return "missing required MCP-Protocol-Version or Mcp-Method header"
         params = message.get("params") or {}; meta = params.get("_meta") or {}
-        if version != meta.get(p.META_PROTOCOL): return f"MCP-Protocol-Version header {version!r} does not match the body"
+        if meta.get(p.META_PROTOCOL) is not None and version != meta[p.META_PROTOCOL]: return f"MCP-Protocol-Version header {version!r} does not match the body"
+        # a body without the required _meta is malformed (-32602, answered by handle()), not a header mismatch
         if method != message.get("method"): return f"Mcp-Method header {method!r} does not match body method"
         field_name = p.METHODS_WITH_NAME.get(message.get("method"))
         if field_name:
