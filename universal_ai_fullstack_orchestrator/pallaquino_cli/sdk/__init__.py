@@ -39,7 +39,7 @@ class ToolCall:
         """Resolve a path inside the workspace the host granted; anything outside raises PermissionError."""
         if self.workspace is None: raise PermissionError("this plugin was not granted a workspace")
         candidate = Path(relative.replace("\\", "/"))
-        if candidate.is_absolute() or candidate.drive: raise PermissionError(f"absolute path {relative!r} is outside the workspace")
+        if candidate.is_absolute() or candidate.drive or relative.startswith(("/", "\\")) or (len(relative) > 1 and relative[1] == ":"): raise PermissionError(f"absolute path {relative!r} is outside the workspace")
         target = (self.workspace / candidate).resolve()
         try: target.relative_to(self.workspace.resolve())
         except ValueError: raise PermissionError(f"path {relative!r} escapes the workspace") from None

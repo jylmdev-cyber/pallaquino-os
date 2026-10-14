@@ -276,6 +276,15 @@ def write_repository_map(payload: dict[str, Any], destination: Path) -> None:
     (destination / "repository" / "REPOSITORY_MAP.md").write_text("\n".join(md) + "\n", encoding="utf-8", newline="\n")
 
 
+WINDOWS_ABSOLUTE = re.compile(r"^(?:[A-Za-z]:|[\\/]{2})")
+
+
+def is_foreign_absolute(path_text: str) -> bool:
+    """Drive-letter (`C:...`) and UNC (`\\\\host`) paths are absolute on Windows but relative names on POSIX; treat them as
+    absolute everywhere so workspace confinement rejects them identically on every platform."""
+    return bool(WINDOWS_ABSOLUTE.match(path_text.strip()))
+
+
 def redact(text: str) -> str:
     """Replace secret-shaped values with a typed marker before text is persisted or printed."""
     for kind, pattern in SECRET_PATTERNS.items():

@@ -19,7 +19,7 @@ from pathlib import Path
 from typing import Any, Callable
 
 from ..contracts import load_contract
-from ..core import _secret_kinds, compute_repository_map, redact
+from ..core import _secret_kinds, compute_repository_map, is_foreign_absolute, redact
 from ..memory.store import INJECTION_PATTERNS, UNTRUSTED_NOTICE
 from ..providers.base import Budget, ProviderError, ProviderRequest
 from ..providers.router import complete_with_fallback
@@ -52,7 +52,7 @@ def confine(workspace: Path, relative: str) -> Path:
     """Resolve a path inside the workspace or raise; absolute paths, drive letters and '..' escapes are rejected."""
     if not isinstance(relative, str) or not relative.strip(): raise PermissionError("empty path")
     candidate = Path(relative.replace("\\", "/"))
-    if candidate.is_absolute() or candidate.drive or relative.startswith(("/", "\\")): raise PermissionError(f"absolute path {relative!r} is outside the workspace")
+    if candidate.is_absolute() or candidate.drive or relative.startswith(("/", "\\")) or is_foreign_absolute(relative): raise PermissionError(f"absolute path {relative!r} is outside the workspace")
     target = (workspace / candidate).resolve()
     try: target.relative_to(workspace.resolve())
     except ValueError: raise PermissionError(f"path {relative!r} escapes the workspace") from None

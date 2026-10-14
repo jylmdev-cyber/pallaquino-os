@@ -81,6 +81,9 @@ Ver `docs/releases/RELEASE_V050.md`, ADR-0013 a ADR-0016 y `MIGRATION_GUIDE.md`.
   el tag `v0.4.0` no están afectados. Ahora `memory/`, `logs/` y `plugins/` se excluyen solo en la raíz del framework, y un test exige que
   el archivo contenga todos los paquetes de `pyproject.toml`.
 - `core.git.status` y `core.git.log` informan de un workspace sin Git como un hecho (`repository: false`) en lugar de fallar.
+- El confinamiento al workspace rechaza en todas las plataformas las rutas con letra de unidad (`C:\...`) y las UNC (`\\host\...`).
+  En POSIX se trataban como nombres relativos dentro del workspace; no permitían escapar, pero la decisión dependía del sistema operativo.
+  Lo detectó el primer CI en Linux.
 
 ### Security
 

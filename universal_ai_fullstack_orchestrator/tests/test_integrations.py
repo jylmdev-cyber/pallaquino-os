@@ -45,7 +45,8 @@ class FilesystemTest(AdapterCase):
 
     def test_confinement_and_sensitive_files(self):
         outside = Path(self.tmp.name) / "secret.txt"; outside.write_text("outside", encoding="utf-8")
-        for path in ("../secret.txt", str(outside), "/etc/passwd", "C:\\Windows\\win.ini", "src/../../secret.txt"):
+        # Drive-letter and UNC paths must be refused on every platform (on POSIX they are otherwise relative names).
+        for path in ("../secret.txt", str(outside), "/etc/passwd", "C:\\Windows\\win.ini", "c:/Windows/win.ini", "\\\\server\\share\\x", "src/../../secret.txt"):
             with self.subTest(path=path):
                 outcome = self.call("core.files.read", {"path": path})
                 self.assertEqual((outcome["status"], outcome["error_kind"]), ("DENIED", "permission_denied"))

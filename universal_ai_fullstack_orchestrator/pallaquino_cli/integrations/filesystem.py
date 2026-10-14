@@ -15,7 +15,7 @@ import tempfile
 from pathlib import Path
 from typing import Any
 
-from ..core import _secret_kinds
+from ..core import _secret_kinds, is_foreign_absolute
 from ..tools.contracts import new_tool
 from ..tools.registry import ToolContext, tool_result
 
@@ -29,7 +29,7 @@ def confine(workspace: Path, relative: str, *, allow_root: bool = False) -> Path
     if not isinstance(relative, str) or (not relative.strip() and not allow_root): raise PermissionError("empty path")
     text = relative.replace("\\", "/").strip() or "."
     candidate = Path(text)
-    if candidate.is_absolute() or candidate.drive or text.startswith("/"): raise PermissionError(f"absolute path {relative!r} is outside the workspace")
+    if candidate.is_absolute() or candidate.drive or text.startswith("/") or is_foreign_absolute(relative): raise PermissionError(f"absolute path {relative!r} is outside the workspace")
     root = workspace.resolve(); target = (root / candidate).resolve()
     try: target.relative_to(root)
     except ValueError: raise PermissionError(f"path {relative!r} escapes the workspace (directly or through a symbolic link)") from None
