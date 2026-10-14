@@ -123,7 +123,8 @@ Corrección: ambos son dry-run por defecto y requieren `--write`. **CORREGIDO.**
 - **M-5 — El grafo de tareas aceptaba agentes/skills inexistentes.** **CORREGIDO.**
 - **M-6 — Agentes y skills sin contrato operativo.** Faltan entradas/salidas,
   herramientas autorizadas, condiciones de activación, criterios de éxito y casos de
-  prueba por agente. **ABIERTO** → Fase 2/3 (contratos v2, ADR futura).
+  prueba por agente. **PARCIAL**: contratos v2 implementados (ADR-0008, PAL-007-A) con contenido
+  derivado; la curación y la alcanzabilidad de 20 agentes y 9 skills siguen abiertas (PAL-007-B).
 - **M-7 — Snapshot tecnológico caducado** (verificado 2026-08-31, caducó 2026-09-30).
   Requiere verificación contra fuentes oficiales en modo `UPGRADE`. **ABIERTO** (`PAL-006`).
 - **M-8 — Salida no JSON en modo humano.** `agents`/`skills` imprimían `repr` de

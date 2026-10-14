@@ -6,6 +6,15 @@ Los cambios relevantes de este proyecto se documentan aquí. El formato sigue
 
 ## [Unreleased]
 
+### Added
+
+- Contratos v2 de agentes y skills (ADR-0008): `registry/agent_contracts.json` y
+  `registry/skill_contracts.json` con entradas, salidas, dependencias, herramientas
+  autorizadas con denegación por defecto, activación, criterios de éxito, casos de
+  prueba y digest de la fuente. Generador `scripts/build_contracts.py` (dry-run salvo
+  `--write`), validador `validate_contracts` y comando `pallaquino contracts [--id]`
+  con carga controlada.
+
 ### Planned
 
 - Fase 2: contratos v2, motor de orquestación, Project Memory y adaptadores de

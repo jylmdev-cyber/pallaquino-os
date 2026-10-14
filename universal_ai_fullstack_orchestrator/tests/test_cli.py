@@ -83,7 +83,7 @@ class CliInProcessTests(unittest.TestCase):
             self.assertEqual(self.call("init", "--root", str(ROOT), "--target", temp, "--json")[0], 0)
             for args in (["status"], ["plan"], ["pipeline"], ["skills"], ["graph"], ["resume"],
                          ["validate", "--integrity-only"], ["risk", "add", "login"], ["analyze", "--target", temp],
-                         ["checkpoint", "--task", "T-1"], ["handoff", "--next-action", "review"], ["security", "--target", str(project / "docs")]):
+                         ["checkpoint", "--task", "T-1"], ["handoff", "--next-action", "review"], ["security", "--target", str(project / "docs")], ["contracts"], ["contracts", "--id", "qa_engineer"]):
                 code, out = self.call(*args, "--root", str(project), "--json")
                 self.assertEqual(code, 0, (args, out)); self.assertIsInstance(json.loads(out), (dict, list))
             self.assertEqual(json.loads(self.call("resume", "--root", str(project), "--json")[1])["status"], "RECOVERED")
@@ -94,6 +94,7 @@ class CliInProcessTests(unittest.TestCase):
             self.assertEqual(code, 1)  # temp project is not a Git repository
             self.assertEqual(json.loads(out)["expected"]["name"], "Ada Dev")
             self.assertEqual(self.call("identity", "--name", "Solo", "--root", str(project), "--json")[0], 1)
+            self.assertEqual(self.call("contracts", "--id", "ghost", "--root", str(project), "--json")[0], 1)
             code, _ = self.call("status", "--root", temp)
             self.assertEqual(code, 2)
 
