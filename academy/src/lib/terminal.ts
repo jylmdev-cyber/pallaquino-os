@@ -83,7 +83,7 @@ export class TerminalSimulator {
 		if (/[;&|`$><]/.test(text)) return { kind: 'blocked', exitCode: 126, lines: ['El simulador no interpreta operadores de shell (; & | ` $ > <).'], note: 'Escribe un comando por línea.' };
 		const tokens = tokenize(text); const [head] = tokens;
 		const args = cliArguments(tokens);
-		if (args) return this.pallaquino(args);
+		if (args) return this.pallaquino(args, tokens[0] !== 'pallaquino');
 		switch (head.toLowerCase()) {
 			case 'help': case 'ayuda': return this.help();
 			case 'clear': case 'cls': case 'limpiar': return { kind: 'clear', lines: [], exitCode: 0 };
@@ -140,15 +140,20 @@ export class TerminalSimulator {
 		return { kind: 'error', exitCode: 1, lines: ['El simulador solo reconoce git --version y git clone.'] };
 	}
 
-	private pallaquino(args: string[]): TerminalResponse {
+	/**
+	 * `python -m pallaquino_cli` only works where the package is importable: inside the framework folder (nothing is installed in
+	 * the simulator). A bare `pallaquino` stands for the command installed with `pip install -e`, which works from any folder.
+	 */
+	private pallaquino(args: string[], viaModule: boolean): TerminalResponse {
 		const informational = args.length === 1 && ['--help', '-h', '--version'].includes(args[0]);
-		if (this.state.cwd !== 'framework' && !informational) {
+		if (viaModule && this.state.cwd !== 'framework') {
 			return { kind: 'error', exitCode: 1, lines: ['python: No module named pallaquino_cli'],
 				note: 'Sin instalar el paquete, el módulo solo existe dentro de pallaquino-os/universal_ai_fullstack_orchestrator. Entra con cd antes de ejecutarlo.' };
 		}
+		const installedNote = viaModule ? undefined : 'Equivale al comando instalado con pip install -e; sin instalarlo, usa python -m pallaquino_cli desde la carpeta del framework.';
 		const recorded = this.byArgs.get(JSON.stringify(args));
-		if (recorded) return { kind: 'recorded', exitCode: recorded.exit_code, lines: recorded.output.split('\n'), note: recorded.note, transcriptId: recorded.id };
-		if (informational && args[0] === '-h') return this.pallaquino(['--help']);
+		if (recorded) return { kind: 'recorded', exitCode: recorded.exit_code, lines: recorded.output.split('\n'), note: installedNote ?? recorded.note, transcriptId: recorded.id };
+		if (informational && args[0] === '-h') return this.pallaquino(['--help'], viaModule);
 		const sub = args.find((a) => !a.startsWith('-'));
 		if (!sub) return { kind: 'error', exitCode: 2, lines: ['usage: pallaquino [-h] [--version] {…} ...', 'pallaquino: error: the following arguments are required: command'] };
 		const command = this.commands.get(sub);

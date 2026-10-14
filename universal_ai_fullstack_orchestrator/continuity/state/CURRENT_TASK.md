@@ -23,7 +23,9 @@
 - Risk: MEDIUM. The portal is new and independent of the Python core. The main risk is teaching features that do not exist; it is
   mitigated by generated data and command validation.
 - Acceptance: the 15 criteria of request §25.
-- Status (2026-10-14): implemented and verified locally on `feat/academy`; not pushed, not deployed (both need owner approval).
+- Status (2026-10-14): owner-approved and published. PR #8 merged (`b9ec3ea`) after green CI. GitHub Pages enabled with the Actions source;
+  the Academy workflow was run with `deploy=true` (run 38655034166, both jobs green), and the live site was checked (pages 200, unknown
+  path 404, search index served, terminal replay working). The follow-up simulator fix is PAL-012-F1.
   - `academy/`: 64 content pages, including 46 lessons in 9 routes, 10 quizzes, 2 terminal challenges, the mandatory first-install
     tutorial, practice, reference (generated), video scripts and the English entry page.
   - Every taught command is checked against the real CLI parser (133 commands).
@@ -31,6 +33,6 @@
   - Local checks: `npm run ci` green (`evidence/docs_validation-2026-10-14T23-14-58+00-00.json`); in-browser axe sweep
     (`evidence/accessibility_browser-2026-10-14T23-20-00+00-00.json`); framework suite 242 green
     (`evidence/test-2026-10-14T23-16-55+00-00.json`).
-  - Documentation audit: 11 findings. H-6, a non-ASCII Git identity defect on Windows in `core.run_git`, is not fixed here (core out of
-    scope) and is proposed as a separate task.
+  - Documentation audit: 11 findings. H-6, a non-ASCII Git identity defect on Windows in `core.run_git`, was fixed separately by PAL-013
+    (PR #9).
 - Confidence: high for content accuracy and local verification; deployment and user testing not performed

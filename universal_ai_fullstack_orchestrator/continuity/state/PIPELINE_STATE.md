@@ -1,6 +1,6 @@
 # Pipeline state
 
-- Status: complete locally for PAL-012 (learning academy); publication pending owner approval
+- Status: PAL-012 published (PR #8 merged, GitHub Pages deployed 2026-10-14); PAL-013 merged (PR #9)
 - Updated: 2026-10-14
 - Confidence: high
 - Current stage: HANDOFF
@@ -24,4 +24,5 @@
 - Mode and autonomy: GREENFIELD component in a BROWNFIELD repository, STANDARD
 - Checkpoint: generated for PAL-012
 - Handoff: `continuity/HANDOFF.json`
-- Next: owner decision on push and pull request for `feat/academy`, then optional GitHub Pages deployment (manual workflow); PAL-013 fix for audit H-6
+- Next: merge PAL-012-F1 (simulator fix) and redeploy the Academy with the manual workflow, both with owner approval; run the user-testing
+  protocol; next stack re-verification due 2026-11-13

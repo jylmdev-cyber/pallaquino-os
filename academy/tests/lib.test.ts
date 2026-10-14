@@ -75,6 +75,10 @@ describe('terminal simulator', () => {
 		const t = fresh();
 		const outside = t.run('python -m pallaquino_cli doctor');
 		expect(outside.kind).toBe('error'); expect(outside.lines[0]).toContain('No module named pallaquino_cli');
+		// --version and --help need the importable module too; only the installed `pallaquino` command works from anywhere.
+		expect(fresh().run('python -m pallaquino_cli --version').lines[0]).toContain('No module named pallaquino_cli');
+		const installed = fresh().run('pallaquino --version');
+		expect(installed.kind).toBe('recorded'); expect(installed.note).toContain('pip install -e');
 		expect(t.run('cd pallaquino-os').kind).toBe('error');
 		expect(t.run('git clone https://github.com/jylmdev-cyber/pallaquino-os.git').kind).toBe('simulated');
 		expect(t.run('cd pallaquino-os/universal_ai_fullstack_orchestrator').exitCode).toBe(0);
