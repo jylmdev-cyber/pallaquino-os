@@ -1,0 +1,39 @@
+{
+  "task_id": "PAL-008",
+  "files_created": [
+    "releases/0.3.1.json",
+    "changes/PAL-008.json"
+  ],
+  "files_modified": [
+    "pallaquino_cli/__init__.py",
+    "pallaquino_cli/core.py (VERSION)",
+    "pyproject.toml",
+    "manifest.json",
+    "README.md",
+    "scripts/scaffold_framework.py (VERSION)",
+    "continuity/state/*.md",
+    "planning/task_graph.json",
+    "planning/execution_plan.json",
+    "../README.md",
+    "../CHANGELOG.md",
+    "../CITATION.cff",
+    "../docs/GITHUB_RELEASE_CHECKLIST.md",
+    "../PALLAQUINO_autonomous_engineering_os.zip",
+    "../PALLAQUINO_autonomous_engineering_os.sha256"
+  ],
+  "files_deleted": [],
+  "migrations": [],
+  "dependencies": [],
+  "endpoints": [],
+  "tests": [
+    "48 tests (new: no control characters in tracked text); the code fix (066fa50) passed GitHub Actions on Ubuntu with Python 3.11 and 3.14"
+  ],
+  "docs": [
+    "CHANGELOG 0.3.1 entry"
+  ],
+  "decisions": [
+    "PATCH release: one backward-compatible fix",
+    "Do not move the published v0.3.0 tag; ship the fix as v0.3.1",
+    "Owner approved merging PR #3 and publishing 0.3.1 on 2026-10-14"
+  ]
+}

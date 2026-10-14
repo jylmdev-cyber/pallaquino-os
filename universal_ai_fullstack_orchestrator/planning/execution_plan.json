@@ -310,6 +310,40 @@
         "CODE_REVIEW",
         "SPECIFICATION_DRIFT"
       ]
+    },
+    {
+      "task": "PAL-008",
+      "agent": "release_manager",
+      "skills": [
+        "release_management_expert",
+        "git_release_expert"
+      ],
+      "inputs": [
+        "owner approval 2026-10-14",
+        "commit 066fa50"
+      ],
+      "expected_files": [
+        "releases/0.3.1.json",
+        "../PALLAQUINO_autonomous_engineering_os.zip"
+      ],
+      "dependencies": [
+        "PAL-005-REL"
+      ],
+      "commands": [
+        "python -m unittest discover -s tests -v",
+        "python scripts/package_release.py",
+        "python scripts/verify_zip_integrity.py"
+      ],
+      "tests": [
+        "CI green",
+        "archive verified"
+      ],
+      "gates": [
+        "TEST",
+        "LINT_TYPECHECK",
+        "BUILD",
+        "SECURITY_CHECK"
+      ]
     }
   ]
 }

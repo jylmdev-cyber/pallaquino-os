@@ -5,12 +5,12 @@
 </p>
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-0.3.0-0A7BBB">
+  <img alt="Version" src="https://img.shields.io/badge/version-0.3.1-0A7BBB">
   <img alt="Python" src="https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white">
   <img alt="Agents" src="https://img.shields.io/badge/agents-59-7B61FF">
   <img alt="Skills" src="https://img.shields.io/badge/skills-90-00A67E">
   <img alt="Technologies" src="https://img.shields.io/badge/technologies-46-F97316">
-  <img alt="Tests" src="https://img.shields.io/badge/tests-47%20passing-2EA44F">
+  <img alt="Tests" src="https://img.shields.io/badge/tests-48%20passing-2EA44F">
   <img alt="License" src="https://img.shields.io/badge/license-MIT-blue">
   <img alt="Provider neutral" src="https://img.shields.io/badge/AI-provider--neutral-111827">
   <a href="https://github.com/jylmdev-cyber/pallaquino-os/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/jylmdev-cyber/pallaquino-os/actions/workflows/ci.yml/badge.svg"></a>
@@ -22,7 +22,7 @@ un grafo de tareas, ejecuta gates de calidad y conserva evidencia, checkpoints y
 handoffs. No es solamente una colección de prompts: incluye CLI en Python,
 registros validados, políticas, evaluaciones y empaquetado reproducible.
 
-> **Estado (0.3.0):** el framework es utilizable y auto-validable. El snapshot de
+> **Estado (0.3.1):** el framework es utilizable y auto-validable. El snapshot de
 > versiones se verificó el 31 de agosto de 2026 y **caducó el 30 de septiembre**;
 > `pallaquino stack` lo reporta como `STALE` hasta su re-verificación (`PAL-006`).
 > Todo perfil está marcado `VERIFY_BEFORE_USE`. Lo implementado, experimental y

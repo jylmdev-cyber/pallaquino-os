@@ -5,8 +5,8 @@ type: software
 authors:
   - family-names: "jimdev"
     email: "jylmdev@gmail.com"
-version: 0.3.0
-date-released: 2026-10-13
+version: 0.3.1
+date-released: 2026-10-14
 license: MIT
 repository-code: "https://github.com/jylmdev-cyber/pallaquino-os"
 abstract: "Provider-neutral engineering governance and execution framework for AI agents."

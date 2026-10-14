@@ -12,7 +12,7 @@ from pathlib import Path
 
 ROOT = Path(__file__).resolve().parents[1]
 TODAY = "2026-08-31"
-VERSION = "0.3.0"
+VERSION = "0.3.1"
 
 
 # Dry-run unless --write is passed: this generator overwrites curated policies, registries and state.

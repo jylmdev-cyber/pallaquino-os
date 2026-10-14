@@ -130,6 +130,14 @@ class SecretHandlingTests(unittest.TestCase):
             self.assertFalse(any(f["path"] == ".env.example" for f in report["findings"]))
             self.assertNotIn(FAKE_AWS_KEY, json.dumps(report)); self.assertNotIn(FAKE_GITHUB_TOKEN, json.dumps(report))
 
+    def test_tracked_text_has_no_control_characters(self) -> None:
+        # Regression: a shell "\a" escape once wrote a BEL byte into CHANGELOG.md.
+        repo = ROOT.parent
+        names = subprocess.run(["git", "-C", str(repo), "ls-files"], capture_output=True, text=True, check=True).stdout.splitlines()
+        bad = [name for name in names if Path(name).suffix.lower() not in {".zip", ".png", ".jpg", ".gif", ".webp"}
+               and any(b < 32 and b not in (9, 10, 13) for b in (repo / name).read_bytes())]
+        self.assertEqual(bad, [])
+
     def test_redact_masks_values_and_keeps_keys(self) -> None:
         text = redact(f"export API_KEY=abcdef123456\ntoken: '{FAKE_GITHUB_TOKEN}'\nkey={FAKE_AWS_KEY}")
         self.assertIn("API_KEY=[REDACTED]", text)

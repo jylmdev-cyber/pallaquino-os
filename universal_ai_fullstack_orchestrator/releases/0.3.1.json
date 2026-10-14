@@ -1,0 +1,26 @@
+{
+  "version": "0.3.1",
+  "commits": [
+    "066fa50be607c17a438da61c22742b209c8ea0fb"
+  ],
+  "features": [],
+  "fixes": [
+    "lock keys treat backslashes as path separators on every OS (same file, same key on Windows, Linux and macOS)",
+    "removed a BEL control character from CHANGELOG.md; regression test for control characters in tracked text"
+  ],
+  "migrations": [],
+  "dependencies": [],
+  "environment_changes": [],
+  "tests": [
+    "48 framework tests on Windows (Python 3.11) and Ubuntu CI (Python 3.11 and 3.14)",
+    "release archive integrity"
+  ],
+  "security": [
+    "closes a double-reservation path between Windows and POSIX agents"
+  ],
+  "rollback": "Revert to v0.3.0; lock keys written by 0.3.1 remain readable by 0.3.0 on Windows.",
+  "known_issues": [
+    "Stack snapshot STALE since 2026-09-30 (PAL-006)",
+    "Agent/skill contracts v2 pending (Phase 2)"
+  ]
+}

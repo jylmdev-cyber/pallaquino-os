@@ -1,8 +1,8 @@
 # Project state
 
-- Status: 0.3.0 built on branch `claude/pallaquino-engineering-os-c7d622`; not merged, tagged or published
-- Version: 0.3.0 (Phase 1 of the v0.3 roadmap: audit and stabilization)
-- Updated: 2026-10-13
+- Status: 0.3.1 released (`v0.3.1`); 0.3.0 merged to `main` via PR #3
+- Version: 0.3.1 (patch over 0.3.0, Phase 1 of the v0.3 roadmap)
+- Updated: 2026-10-14
 - Agents: 59 (template contracts; v2 contracts planned)
 - Skills: 90
 - Modes: 11

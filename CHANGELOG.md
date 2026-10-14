@@ -6,19 +6,23 @@ Los cambios relevantes de este proyecto se documentan aquí. El formato sigue
 
 ## [Unreleased]
 
-### Fixed
-
-- Las claves de lock tratan `\` como separador en todos los sistemas: en Linux y
-  macOS, `src.py` (enviado por un agente en Windows) generaba una clave distinta de
-  `src/a.py` y permitía reservar dos veces el mismo archivo. Presente en `v0.3.0`;
-  candidato a 0.3.1.
-
 ### Planned
 
 - Fase 1.1: re-verificación del snapshot tecnológico (`PAL-006`).
 - Fase 2: contratos v2, motor de orquestación, Project Memory y adaptadores de
   proveedor (ver `docs/ROADMAP.md`).
 - Publicación en PyPI y firma de artefactos.
+
+## [0.3.1] - 2026-10-14
+
+### Fixed
+
+- Las claves de lock tratan `\` como separador en todos los sistemas: en Linux y
+  macOS, `src\a.py` (enviado por un agente en Windows) generaba una clave distinta de
+  `src/a.py` y permitía reservar dos veces el mismo archivo. Detectado por el CI de
+  Linux tras publicar `v0.3.0`.
+- Se eliminó un carácter de control (BEL) del CHANGELOG; un test impide que vuelvan
+  a entrar caracteres de control en archivos de texto versionados.
 
 ## [0.3.0] - 2026-10-13
 
@@ -92,8 +96,9 @@ Fase 1 (auditoría y estabilización) del pedido v0.3. Detalle y evidencia en
 
 - Framework inicial, CLI, pipeline, gobernanza, continuidad y empaquetado.
 
+[0.3.1]: universal_ai_fullstack_orchestrator/releases/0.3.1.json
 [0.3.0]: universal_ai_fullstack_orchestrator/releases/0.3.0.json
 [0.2.1]: universal_ai_fullstack_orchestrator/releases/0.2.1.json
 [0.2.0]: universal_ai_fullstack_orchestrator/releases/0.2.0.json
 [0.1.0]: universal_ai_fullstack_orchestrator/releases/0.1.0.json
-[Unreleased]: https://github.com/jylmdev-cyber/pallaquino-os/compare/v0.3.0...HEAD
+[Unreleased]: https://github.com/jylmdev-cyber/pallaquino-os/compare/v0.3.1...HEAD
