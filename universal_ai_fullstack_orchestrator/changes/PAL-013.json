@@ -28,5 +28,7 @@
   "decisions": [
     "decode Git output as UTF-8 with errors='replace' (the Git adapter already did); no other behaviour change"
   ],
-  "commits": []
+  "commits": [
+    "47337c0012318691fb78bc7d8cb0b9751b70f6d7"
+  ]
 }
