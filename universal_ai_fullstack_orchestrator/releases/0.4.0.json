@@ -1,6 +1,11 @@
 {
   "version": "0.4.0",
-  "commits": [],
+  "commits": [
+    "477120345875ac33a282280190375944ea367c0d",
+    "033810a9469d7797d7df22eee9bd904ca79c6dc2",
+    "56466e79cf1db41205707801118f01996bb32db7",
+    "e90dbab20caf24c4893ba6c4aa32aa1225516629"
+  ],
   "features": [
     "intent analyzer (deterministic and validated AI-assisted)",
     "explainable agent router",

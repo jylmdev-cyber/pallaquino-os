@@ -1,23 +1,51 @@
 {
   "schema_version": 1,
-  "timestamp": "2026-10-14T13:55:52+00:00",
-  "task": "PAL-009",
-  "requested": "release 0.3.2 so the distributed archive carries the stack snapshot re-verified in PAL-006",
+  "timestamp": "2026-10-14T16:18:24+00:00",
+  "task": "PAL-010",
+  "requested": "evolve PALLAQUINO to 0.4.0 (orchestration engine, persistent memory, provider abstraction) per the v0.4.0 master request",
   "implemented": [
-    "releases/0.3.2.json",
-    "changes/PAL-009.json",
-    "version metadata (pallaquino_cli, pyproject.toml, manifest.json, scaffold VERSION, README files, CITATION.cff)",
+    "pallaquino_cli/orchestration/*.py",
+    "pallaquino_cli/memory/*.py",
+    "pallaquino_cli/providers/*.py",
+    "pallaquino_cli/cli_orchestration.py",
+    "governance/providers.json",
+    "governance/command_allowlist.json",
+    "governance/routing_preferences.json",
+    "evaluation/reference_scenario/",
+    "scripts/run_reference_scenario.py",
+    "scripts/benchmark_orchestration.py",
+    "tests/test_orchestration_planning.py",
+    "tests/test_scheduler.py",
+    "tests/test_memory.py",
+    "tests/test_providers.py",
+    "tests/test_reference_scenario.py",
+    "../docs/architecture/",
+    "../docs/security/",
+    "../docs/evaluation/",
+    "../docs/tutorials/",
+    "../docs/roadmap/",
+    "../docs/releases/",
+    "../docs/adr/ADR-0010..0012",
+    "pallaquino_cli/__main__.py",
+    "pallaquino_cli/core.py",
+    "manifest.json",
+    "pyproject.toml",
+    "AI_ENTRYPOINT.md",
+    "cli/README.md",
+    "../.gitignore",
+    "../README.md",
     "../CHANGELOG.md",
-    "../docs/GITHUB_RELEASE_CHECKLIST.md",
+    "../MIGRATION_GUIDE.md",
+    "../docs/ARCHITECTURE.md",
+    "../docs/ROADMAP.md",
     "continuity/state/*.md",
-    "planning/task_graph.json",
-    "planning/execution_plan.json",
-    "../PALLAQUINO_autonomous_engineering_os.zip",
-    "../PALLAQUINO_autonomous_engineering_os.sha256"
+    "planning/*.json"
   ],
   "missing": [
-    "Phase 2-5 of prompt-v03 (docs/ROADMAP.md)",
-    "Agent/skill contracts v2"
+    "Real-provider variant of the reference scenario (no authorized provider on this host)",
+    "Commercial provider adapters (planned, ADR-0012)",
+    "Tamper-evident hash chain or HMAC for persisted state",
+    "External executor for assistants without API (0.5.0)"
   ],
   "assumed": [
     "The requested portable root is `universal_ai_fullstack_orchestrator/` inside the provided workspace. Confidence: high.",
@@ -28,35 +56,41 @@
     "PAL-005: Phase 1 ships as minor version 0.3.0 (new commands and flags, backward-compatible contracts). Confidence: medium."
   ],
   "unverified": [
-    "GitHub Actions run of the 0.3.2 release pull request (pending at handoff time)"
+    "Linux and Python 3.14 (CI runs only after push)",
+    "Behaviour with a real model",
+    "Ollama adapter against a live Ollama build (verified against a local stub only)"
   ],
   "breakage_risks": [
     "Stack snapshot verified 2026-10-14; it becomes STALE after 2026-11-13 and must be re-verified.",
     "In this repository `validate_all.py` expects the identity in `governance/git_identity.json` (jimdev); contributors with another local identity use `--integrity-only`.",
-    "Agent and skill files are templates whose only specific content is one sentence; inputs, outputs, tools, activation and success criteria are missing (Phase 2 contracts v2).",
+    "46 agent and 90 skill contracts keep category-derived inputs, outputs and success criteria (`curation: derived`); 13 role agents are curated.",
+    "19 agents and 52 skills still have no golden test case (`pallaquino contracts`).",
     "Checkpoint SHA-256 detects accidental corruption, not deliberate tampering (hash chain planned for Phase 2).",
     "Only `no_secrets` of the 4 declared fitness rules has an implementation.",
     "`runtime/capabilities.json` in the framework tree still contains host paths from the 0.2.x build machine; it is no longer copied into new projects.",
     "Installations created with 0.2.1 keep inherited framework state until cleaned manually (MIGRATION_GUIDE.md).",
     "Internet, browser, MCP and subagent availability remains provider-session dependent.",
-    "`v0.3.0` derives lock keys from `\\` as a literal character on POSIX; fixed in 0.3.1, so prefer 0.3.1."
+    "`v0.3.0` derives lock keys from `\\` as a literal character on POSIX; fixed in 0.3.1, so prefer 0.3.1.",
+    "0.4.0: tasks answered by the mock provider are simulated; the real-provider reference variant was not executed (no Ollama or credentials on this host).",
+    "0.4.0: memory/state checksums are unkeyed; scheduler throughput is bounded by per-transition SQLite commits (~84 tasks/s, 4 workers).",
+    "0.4.0: a task that exceeds its timeout keeps running in its thread; its late result is discarded but its effects are not undone."
   ],
   "open_questions": [
     "None blocking. Resolved on 2026-10-13T14:59Z by the repository owner in the PAL-005 session:"
   ],
   "current": {
     "schema_version": 1,
-    "timestamp": "2026-10-14T13:55:52+00:00",
-    "task": "PAL-009",
+    "timestamp": "2026-10-14T16:18:24+00:00",
+    "task": "PAL-010",
     "stage": "HANDOFF",
-    "git_head": "c172dbf66220da442e1599c4b0018482284ab158",
+    "git_head": "e90dbab20caf24c4893ba6c4aa32aa1225516629",
     "git_diff": [
-      " M universal_ai_fullstack_orchestrator/releases/0.3.2.json"
+      " M universal_ai_fullstack_orchestrator/releases/0.4.0.json"
     ],
     "evidence": [],
     "confidence": "medium",
-    "checksum": "42ca28c67da877a3fe904fef6b105b089242275721120cb5f050634cf075b313"
+    "checksum": "de367410dbeaaa363a24898247d559e70e050a74c3e7a4a13233136c202c7275"
   },
-  "next_action": "Start PAL-007 (Phase 2), beginning with agent/skill contracts v2; re-verify the stack snapshot before 2026-11-13",
+  "next_action": "Owner reviews the local v0.4.0 candidate (branch feat/v0.4.0-orchestration, stacked on PR #5 and PAL-007-B); approve pushing it and opening a PR; then 0.5.0 (docs/roadmap/ROADMAP_V040_TO_V050.md)",
   "confidence": "medium"
 }
