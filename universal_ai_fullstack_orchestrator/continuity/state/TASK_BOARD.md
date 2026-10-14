@@ -15,7 +15,8 @@
 - PAL-007-B — Curate contracts and make the 20 unreachable agents and 9 unreachable skills selectable: DONE on branch
 - PAL-010 — v0.4.0 orchestration engine, project memory, provider abstraction (supersedes PAL-007-C/D/E): DONE; PR #6 merged, tag `v0.4.0` and GitHub Release published (2026-10-14)
 - PAL-011 — v0.5.0 plugin ecosystem, MCP 2026-07-28 client, tool registry and governance gateways, SDK: DONE; PR #7 merged, tag `v0.5.0` and GitHub Release published (2026-10-14)
-- PAL-012 — Interactive Learning Academy (static portal, tutorials, simulators, progress): DONE locally on `feat/academy` (committed, not pushed); awaiting owner approval for push/PR and GitHub Pages deployment
-- PAL-013 — Fix non-ASCII Git identity comparison on Windows (`core.run_git` decoding; audit H-6): DONE on `fix/git-identity-utf8` (pull request)
+- PAL-012 — Interactive Learning Academy: DONE; PR #8 merged (`b9ec3ea`), GitHub Pages enabled and deployed on 2026-10-14 (Academy run 38655034166) at https://jylmdev-cyber.github.io/pallaquino-os/
+- PAL-013 — Fix non-ASCII Git identity comparison on Windows (`core.run_git` decoding; audit H-6): DONE; PR #9 merged (`ec5a542`)
+- PAL-012-F1 — Terminal simulator: `python -m pallaquino_cli --version/--help` must fail outside the framework folder like the real module (found on the deployed site): fix on `fix/terminal-module-cwd`
 - Blocked tasks: none
 - Confidence: high

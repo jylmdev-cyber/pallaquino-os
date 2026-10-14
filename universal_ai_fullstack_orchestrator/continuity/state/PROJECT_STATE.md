@@ -1,6 +1,6 @@
 # Project state
 
-- Status: 0.5.0 published on 2026-10-14 (PR #7 merged into `main` at `d4a2af3`, tag `v0.5.0` on `ddf3341`, GitHub Release with verified assets; Linux CI green on py3.11 and 3.14). The v0.4.0 release carries a note about its archive missing `pallaquino_cli/memory`. PAL-012 learning academy implemented and verified locally on `feat/academy` (not pushed or deployed; needs owner approval)
+- Status: 0.5.0 published on 2026-10-14 (PR #7 merged into `main` at `d4a2af3`, tag `v0.5.0` on `ddf3341`, GitHub Release with verified assets; Linux CI green on py3.11 and 3.14). The v0.4.0 release carries a note about its archive missing `pallaquino_cli/memory`. PAL-012 learning academy merged (PR #8) and published on GitHub Pages (https://jylmdev-cyber.github.io/pallaquino-os/); PAL-013 H-6 fix merged (PR #9, `ec5a542`)
 - Version: 0.5.0 (plugin ecosystem, MCP 2026-07-28 client, unified tool registry, permission and execution gateways, SDK)
 - Updated: 2026-10-14
 - Agents: 59 (contracts v2)
