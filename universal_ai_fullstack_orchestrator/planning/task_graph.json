@@ -343,6 +343,69 @@
         "BUILD",
         "SECURITY_CHECK"
       ]
+    },
+    {
+      "id": "PAL-006",
+      "title": "Re-verify the stack snapshot against official sources",
+      "domain": "governance",
+      "dependencies": [],
+      "blocked_by": [],
+      "parallelizable": false,
+      "priority": "P0",
+      "risk": "LOW",
+      "agents": [
+        "dependency_governance_agent"
+      ],
+      "skills": [
+        "dependency_governance_expert"
+      ],
+      "files": [
+        "registry/stack_versions_verified.json"
+      ],
+      "acceptance_criteria": [
+        "`pallaquino stack` ok",
+        "every source official HTTPS returning 200",
+        "no prerelease selected"
+      ],
+      "quality_gates": [
+        "TEST",
+        "SECURITY_CHECK"
+      ]
+    },
+    {
+      "id": "PAL-009",
+      "title": "Release 0.3.2 with the verified stack snapshot",
+      "domain": "release",
+      "dependencies": [
+        "PAL-006",
+        "PAL-008"
+      ],
+      "blocked_by": [],
+      "parallelizable": false,
+      "priority": "P0",
+      "risk": "LOW",
+      "agents": [
+        "release_manager"
+      ],
+      "skills": [
+        "release_management_expert",
+        "git_release_expert"
+      ],
+      "files": [
+        "releases/0.3.2.json",
+        "../PALLAQUINO_autonomous_engineering_os.zip"
+      ],
+      "acceptance_criteria": [
+        "CI green on the release pull request",
+        "archive reproducible and verified",
+        "tag v0.3.2 and GitHub Release published with verified assets"
+      ],
+      "quality_gates": [
+        "TEST",
+        "LINT_TYPECHECK",
+        "BUILD",
+        "SECURITY_CHECK"
+      ]
     }
   ]
 }

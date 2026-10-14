@@ -17,7 +17,7 @@ from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Iterable, Iterator
 
-VERSION = "0.3.1"
+VERSION = "0.3.2"
 ROOT_ENV = "PALLAQUINO_ROOT"
 # Default commit identity; each project may override it in IDENTITY_FILE (see GIT_AUTHORSHIP_POLICY.md).
 EXPECTED_AUTHOR = "jimdev"

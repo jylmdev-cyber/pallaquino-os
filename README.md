@@ -5,12 +5,12 @@
 </p>
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-0.3.1-0A7BBB">
+  <img alt="Version" src="https://img.shields.io/badge/version-0.3.2-0A7BBB">
   <img alt="Python" src="https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white">
   <img alt="Agents" src="https://img.shields.io/badge/agents-59-7B61FF">
   <img alt="Skills" src="https://img.shields.io/badge/skills-90-00A67E">
   <img alt="Technologies" src="https://img.shields.io/badge/technologies-46-F97316">
-  <img alt="Tests" src="https://img.shields.io/badge/tests-48%20passing-2EA44F">
+  <img alt="Tests" src="https://img.shields.io/badge/tests-49%20passing-2EA44F">
   <img alt="License" src="https://img.shields.io/badge/license-MIT-blue">
   <img alt="Provider neutral" src="https://img.shields.io/badge/AI-provider--neutral-111827">
   <a href="https://github.com/jylmdev-cyber/pallaquino-os/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/jylmdev-cyber/pallaquino-os/actions/workflows/ci.yml/badge.svg"></a>
@@ -22,9 +22,9 @@ un grafo de tareas, ejecuta gates de calidad y conserva evidencia, checkpoints y
 handoffs. No es solamente una colección de prompts: incluye CLI en Python,
 registros validados, políticas, evaluaciones y empaquetado reproducible.
 
-> **Estado (0.3.1):** el framework es utilizable y auto-validable. El snapshot de
-> versiones se verificó el 31 de agosto de 2026 y **caducó el 30 de septiembre**;
-> `pallaquino stack` lo reporta como `STALE` hasta su re-verificación (`PAL-006`).
+> **Estado (0.3.2):** el framework es utilizable y auto-validable. El snapshot de
+> versiones se re-verificó el 14 de octubre de 2026 contra fuentes oficiales (`PAL-006`)
+> y caduca a los 30 días.
 > Todo perfil está marcado `VERIFY_BEFORE_USE`. Lo implementado, experimental y
 > planificado se distingue en [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 
@@ -111,14 +111,14 @@ nunca seleccionan por sí solos una versión tecnológica.
 
 | Tecnología | Versión | Estado | Uso |
 |---|---:|---|---|
-| Python | 3.14.7 | estable | CLI, validadores y automatización |
-| Node.js | 24.20.0 | Active LTS | runtime web de referencia |
+| Python | 3.14.8 | estable | CLI, validadores y automatización |
+| Node.js | 24.21.0 | Active LTS | runtime web de referencia |
 | TypeScript | 6.0.3 | compatible estable | tipado frontend |
-| .NET SDK / Runtime | 10.0.400 / 10.0.11 | LTS | servicios empresariales |
-| Django | 5.2.17 | LTS | backend Python |
-| Nuxt | 4.5.2 | estable | frontend Vue |
+| .NET SDK / Runtime | 10.0.402 / 10.0.13 | LTS | servicios empresariales |
+| Django | 5.2.18 | LTS | backend Python |
+| Nuxt | 4.6.1 | estable | frontend Vue |
 | PostgreSQL | 18.6 | estable | persistencia relacional |
-| Docker Engine / Compose | 29.7.2 / 5.5.0 | estable | contenedores locales |
+| Docker Engine / Compose | 29.9.0 / 5.6.0 | estable | contenedores locales |
 | Ubuntu | 26.04.1 | LTS | sistema operativo de referencia |
 
 Las fuentes oficiales, fecha de verificación y notas de compatibilidad están en
