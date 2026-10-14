@@ -328,6 +328,191 @@
         "openid_connect_expert",
         "testing_strategy_expert"
       ]
+    },
+    {
+      "id": "release_management",
+      "keywords": [
+        "release",
+        "changelog",
+        "semver",
+        "version bump",
+        "lanzamiento",
+        "publicar versión"
+      ],
+      "agents": [
+        "release_manager"
+      ],
+      "skills": [
+        "release_management_expert",
+        "git_release_expert"
+      ]
+    },
+    {
+      "id": "dependency_governance",
+      "keywords": [
+        "dependency",
+        "dependencia",
+        "package",
+        "library",
+        "librería",
+        "license",
+        "licencia",
+        "sbom",
+        "supply chain"
+      ],
+      "agents": [
+        "dependency_governance_agent"
+      ],
+      "skills": [
+        "dependency_governance_expert",
+        "supply_chain_security_expert"
+      ]
+    },
+    {
+      "id": "api_governance",
+      "keywords": [
+        "openapi",
+        "api versioning",
+        "breaking change",
+        "deprecation",
+        "deprecate",
+        "pagination",
+        "paginación"
+      ],
+      "agents": [
+        "api_governance_reviewer"
+      ],
+      "skills": [
+        "api_contract_expert"
+      ]
+    },
+    {
+      "id": "ci_cd",
+      "keywords": [
+        "ci/cd",
+        "github actions",
+        "continuous integration",
+        "integración continua",
+        "dockerfile",
+        "build pipeline"
+      ],
+      "agents": [
+        "devops_engineer"
+      ],
+      "skills": [
+        "github_actions_expert",
+        "docker_expert"
+      ]
+    },
+    {
+      "id": "disaster_recovery",
+      "keywords": [
+        "disaster recovery",
+        "backup",
+        "respaldo",
+        "restore",
+        "restauración",
+        "rpo",
+        "rto"
+      ],
+      "agents": [
+        "disaster_recovery_planner"
+      ],
+      "skills": [
+        "backup_recovery_expert",
+        "rollback_strategy_expert"
+      ]
+    },
+    {
+      "id": "performance",
+      "keywords": [
+        "performance",
+        "rendimiento",
+        "latency",
+        "latencia",
+        "slow",
+        "lento",
+        "throughput",
+        "load test",
+        "prueba de carga"
+      ],
+      "agents": [
+        "performance_engineer"
+      ],
+      "skills": [
+        "database_performance_expert",
+        "observability_expert"
+      ]
+    },
+    {
+      "id": "documentation",
+      "keywords": [
+        "documentation",
+        "documentación",
+        "readme",
+        "tutorial",
+        "docs"
+      ],
+      "agents": [
+        "documentation_engineer"
+      ],
+      "skills": []
+    },
+    {
+      "id": "saas_tenancy",
+      "keywords": [
+        "saas",
+        "multi-tenant",
+        "multitenant",
+        "tenant",
+        "multiinquilino"
+      ],
+      "agents": [
+        "saas_architect"
+      ],
+      "skills": [
+        "saas_tenancy_expert"
+      ]
+    },
+    {
+      "id": "ai_engineering",
+      "keywords": [
+        "llm",
+        "prompt",
+        "model routing",
+        "token budget",
+        "token cost",
+        "costo de tokens"
+      ],
+      "agents": [
+        "ai_engineer"
+      ],
+      "skills": [
+        "model_routing_expert",
+        "ai_cost_optimization_expert",
+        "prompt_security_expert"
+      ]
+    },
+    {
+      "id": "architecture_decision",
+      "keywords": [
+        "trade-off",
+        "tradeoff",
+        "compare options",
+        "comparar opciones",
+        "architecture decision",
+        "decisión de arquitectura",
+        "adr",
+        "modular monolith",
+        "monolito modular"
+      ],
+      "agents": [
+        "technical_decision_arbitrator"
+      ],
+      "skills": [
+        "architecture_fitness_expert",
+        "modular_monolith_expert"
+      ]
     }
   ]
 }

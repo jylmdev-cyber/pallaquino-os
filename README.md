@@ -5,12 +5,12 @@
 </p>
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-0.3.2-0A7BBB">
+  <img alt="Version" src="https://img.shields.io/badge/version-0.4.0-0A7BBB">
   <img alt="Python" src="https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white">
   <img alt="Agents" src="https://img.shields.io/badge/agents-59-7B61FF">
   <img alt="Skills" src="https://img.shields.io/badge/skills-90-00A67E">
   <img alt="Technologies" src="https://img.shields.io/badge/technologies-46-F97316">
-  <img alt="Tests" src="https://img.shields.io/badge/tests-60%20passing-2EA44F">
+  <img alt="Tests" src="https://img.shields.io/badge/tests-154%20passing-2EA44F">
   <img alt="License" src="https://img.shields.io/badge/license-MIT-blue">
   <img alt="Provider neutral" src="https://img.shields.io/badge/AI-provider--neutral-111827">
   <a href="https://github.com/jylmdev-cyber/pallaquino-os/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/jylmdev-cyber/pallaquino-os/actions/workflows/ci.yml/badge.svg"></a>
@@ -22,7 +22,7 @@ un grafo de tareas, ejecuta gates de calidad y conserva evidencia, checkpoints y
 handoffs. No es solamente una colección de prompts: incluye CLI en Python,
 registros validados, políticas, evaluaciones y empaquetado reproducible.
 
-> **Estado (0.3.2):** el framework es utilizable y auto-validable. El snapshot de
+> **Estado (0.4.0):** el framework es utilizable y auto-validable. El snapshot de
 > versiones se re-verificó el 14 de octubre de 2026 contra fuentes oficiales (`PAL-006`)
 > y caduca a los 30 días.
 > Todo perfil está marcado `VERIFY_BEFORE_USE`. Lo implementado, experimental y
@@ -43,8 +43,16 @@ registros validados, políticas, evaluaciones y empaquetado reproducible.
 - Escaneo de secretos de solo lectura (`pallaquino security audit`) y redacción de
   secretos en la evidencia.
 - Archivo de release reproducible: mismo contenido, mismo SHA-256.
+- **Motor de orquestación (0.4.0)**: análisis de intención, router de agentes explicable,
+  planificador con DAG validado, scheduler concurrente con reintentos, timeouts,
+  pausa, cancelación, aprobaciones y reanudación tras fallos; `plan` y `run` separados.
+- **Memoria de proyecto** en SQLite: aislada por proyecto, con secretos redactados,
+  integridad verificada y contenido recuperado tratado como no confiable.
+- **Proveedores**: contrato estable, adaptador `mock` determinista y adaptador local
+  Ollama; fallback solo autorizado y sin enviar datos a servicios remotos sin permiso.
 - Neutralidad de proveedor: el agente activo (Codex, ChatGPT, Claude, Gemini u otro)
-  lee las políticas y usa el CLI; aún no hay adaptadores de proveedor (Fase 2).
+  lee las políticas y usa el CLI. Sin un proveedor real, las tareas de agente se
+  simulan y se marcan como simuladas.
 - Dependencias de ejecución: únicamente Python Standard Library.
 
 ## Inicio rápido
@@ -90,15 +98,15 @@ activo y utiliza el
 ## Cómo funciona
 
 ```text
-Solicitud
-   │
-   ├─ Descubrimiento del repositorio y capacidades del proveedor
-   ├─ Clasificación de intención, riesgo y alcance
-   ├─ Selección de agentes, skills y gates
-   ├─ Grafo de tareas + locks + ejecución controlada
-   ├─ Tests, seguridad, revisión y evidencia
-   └─ Checkpoint, release y handoff recuperable
+pallaquino plan "Agregar un módulo de inventario"     # intención → plan (DAG) validado; no ejecuta
+pallaquino run --plan <plan_id>                       # scheduler multiagente con locks y reintentos
+pallaquino status --execution <execution_id>          # estado, métricas y aprobaciones pendientes
+pallaquino executions report <execution_id>           # solicitud → plan → agente → validación → resultado
+pallaquino memory search arquitectura                 # memoria persistente (datos no confiables)
 ```
+
+Arquitectura: [`docs/architecture/ORCHESTRATION_ENGINE.md`](docs/architecture/ORCHESTRATION_ENGINE.md).
+Primer uso guiado: [`docs/tutorials/FIRST_MULTI_AGENT_EXECUTION.md`](docs/tutorials/FIRST_MULTI_AGENT_EXECUTION.md).
 
 La política superior vive en
 [`AI_ENTRYPOINT.md`](universal_ai_fullstack_orchestrator/AI_ENTRYPOINT.md). Los
@@ -265,8 +273,9 @@ La evolución por fases (orquestación, memoria, proveedores, extensiones, Proje
 Factory y Control Center), con dependencias y criterios de aceptación, está en
 [`docs/ROADMAP.md`](docs/ROADMAP.md). El diagnóstico que la motiva está en
 [`docs/AUDIT_REPORT.md`](docs/AUDIT_REPORT.md) y las decisiones en
-[`docs/adr/`](docs/adr/). Para actualizar desde 0.2.1, consulta
-[`MIGRATION_GUIDE.md`](MIGRATION_GUIDE.md).
+[`docs/adr/`](docs/adr/). La evolución hacia 0.5.0 está en
+[`docs/roadmap/ROADMAP_V040_TO_V050.md`](docs/roadmap/ROADMAP_V040_TO_V050.md). Para actualizar desde
+versiones anteriores, consulta [`MIGRATION_GUIDE.md`](MIGRATION_GUIDE.md).
 
 ## Licencia
 

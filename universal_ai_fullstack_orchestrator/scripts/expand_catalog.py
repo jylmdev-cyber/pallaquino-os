@@ -16,14 +16,19 @@ TODAY = "2026-08-31"
 
 # Dry-run unless --write is passed: this generator rewrites the curated registries.
 WRITE = False
+OVERWRITE = False
 PLANNED: list[str] = []
+SKIPPED: list[str] = []
 
 
 def write(path: str, content: str) -> None:
     PLANNED.append(path)
-    if not WRITE:
-        return
     target = ROOT / path
+    # Registries and state are curated sources of truth: --write only creates missing files; replacing
+    # existing ones needs --overwrite as well.
+    if not WRITE or (target.exists() and not OVERWRITE):
+        if target.exists(): SKIPPED.append(path)
+        return
     target.parent.mkdir(parents=True, exist_ok=True)
     target.write_text(content.rstrip() + "\n", encoding="utf-8", newline="\n")
 
@@ -371,8 +376,11 @@ domain, risk and capability analysis; record material deviations as ADRs.
 if __name__ == "__main__":
     import argparse
     options = argparse.ArgumentParser(description="Merge PALLAQUINO technology expansion packs (dry-run by default).")
+    options.add_argument("--overwrite", action="store_true", help="with --write, also replace existing files (destructive)")
     options.add_argument("--write", action="store_true", help="overwrite registries; default only lists targets")
-    WRITE = options.parse_args().write
+    parsed = options.parse_args(); WRITE = parsed.write; OVERWRITE = parsed.overwrite and parsed.write
     main()
     if not WRITE:
-        print(f"DRY RUN: {len(PLANNED)} file(s) would be overwritten; review, then re-run with --write")
+        print(f"DRY RUN: {len(PLANNED)} file(s) targeted, {len(SKIPPED)} already exist; --write creates only missing files, --write --overwrite replaces existing ones")
+    elif SKIPPED:
+        print(f"kept {len(SKIPPED)} existing file(s); pass --overwrite to replace them")

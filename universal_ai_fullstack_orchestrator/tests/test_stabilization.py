@@ -55,7 +55,7 @@ class InitIsolationTests(unittest.TestCase):
     """Finding: init copied the framework's own task, checkpoints and evidence into every new project."""
 
     def test_new_project_starts_clean_and_validates(self) -> None:
-        with tempfile.TemporaryDirectory() as temp:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp:
             report = init_target(ROOT, Path(temp))
             project = Path(temp) / ".pallaquino"
             self.assertGreater(report["copied"], 0)
@@ -70,13 +70,13 @@ class InitIsolationTests(unittest.TestCase):
             self.assertTrue(validate_all(project, include_environment=False)["ok"])
 
     def test_dry_run_writes_nothing(self) -> None:
-        with tempfile.TemporaryDirectory() as temp:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp:
             report = init_target(ROOT, Path(temp), dry_run=True)
             self.assertTrue(report["dry_run"]); self.assertEqual(report["copied"], 0); self.assertGreater(report["planned"], 0)
             self.assertEqual(list(Path(temp).iterdir()), [])
 
     def test_existing_installation_is_preserved(self) -> None:
-        with tempfile.TemporaryDirectory() as temp:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp:
             legacy = Path(temp) / ".pallaquino/continuity/state/CURRENT_TASK.md"
             legacy.parent.mkdir(parents=True); legacy.write_text("# Current task\n\n- ID: LEGACY-1\n", encoding="utf-8")
             init_target(ROOT, Path(temp))
@@ -87,7 +87,7 @@ class InitIsolationTests(unittest.TestCase):
             init_target(ROOT, ROOT, dry_run=True)
 
     def test_reinit_from_inside_initialized_project_is_noop(self) -> None:
-        with tempfile.TemporaryDirectory() as temp:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp:
             init_target(ROOT, Path(temp)); project = Path(temp) / ".pallaquino"; before = snapshot(project)
             self.assertTrue(init_target(project, Path(temp))["already_initialized"])
             self.assertEqual(snapshot(project), before)
@@ -99,14 +99,14 @@ class RootResolutionTests(unittest.TestCase):
     def test_environment_variable_and_explicit_root(self) -> None:
         with mock.patch.dict(os.environ, {core.ROOT_ENV: str(ROOT)}):
             self.assertEqual(resolve_root(), ROOT)
-        with tempfile.TemporaryDirectory() as temp, self.assertRaises(FrameworkRootNotFound):
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp, self.assertRaises(FrameworkRootNotFound):
             resolve_root(Path(temp))
 
     def test_discovers_initialized_project_from_cwd_when_package_has_no_data(self) -> None:
-        with tempfile.TemporaryDirectory() as temp:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp:
             init_target(ROOT, Path(temp)); nested = Path(temp) / "src/app"; nested.mkdir(parents=True)
             empty = Path(temp) / "site-packages"; empty.mkdir()
-            with mock.patch.object(core, "framework_root", return_value=empty), mock.patch.dict(os.environ, {}, clear=False), tempfile.TemporaryDirectory() as unrelated:
+            with mock.patch.object(core, "framework_root", return_value=empty), mock.patch.dict(os.environ, {}, clear=False), tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as unrelated:
                 os.environ.pop(core.ROOT_ENV, None)
                 self.assertEqual(resolve_root(cwd=nested), (Path(temp) / ".pallaquino").resolve())
                 with self.assertRaises(FrameworkRootNotFound):
@@ -117,7 +117,7 @@ class SecretHandlingTests(unittest.TestCase):
     """Finding: fitness counted 4 rules but enforced one weak regex; evidence stored raw command output."""
 
     def test_scan_reports_location_and_kind_but_never_the_value(self) -> None:
-        with tempfile.TemporaryDirectory() as temp:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp:
             root = Path(temp)
             (root / "settings.py").write_text(f'AWS = "{FAKE_AWS_KEY}"\npassword = "changeme-example"\n', encoding="utf-8")
             (root / ".env").write_text(f"GITHUB_TOKEN={FAKE_GITHUB_TOKEN}\n", encoding="utf-8")
@@ -157,7 +157,7 @@ class GeneratorSafetyTests(unittest.TestCase):
     """Finding: scaffold/expand generators overwrote all policies, registries and state with no confirmation."""
 
     def test_generators_are_dry_run_by_default(self) -> None:
-        with tempfile.TemporaryDirectory() as temp:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp:
             copy = Path(temp) / "framework"
             shutil.copytree(ROOT, copy, ignore=shutil.ignore_patterns("__pycache__", "tests"))
             before = snapshot(copy)
@@ -167,7 +167,7 @@ class GeneratorSafetyTests(unittest.TestCase):
             self.assertEqual(snapshot(copy), before)
 
     def test_scaffold_write_preserves_verified_stack_snapshot(self) -> None:
-        with tempfile.TemporaryDirectory() as temp:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp:
             copy = Path(temp) / "framework"
             shutil.copytree(ROOT, copy, ignore=shutil.ignore_patterns("__pycache__", "tests"))
             registry = copy / "registry/stack_versions_verified.json"; before = registry.read_bytes()
@@ -180,7 +180,7 @@ class LockTests(unittest.TestCase):
     """Finding: lock TTL was never enforced, release accepted any path, keys embedded absolute host paths."""
 
     def setUp(self) -> None:
-        self.temp = tempfile.TemporaryDirectory(); self.root = Path(self.temp.name); (self.root / "execution").mkdir()
+        self.temp = tempfile.TemporaryDirectory(ignore_cleanup_errors=True); self.root = Path(self.temp.name); (self.root / "execution").mkdir()
         self.state = self.root / "execution/file_locks.json"
         self.state.write_text('{"schema_version":1,"locks":[],"audit":[]}', encoding="utf-8")
 
@@ -226,7 +226,7 @@ class EnvironmentValidatorTests(unittest.TestCase):
         subprocess.run(["git", "-C", str(repo), *args], check=True, capture_output=True)
 
     def test_git_authorship_policy_in_isolated_repository(self) -> None:
-        with tempfile.TemporaryDirectory() as temp:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp:
             repo = Path(temp); self.git(repo, "init", "--quiet")
             self.assertFalse(validate_git_authorship(repo)["ok"])
             self.git(repo, "config", "--local", "user.name", core.EXPECTED_AUTHOR)
@@ -238,7 +238,7 @@ class EnvironmentValidatorTests(unittest.TestCase):
 
     def test_identity_is_configurable_per_project_with_jimdev_default(self) -> None:
         self.assertEqual((load_git_identity(ROOT)["name"], load_git_identity(ROOT)["email"]), (core.EXPECTED_AUTHOR, core.EXPECTED_EMAIL))
-        with tempfile.TemporaryDirectory() as temp:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp:
             init_target(ROOT, Path(temp)); project = Path(temp) / ".pallaquino"
             self.assertEqual(load_git_identity(project)["name"], "jimdev")  # new projects inherit the default
             self.git(Path(temp), "init", "--quiet")
@@ -274,9 +274,9 @@ class CliContractTests(unittest.TestCase):
 
     def test_older_root_is_judged_by_its_own_commands(self) -> None:
         from pallaquino_cli.core import BASELINE_CLI_COMMANDS, validate_cli
-        with tempfile.TemporaryDirectory() as temp:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp:
             self.assertTrue(validate_cli(self.fake_root(temp, BASELINE_CLI_COMMANDS))["ok"])
-        with tempfile.TemporaryDirectory() as temp:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp:
             details = validate_cli(self.fake_root(temp, [c for c in BASELINE_CLI_COMMANDS if c != "graph"]))["details"]
             self.assertEqual(details, ["baseline command graph is missing"])
 
@@ -285,7 +285,7 @@ class ArchiveReproducibilityTests(unittest.TestCase):
     """Finding: identical content produced different archive SHA-256 values (mtime-dependent)."""
 
     def test_identical_content_yields_identical_archive(self) -> None:
-        with tempfile.TemporaryDirectory() as temp:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp:
             tree = Path(temp) / "framework"; (tree / "cli").mkdir(parents=True)
             (tree / "manifest.json").write_text("{}\n", encoding="utf-8"); (tree / "cli/run").write_text("#!/bin/sh\necho ok\n", encoding="utf-8")
             first = create_archive(tree, Path(temp) / "a/out.zip")
@@ -298,7 +298,7 @@ class ArchiveReproducibilityTests(unittest.TestCase):
                 self.assertEqual(zf.getinfo("framework/manifest.json").date_time, core.FIXED_ZIP_TIME)
 
     def test_build_outputs_and_env_files_are_never_packaged(self) -> None:
-        with tempfile.TemporaryDirectory() as temp:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp:
             tree = Path(temp) / "build" / "framework"  # an ancestor named "build" must not hide the tree
             for rel in ("manifest.json", "build/lib/x.py", "pkg.egg-info/PKG-INFO", ".venv/bin/python", ".env.local", ".env.example"):
                 (tree / rel).parent.mkdir(parents=True, exist_ok=True); (tree / rel).write_text("x\n", encoding="utf-8")
@@ -311,7 +311,7 @@ class TaskGraphAndHandoffTests(unittest.TestCase):
     """Findings: graph accepted unknown agents/skills; handoff hardcoded empty 'missing'/'unverified' lists."""
 
     def test_task_graph_rejects_unknown_agents_and_skills(self) -> None:
-        with tempfile.TemporaryDirectory() as temp:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp:
             root = Path(temp)
             for rel, value in {"registry/agents.json": {"agents": [{"id": "qa"}]}, "registry/skills.json": {"skills": [{"id": "tests"}]},
                                "planning/task_graph.json": {"tasks": [{"id": "T", "title": "t", "domain": "d", "dependencies": [], "blocked_by": [], "parallelizable": False, "priority": "P0", "risk": "LOW", "agents": ["ghost"], "skills": ["tests"], "files": [], "acceptance_criteria": [], "quality_gates": []}]}}.items():
@@ -320,7 +320,7 @@ class TaskGraphAndHandoffTests(unittest.TestCase):
             self.assertIn("task T unknown agent ghost", details)
 
     def test_handoff_is_derived_from_recorded_state(self) -> None:
-        with tempfile.TemporaryDirectory() as temp:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp:
             root = Path(temp); state = root / "continuity/state"; state.mkdir(parents=True)
             (state / "CURRENT_TASK.md").write_text("# Current task\n\n- ID: T-9\n- Objective: ship it\n", encoding="utf-8")
             (state / "KNOWN_ISSUES.md").write_text("# Known issues\n\n- flaky network\n- Confidence: high\n", encoding="utf-8")

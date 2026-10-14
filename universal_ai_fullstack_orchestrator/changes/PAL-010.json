@@ -1,0 +1,64 @@
+{
+  "task_id": "PAL-010",
+  "files_created": [
+    "pallaquino_cli/orchestration/*.py",
+    "pallaquino_cli/memory/*.py",
+    "pallaquino_cli/providers/*.py",
+    "pallaquino_cli/cli_orchestration.py",
+    "governance/providers.json",
+    "governance/command_allowlist.json",
+    "governance/routing_preferences.json",
+    "evaluation/reference_scenario/",
+    "scripts/run_reference_scenario.py",
+    "scripts/benchmark_orchestration.py",
+    "tests/test_orchestration_planning.py",
+    "tests/test_scheduler.py",
+    "tests/test_memory.py",
+    "tests/test_providers.py",
+    "tests/test_reference_scenario.py",
+    "../docs/architecture/",
+    "../docs/security/",
+    "../docs/evaluation/",
+    "../docs/tutorials/",
+    "../docs/roadmap/",
+    "../docs/releases/",
+    "../docs/adr/ADR-0010..0012"
+  ],
+  "files_modified": [
+    "pallaquino_cli/__main__.py",
+    "pallaquino_cli/core.py",
+    "manifest.json",
+    "pyproject.toml",
+    "AI_ENTRYPOINT.md",
+    "cli/README.md",
+    "../.gitignore",
+    "../README.md",
+    "../CHANGELOG.md",
+    "../MIGRATION_GUIDE.md",
+    "../docs/ARCHITECTURE.md",
+    "../docs/ROADMAP.md",
+    "continuity/state/*.md",
+    "planning/*.json"
+  ],
+  "files_deleted": [],
+  "migrations": [
+    "memory schema versioning (v2)"
+  ],
+  "dependencies": [],
+  "endpoints": [
+    "CLI: plan <request>, run, status/resume --execution, pause, cancel, approve, agents match, memory, providers, executions"
+  ],
+  "tests": [
+    "154 tests (87 new)"
+  ],
+  "docs": [
+    "13 documents, 3 ADRs"
+  ],
+  "decisions": [
+    "ADR-0010 orchestration engine, at-least-once delivery",
+    "ADR-0011 SQLite project memory",
+    "ADR-0012 provider abstraction with mock and Ollama only",
+    "Engine lives in pallaquino_cli subpackages instead of new top-level directories",
+    "No push, tag or release without explicit approval (request section 19)"
+  ]
+}

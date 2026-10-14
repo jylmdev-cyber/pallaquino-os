@@ -1,0 +1,17 @@
+{
+  "gate": "TEST",
+  "command": [
+    "python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests"
+  ],
+  "timestamp": "2026-10-14T16:15:04+00:00",
+  "agent": "qa_engineer",
+  "exit_code": 1,
+  "result": "failed",
+  "summary": "..........................E...............................................................................................................................\n======================================================================\nERROR: test_checkpoint_checksum_and_corrupt_fallback (test_core.FrameworkTests.test_checkpoint_checksum_and_corrupt_fallback)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"C:\\jimdev\\proyectos-completos\\pallaquino-os\\.claude\\worktrees\\pallaquino-engineering-os-c7d622\\universal_ai_fullstack_orchestrator\\tests\\test_core.py\", line 97, in test_checkpoint_checksum_and_corrupt_fallback\n    with tempfile.TemporaryDirectory() as temp:\n  File \"C:\\Users\\User\\AppData\\Roaming\\uv\\python\\cpython-3.11-windows-x86_64-none\\Lib\\tempfile.py\", line 943, in __exit__\n    self.cleanup()\n  File \"C:\\Users\\User\\AppData\\Roaming\\uv\\python\\cpython-3.11-windows-x86_64-none\\Lib\\tempfile.py\", line 947, in cleanup\n    self._rmtree(self.name, ignore_errors=self._ignore_cleanup_errors)\n  File \"C:\\Users\\User\\AppData\\Roaming\\uv\\python\\cpython-3.11-windows-x86_64-none\\Lib\\tempfile.py\", line 929, in _rmtree\n    _shutil.rmtree(name, onerror=onerror)\n  File \"C:\\Users\\User\\AppData\\Roaming\\uv\\python\\cpython-3.11-windows-x86_64-none\\Lib\\shutil.py\", line 787, in rmtree\n    return _rmtree_unsafe(path, onerror)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"C:\\Users\\User\\AppData\\Roaming\\uv\\python\\cpython-3.11-windows-x86_64-none\\Lib\\shutil.py\", line 629, in _rmtree_unsafe\n    _rmtree_unsafe(fullname, onerror)\n  File \"C:\\Users\\User\\AppData\\Roaming\\uv\\python\\cpython-3.11-windows-x86_64-none\\Lib\\shutil.py\", line 629, in _rmtree_unsafe\n    _rmtree_unsafe(fullname, onerror)\n  File \"C:\\Users\\User\\AppData\\Roaming\\uv\\python\\cpython-3.11-windows-x86_64-none\\Lib\\shutil.py\", line 638, in _rmtree_unsafe\n    onerror(os.rmdir, path, sys.exc_info())\n  File \"C:\\Users\\User\\AppData\\Roaming\\uv\\python\\cpython-3.11-windows-x86_64-none\\Lib\\shutil.py\", line 636, in _rmtree_unsafe\n    os.rmdir(path)\nOSError: [WinError 145] El directorio no está vacío: 'C:\\\\Users\\\\User\\\\AppData\\\\Local\\\\Temp\\\\tmpa6hs52cw\\\\continuity\\\\checkpoints'\n\n----------------------------------------------------------------------\nRan 154 tests in 48.188s\n\nFAILED (errors=1)\n",
+  "artifact": null
+}

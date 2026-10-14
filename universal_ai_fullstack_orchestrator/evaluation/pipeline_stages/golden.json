@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "description": "Pipeline-stage roles: each stage must engage these agents regardless of request keywords.",
+  "cases": [
+    {
+      "stage": "REPOSITORY_ANALYSIS",
+      "required_agents": [
+        "project_analyzer",
+        "codebase_explorer"
+      ]
+    },
+    {
+      "stage": "STACK_VERSION_AUDIT",
+      "required_agents": [
+        "dependency_governance_agent"
+      ]
+    },
+    {
+      "stage": "RISK_ANALYSIS",
+      "required_agents": [
+        "risk_analyst"
+      ]
+    },
+    {
+      "stage": "PLAN",
+      "required_agents": [
+        "pipeline_manager"
+      ]
+    },
+    {
+      "stage": "TASK_GRAPH",
+      "required_agents": [
+        "execution_coordinator"
+      ]
+    },
+    {
+      "stage": "DELEGATION",
+      "required_agents": [
+        "execution_coordinator"
+      ]
+    },
+    {
+      "stage": "INTEGRATION",
+      "required_agents": [
+        "execution_coordinator",
+        "conflict_resolver"
+      ]
+    },
+    {
+      "stage": "TEST_GAP_ANALYSIS",
+      "required_agents": [
+        "test_gap_analyzer"
+      ]
+    },
+    {
+      "stage": "ADVERSARIAL_REVIEW",
+      "required_agents": [
+        "adversarial_reviewer"
+      ]
+    },
+    {
+      "stage": "CODE_REVIEW",
+      "required_agents": [
+        "code_quality_reviewer"
+      ]
+    },
+    {
+      "stage": "SPECIFICATION_DRIFT",
+      "required_agents": [
+        "specification_drift_detector"
+      ]
+    },
+    {
+      "stage": "ACCEPTANCE_VALIDATION",
+      "required_agents": [
+        "governance_auditor"
+      ]
+    },
+    {
+      "stage": "DOCUMENTATION",
+      "required_agents": [
+        "documentation_engineer"
+      ]
+    },
+    {
+      "stage": "ROLLBACK_READINESS",
+      "required_agents": [
+        "rollback_readiness_reviewer"
+      ]
+    },
+    {
+      "stage": "STATE_UPDATE",
+      "required_agents": [
+        "pipeline_manager",
+        "continuity_manager"
+      ]
+    },
+    {
+      "stage": "CHECKPOINT",
+      "required_agents": [
+        "continuity_manager"
+      ]
+    },
+    {
+      "stage": "HANDOFF",
+      "required_agents": [
+        "continuity_manager"
+      ]
+    }
+  ]
+}

@@ -2,10 +2,12 @@ from __future__ import annotations
 
 import argparse
 import json
+import sqlite3
 import sys
 from pathlib import Path
 
 from . import __version__
+from . import cli_orchestration
 from .core import (
     ROOT_ENV, FrameworkRootNotFound, analyze_risk, build_repository_map, create_handoff,
     detect_capabilities, git_identity_status, init_target, make_checkpoint, read_json, resolve_root,
@@ -26,17 +28,20 @@ def parser() -> argparse.ArgumentParser:
     subs = top.add_subparsers(dest="command", required=True)
     for name, help_text in [
         ("status", "show current framework state"), ("doctor", "diagnose framework and environment"),
-        ("analyze", "build a repository map"), ("plan", "show the execution plan"),
-        ("agents", "list registered agents"), ("skills", "list registered skills"),
+        ("analyze", "build a repository map"), ("plan", "plan a request (DAG of tasks) or show the legacy execution plan"),
+        ("agents", "list registered agents or match a request to agents"), ("skills", "list registered skills"),
         ("pipeline", "show strict pipeline state"), ("checkpoint", "create a continuity checkpoint"),
-        ("handoff", "create a provider-neutral handoff"), ("resume", "recover the newest valid checkpoint"),
+        ("handoff", "create a provider-neutral handoff"), ("resume", "resume an execution (--execution) or recover the newest checkpoint"),
         ("validate", "run all framework validators"), ("stack", "show verified stack freshness"),
         ("risk", "classify request risk"), ("graph", "show and validate the task graph"),
         ("security", "read-only security audit (secret scan) of a target"),
         ("identity", "show, set or apply the project commit identity"),
         ("contracts", "report agent/skill contract coverage or show one verified contract"),
+        ("run", "execute a validated plan"), ("cancel", "cancel an execution"), ("pause", "pause an execution"),
+        ("approve", "approve governed tools of a waiting task"), ("memory", "inspect, search and manage project memory"),
+        ("providers", "list providers or diagnose their configuration"), ("executions", "list executions or report, trace and export one"),
     ]:
-        item = subs.add_parser(name, help=help_text); add_common(item)
+        item = subs.add_parser(name, help=help_text); add_common(item); cli_orchestration.add_arguments(name, item)
         if name == "analyze": item.add_argument("--target", type=Path, default=Path.cwd())
         if name == "risk": item.add_argument("request", nargs="*", help="request text")
         if name == "checkpoint": item.add_argument("--task", default="UNSPECIFIED")
@@ -75,6 +80,10 @@ def main(argv: list[str] | None = None) -> int:
     args = parser().parse_args(argv); command = args.command
     try:
         root = resolve_root(args.root)
+        if cli_orchestration.handles(command, args):
+            payload, code = cli_orchestration.handle(command, args, root)
+            emit(payload, args.json)
+            return code if code is not None else (1 if isinstance(payload, dict) and payload.get("ok") is False else 0)
         if command == "init": payload = init_target(root, args.target.resolve(), dry_run=args.dry_run)
         elif command == "status":
             payload = {"version": __version__, "root": str(root), "pipeline_state": (root / "continuity/state/PIPELINE_STATE.md").read_text(encoding="utf-8"), "locks": read_json(root / "execution/file_locks.json")["locks"]}
@@ -107,7 +116,7 @@ def main(argv: list[str] | None = None) -> int:
         else: raise ValueError(f"unsupported command: {command}")
     except FrameworkRootNotFound as exc:
         return fail(args, str(exc), 2)
-    except (OSError, ValueError, KeyError, RuntimeError, LookupError) as exc:
+    except (OSError, ValueError, KeyError, RuntimeError, LookupError, sqlite3.Error) as exc:
         return fail(args, str(exc), 1)
     emit(payload, args.json)
     if isinstance(payload, dict) and payload.get("ok") is False: return 1

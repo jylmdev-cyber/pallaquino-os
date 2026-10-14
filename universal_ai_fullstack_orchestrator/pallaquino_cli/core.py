@@ -17,7 +17,7 @@ from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 from typing import Any, Iterable, Iterator
 
-VERSION = "0.3.2"
+VERSION = "0.4.0"
 ROOT_ENV = "PALLAQUINO_ROOT"
 # Default commit identity; each project may override it in IDENTITY_FILE (see GIT_AUTHORSHIP_POLICY.md).
 EXPECTED_AUTHOR = "jimdev"
@@ -65,7 +65,7 @@ DEFAULT_INSTANCE_STATE = [
     "continuity/state/*.md", "evidence/*.json", "changes/*.json", "runtime/capabilities.json",
     "risk/risk_state.json", "execution/file_locks.json", "execution/.file_locks.mutex",
     "context/context_state.json", "repository/REPOSITORY_MAP.json", "repository/REPOSITORY_MAP.md",
-    "planning/task_graph.json", "planning/execution_plan.json",
+    "planning/task_graph.json", "planning/execution_plan.json", "memory/*", "logs/*",
 ]
 CONTINUITY_TITLES = {
     "PROJECT_STATE": "Project state", "CURRENT_TASK": "Current task", "TASK_BOARD": "Task board",
@@ -233,6 +233,13 @@ def _iter_repository_files(root: Path) -> list[Path]:
 
 
 def build_repository_map(target: Path, output_root: Path | None = None) -> dict[str, Any]:
+    payload = compute_repository_map(target)
+    write_repository_map(payload, output_root or target)
+    return payload
+
+
+def compute_repository_map(target: Path) -> dict[str, Any]:
+    """Repository map of `target` without writing anything (used by the orchestration engine)."""
     files = _iter_repository_files(target)
     suffixes: dict[str, int] = {}
     for path in files:
@@ -255,14 +262,16 @@ def build_repository_map(target: Path, output_root: Path | None = None) -> dict[
         "tests": tests, "dependencies": [], "runtime_services": [], "configuration": configs,
         "statistics": {"files": len(files), "extensions": suffixes},
     }
-    destination = output_root or target
-    atomic_json(destination / "repository" / "REPOSITORY_MAP.json", payload)
-    md = ["# Repository map", "", f"Generated: {payload['generated_at']}", f"Root: `{payload['root']}`", f"Files: {len(files)}", "", "## Technologies", ""]
-    md.extend(f"- {x}" for x in technologies or ["None detected"])
-    md.extend(["", "## Entrypoints", ""])
-    md.extend(f"- `{x}`" for x in entries or ["None detected"])
-    (destination / "repository" / "REPOSITORY_MAP.md").write_text("\n".join(md) + "\n", encoding="utf-8", newline="\n")
     return payload
+
+
+def write_repository_map(payload: dict[str, Any], destination: Path) -> None:
+    atomic_json(destination / "repository" / "REPOSITORY_MAP.json", payload)
+    md = ["# Repository map", "", f"Generated: {payload['generated_at']}", f"Root: `{payload['root']}`", f"Files: {payload['statistics']['files']}", "", "## Technologies", ""]
+    md.extend(f"- {x}" for x in payload["technologies"] or ["None detected"])
+    md.extend(["", "## Entrypoints", ""])
+    md.extend(f"- `{x}`" for x in payload["entrypoints"] or ["None detected"])
+    (destination / "repository" / "REPOSITORY_MAP.md").write_text("\n".join(md) + "\n", encoding="utf-8", newline="\n")
 
 
 def redact(text: str) -> str:
@@ -469,7 +478,15 @@ def validate_pipeline(root: Path) -> dict[str, Any]:
         if row.get("success_to") != expected: errors.append(f"{row.get('id')} invalid success transition")
         failure = row.get("failure_return_to")
         if row.get("id") != "REQUEST" and failure not in known: errors.append(f"{row.get('id')} invalid failure return")
-    return result("validate_pipeline", not errors, errors or [f"{len(rows)} stages and failure loops valid"])
+    try: agent_ids = {a["id"] for a in read_json(root / "registry" / "agents.json")["agents"]}
+    except (OSError, ValueError, KeyError, TypeError): agent_ids = None
+    staffed = 0
+    for row in rows:  # optional pipeline-stage roles (PAL-007-B)
+        if "agents" not in row: continue
+        staffed += 1
+        if not isinstance(row["agents"], list) or not all(isinstance(a, str) for a in row["agents"]): errors.append(f"{row.get('id')} agents must be a list of IDs"); continue
+        if agent_ids is not None: errors += [f"{row.get('id')} unknown stage agent {a}" for a in row["agents"] if a not in agent_ids]
+    return result("validate_pipeline", not errors, errors or [f"{len(rows)} stages and failure loops valid; {staffed} stages declare agents"])
 
 
 def validate_continuity(root: Path) -> dict[str, Any]:
@@ -862,7 +879,7 @@ def _zip_date_time() -> tuple[int, int, int, int, int, int]:
 
 
 def create_archive(root: Path, archive: Path) -> dict[str, Any]:
-    exclusions = {".git", "__pycache__", ".pytest_cache", ".env", "dist"}
+    exclusions = {".git", "__pycache__", ".pytest_cache", ".env", "dist", "memory", "logs"}  # memory/logs are per-project runtime state
     archive.parent.mkdir(parents=True, exist_ok=True); date_time = _zip_date_time()
     with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
         for path in _iter_repository_files(root):

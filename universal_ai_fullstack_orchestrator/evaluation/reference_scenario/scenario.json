@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "id": "reference_scenario",
+  "request": "add a multiply function to the calculator module with tests",
+  "variants": {
+    "offline": "deterministic mock provider scripted by responses.json; discovery and the test run are executed for real",
+    "real_provider": "runs only when an authorized provider passes `pallaquino providers doctor`; never in CI"
+  },
+  "expected": {
+    "execution_status": "COMPLETED",
+    "file_contains": {
+      "calc.py": "def multiply"
+    },
+    "test_command_exit_code": 0
+  }
+}

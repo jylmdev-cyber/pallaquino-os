@@ -1,0 +1,6 @@
+{
+  "schema_version": 1,
+  "description": "Project routing preferences: 'prefer' adds a small score bonus, 'exclude' removes agents from selection.",
+  "prefer": [],
+  "exclude": []
+}

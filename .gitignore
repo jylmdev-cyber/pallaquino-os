@@ -19,3 +19,9 @@ Thumbs.db
 .idea/
 .vscode/
 
+# PALLAQUINO runtime state (per project)
+universal_ai_fullstack_orchestrator/memory/
+universal_ai_fullstack_orchestrator/logs/
+.pallaquino/memory/
+.pallaquino/logs/
+memory/*.db*

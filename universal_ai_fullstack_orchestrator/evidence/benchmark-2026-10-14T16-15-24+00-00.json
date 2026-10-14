@@ -1,0 +1,14 @@
+{
+  "gate": "BENCHMARK",
+  "command": [
+    "python",
+    "scripts/benchmark_orchestration.py",
+    "--quick"
+  ],
+  "timestamp": "2026-10-14T16:15:24+00:00",
+  "agent": "performance_engineer",
+  "exit_code": 0,
+  "result": "passed",
+  "summary": "{\n  \"host\": {\n    \"python\": \"3.11.15\",\n    \"platform\": \"Windows-10-10.0.26300-SP0\",\n    \"machine\": \"AMD64\"\n  },\n  \"planning\": {\n    \"Agregar autenticaci\\u00f3n y gesti\\u00f3n de roles\": {\n      \"runs\": 5,\n      \"median_ms\": 35.861,\n      \"p95_ms\": 37.265,\n      \"max_ms\": 49.867\n    },\n    \"fix the crash in the invoice export\": {\n      \"runs\": 5,\n      \"median_ms\": 16.563,\n      \"p95_ms\": 18.102,\n      \"max_ms\": 18.941\n    },\n    \"add a database migration for orders\": {\n      \"runs\": 5,\n      \"median_ms\": 40.15,\n      \"p95_ms\": 40.523,\n      \"max_ms\": 40.802\n    },\n    \"Prepare the release changelog\": {\n      \"runs\": 5,\n      \"median_ms\": 16.642,\n      \"p95_ms\": 18.221,\n      \"max_ms\": 18.302\n    },\n    \"make the search page faster\": {\n      \"runs\": 5,\n      \"median_ms\": 22.969,\n      \"p95_ms\": 24.486,\n      \"max_ms\": 25.805\n    }\n  },\n  \"router\": {\n    \"runs\": 50,\n    \"median_ms\": 1.33,\n    \"p95_ms\": 1.429,\n    \"max_ms\": 3.127\n  },\n  \"memory\": {\n    \"write_1000_records_ms\": 1038.1,\n    \"per_record_ms\": 1.038,\n    \"search_over_1000\": {\n      \"runs\": 5,\n      \"median_ms\": 11.34,\n      \"p95_ms\": 11.489,\n      \"max_ms\": 12.012\n    },\n    \"bytes_on_disk\": 4431328\n  },\n  \"scheduler_throughput\": {\n    \"workers_1\": {\n      \"tasks\": 100,\n      \"status\": \"COMPLETED\",\n      \"seconds\": 3.371,\n      \"tasks_per_second\": 29.7,\n      \"note\": \"each simulated task sleeps 10 ms\"\n    },\n    \"workers_4\": {\n      \"tasks\": 100,\n      \"status\": \"COMPLETED\",\n      \"seconds\": 2.277,\n      \"tasks_per_second\": 43.9,\n      \"note\": \"each simulated task sleeps 10 ms\"\n    },\n    \"workers_8\": {\n      \"tasks\": 100,\n      \"status\": \"COMPLETED\",\n      \"seconds\": 2.23,\n      \"tasks_per_second\": 44.8,\n      \"note\": \"each simulated task sleeps 10 ms\"\n    }\n  },\n  \"load_reference_scenario\": {\n    \"executions\": 3,\n    \"completed\": 3,\n    \"completion_rate\": 1.0,\n    \"seconds\": 1.98,\n    \"peak_python_heap_mb\": 2.48,\n    \"note\": \"includes a real unittest subprocess per execution\"\n  },\n  \"crash_recovery\": {\n    \"orphaned_tasks\": 50,\n    \"status\": \"COMPLETED\",\n    \"reconciled_notes\": 50,\n    \"seconds\": 1.157\n  }\n}\n",
+  "artifact": null
+}

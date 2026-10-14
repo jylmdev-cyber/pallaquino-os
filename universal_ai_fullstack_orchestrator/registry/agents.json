@@ -44,7 +44,10 @@
       ],
       "technologies": [],
       "required_skills": [
-        "risk_analysis_expert"
+        "risk_analysis_expert",
+        "model_routing_expert",
+        "ai_cost_optimization_expert",
+        "prompt_security_expert"
       ],
       "can_write_code": true,
       "can_review": true,
@@ -53,8 +56,8 @@
       "context_weight": 3,
       "priority": 50,
       "provider_neutral": true,
-      "version": "1.0.0",
-      "last_reviewed": "2026-08-31",
+      "version": "1.1.0",
+      "last_reviewed": "2026-10-14",
       "deprecated": false,
       "superseded_by": null
     },
@@ -248,7 +251,8 @@
       ],
       "technologies": [],
       "required_skills": [
-        "risk_analysis_expert"
+        "risk_analysis_expert",
+        "architecture_fitness_expert"
       ],
       "can_write_code": true,
       "can_review": true,
@@ -257,8 +261,8 @@
       "context_weight": 3,
       "priority": 50,
       "provider_neutral": true,
-      "version": "1.0.0",
-      "last_reviewed": "2026-08-31",
+      "version": "1.1.0",
+      "last_reviewed": "2026-10-14",
       "deprecated": false,
       "superseded_by": null
     },
@@ -275,7 +279,8 @@
       ],
       "technologies": [],
       "required_skills": [
-        "risk_analysis_expert"
+        "risk_analysis_expert",
+        "context_management_expert"
       ],
       "can_write_code": true,
       "can_review": true,
@@ -284,8 +289,8 @@
       "context_weight": 3,
       "priority": 50,
       "provider_neutral": true,
-      "version": "1.0.0",
-      "last_reviewed": "2026-08-31",
+      "version": "1.1.0",
+      "last_reviewed": "2026-10-14",
       "deprecated": false,
       "superseded_by": null
     },
@@ -498,7 +503,9 @@
       ],
       "technologies": [],
       "required_skills": [
-        "risk_analysis_expert"
+        "risk_analysis_expert",
+        "dependency_governance_expert",
+        "supply_chain_security_expert"
       ],
       "can_write_code": true,
       "can_review": true,
@@ -507,8 +514,8 @@
       "context_weight": 3,
       "priority": 50,
       "provider_neutral": true,
-      "version": "1.0.0",
-      "last_reviewed": "2026-08-31",
+      "version": "1.1.0",
+      "last_reviewed": "2026-10-14",
       "deprecated": false,
       "superseded_by": null
     },
@@ -526,7 +533,9 @@
       ],
       "technologies": [],
       "required_skills": [
-        "risk_analysis_expert"
+        "risk_analysis_expert",
+        "github_actions_expert",
+        "docker_expert"
       ],
       "can_write_code": true,
       "can_review": true,
@@ -535,8 +544,8 @@
       "context_weight": 3,
       "priority": 50,
       "provider_neutral": true,
-      "version": "1.0.0",
-      "last_reviewed": "2026-08-31",
+      "version": "1.1.0",
+      "last_reviewed": "2026-10-14",
       "deprecated": false,
       "superseded_by": null
     },
@@ -696,7 +705,8 @@
       ],
       "technologies": [],
       "required_skills": [
-        "risk_analysis_expert"
+        "risk_analysis_expert",
+        "task_graph_expert"
       ],
       "can_write_code": true,
       "can_review": true,
@@ -705,8 +715,8 @@
       "context_weight": 3,
       "priority": 50,
       "provider_neutral": true,
-      "version": "1.0.0",
-      "last_reviewed": "2026-08-31",
+      "version": "1.1.0",
+      "last_reviewed": "2026-10-14",
       "deprecated": false,
       "superseded_by": null
     },
@@ -807,7 +817,8 @@
       ],
       "technologies": [],
       "required_skills": [
-        "risk_analysis_expert"
+        "risk_analysis_expert",
+        "prompt_security_expert"
       ],
       "can_write_code": false,
       "can_review": true,
@@ -816,8 +827,8 @@
       "context_weight": 3,
       "priority": 50,
       "provider_neutral": true,
-      "version": "1.0.0",
-      "last_reviewed": "2026-08-31",
+      "version": "1.1.0",
+      "last_reviewed": "2026-10-14",
       "deprecated": false,
       "superseded_by": null
     },
@@ -1158,7 +1169,8 @@
       ],
       "technologies": [],
       "required_skills": [
-        "risk_analysis_expert"
+        "risk_analysis_expert",
+        "evidence_validation_expert"
       ],
       "can_write_code": true,
       "can_review": true,
@@ -1167,8 +1179,8 @@
       "context_weight": 3,
       "priority": 50,
       "provider_neutral": true,
-      "version": "1.0.0",
-      "last_reviewed": "2026-08-31",
+      "version": "1.1.0",
+      "last_reviewed": "2026-10-14",
       "deprecated": false,
       "superseded_by": null
     },
@@ -1327,7 +1339,9 @@
       ],
       "technologies": [],
       "required_skills": [
-        "risk_analysis_expert"
+        "risk_analysis_expert",
+        "release_management_expert",
+        "git_release_expert"
       ],
       "can_write_code": true,
       "can_review": true,
@@ -1336,8 +1350,8 @@
       "context_weight": 3,
       "priority": 50,
       "provider_neutral": true,
-      "version": "1.0.0",
-      "last_reviewed": "2026-08-31",
+      "version": "1.1.0",
+      "last_reviewed": "2026-10-14",
       "deprecated": false,
       "superseded_by": null
     },
@@ -1438,7 +1452,8 @@
       ],
       "technologies": [],
       "required_skills": [
-        "risk_analysis_expert"
+        "risk_analysis_expert",
+        "saas_tenancy_expert"
       ],
       "can_write_code": true,
       "can_review": true,
@@ -1447,8 +1462,8 @@
       "context_weight": 3,
       "priority": 50,
       "provider_neutral": true,
-      "version": "1.0.0",
-      "last_reviewed": "2026-08-31",
+      "version": "1.1.0",
+      "last_reviewed": "2026-10-14",
       "deprecated": false,
       "superseded_by": null
     },
@@ -1577,7 +1592,9 @@
       ],
       "technologies": [],
       "required_skills": [
-        "risk_analysis_expert"
+        "risk_analysis_expert",
+        "architecture_fitness_expert",
+        "modular_monolith_expert"
       ],
       "can_write_code": true,
       "can_review": true,
@@ -1586,8 +1603,8 @@
       "context_weight": 3,
       "priority": 50,
       "provider_neutral": true,
-      "version": "1.0.0",
-      "last_reviewed": "2026-08-31",
+      "version": "1.1.0",
+      "last_reviewed": "2026-10-14",
       "deprecated": false,
       "superseded_by": null
     },

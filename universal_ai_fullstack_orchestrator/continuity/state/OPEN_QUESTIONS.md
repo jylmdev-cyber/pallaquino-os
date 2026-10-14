@@ -7,3 +7,4 @@
   - 2026-10-13: owner approved creating the `v0.3.0` GitHub Release and enabling Auto-fix on PR #3.
   - 2026-10-14: owner approved merging PR #3 and publishing 0.3.1 (tag `v0.3.1` and GitHub Release).
   - 2026-10-14: owner approved publishing the PAL-006 pull request and releasing 0.3.2 (merge, tag `v0.3.2` and GitHub Release).
+  - 2026-10-14: owner approved publishing 0.4.0: merge PR #5, push `feat/v0.4.0-orchestration`, open its pull request, and after green CI merge it, tag `v0.4.0` and publish the GitHub Release.

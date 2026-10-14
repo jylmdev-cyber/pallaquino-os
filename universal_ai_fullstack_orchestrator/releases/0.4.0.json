@@ -1,0 +1,50 @@
+{
+  "version": "0.4.0",
+  "commits": [
+    "477120345875ac33a282280190375944ea367c0d",
+    "033810a9469d7797d7df22eee9bd904ca79c6dc2",
+    "56466e79cf1db41205707801118f01996bb32db7",
+    "e90dbab20caf24c4893ba6c4aa32aa1225516629"
+  ],
+  "features": [
+    "intent analyzer (deterministic and validated AI-assisted)",
+    "explainable agent router",
+    "DAG task planner with validation",
+    "multi-agent scheduler with recovery",
+    "project memory engine (SQLite)",
+    "provider abstraction with mock and Ollama adapters",
+    "observability: metrics, traces, JSONL export",
+    "orchestration CLI"
+  ],
+  "fixes": [
+    "task budgets persist across retries",
+    "resuming a finished execution is read-only",
+    "dry runs persist nothing"
+  ],
+  "migrations": [
+    "memory schema v1 -> v2 is applied automatically on open"
+  ],
+  "dependencies": [],
+  "environment_changes": [
+    "memory/ and logs/ are per-project instance state",
+    "governance/providers.json, command_allowlist.json and routing_preferences.json added"
+  ],
+  "tests": [
+    "154 framework tests",
+    "reference scenario offline variant",
+    "benchmark baseline docs/evaluation/benchmark_baseline_v040.json"
+  ],
+  "security": [
+    "deny-by-default tool grants enforced at plan and run time",
+    "governed tools require recorded approval",
+    "workspace confinement and secret refusal",
+    "untrusted memory and handoffs flagged",
+    "no cross-boundary provider fallback without authorization"
+  ],
+  "rollback": "Revert to v0.3.2: the engine is additive; delete memory/ and logs/ in project installations.",
+  "known_issues": [
+    "real-provider variant of the reference scenario not executed (no authorized provider available)",
+    "checksums are unkeyed",
+    "scheduler persistence bounds throughput at ~84 tasks/s with 4 workers"
+  ]
+}

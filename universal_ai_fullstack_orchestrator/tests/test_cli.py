@@ -31,13 +31,13 @@ class CliTests(unittest.TestCase):
         self.assertTrue(json.loads(proc.stdout)["ok"])
 
     def test_invalid_root_is_actionable(self) -> None:
-        with tempfile.TemporaryDirectory() as temp:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp:
             proc = self.run_cli("status", "--root", temp, "--json")
             self.assertEqual(proc.returncode, 2)
             self.assertIn("not a PALLAQUINO root", json.loads(proc.stdout)["error"])
 
     def test_security_audit_exit_codes(self) -> None:
-        with tempfile.TemporaryDirectory() as temp:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp:
             clean = self.run_cli("security", "audit", "--target", temp, "--json")
             self.assertEqual(clean.returncode, 0, clean.stdout)
             Path(temp, "config.py").write_text('API_KEY = "' + "Z" * 24 + '"\n', encoding="utf-8")
@@ -47,7 +47,7 @@ class CliTests(unittest.TestCase):
             self.assertNotIn("Z" * 24, dirty.stdout)
 
     def test_init_dry_run_and_list_output(self) -> None:
-        with tempfile.TemporaryDirectory() as temp:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp:
             proc = self.run_cli("init", "--target", temp, "--dry-run", "--json")
             self.assertEqual(proc.returncode, 0, proc.stderr); self.assertTrue(json.loads(proc.stdout)["dry_run"])
             self.assertEqual(list(Path(temp).iterdir()), [])
@@ -61,7 +61,7 @@ class CliTests(unittest.TestCase):
         self.assertEqual(json.loads(proc.stdout)["level"], "CRITICAL")
 
     def test_init_is_idempotent_and_preserves_existing(self) -> None:
-        with tempfile.TemporaryDirectory() as temp:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp:
             target = Path(temp); first = self.run_cli("init", "--root", str(ROOT), "--target", str(target), "--json")
             second = self.run_cli("init", "--root", str(ROOT), "--target", str(target), "--json")
             self.assertEqual(first.returncode, 0, first.stderr); self.assertEqual(second.returncode, 0, second.stderr)
@@ -78,7 +78,7 @@ class CliInProcessTests(unittest.TestCase):
         return code, buffer.getvalue()
 
     def test_every_command_contract(self) -> None:
-        with tempfile.TemporaryDirectory() as temp:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp:
             project = Path(temp) / ".pallaquino"
             self.assertEqual(self.call("init", "--root", str(ROOT), "--target", temp, "--json")[0], 0)
             for args in (["status"], ["plan"], ["pipeline"], ["skills"], ["graph"], ["resume"],

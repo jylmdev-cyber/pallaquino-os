@@ -145,11 +145,15 @@
       },
       "risk_level": "HIGH",
       "activation": {
-        "routing_rules": [],
+        "routing_rules": [
+          "ai_engineering"
+        ],
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
-        "required_by_agents": [],
+        "required_by_agents": [
+          "ai_engineer"
+        ],
         "tags": [
           "operations",
           "ai",
@@ -160,7 +164,9 @@
         "guidance is limited to the declared scope",
         "versions come from the verified stack registry"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/routing_golden.json#10"
+      ],
       "source_digest": "6e717735ce55dc39898504480cbb09b4ed5550851312511007dbef3dd590f57e",
       "curation": "derived"
     },
@@ -299,7 +305,9 @@
       },
       "risk_level": "MEDIUM",
       "activation": {
-        "routing_rules": [],
+        "routing_rules": [
+          "api_governance"
+        ],
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
@@ -317,7 +325,9 @@
         "guidance is limited to the declared scope",
         "versions come from the verified stack registry"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/routing_golden.json#5"
+      ],
       "source_digest": "e1942315ab79bd11c075801d294ff5cdb3e403ccabf16d4ba600fa600bd9d09f",
       "curation": "derived"
     },
@@ -407,11 +417,16 @@
       },
       "risk_level": "MEDIUM",
       "activation": {
-        "routing_rules": [],
+        "routing_rules": [
+          "architecture_decision"
+        ],
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
-        "required_by_agents": [],
+        "required_by_agents": [
+          "code_quality_reviewer",
+          "technical_decision_arbitrator"
+        ],
         "tags": [
           "architecture",
           "architecture"
@@ -421,7 +436,9 @@
         "guidance is limited to the declared scope",
         "versions come from the verified stack registry"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/routing_golden.json#11"
+      ],
       "source_digest": "304d7f7727c010ae876c2faf233780cbfce301a0ac3277e2149aafbd5153f1d5",
       "curation": "derived"
     },
@@ -618,7 +635,9 @@
       },
       "risk_level": "HIGH",
       "activation": {
-        "routing_rules": [],
+        "routing_rules": [
+          "disaster_recovery"
+        ],
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
@@ -636,7 +655,9 @@
         "guidance is limited to the declared scope",
         "versions come from the verified stack registry"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/routing_golden.json#7"
+      ],
       "source_digest": "0de13c86e018710a6d165616b35ef29bbf30f78474adebb9db6d1d089392354c",
       "curation": "derived"
     },
@@ -791,6 +812,7 @@
         "domain_packs": [],
         "technologies": [],
         "required_by_agents": [
+          "codebase_explorer",
           "context_manager"
         ],
         "tags": [
@@ -1000,7 +1022,9 @@
       },
       "risk_level": "HIGH",
       "activation": {
-        "routing_rules": [],
+        "routing_rules": [
+          "performance"
+        ],
         "profiles": [],
         "domain_packs": [],
         "technologies": [
@@ -1022,7 +1046,9 @@
         "guidance is limited to the declared scope",
         "versions come from the verified stack registry"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/routing_golden.json#8"
+      ],
       "source_digest": "a0571f7a7a4ec674fcc6c12f231c068ba799231adc7a3330b7f42b69c965ce4f",
       "curation": "derived"
     },
@@ -1055,11 +1081,15 @@
       },
       "risk_level": "HIGH",
       "activation": {
-        "routing_rules": [],
+        "routing_rules": [
+          "dependency_governance"
+        ],
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
-        "required_by_agents": [],
+        "required_by_agents": [
+          "dependency_governance_agent"
+        ],
         "tags": [
           "security",
           "dependencies"
@@ -1069,7 +1099,9 @@
         "guidance is limited to the declared scope",
         "versions come from the verified stack registry"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/routing_golden.json#4"
+      ],
       "source_digest": "ac27c45c22577aeedf392c09465fac48409a577ff73f0090067778275f08b50e",
       "curation": "derived"
     },
@@ -1219,14 +1251,18 @@
       },
       "risk_level": "MEDIUM",
       "activation": {
-        "routing_rules": [],
+        "routing_rules": [
+          "ci_cd"
+        ],
         "profiles": [],
         "domain_packs": [],
         "technologies": [
           "docker_compose",
           "docker_engine"
         ],
-        "required_by_agents": [],
+        "required_by_agents": [
+          "devops_engineer"
+        ],
         "tags": [
           "platform",
           "deployment"
@@ -1236,7 +1272,9 @@
         "guidance is limited to the declared scope",
         "versions come from the verified stack registry"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/routing_golden.json#6"
+      ],
       "source_digest": "7fe509c08999044747751babc85377c294ca0c35a946ebc6718286a1fc03b753",
       "curation": "derived"
     },
@@ -1494,7 +1532,9 @@
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
-        "required_by_agents": [],
+        "required_by_agents": [
+          "pipeline_manager"
+        ],
         "tags": [
           "quality",
           "evidence"
@@ -1755,11 +1795,15 @@
       },
       "risk_level": "MEDIUM",
       "activation": {
-        "routing_rules": [],
+        "routing_rules": [
+          "release_management"
+        ],
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
-        "required_by_agents": [],
+        "required_by_agents": [
+          "release_manager"
+        ],
         "tags": [
           "release",
           "release"
@@ -1769,7 +1813,9 @@
         "guidance is limited to the declared scope",
         "versions come from the verified stack registry"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/routing_golden.json#3"
+      ],
       "source_digest": "6acd995edc99cf4b863c51178e69f901142e2448031c20507f12096e581523b1",
       "curation": "derived"
     },
@@ -1805,13 +1851,17 @@
       },
       "risk_level": "MEDIUM",
       "activation": {
-        "routing_rules": [],
+        "routing_rules": [
+          "ci_cd"
+        ],
         "profiles": [],
         "domain_packs": [],
         "technologies": [
           "github_actions"
         ],
-        "required_by_agents": [],
+        "required_by_agents": [
+          "devops_engineer"
+        ],
         "tags": [
           "platform",
           "ci",
@@ -1822,7 +1872,9 @@
         "guidance is limited to the declared scope",
         "versions come from the verified stack registry"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/routing_golden.json#6"
+      ],
       "source_digest": "8793441cc2106253b620467aec6612d6ba12e32fe8fcef0e0615270d45d80ac9",
       "curation": "derived"
     },
@@ -2756,11 +2808,15 @@
       },
       "risk_level": "MEDIUM",
       "activation": {
-        "routing_rules": [],
+        "routing_rules": [
+          "ai_engineering"
+        ],
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
-        "required_by_agents": [],
+        "required_by_agents": [
+          "ai_engineer"
+        ],
         "tags": [
           "ai",
           "ai",
@@ -2771,7 +2827,9 @@
         "guidance is limited to the declared scope",
         "versions come from the verified stack registry"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/routing_golden.json#10"
+      ],
       "source_digest": "d8026af649a5480d29a4553c6a42e97428926b7544ce5b6fff9e06bff8a46e7d",
       "curation": "derived"
     },
@@ -2805,11 +2863,15 @@
       },
       "risk_level": "MEDIUM",
       "activation": {
-        "routing_rules": [],
+        "routing_rules": [
+          "architecture_decision"
+        ],
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
-        "required_by_agents": [],
+        "required_by_agents": [
+          "technical_decision_arbitrator"
+        ],
         "tags": [
           "architecture",
           "architecture",
@@ -2820,7 +2882,9 @@
         "guidance is limited to the declared scope",
         "versions come from the verified stack registry"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/routing_golden.json#11"
+      ],
       "source_digest": "6ef170afd28b99b42c51ded73d5928271f0bb8631b94228658055f808c48f42d",
       "curation": "derived"
     },
@@ -3188,7 +3252,8 @@
       "risk_level": "HIGH",
       "activation": {
         "routing_rules": [
-          "incident"
+          "incident",
+          "performance"
         ],
         "profiles": [],
         "domain_packs": [],
@@ -3205,7 +3270,9 @@
         "guidance is limited to the declared scope",
         "versions come from the verified stack registry"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/routing_golden.json#8"
+      ],
       "source_digest": "2ef5861fc90a6ce599782f59b797b6bbb7b1cd611e20dd6ccbd3748036946bdf",
       "curation": "derived"
     },
@@ -3539,7 +3606,8 @@
       "risk_level": "HIGH",
       "activation": {
         "routing_rules": [
-          "ai_rag"
+          "ai_rag",
+          "ai_engineering"
         ],
         "profiles": [
           "ai_rag_platform"
@@ -3547,7 +3615,9 @@
         "domain_packs": [],
         "technologies": [],
         "required_by_agents": [
-          "ai_red_team_reviewer"
+          "ai_engineer",
+          "ai_red_team_reviewer",
+          "governance_auditor"
         ],
         "tags": [
           "security",
@@ -3931,11 +4001,15 @@
       },
       "risk_level": "MEDIUM",
       "activation": {
-        "routing_rules": [],
+        "routing_rules": [
+          "release_management"
+        ],
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
-        "required_by_agents": [],
+        "required_by_agents": [
+          "release_manager"
+        ],
         "tags": [
           "release",
           "release"
@@ -3945,7 +4019,10 @@
         "guidance is limited to the declared scope",
         "versions come from the verified stack registry"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/routing_golden.json#3",
+        "evaluation/routing_golden.json#12"
+      ],
       "source_digest": "57bb94a58ee66dfa2ac44d21c650ebb50302a1586ed0b5b436f8d4e2c677eb8b",
       "curation": "derived"
     },
@@ -4119,7 +4196,8 @@
       "activation": {
         "routing_rules": [
           "database_migration",
-          "incident"
+          "incident",
+          "disaster_recovery"
         ],
         "profiles": [],
         "domain_packs": [],
@@ -4169,11 +4247,15 @@
       },
       "risk_level": "MEDIUM",
       "activation": {
-        "routing_rules": [],
+        "routing_rules": [
+          "saas_tenancy"
+        ],
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
-        "required_by_agents": [],
+        "required_by_agents": [
+          "saas_architect"
+        ],
         "tags": [
           "architecture",
           "saas"
@@ -4183,7 +4265,9 @@
         "guidance is limited to the declared scope",
         "versions come from the verified stack registry"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/routing_golden.json#9"
+      ],
       "source_digest": "ad5b4136149b0841314e44d4f89658093351d1bd2c43064502fff43495cd44cc",
       "curation": "derived"
     },
@@ -4432,11 +4516,15 @@
       },
       "risk_level": "HIGH",
       "activation": {
-        "routing_rules": [],
+        "routing_rules": [
+          "dependency_governance"
+        ],
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
-        "required_by_agents": [],
+        "required_by_agents": [
+          "dependency_governance_agent"
+        ],
         "tags": [
           "security",
           "dependencies"
@@ -4446,7 +4534,9 @@
         "guidance is limited to the declared scope",
         "versions come from the verified stack registry"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/routing_golden.json#4"
+      ],
       "source_digest": "885229fb9aa10512f555d8b416e1f27f9c46807b3f67780935ee64f4480e0848",
       "curation": "derived"
     },
@@ -4538,7 +4628,9 @@
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
-        "required_by_agents": [],
+        "required_by_agents": [
+          "execution_coordinator"
+        ],
         "tags": [
           "planning",
           "planning"

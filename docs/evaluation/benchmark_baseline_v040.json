@@ -1,0 +1,93 @@
+{
+  "host": {
+    "python": "3.11.15",
+    "platform": "Windows-10-10.0.26300-SP0",
+    "machine": "AMD64"
+  },
+  "planning": {
+    "Agregar autenticaci\u00f3n y gesti\u00f3n de roles": {
+      "runs": 20,
+      "median_ms": 37.116,
+      "p95_ms": 44.505,
+      "max_ms": 54.356
+    },
+    "fix the crash in the invoice export": {
+      "runs": 20,
+      "median_ms": 17.284,
+      "p95_ms": 19.873,
+      "max_ms": 21.092
+    },
+    "add a database migration for orders": {
+      "runs": 20,
+      "median_ms": 40.254,
+      "p95_ms": 43.108,
+      "max_ms": 44.009
+    },
+    "Prepare the release changelog": {
+      "runs": 20,
+      "median_ms": 17.1,
+      "p95_ms": 19.113,
+      "max_ms": 19.417
+    },
+    "make the search page faster": {
+      "runs": 20,
+      "median_ms": 24.844,
+      "p95_ms": 26.326,
+      "max_ms": 27.25
+    }
+  },
+  "router": {
+    "runs": 200,
+    "median_ms": 1.475,
+    "p95_ms": 3.218,
+    "max_ms": 5.748
+  },
+  "memory": {
+    "write_1000_records_ms": 1003.8,
+    "per_record_ms": 1.004,
+    "search_over_1000": {
+      "runs": 20,
+      "median_ms": 13.127,
+      "p95_ms": 19.897,
+      "max_ms": 23.264
+    },
+    "bytes_on_disk": 4431328
+  },
+  "scheduler_throughput": {
+    "workers_1": {
+      "tasks": 100,
+      "status": "COMPLETED",
+      "seconds": 2.673,
+      "tasks_per_second": 37.4,
+      "note": "each simulated task sleeps 10 ms"
+    },
+    "workers_4": {
+      "tasks": 100,
+      "status": "COMPLETED",
+      "seconds": 1.193,
+      "tasks_per_second": 83.8,
+      "note": "each simulated task sleeps 10 ms"
+    },
+    "workers_8": {
+      "tasks": 100,
+      "status": "COMPLETED",
+      "seconds": 1.236,
+      "tasks_per_second": 80.9,
+      "note": "each simulated task sleeps 10 ms"
+    }
+  },
+  "load_reference_scenario": {
+    "executions": 10,
+    "completed": 10,
+    "completion_rate": 1.0,
+    "seconds": 4.25,
+    "peak_python_heap_mb": 2.53,
+    "note": "includes a real unittest subprocess per execution"
+  },
+  "crash_recovery": {
+    "orphaned_tasks": 50,
+    "status": "COMPLETED",
+    "reconciled_notes": 50,
+    "seconds": 0.834
+  }
+}

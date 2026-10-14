@@ -32,7 +32,11 @@
       "kind": "gate",
       "success_to": "REPOSITORY_MAP",
       "failure_return_to": "CAPABILITY_DETECTION",
-      "evidence_required": true
+      "evidence_required": true,
+      "agents": [
+        "project_analyzer",
+        "codebase_explorer"
+      ]
     },
     {
       "id": "REPOSITORY_MAP",
@@ -48,7 +52,10 @@
       "kind": "gate",
       "success_to": "RISK_ANALYSIS",
       "failure_return_to": "PLAN",
-      "evidence_required": true
+      "evidence_required": true,
+      "agents": [
+        "dependency_governance_agent"
+      ]
     },
     {
       "id": "RISK_ANALYSIS",
@@ -56,7 +63,10 @@
       "kind": "gate",
       "success_to": "PLAN",
       "failure_return_to": "PLAN",
-      "evidence_required": true
+      "evidence_required": true,
+      "agents": [
+        "risk_analyst"
+      ]
     },
     {
       "id": "PLAN",
@@ -64,7 +74,10 @@
       "kind": "gate",
       "success_to": "DOMAIN_IDENTIFICATION",
       "failure_return_to": "REQUEST",
-      "evidence_required": false
+      "evidence_required": false,
+      "agents": [
+        "pipeline_manager"
+      ]
     },
     {
       "id": "DOMAIN_IDENTIFICATION",
@@ -80,7 +93,10 @@
       "kind": "gate",
       "success_to": "AGENT_SELECTION",
       "failure_return_to": "PLAN",
-      "evidence_required": true
+      "evidence_required": true,
+      "agents": [
+        "execution_coordinator"
+      ]
     },
     {
       "id": "AGENT_SELECTION",
@@ -112,7 +128,10 @@
       "kind": "gate",
       "success_to": "IMPLEMENTATION",
       "failure_return_to": "CONTEXT_PREPARATION",
-      "evidence_required": false
+      "evidence_required": false,
+      "agents": [
+        "execution_coordinator"
+      ]
     },
     {
       "id": "IMPLEMENTATION",
@@ -128,7 +147,11 @@
       "kind": "gate",
       "success_to": "MIGRATION_SAFETY",
       "failure_return_to": "IMPLEMENTATION",
-      "evidence_required": true
+      "evidence_required": true,
+      "agents": [
+        "execution_coordinator",
+        "conflict_resolver"
+      ]
     },
     {
       "id": "MIGRATION_SAFETY",
@@ -152,7 +175,10 @@
       "kind": "gate",
       "success_to": "LINT_TYPECHECK",
       "failure_return_to": "TEST",
-      "evidence_required": true
+      "evidence_required": true,
+      "agents": [
+        "test_gap_analyzer"
+      ]
     },
     {
       "id": "LINT_TYPECHECK",
@@ -184,7 +210,10 @@
       "kind": "gate",
       "success_to": "CODE_REVIEW",
       "failure_return_to": "IMPLEMENTATION",
-      "evidence_required": true
+      "evidence_required": true,
+      "agents": [
+        "adversarial_reviewer"
+      ]
     },
     {
       "id": "CODE_REVIEW",
@@ -192,7 +221,10 @@
       "kind": "gate",
       "success_to": "SPECIFICATION_DRIFT",
       "failure_return_to": "IMPLEMENTATION",
-      "evidence_required": true
+      "evidence_required": true,
+      "agents": [
+        "code_quality_reviewer"
+      ]
     },
     {
       "id": "SPECIFICATION_DRIFT",
@@ -200,7 +232,10 @@
       "kind": "gate",
       "success_to": "ACCEPTANCE_VALIDATION",
       "failure_return_to": "PLAN",
-      "evidence_required": true
+      "evidence_required": true,
+      "agents": [
+        "specification_drift_detector"
+      ]
     },
     {
       "id": "ACCEPTANCE_VALIDATION",
@@ -208,7 +243,10 @@
       "kind": "gate",
       "success_to": "DOCUMENTATION",
       "failure_return_to": "IMPLEMENTATION",
-      "evidence_required": true
+      "evidence_required": true,
+      "agents": [
+        "governance_auditor"
+      ]
     },
     {
       "id": "DOCUMENTATION",
@@ -216,7 +254,10 @@
       "kind": "gate",
       "success_to": "ROLLBACK_READINESS",
       "failure_return_to": "IMPLEMENTATION",
-      "evidence_required": false
+      "evidence_required": false,
+      "agents": [
+        "documentation_engineer"
+      ]
     },
     {
       "id": "ROLLBACK_READINESS",
@@ -224,7 +265,10 @@
       "kind": "gate",
       "success_to": "STATE_UPDATE",
       "failure_return_to": "IMPLEMENTATION",
-      "evidence_required": true
+      "evidence_required": true,
+      "agents": [
+        "rollback_readiness_reviewer"
+      ]
     },
     {
       "id": "STATE_UPDATE",
@@ -232,7 +276,11 @@
       "kind": "gate",
       "success_to": "GIT_COMMIT",
       "failure_return_to": "DOCUMENTATION",
-      "evidence_required": true
+      "evidence_required": true,
+      "agents": [
+        "pipeline_manager",
+        "continuity_manager"
+      ]
     },
     {
       "id": "GIT_COMMIT",
@@ -248,7 +296,10 @@
       "kind": "gate",
       "success_to": "HANDOFF",
       "failure_return_to": "STATE_UPDATE",
-      "evidence_required": true
+      "evidence_required": true,
+      "agents": [
+        "continuity_manager"
+      ]
     },
     {
       "id": "HANDOFF",
@@ -256,7 +307,10 @@
       "kind": "terminal",
       "success_to": null,
       "failure_return_to": "CHECKPOINT",
-      "evidence_required": false
+      "evidence_required": false,
+      "agents": [
+        "continuity_manager"
+      ]
     }
   ]
 }
