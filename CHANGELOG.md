@@ -6,6 +6,14 @@ Los cambios relevantes de este proyecto se documentan aquí. El formato sigue
 
 ## [Unreleased]
 
+### Planned
+
+- Fase 2: contratos v2, motor de orquestación, Project Memory y adaptadores de
+  proveedor (ver `docs/ROADMAP.md`).
+- Publicación en PyPI y firma de artefactos.
+
+## [0.3.2] - 2026-10-14
+
 ### Changed
 
 - Snapshot tecnológico re-verificado el 2026-10-14 contra fuentes oficiales (`PAL-006`):
@@ -15,11 +23,10 @@ Los cambios relevantes de este proyecto se documentan aquí. El formato sigue
   Python 3.15.0 y .NET 11 quedan fuera: el primero aún no lo declara Django y el
   segundo es release candidate.
 
-### Planned
+### Fixed
 
-- Fase 2: contratos v2, motor de orquestación, Project Memory y adaptadores de
-  proveedor (ver `docs/ROADMAP.md`).
-- Publicación en PyPI y firma de artefactos.
+- `scaffold_framework.py --write` ya no sobrescribe ni re-fecha el snapshot
+  verificado: la semilla solo se escribe si el registro no existe.
 
 ## [0.3.1] - 2026-10-14
 
@@ -104,9 +111,10 @@ Fase 1 (auditoría y estabilización) del pedido v0.3. Detalle y evidencia en
 
 - Framework inicial, CLI, pipeline, gobernanza, continuidad y empaquetado.
 
+[0.3.2]: universal_ai_fullstack_orchestrator/releases/0.3.2.json
 [0.3.1]: universal_ai_fullstack_orchestrator/releases/0.3.1.json
 [0.3.0]: universal_ai_fullstack_orchestrator/releases/0.3.0.json
 [0.2.1]: universal_ai_fullstack_orchestrator/releases/0.2.1.json
 [0.2.0]: universal_ai_fullstack_orchestrator/releases/0.2.0.json
 [0.1.0]: universal_ai_fullstack_orchestrator/releases/0.1.0.json
-[Unreleased]: https://github.com/jylmdev-cyber/pallaquino-os/compare/v0.3.1...HEAD
+[Unreleased]: https://github.com/jylmdev-cyber/pallaquino-os/compare/v0.3.2...HEAD

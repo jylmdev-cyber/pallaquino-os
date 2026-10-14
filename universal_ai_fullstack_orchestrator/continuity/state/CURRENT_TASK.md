@@ -1,11 +1,11 @@
 # Current task
 
-- ID: PAL-006
-- Objective: re-verify the 11-entry technology snapshot against official primary sources
-- Mode: UPGRADE
-- Autonomy: SAFE (registry data only; no dependency, runtime or infrastructure change)
-- Scope: `registry/stack_versions_verified.json`, README baseline table, stack state, changelog
-- Status: COMPLETE on branch `chore/pal-006-stack-refresh`
-- Risk: LOW (catalog data; profiles stay VERIFY_BEFORE_USE)
-- Acceptance: `pallaquino stack` returns ok; every source is official HTTPS and returned HTTP 200; no prerelease selected
+- ID: PAL-009
+- Objective: release 0.3.2 so the distributed archive carries the stack snapshot re-verified in PAL-006
+- Mode: MAINTENANCE
+- Autonomy: STANDARD (owner approved on 2026-10-14: publish the PAL-006 pull request and release 0.3.2)
+- Scope: version metadata, changelog, release manifest, deterministic archive, pull request, tag `v0.3.2`, GitHub Release
+- Status: COMPLETE once the pull request is merged and tag `v0.3.2` with its GitHub Release is published and verified
+- Risk: LOW (catalog data and one generator fix; no data migration)
+- Acceptance: CI green; archive reproducible and verified; release assets match the sidecar SHA-256
 - Confidence: high

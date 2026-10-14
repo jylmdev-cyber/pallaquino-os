@@ -344,6 +344,63 @@
         "BUILD",
         "SECURITY_CHECK"
       ]
+    },
+    {
+      "task": "PAL-006",
+      "agent": "dependency_governance_agent",
+      "skills": [
+        "dependency_governance_expert"
+      ],
+      "inputs": [
+        "official release metadata"
+      ],
+      "expected_files": [
+        "registry/stack_versions_verified.json"
+      ],
+      "dependencies": [],
+      "commands": [
+        "python -m pallaquino_cli stack --json"
+      ],
+      "tests": [
+        "stack ok"
+      ],
+      "gates": [
+        "TEST",
+        "SECURITY_CHECK"
+      ]
+    },
+    {
+      "task": "PAL-009",
+      "agent": "release_manager",
+      "skills": [
+        "release_management_expert",
+        "git_release_expert"
+      ],
+      "inputs": [
+        "owner approval 2026-10-14"
+      ],
+      "expected_files": [
+        "releases/0.3.2.json"
+      ],
+      "dependencies": [
+        "PAL-006",
+        "PAL-008"
+      ],
+      "commands": [
+        "python -m unittest discover -s tests -v",
+        "python scripts/package_release.py",
+        "python scripts/verify_zip_integrity.py"
+      ],
+      "tests": [
+        "CI green",
+        "archive verified"
+      ],
+      "gates": [
+        "TEST",
+        "LINT_TYPECHECK",
+        "BUILD",
+        "SECURITY_CHECK"
+      ]
     }
   ]
 }

@@ -1,7 +1,7 @@
 # Project state
 
-- Status: 0.3.1 released (`v0.3.1`); 0.3.0 merged to `main` via PR #3
-- Version: 0.3.1 (patch over 0.3.0, Phase 1 of the v0.3 roadmap)
+- Status: 0.3.2 released (`v0.3.2`) with the stack snapshot verified on 2026-10-14
+- Version: 0.3.2 (patch over 0.3.0, Phase 1 of the v0.3 roadmap)
 - Updated: 2026-10-14
 - Agents: 59 (template contracts; v2 contracts planned)
 - Skills: 90

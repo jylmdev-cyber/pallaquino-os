@@ -1,0 +1,32 @@
+{
+  "task_id": "PAL-009",
+  "files_created": [
+    "releases/0.3.2.json",
+    "changes/PAL-009.json"
+  ],
+  "files_modified": [
+    "version metadata (pallaquino_cli, pyproject.toml, manifest.json, scaffold VERSION, README files, CITATION.cff)",
+    "../CHANGELOG.md",
+    "../docs/GITHUB_RELEASE_CHECKLIST.md",
+    "continuity/state/*.md",
+    "planning/task_graph.json",
+    "planning/execution_plan.json",
+    "../PALLAQUINO_autonomous_engineering_os.zip",
+    "../PALLAQUINO_autonomous_engineering_os.sha256"
+  ],
+  "files_deleted": [],
+  "migrations": [],
+  "dependencies": [],
+  "endpoints": [],
+  "tests": [
+    "49 tests",
+    "CI on the release pull request"
+  ],
+  "docs": [
+    "CHANGELOG 0.3.2 entry"
+  ],
+  "decisions": [
+    "PATCH release: verified catalog data plus one generator fix",
+    "Owner approved publishing the PAL-006 pull request and releasing 0.3.2 on 2026-10-14"
+  ]
+}
