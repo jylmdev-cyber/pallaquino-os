@@ -1,7 +1,7 @@
 # Project state
 
-- Status: 0.3.2 released (`v0.3.2`) with the stack snapshot verified on 2026-10-14
-- Version: 0.3.2 (patch over 0.3.0, Phase 1 of the v0.3 roadmap)
+- Status: 0.4.0 release candidate (local branch `feat/v0.4.0-orchestration`); 0.3.2 is the latest published release
+- Version: 0.4.0 (orchestration engine, memory, providers)
 - Updated: 2026-10-14
 - Agents: 59 (template contracts; v2 contracts planned)
 - Skills: 90

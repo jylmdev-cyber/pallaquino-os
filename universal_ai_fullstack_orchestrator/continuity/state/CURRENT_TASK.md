@@ -1,11 +1,11 @@
 # Current task
 
-- ID: PAL-007-B
-- Objective: make every agent and skill selectable and curate the pipeline-role contracts
+- ID: PAL-010
+- Objective: evolve PALLAQUINO to 0.4.0 (orchestration engine, persistent memory, provider abstraction) per the v0.4.0 master request
 - Mode: BROWNFIELD
-- Autonomy: STANDARD (branch `feat/pal-007-b-reachability`, stacked on PAL-007-A; publication awaits owner approval)
-- Scope: specialist skill wiring, pipeline-stage roles, ten routing rules with goldens, 13 curated contracts, create-only generators
-- Status: COMPLETE on branch
-- Risk: MEDIUM (routing behaviour changes; covered by positive and negative goldens)
-- Acceptance: 0 unreachable agents and skills; every new rule has a golden; all 67 tests pass; generators cannot revert curated registries without --overwrite
-- Confidence: high
+- Autonomy: STANDARD (local, non-destructive; push, tag and release require explicit approval)
+- Scope: intent analyzer, agent router, task planner, multi-agent scheduler, executors, project memory, providers (mock, Ollama), observability, CLI, docs
+- Status: COMPLETE as a local release candidate on branch `feat/v0.4.0-orchestration`
+- Risk: HIGH (new execution engine with write access to workspaces), mitigated by deny-by-default grants, approvals and the adversarial suite
+- Acceptance: 154 tests pass; reference scenario offline passes; real-provider variant reported as not executed
+- Confidence: high for implemented behaviour; unverified on Linux and with a real model

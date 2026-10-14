@@ -76,7 +76,7 @@ class FrameworkTests(unittest.TestCase):
             self.assertFalse(set(case["forbidden_agents"]) & agents, case)
 
     def test_file_locks_enforce_owner_and_root(self) -> None:
-        with tempfile.TemporaryDirectory() as temp:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp:
             root = Path(temp); (root / "execution").mkdir()
             (root / "execution/file_locks.json").write_text('{"schema_version":1,"locks":[],"audit":[]}', encoding="utf-8")
             lock = acquire_lock(root, "src/service.py", "agent-a", "T-1")
@@ -86,7 +86,7 @@ class FrameworkTests(unittest.TestCase):
             self.assertTrue(release_lock(root, "src/service.py", "agent-a"))
 
     def test_repository_map_detects_entrypoints(self) -> None:
-        with tempfile.TemporaryDirectory() as temp:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp:
             root = Path(temp); target = root / "repo"; output = root / "out"
             target.mkdir(); output.mkdir(); (target / "app.py").write_text("print('ok')", encoding="utf-8")
             result = build_repository_map(target, output)
@@ -94,7 +94,7 @@ class FrameworkTests(unittest.TestCase):
             self.assertIn("Python", result["technologies"])
 
     def test_checkpoint_checksum_and_corrupt_fallback(self) -> None:
-        with tempfile.TemporaryDirectory() as temp:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp:
             root = Path(temp); (root / "continuity/state").mkdir(parents=True)
             (root / "continuity/state/PIPELINE_STATE.md").write_text("- Current stage: TEST\n", encoding="utf-8")
             first = make_checkpoint(root, "T-1")
@@ -118,7 +118,7 @@ class FrameworkTests(unittest.TestCase):
         self.assertTrue(all(x["status"] == "STALE" for x in stale["entries"]))
 
     def test_release_archive_is_safe_and_complete(self) -> None:
-        with tempfile.TemporaryDirectory() as temp:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp:
             archive = Path(temp) / "PALLAQUINO_autonomous_engineering_os.zip"
             report = create_archive(ROOT, archive)
             self.assertTrue(report["integrity"], report)

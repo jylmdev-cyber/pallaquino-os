@@ -23,12 +23,12 @@ Pendiente de aprobación humana: merge, tag `v0.3.0`, GitHub Release.
 | Entrega | Dependencias | Criterios de aceptación |
 |---|---|---|
 | Contratos v2 de agentes/skills (entradas, salidas, herramientas, activación, éxito, casos de prueba) — **PAL-007-A hecho** (esquema, derivación, validación, carga controlada); **PAL-007-B hecho** (0 agentes y 0 skills inalcanzables; 13 contratos de rol curados; ADR-0009) | Fase 1 | Validador rechaza contratos incompletos; migración automática desde v1 sin perder campos |
-| Orchestration Engine: `plan`/`run` con `run_id`, DAG, límites de concurrencia, timeouts, reintentos acotados, cancelación | Contratos v2, locks 0.3.0 | Ciclos y dependencias bloqueadas detectados; una ejecución interrumpida se reanuda desde su checkpoint en los escenarios de `evaluation/abrupt_session_recovery` |
-| Project Memory (SQLite + JSON, aislamiento por proyecto, retención) | `instance_state` 0.3.0 | Consultas sin cruzar proyectos; borrado por política probado; el contenido recuperado se etiqueta como no confiable |
-| Checkpoints a prueba de manipulación (cadena de hashes) | — | Alterar un checkpoint intermedio invalida la cadena |
-| Interfaz de proveedores + adaptador "null"/local | — | Descubrimiento de capacidades, timeouts, presupuesto de tokens y registro sin secretos, probados sin red |
+| Orchestration Engine: `plan`/`run` con `run_id`, DAG, límites de concurrencia, timeouts, reintentos acotados, cancelación — **hecho en 0.4.0** (reanudación probada en `test_scheduler.RecoveryTests`; el escenario `evaluation/abrupt_session_recovery` no se automatizó) | Contratos v2, locks 0.3.0 | Ciclos y dependencias bloqueadas detectados; una ejecución interrumpida se reanuda desde su checkpoint en los escenarios de `evaluation/abrupt_session_recovery` |
+| Project Memory (SQLite + JSON, aislamiento por proyecto, retención) — **hecho en 0.4.0** | `instance_state` 0.3.0 | Consultas sin cruzar proyectos; borrado por política probado; el contenido recuperado se etiqueta como no confiable |
+| Checkpoints a prueba de manipulación (cadena de hashes) — **parcial**: checksum por documento sin clave; cadena o HMAC pendiente para 0.5.0 | — | Alterar un checkpoint intermedio invalida la cadena |
+| Interfaz de proveedores + adaptador "null"/local — **hecho en 0.4.0** (`mock` y Ollama) | — | Descubrimiento de capacidades, timeouts, presupuesto de tokens y registro sin secretos, probados sin red |
 
-Objetivos: cobertura de `core` ≥ 90 % (hoy 92.1 %) en cada módulo nuevo; suite < 15 s.
+Objetivos: cobertura ≥ 90 % en cada módulo nuevo (cumplido: 94,4 % total, todos ≥ 90 %); suite < 15 s (no cumplido en Windows: 48 s con 154 tests; pendiente medir en CI Linux).
 
 ## Fase 3 — Extensibilidad (0.5.0)
 

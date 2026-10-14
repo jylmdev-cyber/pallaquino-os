@@ -1,5 +1,23 @@
 # Guía de migración
 
+## 0.3.x → 0.4.0
+
+0.4.0 es aditiva: los comandos y formatos JSON de 0.3 siguen iguales. `plan`, `status`, `resume`, `agents` y `skills` sin argumentos nuevos
+devuelven lo mismo que antes.
+
+| Área | Cambio | Acción |
+|---|---|---|
+| Comandos nuevos | `plan "<solicitud>"`, `run`, `status/resume --execution`, `pause`, `cancel`, `approve`, `agents match`, `memory`, `providers`, `executions` | ninguna |
+| Estado de ejecución | `memory/pallaquino.db` y `logs/` dentro de `.pallaquino/`; son estado de instancia (Git, `init` y el ZIP los excluyen) | si versionas `.pallaquino/`, añade `memory/` y `logs/` a tu `.gitignore` |
+| Configuración nueva | `governance/providers.json` (mock por defecto, Ollama deshabilitado, `privacy.local_only: true`), `governance/command_allowlist.json` y `governance/routing_preferences.json` | `init` los copia a proyectos nuevos; en instalaciones existentes, cópialos desde el framework |
+| Contratos v2 | `registry/agent_contracts.json` y `registry/skill_contracts.json` son obligatorios (`validate_contracts`) | instalaciones existentes: copia los dos archivos o ejecuta `python scripts/build_contracts.py --write` |
+| Pipeline | las etapas pueden declarar `agents` (roles por etapa) | ninguna |
+| Generadores | `scaffold_framework.py` y `expand_catalog.py` con `--write` solo crean archivos ausentes; `--overwrite` reemplaza | añade `--overwrite` si regenerabas registros a propósito |
+| Empaquetado | subpaquetes `pallaquino_cli.orchestration`, `.memory` y `.providers` | reinstala el paquete (`pip install -e .` o `pip install .`) |
+
+Simulación: sin un proveedor real, las tareas de agente las responde `mock` y quedan marcadas `simulated: true`. Los informes muestran
+qué etapas fueron reales.
+
 ## 0.2.1 → 0.3.0
 
 0.3.0 es compatible hacia atrás en comandos, flags y formatos JSON existentes. Los

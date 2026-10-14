@@ -14,7 +14,7 @@ SCRIPT = ROOT / "scripts/configure_git_identity.py"
 
 class GitIdentityTests(unittest.TestCase):
     def test_configures_only_repository_local_identity(self) -> None:
-        with tempfile.TemporaryDirectory() as temp:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp:
             repository = Path(temp) / "repository"
             repository.mkdir()
             subprocess.run(["git", "init", "--quiet", str(repository)], check=True)
@@ -52,7 +52,7 @@ class GitIdentityTests(unittest.TestCase):
             self.assertEqual(current["email"], "contributor@example.com")
 
     def test_rejects_incomplete_or_invalid_identity(self) -> None:
-        with tempfile.TemporaryDirectory() as temp:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp:
             repository = Path(temp)
             subprocess.run(["git", "init", "--quiet", str(repository)], check=True)
             incomplete = subprocess.run(

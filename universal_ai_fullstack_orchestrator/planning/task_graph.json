@@ -476,6 +476,53 @@
         "TEST",
         "CODE_REVIEW"
       ]
+    },
+    {
+      "id": "PAL-010",
+      "title": "v0.4.0 orchestration engine, memory and providers",
+      "domain": "orchestration",
+      "dependencies": [
+        "PAL-007-B"
+      ],
+      "blocked_by": [],
+      "parallelizable": false,
+      "priority": "P0",
+      "risk": "HIGH",
+      "agents": [
+        "framework_maintainer",
+        "execution_coordinator",
+        "security_architect",
+        "qa_engineer"
+      ],
+      "skills": [
+        "task_graph_expert",
+        "tool_calling_expert",
+        "prompt_security_expert"
+      ],
+      "files": [
+        "pallaquino_cli/orchestration/",
+        "pallaquino_cli/memory/",
+        "pallaquino_cli/providers/"
+      ],
+      "acceptance_criteria": [
+        "request becomes a validated plan",
+        "router selects existing agents with reasons",
+        "cycles detected",
+        "parallel and ordered execution",
+        "approvals enforced",
+        "memory persists across processes",
+        "interrupted execution resumes",
+        "adversarial suite passes",
+        "reference scenario passes offline"
+      ],
+      "quality_gates": [
+        "TEST",
+        "LINT_TYPECHECK",
+        "SECURITY_CHECK",
+        "ADVERSARIAL_REVIEW",
+        "CODE_REVIEW",
+        "BUILD"
+      ]
     }
   ]
 }

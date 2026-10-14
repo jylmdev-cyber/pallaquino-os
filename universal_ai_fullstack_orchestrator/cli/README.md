@@ -6,3 +6,9 @@ resolved from `--root`, then `$PALLAQUINO_ROOT`, then the package checkout, then
 `./.pallaquino` or a parent directory; an unresolvable root exits with code 2. Windows users may use
 the root `pallaquino.cmd`; POSIX users may invoke `cli/pallaquino`.
 
+Orchestration commands (0.4.0): `plan "<request>"`, `run --plan <id> [--dry-run] [--approve <task>]`,
+`status|resume|pause|cancel --execution <id>`, `approve --execution <id> --task <task>`, `agents match "<text>"`,
+`memory status|search|inspect|verify|delete|purge`, `providers list|doctor`, `executions list|report|trace|metrics|export`.
+Without the new arguments, `plan`, `status`, `resume`, `agents` and `skills` keep their 0.3 output.
+Exit codes for executions: 0 completed, 1 failed or error, 2 root not found, 3 waiting for approval or paused, 4 cancelled.
+

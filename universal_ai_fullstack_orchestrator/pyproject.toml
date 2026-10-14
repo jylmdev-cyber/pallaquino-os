@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "pallaquino-autonomous-engineering-os"
-version = "0.3.2"
+version = "0.4.0"
 description = "Portable engineering operating system for AI agents"
 requires-python = ">=3.11"
 license = "MIT"
@@ -19,4 +19,4 @@ Issues = "https://github.com/jylmdev-cyber/pallaquino-os/issues"
 pallaquino = "pallaquino_cli.__main__:main"
 
 [tool.setuptools]
-packages = ["pallaquino_cli"]
+packages = ["pallaquino_cli", "pallaquino_cli.orchestration", "pallaquino_cli.memory", "pallaquino_cli.providers"]

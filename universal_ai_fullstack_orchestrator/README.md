@@ -1,7 +1,7 @@
 # PALLAQUINO Autonomous Engineering OS
 
 Portable, provider-neutral engineering governance and execution framework for AI
-agents. Version `0.3.2` turns a human request into a risk-aware task graph,
+agents. Version `0.4.0` turns a human request into a risk-aware task graph,
 implementation pipeline, evidence trail, checkpoint and handoff.
 
 The framework is executable, not merely a prompt collection. Its standard-library

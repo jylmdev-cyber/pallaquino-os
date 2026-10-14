@@ -37,9 +37,9 @@ lee las políticas y usa el CLI. Esa separación es deliberada y se conserva.
 | Núcleo | `pallaquino_cli/core.py` | IMPLEMENTADO |
 | CLI | `pallaquino_cli/__main__.py` | IMPLEMENTADO |
 | Scripts | `scripts/` (validación, evidencia, release, generadores) | IMPLEMENTADO |
-| Motor de orquestación | — | PLANIFICADO (Fase 2) |
-| Project Memory | — | PLANIFICADO (Fase 2) |
-| Adaptadores de proveedor | `providers/capabilities.json` (solo datos) | PLANIFICADO (Fase 2) |
+| Motor de orquestación | `pallaquino_cli/orchestration/` | IMPLEMENTADO (0.4.0, ADR-0010) |
+| Project Memory | `pallaquino_cli/memory/` | IMPLEMENTADO (0.4.0, ADR-0011) |
+| Adaptadores de proveedor | `pallaquino_cli/providers/` | IMPLEMENTADO: contrato, mock, Ollama local (0.4.0, ADR-0012); comerciales PLANIFICADOS |
 | Extension System / MCP | — | PLANIFICADO (Fase 3) |
 | Project Factory | — | PLANIFICADO (Fase 4) |
 | Control Center | salida JSON del CLI | IMPLEMENTADO (JSON); UI PLANIFICADA (Fase 5) |

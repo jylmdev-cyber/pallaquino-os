@@ -6,8 +6,42 @@ Los cambios relevantes de este proyecto se documentan aquí. El formato sigue
 
 ## [Unreleased]
 
+### Planned
+
+- Fase 3 (0.5.0): ejecutor externo para asistentes sin API, Extension System, adaptadores
+  comerciales verificados, MCP y optimización de la persistencia del scheduler
+  (ver `docs/roadmap/ROADMAP_V040_TO_V050.md`).
+- Publicación en PyPI y firma de artefactos.
+
+## [0.4.0] - 2026-10-14
+
+Motor de orquestación multiagente, memoria persistente y capa de proveedores (pedido v0.4.0).
+Ver `docs/releases/RELEASE_V040.md`, ADR-0010 a ADR-0012 y `MIGRATION_GUIDE.md`.
+
 ### Added
 
+- Intelligent Intent Analyzer (`orchestration/intent.py`): 14 intenciones, multi-intención, tecnologías,
+  alcance, permisos y criterios de aceptación; modo determinista offline y modo asistido por IA validado
+  (el modelo nunca fija riesgo ni permisos).
+- Agent Routing Engine (`orchestration/routing.py`): puntuación explicable y reproducible por capacidad,
+  dominio, tecnología, señal de routing, preferencias, coste e historial verificado; capacidades faltantes
+  con fallback; `pallaquino agents match`.
+- Task Planning Engine (`orchestration/planning.py`): 24 pasos componibles, DAG con niveles paralelos y ruta
+  crítica, detección de ciclos, validación contra contratos v2 y marcas de aprobación.
+- Multi-Agent Scheduler (`orchestration/scheduler.py`): máquina de estados formal, concurrencia limitada,
+  locks de recurso y archivo, reintentos con backoff, timeouts, pausa, cancelación, aprobaciones, lease de
+  runner, reconciliación tras crash (at-least-once con write-ahead), bucle de revisión y delegación acotados.
+- Ejecutores: internos (análisis de repositorio), comandos permitidos (`governance/command_allowlist.json`)
+  y agentes vía proveedor, con confinamiento al workspace, rechazo de secretos y detección de conflictos.
+- Project Memory Engine (`memory/store.py`): SQLite por proyecto con migraciones, búsqueda acotada,
+  obsolescencia, redacción, checksums, confirmación de borrado y retención.
+- Provider Abstraction Layer (`providers/`): contrato, errores normalizados, uso verificado frente a no
+  verificado, presupuestos, router con privacidad y fallback autorizado; adaptadores `mock` y `ollama`.
+- Observabilidad: métricas, traza completa y exportación JSONL compatible con OpenTelemetry.
+- CLI: `plan <request>`, `run`, `status|resume|pause|cancel --execution`, `approve`, `memory`, `providers`,
+  `executions`; códigos de salida estables.
+- Escenario de referencia (`scripts/run_reference_scenario.py`), benchmark reproducible
+  (`scripts/benchmark_orchestration.py`) y 87 tests nuevos (154 en total).
 - Contratos v2 de agentes y skills (ADR-0008): `registry/agent_contracts.json` y
   `registry/skill_contracts.json` con entradas, salidas, dependencias, herramientas
   autorizadas con denegación por defecto, activación, criterios de éxito, casos de
@@ -24,12 +58,6 @@ Los cambios relevantes de este proyecto se documentan aquí. El formato sigue
   agentes (versión menor +1 en 11 agentes).
 - `scaffold_framework.py` y `expand_catalog.py` con `--write` solo crean archivos
   ausentes; reemplazar registros existentes exige `--overwrite`.
-
-### Planned
-
-- Fase 2: contratos v2, motor de orquestación, Project Memory y adaptadores de
-  proveedor (ver `docs/ROADMAP.md`).
-- Publicación en PyPI y firma de artefactos.
 
 ## [0.3.2] - 2026-10-14
 
@@ -130,10 +158,11 @@ Fase 1 (auditoría y estabilización) del pedido v0.3. Detalle y evidencia en
 
 - Framework inicial, CLI, pipeline, gobernanza, continuidad y empaquetado.
 
+[0.4.0]: universal_ai_fullstack_orchestrator/releases/0.4.0.json
 [0.3.2]: universal_ai_fullstack_orchestrator/releases/0.3.2.json
 [0.3.1]: universal_ai_fullstack_orchestrator/releases/0.3.1.json
 [0.3.0]: universal_ai_fullstack_orchestrator/releases/0.3.0.json
 [0.2.1]: universal_ai_fullstack_orchestrator/releases/0.2.1.json
 [0.2.0]: universal_ai_fullstack_orchestrator/releases/0.2.0.json
 [0.1.0]: universal_ai_fullstack_orchestrator/releases/0.1.0.json
-[Unreleased]: https://github.com/jylmdev-cyber/pallaquino-os/compare/v0.3.2...HEAD
+[Unreleased]: https://github.com/jylmdev-cyber/pallaquino-os/compare/v0.4.0...HEAD

@@ -56,7 +56,7 @@ class MutatedFrameworkTests(unittest.TestCase):
     SUBSET = ("registry", "agents", "skills", "evaluation", "pipeline", "scripts", "pallaquino_cli")
 
     def setUp(self) -> None:
-        self.temp = tempfile.TemporaryDirectory(); self.root = Path(self.temp.name) / "framework"
+        self.temp = tempfile.TemporaryDirectory(ignore_cleanup_errors=True); self.root = Path(self.temp.name) / "framework"
         for name in self.SUBSET:
             shutil.copytree(ROOT / name, self.root / name, ignore=shutil.ignore_patterns("__pycache__"))
 
@@ -163,7 +163,7 @@ class GeneratorOverwriteTests(unittest.TestCase):
     """Generators must not revert curated registries: --write creates only missing files."""
 
     def test_write_keeps_existing_files_and_overwrite_is_explicit(self) -> None:
-        with tempfile.TemporaryDirectory() as temp:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp:
             root = Path(temp) / "framework"; shutil.copytree(ROOT, root, ignore=shutil.ignore_patterns("__pycache__", "tests"))
             rules = root / "registry/routing_rules.json"; before = rules.read_bytes()
             for script in ("scripts/scaffold_framework.py", "scripts/expand_catalog.py"):
@@ -180,7 +180,7 @@ class GeneratorOverwriteTests(unittest.TestCase):
 class PipelineStageValidationTests(unittest.TestCase):
     def test_unknown_stage_agent_is_rejected(self) -> None:
         from pallaquino_cli.core import validate_pipeline
-        with tempfile.TemporaryDirectory() as temp:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as temp:
             root = Path(temp); (root / "pipeline").mkdir(); (root / "registry").mkdir()
             shutil.copy(ROOT / "pipeline/pipeline_definition.json", root / "pipeline/pipeline_definition.json")
             shutil.copy(ROOT / "registry/agents.json", root / "registry/agents.json")

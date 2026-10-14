@@ -1,0 +1,38 @@
+{
+  "schema_version": 1,
+  "description": "Argv prefixes the command executor may run; 'python' maps to the running interpreter. Anything else is denied.",
+  "allow": [
+    [
+      "python",
+      "-m",
+      "unittest"
+    ],
+    [
+      "python",
+      "-m",
+      "pytest"
+    ],
+    [
+      "npm",
+      "test"
+    ],
+    [
+      "npm",
+      "run",
+      "test"
+    ],
+    [
+      "dotnet",
+      "test"
+    ],
+    [
+      "go",
+      "test"
+    ],
+    [
+      "php",
+      "artisan",
+      "test"
+    ]
+  ]
+}

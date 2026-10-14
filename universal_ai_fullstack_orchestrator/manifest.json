@@ -1,7 +1,7 @@
 {
   "name": "pallaquino",
   "display_name": "PALLAQUINO Autonomous Engineering OS",
-  "version": "0.3.2",
+  "version": "0.4.0",
   "schema_version": 1,
   "entrypoint": "AI_ENTRYPOINT.md",
   "cli": "pallaquino_cli",
@@ -9,19 +9,21 @@
   "generated_at": "2026-10-14",
   "instance_state": [
     "PROJECT_CONTEXT.md",
+    "changes/*.json",
+    "context/context_state.json",
     "continuity/HANDOFF.json",
     "continuity/checkpoints/*",
     "continuity/state/*.md",
     "evidence/*.json",
-    "changes/*.json",
-    "runtime/capabilities.json",
-    "risk/risk_state.json",
-    "execution/file_locks.json",
     "execution/.file_locks.mutex",
-    "context/context_state.json",
+    "execution/file_locks.json",
+    "logs/*",
+    "memory/*",
+    "planning/execution_plan.json",
+    "planning/task_graph.json",
     "repository/REPOSITORY_MAP.json",
     "repository/REPOSITORY_MAP.md",
-    "planning/task_graph.json",
-    "planning/execution_plan.json"
+    "risk/risk_state.json",
+    "runtime/capabilities.json"
   ]
 }

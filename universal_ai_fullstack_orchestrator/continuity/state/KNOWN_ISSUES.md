@@ -10,4 +10,7 @@
 - Installations created with 0.2.1 keep inherited framework state until cleaned manually (MIGRATION_GUIDE.md).
 - Internet, browser, MCP and subagent availability remains provider-session dependent.
 - `v0.3.0` derives lock keys from `\` as a literal character on POSIX; fixed in 0.3.1, so prefer 0.3.1.
+- 0.4.0: tasks answered by the mock provider are simulated; the real-provider reference variant was not executed (no Ollama or credentials on this host).
+- 0.4.0: memory/state checksums are unkeyed; scheduler throughput is bounded by per-transition SQLite commits (~84 tasks/s, 4 workers).
+- 0.4.0: a task that exceeds its timeout keeps running in its thread; its late result is discarded but its effects are not undone.
 - Confidence: high
