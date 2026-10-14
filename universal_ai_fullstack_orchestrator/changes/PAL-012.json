@@ -43,7 +43,7 @@
     "framework: 242 tests unchanged and green (6 skipped)"
   ],
   "docs": [
-    "documentation audit with 10 findings (H-6: non-ASCII Git identity mismatch on Windows, not fixed here)",
+    "documentation audit with 11 findings (H-6: non-ASCII Git identity mismatch on Windows, not fixed here; H-11: upstream Starlight search label)",
     "8 guides under docs/learning/, ADR-0017, academy README; README quick-start notes and academy link; CHANGELOG Unreleased"
   ],
   "decisions": [
