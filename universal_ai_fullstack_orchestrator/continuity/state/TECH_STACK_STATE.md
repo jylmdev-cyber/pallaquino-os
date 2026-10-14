@@ -1,9 +1,10 @@
 # Technology stack state
 
-- Status: STALE (verified 2026-08-31; stale after 30 days, since 2026-09-30)
-- Runtime baseline as verified: Python 3.14.7, Node.js 24.20.0 LTS, .NET 10.0.11 and SDK 10.0.400
-- Application baseline as verified: Django 5.2.17 LTS, Nuxt 4.5.2, PostgreSQL 18.6, TypeScript 6.0.3
-- Platform baseline as verified: Docker Engine 29.7.2, Compose 5.5.0, Ubuntu 26.04.1 LTS
-- Compatibility exception: TypeScript 6.0.3 is selected over 7.0.2 for Vue/Volar compatibility
-- Required action: PAL-006 re-verification from official primary sources before any new profile adoption
-- Confidence: high for staleness; versions unverified since 2026-08-31
+- Status: VERIFIED (2026-10-14 from official primary sources; stale after 30 days)
+- Runtime baseline: Python 3.14.8, Node.js 24.21.0 LTS, .NET 10.0.13 and SDK 10.0.402
+- Application baseline: Django 5.2.18 LTS, Nuxt 4.6.1, PostgreSQL 18.6, TypeScript 6.0.3
+- Platform baseline: Docker Engine 29.9.0, Compose 5.6.0, Ubuntu 26.04.1 LTS
+- Compatibility exceptions: TypeScript 6.0.3 over 7.0.2 (vue-tsc needs the TS 6 JS API until TS 7.1); Python 3.14.8 over 3.15.0 (Django 6.1.2 declares Python 3.12-3.14)
+- Rejected prereleases: .NET 11 (release candidate)
+- Next re-verification due: 2026-11-13
+- Confidence: high

@@ -1,6 +1,6 @@
 # Known issues
 
-- Stack snapshot (verified 2026-08-31) is STALE since 2026-09-30; `doctor` and `stack` exit 1 until PAL-006 re-verifies it.
+- Stack snapshot verified 2026-10-14; it becomes STALE after 2026-11-13 and must be re-verified.
 - In this repository `validate_all.py` expects the identity in `governance/git_identity.json` (jimdev); contributors with another local identity use `--integrity-only`.
 - Agent and skill files are templates whose only specific content is one sentence; inputs, outputs, tools, activation and success criteria are missing (Phase 2 contracts v2).
 - Checkpoint SHA-256 detects accidental corruption, not deliberate tampering (hash chain planned for Phase 2).

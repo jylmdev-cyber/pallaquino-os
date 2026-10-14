@@ -1,0 +1,42 @@
+{
+  "task_id": "PAL-006",
+  "files_created": [
+    "changes/PAL-006.json"
+  ],
+  "files_modified": [
+    "registry/stack_versions_verified.json",
+    "continuity/state/TECH_STACK_STATE.md",
+    "continuity/state/CURRENT_TASK.md",
+    "continuity/state/KNOWN_ISSUES.md",
+    "continuity/state/TASK_BOARD.md",
+    "continuity/state/PROJECT_STATE.md",
+    "../README.md",
+    "../CHANGELOG.md"
+  ],
+  "files_deleted": [],
+  "migrations": [],
+  "dependencies": [],
+  "endpoints": [],
+  "tests": [
+    "stack freshness, registry validator and full suite"
+  ],
+  "docs": [
+    "README baseline table",
+    "CHANGELOG Unreleased entry"
+  ],
+  "decisions": [
+    "python: 3.14.7 -> 3.14.8",
+    "nodejs: 24.20.0 -> 24.21.0",
+    "dotnet_sdk: 10.0.400 -> 10.0.402",
+    "dotnet_runtime: 10.0.11 -> 10.0.13",
+    "django: 5.2.17 -> 5.2.18",
+    "nuxt: 4.5.2 -> 4.6.1",
+    "docker_engine: 29.7.2 -> 29.9.0",
+    "docker_compose: 5.5.0 -> 5.6.0",
+    "postgresql 18.6 and ubuntu 26.04.1 re-verified unchanged",
+    "typescript stays 6.0.3: vue-tsc needs the TS 6 JS API until TS 7.1 (vuejs/language-tools PR #6123)",
+    "python stays on 3.14.x: 3.15.0 is stable but Django 6.1.2 declares Python 3.12-3.14",
+    ".NET 11 rejected as release candidate",
+    "dropped the unverified claim that Nuxt 3 is EOL (v3.21.11 released 2026-08-05)"
+  ]
+}

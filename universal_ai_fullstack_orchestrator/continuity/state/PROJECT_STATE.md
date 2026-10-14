@@ -6,7 +6,7 @@
 - Agents: 59 (template contracts; v2 contracts planned)
 - Skills: 90
 - Modes: 11
-- Technologies catalogued: 46 (baseline snapshot STALE since 2026-09-30)
+- Technologies catalogued: 46 (baseline snapshot verified 2026-10-14)
 - Stack profiles: 6
 - Domain packs: 7
 - Pipeline stages: 32 base stages plus 14 conditional gates

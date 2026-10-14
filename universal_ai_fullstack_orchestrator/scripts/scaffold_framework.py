@@ -339,8 +339,11 @@ as “tests passed” is invalid without an executed command and exit code.
 
 
 def generate_registries() -> None:
-    stack = [{"technology": t, "version": v, "support": s, "verified_at": TODAY, "source": u, "compatibility": n, "confidence": "high"} for t, v, s, u, n in STACK]
-    dump("registry/stack_versions_verified.json", {"schema_version": 1, "stale_after_days": 30, "policy": "active_lts_latest_security_patch_else_latest_supported_stable", "entries": stack})
+    # The verified snapshot is evidence from an UPGRADE-mode audit: STACK is only the 2026-08-31 seed for a
+    # tree that has none, so regeneration never reverts versions or re-dates their verification.
+    if not (ROOT / "registry/stack_versions_verified.json").is_file():
+        stack = [{"technology": t, "version": v, "support": s, "verified_at": TODAY, "source": u, "compatibility": n, "confidence": "high"} for t, v, s, u, n in STACK]
+        dump("registry/stack_versions_verified.json", {"schema_version": 1, "stale_after_days": 30, "policy": "active_lts_latest_security_patch_else_latest_supported_stable", "entries": stack})
     capabilities = ["filesystem", "shell", "git", "internet", "browser", "python", "node", "dotnet", "docker", "docker_compose", "database_clients", "mcp", "subagents", "parallel_execution", "file_editing", "zip_creation"]
     dump("registry/capabilities.json", {"schema_version": 1, "capabilities": [{"id": c, "description": c.replace("_", " ")} for c in capabilities]})
     routes = [

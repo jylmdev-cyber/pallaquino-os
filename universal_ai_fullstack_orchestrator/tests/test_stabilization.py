@@ -166,6 +166,15 @@ class GeneratorSafetyTests(unittest.TestCase):
                 self.assertEqual(proc.returncode, 0, proc.stderr); self.assertIn("DRY RUN", proc.stdout)
             self.assertEqual(snapshot(copy), before)
 
+    def test_scaffold_write_preserves_verified_stack_snapshot(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            copy = Path(temp) / "framework"
+            shutil.copytree(ROOT, copy, ignore=shutil.ignore_patterns("__pycache__", "tests"))
+            registry = copy / "registry/stack_versions_verified.json"; before = registry.read_bytes()
+            proc = subprocess.run([sys.executable, str(copy / "scripts/scaffold_framework.py"), "--write"], text=True, capture_output=True, check=False)
+            self.assertEqual(proc.returncode, 0, proc.stderr)
+            self.assertEqual(registry.read_bytes(), before)
+
 
 class LockTests(unittest.TestCase):
     """Finding: lock TTL was never enforced, release accepted any path, keys embedded absolute host paths."""

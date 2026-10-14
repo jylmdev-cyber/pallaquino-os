@@ -6,9 +6,17 @@ Los cambios relevantes de este proyecto se documentan aquí. El formato sigue
 
 ## [Unreleased]
 
+### Changed
+
+- Snapshot tecnológico re-verificado el 2026-10-14 contra fuentes oficiales (`PAL-006`):
+  Python 3.14.8, Node.js 24.21.0 LTS, .NET 10.0.13 / SDK 10.0.402, Django 5.2.18 LTS,
+  Nuxt 4.6.1, Docker Engine 29.9.0 y Compose 5.6.0; PostgreSQL 18.6 y Ubuntu 26.04.1
+  siguen vigentes. TypeScript se mantiene en 6.0.3 con justificación actualizada.
+  Python 3.15.0 y .NET 11 quedan fuera: el primero aún no lo declara Django y el
+  segundo es release candidate.
+
 ### Planned
 
-- Fase 1.1: re-verificación del snapshot tecnológico (`PAL-006`).
 - Fase 2: contratos v2, motor de orquestación, Project Memory y adaptadores de
   proveedor (ver `docs/ROADMAP.md`).
 - Publicación en PyPI y firma de artefactos.
