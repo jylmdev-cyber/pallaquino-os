@@ -49,5 +49,9 @@
   "decisions": [
     "ADR-0017 static academy with Astro + Starlight + Vue islands; reference data generated from pallaquino_cli; terminal replays recorded real outputs only; progress in localStorage only; deployment by manual workflow_dispatch"
   ],
-  "commits": []
+  "commits": [
+    "8fc2637ebac49712e4ff6f4b93cec8307133e58f",
+    "c163adb26c542eff44f6a9104c72a96303cd3f9b",
+    "68340fe789771e0c00373c480a739640fced98aa"
+  ]
 }
