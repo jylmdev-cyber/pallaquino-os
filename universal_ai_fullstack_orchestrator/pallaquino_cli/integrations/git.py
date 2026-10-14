@@ -37,14 +37,21 @@ def _git(ctx: ToolContext, *args: str, timeout: float = 30.0) -> str:
     return proc.stdout[:MAX_OUTPUT]
 
 
+def _not_a_repository(exc: GitError) -> bool:
+    return "not a git repository" in str(exc).lower()
+
+
 def status(args: dict[str, Any], ctx: ToolContext) -> dict[str, Any]:
-    out = _git(ctx, "status", "--porcelain=v1", "--branch", "--untracked-files=normal")
+    try: out = _git(ctx, "status", "--porcelain=v1", "--branch", "--untracked-files=normal")
+    except GitError as exc:
+        if not _not_a_repository(exc): raise
+        return tool_result(text="not a git repository", structured={"repository": False, "branch": None, "clean": None, "changes": [], "total_changes": 0})
     lines = out.splitlines(); branch = lines[0][3:] if lines and lines[0].startswith("## ") else None; changes = []
     for line in lines[1:] if branch is not None else lines:
         changes.append({"index": line[0], "worktree": line[1], "path": line[3:]})
     clean = not changes
     text = f"branch {branch}: " + ("clean" if clean else f"{len(changes)} changed paths")
-    return tool_result(text=text, structured={"branch": branch, "clean": clean, "changes": changes[:500], "total_changes": len(changes)})
+    return tool_result(text=text, structured={"repository": True, "branch": branch, "clean": clean, "changes": changes[:500], "total_changes": len(changes)})
 
 
 def diff(args: dict[str, Any], ctx: ToolContext) -> dict[str, Any]:
@@ -61,6 +68,7 @@ def log(args: dict[str, Any], ctx: ToolContext) -> dict[str, Any]:
     if args.get("path"): argv += ["--", confine(ctx.workspace, args["path"], allow_root=True).relative_to(ctx.workspace.resolve()).as_posix() or "."]
     try: output = _git(ctx, *argv)
     except GitError as exc:
+        if _not_a_repository(exc): return tool_result(text="not a git repository", structured={"repository": False, "commits": []})
         if "does not have any commits" not in str(exc): raise
         output = ""  # a repository without commits has an empty history, not a failure
     commits = [dict(zip(("sha", "author", "date", "subject"), line.split("\x1f"))) for line in output.splitlines() if line]

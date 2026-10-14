@@ -881,12 +881,15 @@ def _zip_date_time() -> tuple[int, int, int, int, int, int]:
 
 
 def create_archive(root: Path, archive: Path) -> dict[str, Any]:
-    exclusions = {".git", "__pycache__", ".pytest_cache", ".env", "dist", "memory", "logs", "plugins", "build"}  # per-project runtime state and build output
+    exclusions = {".git", "__pycache__", ".pytest_cache", ".env", "dist", "build"}  # caches and build output, at any depth
+    # Per-project runtime state lives only at the framework root. Matching these names at any depth dropped the
+    # `pallaquino_cli/memory/` package from the 0.4.0 archive.
+    root_state = {"memory", "logs", "plugins"}
     archive.parent.mkdir(parents=True, exist_ok=True); date_time = _zip_date_time()
     with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
         for path in _iter_repository_files(root):
             rel = path.relative_to(root)
-            if any(part in exclusions for part in rel.parts) or path.resolve() == archive.resolve() or path.suffix == ".sha256": continue
+            if any(part in exclusions for part in rel.parts) or rel.parts[0] in root_state or path.resolve() == archive.resolve() or path.suffix == ".sha256": continue
             if path.name.startswith(".env") and path.name != ".env.example": continue
             data = path.read_bytes()
             info = zipfile.ZipInfo((Path(root.name) / rel).as_posix(), date_time=date_time)

@@ -95,6 +95,13 @@ class GitTest(AdapterCase):
         self.assertTrue(self.call("core.git.branches")["result"]["structured"]["branches"][0]["current"])
         self.assertIn("first commit", self.call("core.git.show", {"revision": "HEAD"})["result"]["text"])
 
+    def test_a_workspace_without_git_is_a_fact_not_a_failure(self):
+        plain = Path(self.tmp.name) / "plain"; plain.mkdir()
+        gateway = ToolGateway(self.registry, self.permissions, self.store, workspace=plain)
+        status = gateway.call("core.git.status", {}); log = gateway.call("core.git.log", {})
+        self.assertEqual((status["status"], status["result"]["structured"]["repository"]), ("COMPLETED", False))
+        self.assertEqual(log["result"]["structured"], {"repository": False, "commits": []})
+
     def test_option_injection_and_governed_stage(self):
         self.assertEqual(self.call("core.git.show", {"revision": "--output=/tmp/x"})["status"], "DENIED")
         self.assertEqual(self.call("core.git.diff", {"path": "../outside"})["status"], "DENIED")
