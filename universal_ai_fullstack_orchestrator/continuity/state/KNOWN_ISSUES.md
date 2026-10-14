@@ -13,4 +13,13 @@
 - 0.4.0: tasks answered by the mock provider are simulated; the real-provider reference variant was not executed (no Ollama or credentials on this host).
 - 0.4.0: memory/state checksums are unkeyed; scheduler throughput is bounded by per-transition SQLite commits (~84 tasks/s, 4 workers).
 - 0.4.0: a task that exceeds its timeout keeps running in its thread; its late result is discarded but its effects are not undone.
+- 0.5.0:
+  - interoperability with the official MCP SDK v2 is not verified: the test exists and is skipped on this host (`mcp` 1.26.0);
+  - plugins run in a separate process but not in an OS sandbox; a trusted plugin has the user's file permissions;
+  - the file credential vault is not encrypted (OS permissions only); prefer `env:` references or keyring;
+  - builtin adapter timeouts are cooperative;
+  - `subscriptions/listen` is not implemented;
+  - symbolic-link escape tests are skipped on hosts that cannot create links (this Windows host); they run on Linux CI;
+  - one intermittent error appeared in the first full-suite run on 2026-10-14 and did not reproduce in five later runs; watch CI;
+  - with an editable install, the default root is the package checkout (ADR-0004); use `--root .pallaquino` or `PALLAQUINO_ROOT` in projects.
 - Confidence: high

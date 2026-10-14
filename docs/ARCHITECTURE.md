@@ -40,7 +40,9 @@ lee las políticas y usa el CLI. Esa separación es deliberada y se conserva.
 | Motor de orquestación | `pallaquino_cli/orchestration/` | IMPLEMENTADO (0.4.0, ADR-0010) |
 | Project Memory | `pallaquino_cli/memory/` | IMPLEMENTADO (0.4.0, ADR-0011) |
 | Adaptadores de proveedor | `pallaquino_cli/providers/` | IMPLEMENTADO: contrato, mock, Ollama local (0.4.0, ADR-0012); comerciales PLANIFICADOS |
-| Extension System / MCP | — | PLANIFICADO (Fase 3) |
+| Extension System | `pallaquino_cli/extensions/`, `pallaquino_cli/sdk/` | IMPLEMENTADO (0.5.0, ADR-0013): manifiesto, descubrimiento, confianza por hash, aislamiento por proceso |
+| Cliente MCP | `pallaquino_cli/mcp/` | IMPLEMENTADO (0.5.0, ADR-0014/0016): 2026-07-28 stdio/HTTP, legacy, OAuth, conexiones |
+| Tool Registry y pasarelas | `pallaquino_cli/tools/`, `pallaquino_cli/integrations/` | IMPLEMENTADO (0.5.0, ADR-0015): permisos, ejecución auditada, router, adaptadores |
 | Project Factory | — | PLANIFICADO (Fase 4) |
 | Control Center | salida JSON del CLI | IMPLEMENTADO (JSON); UI PLANIFICADA (Fase 5) |
 

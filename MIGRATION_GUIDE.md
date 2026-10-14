@@ -1,5 +1,23 @@
 # Guía de migración
 
+## 0.4.0 → 0.5.0
+
+0.5.0 es aditiva. Los comandos, contratos v1 y planes de 0.4.0 siguen funcionando, y el núcleo funciona sin plugins ni conexiones MCP.
+
+| Área | Cambio | Acción |
+|---|---|---|
+| Comandos nuevos | `plugins`, `plugin`, `mcp`, `tools`, `permissions` | ninguna |
+| Códigos de salida | `tools run` puede devolver 3 (aprobación pendiente) y 5 (denegado); `PermissionError` de cualquier comando da 5 | revisa scripts que trataban todo lo distinto de 0 como 1 |
+| Store | migración 3 (`platform_docs`, `tool_calls`), aplicada automáticamente al abrir | ninguna; haz copia de `memory/` si quieres poder volver a 0.4.0 con historial |
+| Estado de instancia | `plugins/` y `governance/plugin_trust.json` son por proyecto | si versionas `.pallaquino/`, añádelos a `.gitignore` |
+| Configuración nueva | `governance/integrations.json` (GitHub deshabilitado) y `governance/TOOL_AND_EXTENSION_POLICY.md` | en instalaciones existentes, cópialos desde el framework |
+| Planes | las solicitudes de descubrimiento que mencionan Git, calidad o informe añaden pasos `git_inspect`, `quality_scan` y `report`, ejecutados con herramientas reales en lugar del paso simulado `explore` | ninguna; las demás solicitudes producen el mismo plan que en 0.4.0 |
+| Ejecutor | nuevo tipo `tool` en `EXECUTOR_KINDS` | ninguna |
+| Empaquetado | subpaquetes `pallaquino_cli.tools`, `.mcp`, `.extensions`, `.integrations` y `.sdk` | reinstala el paquete (`pip install -e .`) |
+| Raíz | con una instalación editable, la raíz por defecto sigue siendo el checkout del paquete (ADR-0004) | en proyectos, usa `--root .pallaquino` o `PALLAQUINO_ROOT` |
+
+Rollback: vuelve a `v0.4.0`. Un store migrado a la versión 3 sigue abriéndose con 0.4.0, porque las tablas nuevas se ignoran.
+
 ## 0.3.x → 0.4.0
 
 0.4.0 es aditiva: los comandos y formatos JSON de 0.3 siguen iguales. `plan`, `status`, `resume`, `agents` y `skills` sin argumentos nuevos

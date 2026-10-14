@@ -1,0 +1,84 @@
+{
+  "task_id": "PAL-011",
+  "files_created": [
+    "pallaquino_cli/tools/*.py",
+    "pallaquino_cli/mcp/*.py",
+    "pallaquino_cli/extensions/*.py",
+    "pallaquino_cli/integrations/*.py",
+    "pallaquino_cli/sdk/*.py",
+    "pallaquino_cli/platform.py",
+    "pallaquino_cli/cli_platform.py",
+    "examples/pallaquino-example-plugin/",
+    "examples/mcp_servers/quality_server.py",
+    "scripts/run_codebase_analysis_demo.py",
+    "governance/TOOL_AND_EXTENSION_POLICY.md",
+    "governance/integrations.json",
+    "tests/test_extension_foundations.py",
+    "tests/test_mcp.py",
+    "tests/test_tool_gateway.py",
+    "tests/test_integrations.py",
+    "tests/test_plugins.py",
+    "tests/test_oauth.py",
+    "tests/test_platform_integration.py",
+    "tests/test_mcp_interop_official_sdk.py",
+    "../docs/adr/ADR-0013..0016",
+    "../docs/architecture/{PLUGIN_ARCHITECTURE,MCP_CLIENT_ARCHITECTURE,TOOL_EXECUTION_GATEWAY,EXTENSION_CONTRACTS}.md",
+    "../docs/security/{PLUGIN_SECURITY_MODEL,MCP_THREAT_MODEL,TOOL_PERMISSIONS}.md",
+    "../docs/integrations/",
+    "../docs/sdk/",
+    "../docs/tutorials/{CREATE_FIRST_PLUGIN,CONNECT_MCP_SERVER,EXECUTE_TOOL_SAFELY}.md",
+    "../docs/evaluation/MCP_CONFORMANCE_REPORT.md",
+    "../docs/releases/RELEASE_V050.md",
+    "../docs/roadmap/ROADMAP_V050_TO_V060.md"
+  ],
+  "files_modified": [
+    "pallaquino_cli/__init__.py",
+    "pallaquino_cli/__main__.py",
+    "pallaquino_cli/core.py",
+    "pallaquino_cli/cli_orchestration.py",
+    "pallaquino_cli/memory/store.py",
+    "pallaquino_cli/orchestration/{models,planning,executors,scheduler}.py",
+    "manifest.json",
+    "pyproject.toml",
+    "AI_ENTRYPOINT.md",
+    "cli/README.md",
+    "../.gitignore",
+    "../README.md",
+    "../CHANGELOG.md",
+    "../MIGRATION_GUIDE.md",
+    "../docs/ARCHITECTURE.md",
+    "../docs/ROADMAP.md",
+    "continuity/state/*.md",
+    "planning/*.json"
+  ],
+  "files_deleted": [],
+  "migrations": [
+    "memory schema v2 -> v3 (platform_docs, tool_calls), applied on open; a v3 store still opens with 0.4.0"
+  ],
+  "dependencies": [],
+  "endpoints": [
+    "CLI: plugins, plugin, mcp, tools, permissions"
+  ],
+  "tests": [
+    "238 tests (84 new); 3 skipped on Windows py3.11 (symlinks, 2 official-SDK interop)"
+  ],
+  "docs": [
+    "24 new documents, 4 ADRs; README, CHANGELOG, MIGRATION_GUIDE, ARCHITECTURE, ROADMAP, AI_ENTRYPOINT updated"
+  ],
+  "decisions": [
+    "ADR-0013 plugin system: metadata discovery, hash-bound trust, process isolation",
+    "ADR-0014 stdlib MCP client targeting 2026-07-28 with explicit legacy fallback",
+    "ADR-0015 unified tool registry, permission gateway and execution gateway",
+    "ADR-0016 credentials by reference, OAuth 2.1 per MCP 2026-07-28, SSRF network policy",
+    "New platform lives in pallaquino_cli subpackages; no public path moved",
+    "No push, tag, release, package publication or third-party installs without explicit approval (request sections 24 and 26)"
+  ],
+  "commits": [
+    "1fbf0f6b608e4494b85b0bc7b473ba88b07fa831",
+    "78963fa8221b51cad1c5770c9f9f140474f6f706",
+    "c405dc794e0a840b406877932dd36c3c0abe72ad",
+    "930c7de3221ebf48a4d08c97e8ae275cafc76f02",
+    "e9fb38514af0fc3a18b2f5b5fb4ac5e8b37f93f7",
+    "38248f8ccf515dbd3a5854d269b37df42f601b3a"
+  ]
+}

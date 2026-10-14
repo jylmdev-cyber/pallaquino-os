@@ -1,0 +1,59 @@
+{
+  "version": "0.5.0",
+  "status": "local release candidate (not published)",
+  "commits": [
+    "1fbf0f6b608e4494b85b0bc7b473ba88b07fa831",
+    "78963fa8221b51cad1c5770c9f9f140474f6f706",
+    "c405dc794e0a840b406877932dd36c3c0abe72ad",
+    "930c7de3221ebf48a4d08c97e8ae275cafc76f02",
+    "e9fb38514af0fc3a18b2f5b5fb4ac5e8b37f93f7",
+    "38248f8ccf515dbd3a5854d269b37df42f601b3a"
+  ],
+  "features": [
+    "universal plugin manager with hash-bound trust and process isolation",
+    "plugin SDK with harness and scaffolding",
+    "MCP 2026-07-28 client (stdio, Streamable HTTP, legacy fallback, MRTR, Tasks)",
+    "MCP connection registry with catalog pinning",
+    "OAuth 2.1 client plumbing and credential manager",
+    "SSRF network policy",
+    "unified tool registry",
+    "permission gateway",
+    "tool execution gateway with audit",
+    "tool router",
+    "filesystem, Git, SQLite and GitHub adapters",
+    "tool tasks in planner, executors and scheduler",
+    "platform CLI",
+    "offline end-to-end codebase analysis demo"
+  ],
+  "fixes": [],
+  "migrations": [
+    "memory schema v2 -> v3 applied automatically on open"
+  ],
+  "dependencies": [],
+  "environment_changes": [
+    "plugins/ and governance/plugin_trust.json are per-project instance state",
+    "governance/integrations.json and governance/TOOL_AND_EXTENSION_POLICY.md added"
+  ],
+  "tests": [
+    "238 framework tests",
+    "offline end-to-end demo 12/12 checks",
+    "optional official-SDK interop test (not executed)"
+  ],
+  "security": [
+    "deny-by-default tool governance with scoped grants and per-call approvals",
+    "untrusted descriptions, annotations and results",
+    "catalog pinning against rug pulls and tool poisoning",
+    "SSRF guard with address pinning",
+    "credentials bound to server and issuer",
+    "plugin trust bound to content hash, quarantine on tampering",
+    "sanitized environments for plugin and stdio server processes"
+  ],
+  "rollback": "Return to v0.4.0; the platform is additive and a v3 memory store still opens with 0.4.0.",
+  "known_issues": [
+    "interop with the official MCP SDK v2 not verified",
+    "no OS sandbox for plugins",
+    "file credential vault not encrypted",
+    "subscriptions/listen not implemented",
+    "Linux CI pending push"
+  ]
+}

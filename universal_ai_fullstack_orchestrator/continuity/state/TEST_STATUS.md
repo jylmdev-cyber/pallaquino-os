@@ -1,15 +1,16 @@
 # Test status
 
-- Result: PASSED for integrity scope; the environment-scope Git identity check needs the owner identity (configured in CI)
-- Framework suite: 154/154 passed (3 consecutive green runs on Windows, Python 3.11.15) (`python -m unittest discover -s tests`)
-- Statement coverage (stdlib trace, in-process): core.py 92.1 %, __main__.py 86.4 %
-- Validators: 9/9 integrity checks pass; validate_git_authorship fails locally without the owner identity, by design
-- Lint/typecheck proxy: Python compileall passed
-- Security: repository-wide secret scan 0 findings; fitness enforces 1 of 4 declared rules and reports 3 as not_enforced
-- Risk goldens 14/14; routing goldens 3/3 and 7/7
-- Archive: deterministic (identical SHA-256 for identical content); integrity verified after extraction
-- Non-editable install: verified locally (framework dir, nested project dir, outside any project exits 2)
-- Evidence: `evidence/*-2026-10-13T*.json` for PAL-005
-- GitHub Actions: green on Ubuntu with Python 3.11 and 3.14 for the 0.3.1 fix (PR #3, commit 066fa50)
+- Result: PASSED locally for integrity scope; the environment-scope Git identity check needs the owner identity (configured in CI)
+- Framework suite (0.5.0): 238 tests (154 from 0.4.0 + 84 new), green on Windows (`python -m unittest discover -s tests`):
+  - Python 3.11.15: 3 skipped: symbolic links cannot be created on this host; 2 official-SDK interop tests (`mcp` 1.26.0 installed, needs ≥ 2);
+  - Python 3.12.10: 4 skipped, the same 3 plus the offline pip build (no setuptools);
+  - evidence: `evidence/test-2026-10-14T19-03-54+00-00.json` and `evidence/test-2026-10-14T19-05-14+00-00.json`.
+- Statement coverage (coverage.py on 3.12, in-process): 93 % of the package; `tools/*` 96-98 %; MCP client 95 %, auth 94 %, connections 92 %;
+  plugin manager 94 %. Code that runs in subprocesses (SDK runner, parts of the reference server) is exercised but not measured.
+- End-to-end demo: `scripts/run_codebase_analysis_demo.py` 12/12 checks offline (`evidence/e2e_demo-2026-10-14T19-05-17+00-00.json`).
+- Validators: integrity scope passes; validate_git_authorship fails locally without the repository-local owner identity, by design.
+- Lint/typecheck proxy: `compileall` passed for pallaquino_cli, scripts, tests and examples.
+- Security: secret scan 0 findings over 571 files (`evidence/security_check-2026-10-14T19-05-15+00-00.json`); fitness 0 violations.
+- Not verified: Linux and Python 3.14 (CI runs after push); interoperability with the official MCP SDK v2; real identity providers.
 - Updated: 2026-10-14
 - Confidence: high
