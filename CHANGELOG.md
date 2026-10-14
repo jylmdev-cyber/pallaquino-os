@@ -6,6 +6,28 @@ Los cambios relevantes de este proyecto se documentan aquí. El formato sigue
 
 ## [Unreleased]
 
+### Added
+
+- **PALLAQUINO Academy** (`academy/`, PAL-012), un portal educativo estático con Astro 7, Starlight 0.42 e islas Vue 3:
+  - 9 rutas de aprendizaje, 46 lecciones y 10 evaluaciones;
+  - el tutorial «Instala y ejecuta PALLAQUINO por primera vez»;
+  - una terminal simulada que solo reproduce salidas reales grabadas de un clon limpio y bloquea los comandos del sistema;
+  - recorridos visuales del flujo, el DAG, los quality gates y los permisos;
+  - progreso local con niveles, sin servicios externos;
+  - referencia de CLI, agentes, skills, herramientas y pipeline generada del código;
+  - búsqueda local, modo oscuro y estructura en español e inglés;
+  - guiones de video (sin videos grabados).
+- Validación docs-as-code: `generate_data.py --check`, los comandos citados en las lecciones comparados con el analizador real de la CLI,
+  enlaces internos, axe-core sobre las páginas construidas y pruebas de componentes. Workflow `.github/workflows/academy.yml`, con
+  despliegue a GitHub Pages solo manual.
+- `docs/learning/`: auditoría de documentación, arquitectura, mantenimiento, guía de redacción, publicación, catálogo, hoja de ruta y
+  protocolo de pruebas con usuarios (no ejecutado). ADR-0017.
+
+### Known issues
+
+- En Windows, `identity --apply-local` con un nombre no ASCII devuelve `"matches": false`: `run_git` decodifica la salida de Git con la
+  página de códigos local. Hallazgo H-6 de `docs/learning/DOCUMENTATION_AUDIT.md`. Pendiente de corrección en el núcleo.
+
 ### Planned
 
 - 0.6.0, Autonomous Project Factory (ver `docs/roadmap/ROADMAP_V050_TO_V060.md`).
