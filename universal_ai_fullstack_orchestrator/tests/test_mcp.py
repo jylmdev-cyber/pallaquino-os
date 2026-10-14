@@ -208,6 +208,17 @@ class HttpTest(unittest.TestCase):
         with self.assertRaises(McpError) as big: client.call_tool("huge", {})
         self.assertEqual(big.exception.kind, "invalid_response"); self.assertIn("exceeds", str(big.exception))
 
+    def test_pagination_and_catalog_cache(self):
+        server = McpServer("many", ttl_ms=60_000)
+        for i in range(120): server.tool(f"t{i:03d}", f"tool {i}")(lambda args, ctx: {})
+        http_server = self.serve(server); client = self.client(http_server.url)
+        names = [t["name"] for t in client.list_tools()]
+        self.assertEqual(len(names), 120); self.assertEqual(names, sorted(names), "deterministic order")
+        lists = [r for r in http_server.requests if r["body"].get("method") == "tools/list"]
+        self.assertEqual(len(lists), 3, "three pages of 50"); self.assertIn("cursor", lists[1]["body"]["params"])
+        client.list_tools(); self.assertEqual(len([r for r in http_server.requests if r["body"].get("method") == "tools/list"]), 3, "ttlMs cache hit")
+        client.list_tools(use_cache=False); self.assertEqual(len([r for r in http_server.requests if r["body"].get("method") == "tools/list"]), 6)
+
     def test_unreachable_server(self):
         client = McpClient(HttpTransport("http://127.0.0.1:9/mcp", policy=LOOPBACK), timeout=2); self.addCleanup(client.close)
         with self.assertRaises(McpError) as caught: client.connect()

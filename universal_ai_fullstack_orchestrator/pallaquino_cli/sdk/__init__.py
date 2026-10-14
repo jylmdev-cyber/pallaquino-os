@@ -20,6 +20,8 @@ from dataclasses import dataclass, field
 from pathlib import Path
 from typing import Any, Callable
 
+from ..mcp.server import ToolResult  # noqa: F401  (re-exported: return ToolResult(is_error=True, ...) for actionable errors)
+
 SDK_VERSION = "1.0.0"
 ToolFunction = Callable[[dict[str, Any], "ToolCall"], Any]
 

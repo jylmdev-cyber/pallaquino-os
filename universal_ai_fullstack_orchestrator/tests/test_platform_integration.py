@@ -181,6 +181,10 @@ class CliTest(unittest.TestCase):
         code, _ = run_cli("plugins", "trust", "acme.new", "--approved-by", "tester", *self.common); self.assertEqual(code, 0)
         code, enabled = run_cli("plugins", "enable", "acme.new", *self.common); self.assertEqual(enabled["state"], "ENABLED")
         code, health = run_cli("plugins", "health", "acme.new", *self.common); self.assertEqual((code, health["ok"]), (0, True))
+        code, _ = run_cli("tools", "run", "plugin.acme.new.hello", *self.common, "--args", '{"name": "Ana"}'); self.assertEqual(code, 5, "trusted is not authorized")
+        code, plugin_grant = run_cli("permissions", "grant", "plugin.acme.new.*", *self.common); self.assertEqual(code, 0, plugin_grant)
+        code, ran = run_cli("tools", "run", "plugin.acme.new.hello", *self.common, "--args", '{"name": "Ana"}')
+        self.assertEqual((code, ran["result"]["structured"]), (0, {"greeting": "Hello, Ana!"}))
         code, doctor = run_cli("plugins", "doctor", *self.common); self.assertEqual(code, 0)
         code, _ = run_cli("plugins", "uninstall", "acme.new", "--yes", *self.common); self.assertEqual(code, 0)
 

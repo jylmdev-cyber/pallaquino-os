@@ -229,13 +229,21 @@ class PluginManager:
             self._transition(doc, "FAILED", str(exc)); raise PluginError(f"plugin {plugin_id} failed to initialize: {exc}") from None
         registry.unregister_source("plugin", plugin_id)
         for spec in doc["manifest"]["tools"]:
-            tool = new_tool(f"plugin.{plugin_id}.{spec['name']}", description=spec["description"], source={"kind": "plugin", "id": plugin_id, "trust": "trusted"},
-                            input_schema=spec["input_schema"], output_schema=spec["output_schema"], capabilities=spec["capabilities"], operation=spec["operation"],
-                            timeout_seconds=float(spec.get("timeout_seconds") or doc["manifest"]["runtime"]["timeout_seconds"]), tool_version=doc["version"],
-                            classification="reviewed_manifest", provides=spec.get("provides", []))
-            registry.register(tool, self._executor(plugin_id, spec["name"]), availability=self._availability(plugin_id))
+            registry.register(self._contract(doc, spec), self._executor(plugin_id, spec["name"]), availability=self._availability(plugin_id))
         doc["last_error"] = None
         return self._transition(doc, "ACTIVE", f"{len(doc['manifest']['tools'])} tools registered")
+
+    @staticmethod
+    def _contract(doc: dict[str, Any], spec: dict[str, Any]) -> dict[str, Any]:
+        return new_tool(f"plugin.{doc['plugin_id']}.{spec['name']}", description=spec["description"], source={"kind": "plugin", "id": doc["plugin_id"], "trust": "trusted"},
+                        input_schema=spec["input_schema"], output_schema=spec["output_schema"], capabilities=spec["capabilities"], operation=spec["operation"],
+                        timeout_seconds=float(spec.get("timeout_seconds") or doc["manifest"]["runtime"]["timeout_seconds"]), tool_version=doc["version"],
+                        classification="reviewed_manifest", provides=spec.get("provides", []))
+
+    def declared_tools(self) -> list[dict[str, Any]]:
+        """Contracts of the tools enabled plugins declare, without starting them (used to scope grants)."""
+        return [self._contract(doc, spec) for doc in self.store.list_platform("plugin") if doc["state"] in EXECUTABLE_STATES
+                for spec in (doc.get("manifest") or {}).get("tools", [])]
 
     def _start(self, doc: dict[str, Any]) -> McpClient:
         framework_parent = Path(__file__).resolve().parents[2]

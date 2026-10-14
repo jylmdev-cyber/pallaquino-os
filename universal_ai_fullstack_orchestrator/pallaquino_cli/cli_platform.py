@@ -180,7 +180,9 @@ def _tools(platform, args: argparse.Namespace) -> tuple[Any, int | None]:
     if args.action == "inspect": return {**platform.registry.get(tool_id), "available": platform.registry.availability(tool_id)}, None
     arguments = json.loads(args.args)
     if args.action == "check": report = platform.gateway.check(tool_id, arguments); return report, 0 if report["ok"] else 1
-    if args.approve: platform.permissions.approve_call(tool_id, arguments, approved_by="cli")
+    if args.approve:
+        if tool_id not in platform.registry: raise LookupError(f"tool {tool_id!r} is not registered; nothing was approved")
+        platform.permissions.approve_call(tool_id, arguments, approved_by="cli")
     outcome = platform.gateway.call(tool_id, arguments)
     return outcome, STATUS_EXIT.get(outcome["status"], 1)
 
@@ -192,7 +194,10 @@ def _permissions(platform, args: argparse.Namespace) -> tuple[Any, int | None]:
     target = _need(args.target, "a tool pattern or grant ID")
     if args.action == "grant":
         platform.load(activate_plugins=False)
-        return gateway.grant(target, principal=args.principal, operations=args.operation, days=args.days, max_uses=args.max_uses, reason=args.reason, registry=platform.registry), None
+        class Known:  # registered tools plus what enabled plugins declare, so a grant can be scoped without starting plugins
+            @staticmethod
+            def list(): return platform.registry.list() + [t for t in platform.plugins.declared_tools() if t["tool_id"] not in platform.registry]
+        return gateway.grant(target, principal=args.principal, operations=args.operation, days=args.days, max_uses=args.max_uses, reason=args.reason, registry=Known), None
     if args.action == "revoke": return gateway.revoke(target), None
     for kind in ("grant", "approval"):
         doc = platform.store.get_platform(kind, target)
