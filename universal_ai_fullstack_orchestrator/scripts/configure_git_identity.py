@@ -22,6 +22,8 @@ def git(*args: str, cwd: Path, check: bool = True) -> subprocess.CompletedProces
     return subprocess.run(
         ["git", "-c", f"safe.directory={cwd.as_posix()}", "-C", str(cwd), *args],
         text=True,
+        encoding="utf-8",  # Git output is UTF-8 regardless of the console code page
+        errors="replace",
         capture_output=True,
         check=check,
     )
