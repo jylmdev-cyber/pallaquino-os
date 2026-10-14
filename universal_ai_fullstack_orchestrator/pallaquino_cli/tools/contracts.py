@@ -58,13 +58,13 @@ def new_tool(tool_id: str, *, description: str, source: dict[str, Any], input_sc
              output_schema: dict[str, Any] | None = None, tool_version: str = "1.0.0", timeout_seconds: float = 30.0,
              retry: dict[str, Any] | None = None, requires_connection: str | None = None, annotations: dict[str, Any] | None = None,
              classification: str = "builtin", limits: dict[str, int] | None = None, definition_sha256: str | None = None,
-             title: str | None = None) -> dict[str, Any]:
+             title: str | None = None, provides: list[str] | None = None) -> dict[str, Any]:
     namespace, _, name = tool_id.rpartition(".")
     trust = source.get("trust", "untrusted")
     idempotent = operation == "READ_ONLY"
     return {"contract": "tool", "version": CONTRACT_VERSION, "tool_id": tool_id, "namespace": namespace, "name": name, "title": title or name,
             "description": description, "source": source, "tool_version": tool_version, "input_schema": input_schema, "output_schema": output_schema,
-            "capabilities": sorted(set(capabilities)), "operation": operation, "risk": derive_risk(operation, capabilities),
+            "capabilities": sorted(set(capabilities)), "provides": sorted(set(provides or [])), "operation": operation, "risk": derive_risk(operation, capabilities),
             "supported_operations": ["call", "check"], "timeout_seconds": timeout_seconds,
             "retry": retry or {"max_attempts": 2 if idempotent else 1, "retry_on": ["timeout", "unavailable"] if idempotent else []},
             "approval": derive_approval(operation, trust, capabilities), "requires_connection": requires_connection,
@@ -83,6 +83,8 @@ def validate_tool(tool: dict[str, Any]) -> list[str]:
     unknown = [c for c in tool["capabilities"] if c not in CAPABILITIES]
     if unknown: errors.append(f"{tool['tool_id']}: unknown capabilities {unknown}")
     if not tool["capabilities"]: errors.append(f"{tool['tool_id']}: at least one capability is required")
+    if not isinstance(tool.get("provides", []), list) or any(not isinstance(t, str) or not re.fullmatch(r"[a-z][a-z0-9_]{0,63}", t) for t in tool.get("provides", [])):
+        errors.append(f"{tool['tool_id']}: provides must list lowercase functional tags")
     if tool["operation"] not in OPERATIONS: errors.append(f"{tool['tool_id']}: unknown operation class {tool['operation']!r}")
     elif tool["approval"] != derive_approval(tool["operation"], tool["source"]["trust"], tool["capabilities"]):
         errors.append(f"{tool['tool_id']}: approval policy {tool['approval']!r} is weaker or different than the derived policy")

@@ -39,11 +39,13 @@ def _iso_in(seconds: float) -> str:
 
 class Scheduler:
     def __init__(self, root: Path, store: MemoryStore, *, workspace: Path, providers: dict[str, Any] | None = None,
-                 provider_config: dict[str, Any] | None = None, settings: dict[str, Any] | None = None, sleep: Callable[[float], None] = time.sleep):
+                 provider_config: dict[str, Any] | None = None, settings: dict[str, Any] | None = None, sleep: Callable[[float], None] = time.sleep,
+                 platform: Any = None):
         self.root = Path(root); self.store = store; self.workspace = Path(workspace).resolve(); self.sleep = sleep
         self.provider_config = provider_config or load_config(self.root)
         self.providers = providers if providers is not None else {}
         self.settings = {**DEFAULTS, **(settings or {})}; self._lock = threading.RLock(); self.runner_id = f"{os.getpid()}-{uuid.uuid4().hex[:8]}"
+        self.platform = platform  # tool tasks (0.5.0) run through this platform's gateway
 
     # -- creation -------------------------------------------------------------------------------------------
     def preview(self, plan: dict[str, Any]) -> dict[str, Any]:
@@ -215,7 +217,8 @@ class Scheduler:
                                 provider_config=self.provider_config, execution_budget=budget, task_budget_limits=execution["budget_limits"].get("task") or {},
                                 dependency_handoffs=[handoffs[d] for d in task["dependencies"] if d in handoffs], record_intent=record_intent,
                                 command_timeout=float(self.settings["command_timeout"]), lock_owner=f"{execution['execution_id']}:{task['task_id']}:{token}",
-                                task_budget=self._task_budgets.setdefault(task["task_id"], Budget(scope=f"task {task['task_id']}", **(execution["budget_limits"].get("task") or {}))))
+                                task_budget=self._task_budgets.setdefault(task["task_id"], Budget(scope=f"task {task['task_id']}", **(execution["budget_limits"].get("task") or {}))),
+                                platform=self.platform)
 
     def _run_task(self, task: dict[str, Any], ctx: ExecutionContext) -> dict[str, Any]:
         owner = ctx.lock_owner; started = time.perf_counter()  # per-attempt owner: a timed-out attempt cannot free its retry's locks

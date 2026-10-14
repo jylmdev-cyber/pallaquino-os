@@ -86,10 +86,10 @@ def tools() -> list[tuple[dict[str, Any], Any]]:
     obj = lambda props, required=(): {"type": "object", "additionalProperties": False, "properties": props, "required": list(required)}
     read = dict(source=SOURCE, capabilities=["GIT_READ"], operation="READ_ONLY")
     return [
-        (new_tool("core.git.status", description="Branch and working-tree status (porcelain).", input_schema=obj({}), **read), status),
+        (new_tool("core.git.status", description="Branch and working-tree status (porcelain).", input_schema=obj({}), provides=["git_status"], **read), status),
         (new_tool("core.git.diff", description="Unstaged or staged diff, optionally for one path.", input_schema=obj({"staged": {"type": "boolean"}, "stat_only": {"type": "boolean"},
-                  "path": PATH, "max_bytes": {"type": "integer", "minimum": 1, "maximum": MAX_OUTPUT}}), **read), diff),
-        (new_tool("core.git.log", description="Recent commits.", input_schema=obj({"max_count": {"type": "integer", "minimum": 1, "maximum": 200}, "path": PATH}), **read), log),
+                  "path": PATH, "max_bytes": {"type": "integer", "minimum": 1, "maximum": MAX_OUTPUT}}), provides=["git_diff"], **read), diff),
+        (new_tool("core.git.log", description="Recent commits.", input_schema=obj({"max_count": {"type": "integer", "minimum": 1, "maximum": 200}, "path": PATH}), provides=["git_history"], **read), log),
         (new_tool("core.git.branches", description="Local branches.", input_schema=obj({}), **read), branches),
         (new_tool("core.git.show", description="One commit with its file statistics.", input_schema=obj({"revision": {"type": "string", "maxLength": 200}}, ["revision"]), **read), show),
         (new_tool("core.git.stage", description="Stage workspace paths (local, reversible with git restore --staged).", source=SOURCE, capabilities=["GIT_WRITE"],

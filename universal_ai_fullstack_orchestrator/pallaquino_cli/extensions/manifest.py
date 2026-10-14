@@ -132,7 +132,10 @@ def validate_manifest(manifest: dict[str, Any], *, framework_version: str = __ve
             if problems: errors += [f"{where}.{key}: {p}" for p in problems[:5]]
             elif key == "input_schema" and schema.get("type") != "object": errors.append(f"{where}.input_schema must describe an object")
             schemas[key] = schema
-        normalized_tools.append({"name": name, "description": tool.get("description"), "capabilities": sorted(set(caps)), "operation": operation,
+        provides = tool.get("provides", [])
+        if not isinstance(provides, list) or any(not isinstance(t, str) or not re.fullmatch(r"[a-z][a-z0-9_]{0,63}", t) for t in provides):
+            errors.append(f"{where}.provides must list lowercase tags"); provides = []
+        normalized_tools.append({"name": name, "description": tool.get("description"), "capabilities": sorted(set(caps)), "operation": operation, "provides": sorted(set(provides)),
                                  "input_schema": schemas.get("input_schema"), "output_schema": schemas.get("output_schema"),
                                  "timeout_seconds": tool.get("timeout_seconds", timeout)})
     dependencies = manifest.get("dependencies") if isinstance(manifest.get("dependencies"), dict) else {}

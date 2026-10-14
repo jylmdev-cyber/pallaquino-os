@@ -232,7 +232,7 @@ class PluginManager:
             tool = new_tool(f"plugin.{plugin_id}.{spec['name']}", description=spec["description"], source={"kind": "plugin", "id": plugin_id, "trust": "trusted"},
                             input_schema=spec["input_schema"], output_schema=spec["output_schema"], capabilities=spec["capabilities"], operation=spec["operation"],
                             timeout_seconds=float(spec.get("timeout_seconds") or doc["manifest"]["runtime"]["timeout_seconds"]), tool_version=doc["version"],
-                            classification="reviewed_manifest")
+                            classification="reviewed_manifest", provides=spec.get("provides", []))
             registry.register(tool, self._executor(plugin_id, spec["name"]), availability=self._availability(plugin_id))
         doc["last_error"] = None
         return self._transition(doc, "ACTIVE", f"{len(doc['manifest']['tools'])} tools registered")

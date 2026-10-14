@@ -40,7 +40,7 @@ def add_arguments(name: str, item: argparse.ArgumentParser) -> None:
         item.add_argument("--url", help="(add) Streamable HTTP endpoint"); item.add_argument("--mode", choices=["auto", "modern", "legacy"], default="auto")
         item.add_argument("--credential-ref", help="(add) env:VAR or vault:<server_id>"); item.add_argument("--issuer", help="(add) authorization server issuer for vault tokens")
         item.add_argument("--allow-http-loopback", action="store_true", help="(add) allow plain http to a loopback server")
-        item.add_argument("--classify", action="append", default=[], metavar="TOOL=OPERATION:CAP[,CAP]", help="(add) human classification of a server tool")
+        item.add_argument("--classify", action="append", default=[], metavar="TOOL=OPERATION:CAP[,CAP][:TAG[,TAG]]", help="(add) human classification of a server tool, with optional functional tags")
         item.add_argument("--trusted", action="store_true", help="(add) mark the server as trusted (annotations are still never trusted)")
         item.add_argument("--timeout", type=float, default=30); item.add_argument("--tool", action="append", help="(pin) pin only these tools")
         item.add_argument("--client-id", help="(auth) pre-registered client ID or Client ID Metadata Document URL"); workspace()
@@ -76,9 +76,9 @@ def _platform(root: Path, args: argparse.Namespace, **kwargs: Any):
 def _classification(values: list[str]) -> dict[str, Any]:
     policies = {}
     for value in values:
-        tool, _, rest = value.partition("="); operation, _, caps = rest.partition(":")
-        if not tool or not operation or not caps: raise ValueError(f"--classify expects TOOL=OPERATION:CAP[,CAP], got {value!r}")
-        policies[tool] = {"operation": operation, "capabilities": caps.split(",")}
+        tool, _, rest = value.partition("="); operation, _, rest = rest.partition(":"); caps, _, tags = rest.partition(":")
+        if not tool or not operation or not caps: raise ValueError(f"--classify expects TOOL=OPERATION:CAP[,CAP][:TAG[,TAG]], got {value!r}")
+        policies[tool] = {"operation": operation, "capabilities": caps.split(","), "provides": [t for t in tags.split(",") if t]}
     return policies
 
 

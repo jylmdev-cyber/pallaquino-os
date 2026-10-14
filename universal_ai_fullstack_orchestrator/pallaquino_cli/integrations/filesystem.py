@@ -127,11 +127,11 @@ PATH = {"type": "string", "minLength": 1, "maxLength": 1024}
 def tools() -> list[tuple[dict[str, Any], Any]]:
     obj = lambda props, required=(): {"type": "object", "additionalProperties": False, "properties": props, "required": list(required)}
     return [
-        (new_tool("core.files.list", description="List files under a workspace directory (no symlink traversal).", source=SOURCE, capabilities=["FILE_READ"], operation="READ_ONLY",
+        (new_tool("core.files.list", description="List files under a workspace directory (no symlink traversal).", source=SOURCE, capabilities=["FILE_READ"], operation="READ_ONLY", provides=["file_listing"],
                   input_schema=obj({"path": PATH, "pattern": {"type": "string", "maxLength": 200}, "recursive": {"type": "boolean"}, "max_entries": {"type": "integer", "minimum": 1, "maximum": 5000}})), list_files),
-        (new_tool("core.files.read", description="Read a text file inside the workspace; sensitive files are refused.", source=SOURCE, capabilities=["FILE_READ"], operation="READ_ONLY",
+        (new_tool("core.files.read", description="Read a text file inside the workspace; sensitive files are refused.", source=SOURCE, capabilities=["FILE_READ"], operation="READ_ONLY", provides=["file_read"],
                   input_schema=obj({"path": PATH, "max_bytes": {"type": "integer", "minimum": 1, "maximum": MAX_READ}}, ["path"])), read_file),
-        (new_tool("core.files.search", description="Search text files for a literal or regular expression.", source=SOURCE, capabilities=["FILE_READ"], operation="READ_ONLY",
+        (new_tool("core.files.search", description="Search text files for a literal or regular expression.", source=SOURCE, capabilities=["FILE_READ"], operation="READ_ONLY", provides=["code_search"],
                   input_schema=obj({"query": {"type": "string", "minLength": 1, "maxLength": 500}, "path": PATH, "glob": {"type": "string", "maxLength": 200},
                                     "regex": {"type": "boolean"}, "max_matches": {"type": "integer", "minimum": 1, "maximum": 2000}}, ["query"])), search),
         (new_tool("core.files.stat", description="Metadata of a workspace path.", source=SOURCE, capabilities=["FILE_READ"], operation="READ_ONLY",

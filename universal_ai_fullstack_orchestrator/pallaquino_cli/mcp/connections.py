@@ -212,7 +212,8 @@ class ConnectionManager:
                         input_schema=definition.get("inputSchema") or {"type": "object"}, output_schema=definition.get("outputSchema"),
                         capabilities=policy["capabilities"] if policy else default_caps, operation=policy["operation"] if policy else "EXTERNAL_SIDE_EFFECT",
                         timeout_seconds=float(config.get("timeout_seconds", 30)), requires_connection=config["connection_id"],
-                        annotations=definition.get("annotations") or {}, classification="human" if policy else "pallaquino_default", definition_sha256=digest)
+                        annotations=definition.get("annotations") or {}, classification="human" if policy else "pallaquino_default", definition_sha256=digest,
+                        provides=(policy or {}).get("provides", []))
 
     def register_tools(self, registry: Any) -> dict[str, Any]:
         registered = []; skipped = []

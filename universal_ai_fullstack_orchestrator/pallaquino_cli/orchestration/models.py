@@ -17,7 +17,7 @@ INTENTS = [
     "TEST_GENERATION", "DATABASE_MIGRATION", "API_DEVELOPMENT", "FRONTEND_DEVELOPMENT", "DOCUMENTATION",
     "PERFORMANCE_OPTIMIZATION", "DEVOPS_AUTOMATION", "RELEASE_PREPARATION",
 ]
-EXECUTOR_KINDS = {"internal", "command", "agent"}
+EXECUTOR_KINDS = {"internal", "command", "agent", "tool"}  # tool: through the 0.5.0 gateway
 
 # Task state machine. Terminal states have no outgoing edges; FAILED -> READY exists only for an explicit
 # `resume --retry-failed`; RUNNING -> RETRYING also covers reconciliation of a task orphaned by a crash.

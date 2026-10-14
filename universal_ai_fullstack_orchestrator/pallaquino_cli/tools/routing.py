@@ -32,10 +32,12 @@ def _history(store: Any, tool_id: str) -> dict[str, Any]:
 
 
 def route(registry: Any, permissions: Any, *, capabilities: Iterable[str], principal: dict[str, str], agent_grants: set[str] | None = None,
-          sensitive: bool = False, allow_remote: bool = False, store: Any = None, limit: int = 5) -> dict[str, Any]:
+          sensitive: bool = False, allow_remote: bool = False, store: Any = None, limit: int = 5, provides: str | None = None) -> dict[str, Any]:
+    """`provides` filters by a functional tag assigned by PALLAQUINO, a reviewed manifest or a human, never by descriptions."""
     wanted = sorted(set(capabilities)); candidates = []; excluded = []
     for tool in registry.list():
         if not set(wanted) <= set(tool["capabilities"]): continue
+        if provides and provides not in tool.get("provides", []): continue
         tid = tool["tool_id"]; place = _locality(tool)
         if not tool["available"]: excluded.append({"tool_id": tid, "reason": f"unavailable: {tool['availability']}"}); continue
         if place == "mcp_http" and sensitive and not allow_remote: excluded.append({"tool_id": tid, "reason": "remote tool excluded for sensitive data without authorization"}); continue
@@ -51,4 +53,4 @@ def route(registry: Any, permissions: Any, *, capabilities: Iterable[str], princ
                                     -(stats["success_rate"] if stats["success_rate"] is not None else 0.5), stats["median_ms"] or 0, tid)})
     candidates.sort(key=lambda c: c["_key"])
     for c in candidates: c.pop("_key")
-    return {"capabilities": wanted, "selected": candidates[:limit], "excluded": excluded, "missing": [] if candidates else wanted}
+    return {"capabilities": wanted, "provides": provides, "selected": candidates[:limit], "excluded": excluded, "missing": [] if candidates else wanted}

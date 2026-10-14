@@ -69,6 +69,20 @@ STEPS: dict[str, dict[str, Any]] = {
                         "minutes": 10, "acceptance": ["migration applied with backup and rollback evidence"]},
     "release_prep": {"title": "Prepare release notes and version", "caps": ["version", "manifest"], "domains": ["release"], "tools": ["read_repository", "write_files"], "minutes": 15,
                      "resources": ["CHANGELOG.md"], "acceptance": ["changelog and version follow the versioning policy"]},
+    # 0.5.0 tool steps: executed through the tool execution gateway, never by the model.
+    "git_inspect": {"title": "Inspect Git state and recent history", "caps": ["analyze"], "domains": ["repository"], "tools": ["read_repository"], "minutes": 2,
+                    "read_only": True, "executor": {"kind": "tool", "requirements": [
+                        {"provides": "git_status", "capabilities": ["GIT_READ"], "arguments": {}},
+                        {"provides": "git_history", "capabilities": ["GIT_READ"], "arguments": {"max_count": 10}}]},
+                    "acceptance": ["branch, working-tree state and recent commits come from git itself"]},
+    "quality_scan": {"title": "Scan the codebase for quality issues", "caps": ["analyze"], "domains": ["repository"], "tools": ["read_repository"], "minutes": 3,
+                     "read_only": True, "executor": {"kind": "tool", "requirements": [
+                         {"provides": "quality_scan", "capabilities": ["FILE_READ"], "arguments": {"root": "{workspace}"},
+                          "fallback": {"provides": "code_search", "capabilities": ["FILE_READ"], "arguments": {"query": "TODO", "max_matches": 200}}}]},
+                     "acceptance": ["every reported issue names a file and comes from a tool call"]},
+    "report": {"title": "Consolidate findings into a technical report", "caps": ["write"], "domains": ["documentation"], "tools": ["read_repository"], "minutes": 2,
+               "read_only": True, "executor": {"kind": "internal", "op": "technical_report"},
+               "acceptance": ["every report section cites the tool call or task that produced it"]},
     "release_publish": {"title": "Publish the release (requires human approval)", "caps": ["version"], "domains": ["release"], "tools": ["read_repository", "release_publish"],
                         "minutes": 5, "acceptance": ["release published only with explicit approval"]},
 }
@@ -82,7 +96,10 @@ DEPS: dict[str, list[str]] = {
     "security_review": ["backend", "frontend", "data_model", "fix"], "code_review": ["verify", "security_review"], "docs": ["code_review"],
     "pipeline": ["discover"], "deploy": ["verify", "pipeline", "code_review"], "migration_apply": ["migration_safety", "verify"],
     "release_prep": ["verify"], "release_publish": ["release_prep", "code_review"],
+    "git_inspect": ["discover"], "quality_scan": ["discover"], "report": ["discover", "explore", "git_inspect", "quality_scan"],
 }
+TOOL_STEP_TERMS = {"git_inspect": ["git", "commit", "branch", "rama"], "quality_scan": ["quality", "calidad", "lint", "code smell"],
+                   "report": ["report", "informe", "reporte"]}
 
 
 def _steps_for(intent: dict[str, Any]) -> list[str]:
@@ -107,7 +124,11 @@ def _steps_for(intent: dict[str, Any]) -> list[str]:
         if "deploy" in intent["permissions_required"]["approval_required"]: steps |= {"deploy", "code_review"}
     if "RELEASE_PREPARATION" in names: steps |= {"verify", "release_prep", "release_publish", "code_review"}
     if "ARCHITECTURE_DESIGN" in names: steps |= {"design", "decision"}
-    if "PROJECT_DISCOVERY" in names and len(names) == 1: steps.add("explore")
+    if "PROJECT_DISCOVERY" in names:
+        text = intent.get("request", "").casefold()
+        tool_steps = {step for step, terms in TOOL_STEP_TERMS.items() if any(term in text for term in terms)}
+        if tool_steps & {"git_inspect", "quality_scan"}: steps |= tool_steps  # tools explore; no simulated exploration is planned
+        elif len(names) == 1: steps.add("explore")
     if high and steps & {"backend", "frontend", "data_model", "fix"}: steps.add("security_review")
     return [s for s in ORDER if s in steps]
 
@@ -128,7 +149,24 @@ def _stage_agents(root: Path) -> dict[str, list[str]]:
     return {s["id"]: s.get("agents", []) for s in read_json(root / "pipeline" / "pipeline_definition.json")["stages"]}
 
 
-def build_plan(root: Path, request: str, *, workspace: Path | None = None, intent: dict[str, Any] | None = None, history: Any = None) -> dict[str, Any]:
+def resolve_tools(task: dict[str, Any], platform: Any) -> None:
+    """Pick concrete registered tools for a tool task with the tool router (permissions checked for the task's agent)."""
+    grants = set(task["permissions"]["allowed"]) | set(task["permissions"]["approval_required"]); resolved = []
+    for requirement in task["executor"]["requirements"]:
+        choice = None
+        for option in (requirement, requirement.get("fallback")):
+            if not option: continue
+            routed = platform.route(option["capabilities"], provides=option.get("provides"), principal={"kind": "agent", "id": task["agent"] or "?"}, agent_grants=grants)
+            if routed["selected"]:
+                best = routed["selected"][0]
+                choice = {"tool_id": best["tool_id"], "arguments": option.get("arguments", {}), "provides": option.get("provides"), "fallback": option is not requirement,
+                          "needs_approval": best["needs_approval"], "reasons": best["reasons"], "excluded": routed["excluded"][:5]}
+                break
+        resolved.append(choice or {"tool_id": None, "provides": requirement.get("provides"), "missing": True})
+    task["executor"]["resolved"] = resolved
+
+
+def build_plan(root: Path, request: str, *, workspace: Path | None = None, intent: dict[str, Any] | None = None, history: Any = None, platform: Any = None) -> dict[str, Any]:
     intent = intent or analyze_intent(root, request, workspace=workspace)
     risk = intent["risk"]["level"]; techs = intent["technologies"]; extra_domains = detect_domains(root, request)
     stage_agents = _stage_agents(root); keys = _steps_for(intent); test_command = detect_test_command(workspace)
@@ -161,6 +199,14 @@ def build_plan(root: Path, request: str, *, workspace: Path | None = None, inten
             "request": request, "workspace": str(workspace) if workspace else None, "intent": intent, "tasks": tasks, "revisions": [
                 {"revision": 1, "at": utc_now(), "reason": "initial plan", "changes": [t["task_id"] for t in tasks]}]}
     plan["validation"] = validate_plan(root, plan)
+    if platform is not None:
+        for task in tasks:
+            if task["executor"]["kind"] == "tool" and task["agent"]: resolve_tools(task, platform)
+    for task in tasks:
+        if task["executor"]["kind"] != "tool": continue
+        for entry in task["executor"].get("resolved") or [{"missing": True, "provides": r.get("provides")} for r in task["executor"]["requirements"]]:
+            if entry.get("missing"): plan["validation"]["warnings"].append(f"{task['task_id']}: no registered tool provides {entry.get('provides')}; resolved again at run time")
+            elif entry.get("fallback"): plan["validation"]["warnings"].append(f"{task['task_id']}: using fallback tool {entry['tool_id']} for {task['executor']['requirements'][0].get('provides')}")
     plan["dag"] = analyze_dag(tasks) if plan["validation"]["dag_ok"] else None
     plan["approvals_required"] = [t["task_id"] for t in tasks if t["requires_approval"]]
     agent_tasks = [t for t in tasks if t["executor"]["kind"] == "agent"]

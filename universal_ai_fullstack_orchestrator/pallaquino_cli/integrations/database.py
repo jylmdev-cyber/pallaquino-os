@@ -101,7 +101,7 @@ def tools() -> list[tuple[dict[str, Any], Any]]:
          _with_db(lambda db, a: tool_result(text=", ".join(db.tables()) or "no tables", structured={"tables": db.tables()}))),
         (new_tool("core.sqlite.schema", description="Columns and DDL of one table or all tables.", input_schema=obj({"database": PATH, "table": {"type": "string", "maxLength": 200}}, ["database"]), **read),
          _with_db(lambda db, a: tool_result(text="schema", structured=db.schema(a.get("table"))))),
-        (new_tool("core.sqlite.query", description="Run one read-only SQL statement with bound parameters.", input_schema=obj({
+        (new_tool("core.sqlite.query", description="Run one read-only SQL statement with bound parameters.", provides=["sql_read"], input_schema=obj({
             "database": PATH, "sql": {"type": "string", "minLength": 1, "maxLength": 20_000}, "params": {"type": "array", "maxItems": 100},
             "max_rows": {"type": "integer", "minimum": 1, "maximum": 1000}}, ["database", "sql"]), **read),
          _with_db(lambda db, a: (lambda r: tool_result(text=f"{len(r['rows'])} rows" + (" (truncated)" if r["truncated"] else ""), structured=r))(
