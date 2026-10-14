@@ -74,9 +74,17 @@ Ver `docs/releases/RELEASE_V050.md`, ADR-0013 a ADR-0016 y `MIGRATION_GUIDE.md`.
 - Versión 0.5.0. `pyproject.toml` incluye los subpaquetes `tools`, `mcp`, `extensions`, `integrations` y `sdk`.
 - `plugins/*` y `governance/plugin_trust.json` son estado de instancia (`init`, Git y el ZIP los excluyen).
 
+### Fixed
+
+- El ZIP de release omitía el paquete `pallaquino_cli/memory/`: la exclusión del estado de instancia `memory/` se aplicaba a cualquier
+  profundidad. Afecta al ZIP publicado de 0.4.0, donde los comandos de orquestación fallan con `ModuleNotFoundError`; el repositorio y
+  el tag `v0.4.0` no están afectados. Ahora `memory/`, `logs/` y `plugins/` se excluyen solo en la raíz del framework, y un test exige que
+  el archivo contenga todos los paquetes de `pyproject.toml`.
+- `core.git.status` y `core.git.log` informan de un workspace sin Git como un hecho (`repository: false`) en lugar de fallar.
+
 ### Security
 
-- 84 tests nuevos, con escenarios adversariales: prompt injection, tool poisoning, rug pull, SSRF, credential leakage, path traversal,
+- 85 tests nuevos, con escenarios adversariales: prompt injection, tool poisoning, rug pull, SSRF, credential leakage, path traversal,
   confused deputy, escalada, permiso caducado, operación destructiva sin aprobación, plugin malicioso y ZIP con traversal.
 
 ### Not included

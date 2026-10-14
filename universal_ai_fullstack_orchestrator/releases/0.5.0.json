@@ -25,7 +25,10 @@
     "platform CLI",
     "offline end-to-end codebase analysis demo"
   ],
-  "fixes": [],
+  "fixes": [
+    "release archive ships pallaquino_cli.memory (missing from the 0.4.0 archive)",
+    "non-git workspaces are reported as facts by the Git adapter"
+  ],
   "migrations": [
     "memory schema v2 -> v3 applied automatically on open"
   ],
@@ -35,7 +38,7 @@
     "governance/integrations.json and governance/TOOL_AND_EXTENSION_POLICY.md added"
   ],
   "tests": [
-    "238 framework tests",
+    "239 framework tests",
     "offline end-to-end demo 12/12 checks",
     "optional official-SDK interop test (not executed)"
   ],

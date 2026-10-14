@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "timestamp": "2026-10-14T19:06:21+00:00",
+  "timestamp": "2026-10-14T19:20:05+00:00",
   "task": "PAL-011",
   "requested": "evolve PALLAQUINO to 0.5.0 (plugin ecosystem, MCP client, unified tool registry, permission and execution gateway, plugin SDK, integration adapters) per the v0.5.0 master request",
   "implemented": [
@@ -85,6 +85,7 @@
     "0.4.0: tasks answered by the mock provider are simulated; the real-provider reference variant was not executed (no Ollama or credentials on this host).",
     "0.4.0: memory/state checksums are unkeyed; scheduler throughput is bounded by per-transition SQLite commits (~84 tasks/s, 4 workers).",
     "0.4.0: a task that exceeds its timeout keeps running in its thread; its late result is discarded but its effects are not undone.",
+    "The published v0.4.0 release ZIP lacks `pallaquino_cli/memory/` (orchestration commands fail from the extracted archive). The repository and",
     "0.5.0:"
   ],
   "open_questions": [
@@ -94,43 +95,30 @@
   ],
   "current": {
     "schema_version": 1,
-    "timestamp": "2026-10-14T19:06:21+00:00",
+    "timestamp": "2026-10-14T19:20:05+00:00",
     "task": "PAL-011",
     "stage": "HANDOFF",
-    "git_head": "38248f8ccf515dbd3a5854d269b37df42f601b3a",
+    "git_head": "9255e0ed9ad656f795cd6a56c3e67df5c39cc187",
     "git_diff": [
       " M CHANGELOG.md",
-      " M MIGRATION_GUIDE.md",
+      " M PALLAQUINO_autonomous_engineering_os.sha256",
+      " M PALLAQUINO_autonomous_engineering_os.zip",
       " M README.md",
-      " M docs/ARCHITECTURE.md",
-      " M docs/ROADMAP.md",
-      " M universal_ai_fullstack_orchestrator/AI_ENTRYPOINT.md",
-      " M universal_ai_fullstack_orchestrator/cli/README.md",
-      " M universal_ai_fullstack_orchestrator/continuity/state/ARCHITECTURE_STATE.md",
-      " M universal_ai_fullstack_orchestrator/continuity/state/ASSUMPTIONS.md",
-      " M universal_ai_fullstack_orchestrator/continuity/state/CURRENT_TASK.md",
-      " M universal_ai_fullstack_orchestrator/continuity/state/EXTERNAL_DEPENDENCIES.md",
+      " M docs/releases/RELEASE_V050.md",
+      " M universal_ai_fullstack_orchestrator/changes/PAL-011.json",
       " M universal_ai_fullstack_orchestrator/continuity/state/KNOWN_ISSUES.md",
-      " M universal_ai_fullstack_orchestrator/continuity/state/OPEN_QUESTIONS.md",
-      " M universal_ai_fullstack_orchestrator/continuity/state/PIPELINE_STATE.md",
-      " M universal_ai_fullstack_orchestrator/continuity/state/PROJECT_STATE.md",
-      " M universal_ai_fullstack_orchestrator/continuity/state/TASK_BOARD.md",
-      " M universal_ai_fullstack_orchestrator/continuity/state/TECHNICAL_DEBT.md",
       " M universal_ai_fullstack_orchestrator/continuity/state/TEST_STATUS.md",
-      " M universal_ai_fullstack_orchestrator/execution/file_locks.json",
-      "?? docs/releases/RELEASE_V050.md",
-      "?? docs/roadmap/ROADMAP_V050_TO_V060.md",
-      "?? universal_ai_fullstack_orchestrator/changes/PAL-011.json",
-      "?? universal_ai_fullstack_orchestrator/evidence/e2e_demo-2026-10-14T19-05-17+00-00.json",
-      "?? universal_ai_fullstack_orchestrator/evidence/security_check-2026-10-14T19-05-15+00-00.json",
-      "?? universal_ai_fullstack_orchestrator/evidence/test-2026-10-14T19-03-54+00-00.json",
-      "?? universal_ai_fullstack_orchestrator/evidence/test-2026-10-14T19-05-14+00-00.json",
-      "?? universal_ai_fullstack_orchestrator/releases/0.5.0.json"
+      " M universal_ai_fullstack_orchestrator/releases/0.5.0.json",
+      " M universal_ai_fullstack_orchestrator/tests/test_stabilization.py",
+      "?? universal_ai_fullstack_orchestrator/evidence/e2e_demo-2026-10-14T19-16-38+00-00.json",
+      "?? universal_ai_fullstack_orchestrator/evidence/security_check-2026-10-14T19-16-37+00-00.json",
+      "?? universal_ai_fullstack_orchestrator/evidence/test-2026-10-14T19-18-14+00-00.json",
+      "?? universal_ai_fullstack_orchestrator/evidence/test-2026-10-14T19-19-32+00-00.json"
     ],
     "evidence": [],
     "confidence": "medium",
-    "checksum": "45332514d8d273df3dd851f7ea964dbf4c535daa2bdf09d0196473ca04657599"
+    "checksum": "702d2606109f02b4a98839e5e7d4154392abab0cd49e03280be96b2fbde1fb71"
   },
-  "next_action": "Owner decision: (1) approve publishing 0.5.0 (push feat/v0.5.0-extensions, pull request, green Linux CI, merge, tag v0.5.0, GitHub Release with ZIP and SHA-256); (2) approve installing mcp>=2 in an isolated environment to run tests/test_mcp_interop_official_sdk.py",
+  "next_action": "Owner decision: (1) approve publishing 0.5.0 (push feat/v0.5.0-extensions, pull request, green Linux CI, merge, tag v0.5.0, GitHub Release with ZIP and SHA-256); (2) approve installing mcp>=2 in an isolated environment to run tests/test_mcp_interop_official_sdk.py; (3) decide how to correct the v0.4.0 release ZIP that lacks pallaquino_cli/memory",
   "confidence": "medium"
 }

@@ -10,6 +10,10 @@
   comprobaron ejecutando la suite (154/154) antes de empezar.
 - **Dependencias pendientes de 0.4.0**: ninguna bloqueaba los plugins ni MCP. La deuda técnica de 0.4.0 (persistencia del scheduler, FTS,
   HMAC) sigue abierta y no forma parte de este pedido.
+- **Defecto heredado encontrado y corregido**: el ZIP publicado de 0.4.0 no contiene `pallaquino_cli/memory/`. `create_archive` excluía
+  el estado de instancia `memory/` a cualquier profundidad. Al extraer ese ZIP, `pallaquino memory status` falla con `ModuleNotFoundError`
+  (reproducido el 2026-10-14). El repositorio y el tag `v0.4.0` no están afectados. Corregido en 0.5.0, con un test de regresión; el ZIP
+  de 0.5.0 se verificó ejecutando la suite y la demo desde el archivo extraído.
 - **Hallazgo técnico**:
   - el SDK MCP instalado en este equipo (1.26.0) no soporta 2026-07-28;
   - el SDK oficial que sí lo soporta (2.x) añade un árbol grande de dependencias;
@@ -42,7 +46,7 @@
 
 - **Código**: 26 módulos nuevos (incluidos los `__init__.py`). Cambian `core.py` (versión, estado de instancia, política, exclusiones del
   ZIP), `memory/store.py` (migración 3), `orchestration/` (ejecutor `tool`, pasos nuevos, planner con herramientas) y `__main__.py`.
-- **Tests**: 8 archivos y 84 tests nuevos.
+- **Tests**: 8 archivos y 85 tests nuevos, más una aserción de regresión del archivo en `test_core.py`.
 - **Ejemplos**:
   - `examples/pallaquino-example-plugin/` (pyproject, manifiesto, implementación, tests y ejemplo);
   - `examples/mcp_servers/quality_server.py`;
@@ -52,12 +56,13 @@
 ## D. Calidad
 
 - **Tests**:
-  - Windows, Python 3.11.15: 238 ejecutados, todos en verde, 3 omitidos:
+  - Windows, Python 3.11.15: 239 ejecutados, todos en verde, 3 omitidos:
     - enlaces simbólicos: el host no puede crearlos;
     - 2 de interop con el SDK oficial: `mcp` ≥ 2 no está instalado.
-  - Windows, Python 3.12.10: 238 en verde con 4 omitidos (no hay setuptools para la instalación pip offline).
-  - En la primera ejecución completa apareció un error intermitente que no se reprodujo en las cinco siguientes; queda vigilado (ver
-    KNOWN_ISSUES).
+  - Windows, Python 3.12.10: 239 en verde con 4 omitidos (no hay setuptools para la instalación pip offline).
+  - Desde el ZIP extraído (sin `.git`): la suite pasa, con el test de `git ls-files` omitido, y la demo da `ok`.
+  - Error intermitente heredado: la limpieza de archivos WAL de SQLite en Windows (`test_scheduler`, WinError 32) falla de vez en cuando;
+    queda vigilado (ver KNOWN_ISSUES).
 - **Cobertura de sentencias** (Python 3.12, en proceso): 93 % del paquete. Por encima del 90 %: `tools/*`, `integrations/*` salvo github
   (90 %), `mcp/client`, `mcp/protocol`, `mcp/auth`, `mcp/connections` y `extensions/manager`, `manifest` y `semver`. El runner del SDK
   (30 %) y parte del servidor de referencia (82 %) se ejecutan en subprocesos que `coverage` no mide; sus tests los ejercitan de verdad.
