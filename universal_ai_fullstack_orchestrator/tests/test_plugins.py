@@ -93,7 +93,6 @@ class DiscoveryTest(PluginCase):
         outcome = self.gateway.call("plugin.example.text_stats.file_stats", {"path": "notes.txt"}, principal={"kind": "agent", "id": "a"}, agent_grants={"read_repository"})
         self.assertEqual(outcome["result"]["structured"]["words"], 3)
 
-    @unittest.skipUnless(shutil.which("git") or True, "")
     def test_real_pip_installation_into_an_isolated_target(self):
         try: import setuptools  # noqa: F401
         except ImportError: self.skipTest("setuptools is not available for an offline build")

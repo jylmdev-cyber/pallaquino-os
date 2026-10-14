@@ -112,7 +112,10 @@ class ExecutionTest(GatewayCase):
         self.assertEqual(self.gateway.call("core.a.read", {"extra": 1})["error_kind"], "invalid_arguments")
         ok = self.gateway.call("core.a.read", {"q": "x"})
         self.assertEqual(ok["status"], "COMPLETED"); self.assertIn("arguments valid", ok["checks"]); self.assertEqual(len(ok["args_digest"]), 64)
-        record = self.store.list_tool_calls(tool_id="core.a.read")[0]
+        self.assertRegex(ok["traceparent"], r"^00-[0-9a-f]{32}-[0-9a-f]{16}-01$")
+        same_trace = self.gateway.call("core.a.read", {"q": "y"}, execution_id="exec-1"), self.gateway.call("core.a.read", {"q": "z"}, execution_id="exec-1")
+        self.assertEqual(same_trace[0]["traceparent"][3:35], same_trace[1]["traceparent"][3:35], "one trace per execution")
+        record = next(c for c in self.store.list_tool_calls(tool_id="core.a.read") if c["call_id"] == ok["call_id"])
         self.assertEqual((record["call_id"], record["status"]), (ok["call_id"], "COMPLETED"))
         for kind in ("tool_execution_requested", "permission_granted", "tool_execution_completed"): self.assertTrue(self.events(kind), kind)
 

@@ -246,7 +246,8 @@ class ConnectionManager:
                 raise PermissionError(f"tool {name} no longer matches its pinned definition (possible rug pull); call refused")
             remaining = max(0.5, (ctx.deadline - time.monotonic()) if ctx.deadline else 30.0)
             try:
-                result = client.call_tool(name, arguments, tool=current, timeout=remaining, cancel=ctx.cancel, input_handler=deny_all_input)
+                result = client.call_tool(name, arguments, tool=current, timeout=remaining, cancel=ctx.cancel, input_handler=deny_all_input,
+                                          meta={"traceparent": ctx.traceparent} if ctx.traceparent else None)
             except McpError as exc:
                 if exc.kind == "unavailable": self.disconnect(connection_id)
                 error = RuntimeError(str(exc)); error.kind = exc.kind; raise error from None

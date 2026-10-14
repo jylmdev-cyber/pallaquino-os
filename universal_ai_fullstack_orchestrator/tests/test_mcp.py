@@ -138,6 +138,11 @@ class HttpTest(unittest.TestCase):
         self.assertEqual((sent["mcp-protocol-version"], sent["mcp-method"], sent["mcp-name"]), ("2026-07-28", "tools/call", "echo"))
         self.assertNotIn("mcp-session-id", sent)
         self.assertEqual(client.call_tool("long_job", {"seconds": 0.05})["task"]["status"], "completed")
+        trace = "00-" + "a" * 32 + "-" + "b" * 16 + "-01"
+        client.call_tool("echo", {"message": "t"}, tool=tools["echo"], meta={"traceparent": trace, "io.modelcontextprotocol/protocolVersion": "spoofed"})
+        meta = http_server.requests[-1]["body"]["params"]["_meta"]
+        self.assertEqual(meta["traceparent"], trace, "OpenTelemetry context travels in _meta")
+        self.assertEqual(meta[p.META_PROTOCOL], "2026-07-28", "caller metadata cannot override protocol fields")
 
     def test_server_validation_rules(self):
         http_server = self.serve(quality_server.build(), allowed_origins={"https://app.example"})

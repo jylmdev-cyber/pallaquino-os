@@ -45,6 +45,7 @@ GOVERNANCE_FILES = [
     "TECH_STACK_VERSION_POLICY.md", "AUTONOMY_POLICY.md", "POLICY_HIERARCHY.md",
     "PROMPT_INJECTION_DEFENSE.md", "DESTRUCTIVE_ACTION_POLICY.md",
     "DEPENDENCY_POLICY.md", "HUMAN_APPROVAL_POLICY.md", "DEPRECATION_POLICY.md",
+    "TOOL_AND_EXTENSION_POLICY.md",
 ]
 RISK_ORDER = {"LOW": 0, "MEDIUM": 1, "HIGH": 2, "CRITICAL": 3}
 REQUIRED_AGENT_FIELDS = {
@@ -66,6 +67,7 @@ DEFAULT_INSTANCE_STATE = [
     "risk/risk_state.json", "execution/file_locks.json", "execution/.file_locks.mutex",
     "context/context_state.json", "repository/REPOSITORY_MAP.json", "repository/REPOSITORY_MAP.md",
     "planning/task_graph.json", "planning/execution_plan.json", "memory/*", "logs/*",
+    "plugins/*", "governance/plugin_trust.json",  # 0.5.0: installed plugins and trust decisions belong to one project
 ]
 CONTINUITY_TITLES = {
     "PROJECT_STATE": "Project state", "CURRENT_TASK": "Current task", "TASK_BOARD": "Task board",
@@ -879,7 +881,7 @@ def _zip_date_time() -> tuple[int, int, int, int, int, int]:
 
 
 def create_archive(root: Path, archive: Path) -> dict[str, Any]:
-    exclusions = {".git", "__pycache__", ".pytest_cache", ".env", "dist", "memory", "logs"}  # memory/logs are per-project runtime state
+    exclusions = {".git", "__pycache__", ".pytest_cache", ".env", "dist", "memory", "logs", "plugins", "build"}  # per-project runtime state and build output
     archive.parent.mkdir(parents=True, exist_ok=True); date_time = _zip_date_time()
     with zipfile.ZipFile(archive, "w", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as zf:
         for path in _iter_repository_files(root):

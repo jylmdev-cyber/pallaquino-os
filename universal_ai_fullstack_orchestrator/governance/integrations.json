@@ -1,0 +1,13 @@
+{
+  "schema_version": 1,
+  "github": {
+    "enabled": false,
+    "api_url": "https://api.github.com",
+    "credential_ref": "env:GITHUB_TOKEN",
+    "network": {
+      "allow_loopback": false,
+      "allow_private": false,
+      "timeout_seconds": 30
+    }
+  }
+}

@@ -200,7 +200,8 @@ class McpClient:
 
     def call_tool(self, name: str, arguments: dict[str, Any] | None = None, *, tool: dict[str, Any] | None = None, timeout: float | None = None,
                   cancel: threading.Event | None = None, input_handler: InputHandler = deny_all_input,
-                  on_progress: Callable[[dict[str, Any]], None] | None = None) -> dict[str, Any]:
+                  on_progress: Callable[[dict[str, Any]], None] | None = None, meta: dict[str, Any] | None = None) -> dict[str, Any]:
+        """`meta` carries optional request metadata such as W3C `traceparent` (OpenTelemetry context propagation)."""
         arguments = arguments or {}; extra_headers: dict[str, str] = {}
         if tool is not None:
             try: problems = validate(arguments, tool.get("inputSchema") or {"type": "object"})
@@ -209,7 +210,7 @@ class McpClient:
             if self.header_mode: extra_headers = p.header_values(p.header_parameters(tool.get("inputSchema") or {}), arguments)
         params: dict[str, Any] = {"name": name, "arguments": arguments}
         token = f"progress-{name}-{time.monotonic_ns()}"
-        if on_progress: params["_meta"] = {"progressToken": token}
+        if on_progress or meta: params["_meta"] = {**({"progressToken": token} if on_progress else {}), **{k: v for k, v in (meta or {}).items() if k in ("traceparent", "tracestate")}}
         def notified(message: dict[str, Any]) -> None:
             if on_progress and message.get("method") == "notifications/progress" and (message.get("params") or {}).get("progressToken") == token: on_progress(message["params"])
         allowed = set(p.CORE_RESULT_TYPES) | ({p.RESULT_TASK} if p.TASKS_EXTENSION in (self.capabilities.get("extensions") or {}) else set())

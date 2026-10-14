@@ -24,6 +24,8 @@
     "repository/REPOSITORY_MAP.json",
     "repository/REPOSITORY_MAP.md",
     "risk/risk_state.json",
-    "runtime/capabilities.json"
+    "runtime/capabilities.json",
+    "plugins/*",
+    "governance/plugin_trust.json"
   ]
 }

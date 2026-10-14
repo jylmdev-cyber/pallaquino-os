@@ -29,6 +29,12 @@ def _iso() -> str:
     return datetime.now(timezone.utc).isoformat(timespec="milliseconds")
 
 
+def w3c_traceparent(trace_key: str, span_key: str) -> str:
+    """Deterministic W3C trace context: one trace per execution, one span per tool call (OpenTelemetry-compatible IDs)."""
+    import hashlib
+    return f"00-{hashlib.sha256(trace_key.encode()).hexdigest()[:32]}-{hashlib.sha256(span_key.encode()).hexdigest()[:16]}-01"
+
+
 def _size(value: Any) -> int:
     return len(json.dumps(value, ensure_ascii=False, default=str).encode("utf-8"))
 
@@ -62,8 +68,10 @@ class ToolGateway:
         arguments = arguments if arguments is not None else {}
         principal = principal or {"kind": "human", "id": "cli"}
         call_id = f"call-{uuid.uuid4().hex[:12]}"; checks: list[str] = ["request received"]; started = time.perf_counter()
+        traceparent = traceparent or w3c_traceparent(execution_id or call_id, call_id)
         base = {"call_id": call_id, "tool_id": tool_id, "principal": principal, "execution_id": execution_id, "task_id": task_id, "idempotency_key": idempotency_key,
-                "args_digest": args_digest(tool_id, arguments) if isinstance(arguments, dict) else None, "started_at": _iso(), "notice": UNTRUSTED_RESULT_NOTICE}
+                "args_digest": args_digest(tool_id, arguments) if isinstance(arguments, dict) else None, "started_at": _iso(), "notice": UNTRUSTED_RESULT_NOTICE,
+                "traceparent": traceparent}
         self.store.add_event("tool_execution_requested", execution_id=execution_id, task_id=task_id, agent_id=principal.get("id") if principal.get("kind") == "agent" else None,
                              data={"call_id": call_id, "tool_id": tool_id, "principal": principal})
         def finish(status: str, *, error: str | None = None, error_kind: str | None = None, **extra: Any) -> dict[str, Any]:
