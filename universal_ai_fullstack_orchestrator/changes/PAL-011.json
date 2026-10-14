@@ -60,7 +60,7 @@
     "CLI: plugins, plugin, mcp, tools, permissions"
   ],
   "tests": [
-    "239 tests (85 new); 3 skipped on Windows py3.11 (symlinks, 2 official-SDK interop)"
+    "242 tests (88 new); official MCP SDK 2.3.0 interop 5/5; 1 skipped with the SDK installed (symlinks on Windows)"
   ],
   "docs": [
     "24 new documents, 4 ADRs; README, CHANGELOG, MIGRATION_GUIDE, ARCHITECTURE, ROADMAP, AI_ENTRYPOINT updated"

@@ -16,7 +16,7 @@
 - The published v0.4.0 release ZIP lacks `pallaquino_cli/memory/` (orchestration commands fail from the extracted archive). The repository and
   tag are complete; the archive defect is fixed in 0.5.0. A corrected 0.4.x archive, or a note on the v0.4.0 release, needs the owner's decision.
 - 0.5.0:
-  - interoperability with the official MCP SDK v2 is not verified: the test exists and is skipped on this host (`mcp` 1.26.0);
+  - interoperability with the official MCP SDK v2 is verified locally (5/5 with `mcp` 2.3.0) but is not part of CI (the SDK is not a dependency);
   - plugins run in a separate process but not in an OS sandbox; a trusted plugin has the user's file permissions;
   - the file credential vault is not encrypted (OS permissions only); prefer `env:` references or keyring;
   - builtin adapter timeouts are cooperative;

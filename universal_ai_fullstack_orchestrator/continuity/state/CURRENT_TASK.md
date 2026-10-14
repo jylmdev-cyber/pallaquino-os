@@ -17,5 +17,5 @@
 - Out of scope (documented, not implemented): Docker and cloud adapters, PostgreSQL/MySQL drivers, commercial providers, `subscriptions/listen`, OS-level sandboxing.
 - Risk: HIGH. External code and remote servers become executable surfaces. Mitigations: deny-by-default grants, approvals bound to an argument digest, untrusted descriptions and results, SSRF guard, process isolation, catalog pinning, redaction, and an adversarial suite.
 - Acceptance: the 20 criteria of request section 23. Any criterion that fails makes the result an incomplete candidate, and the blockers are reported.
-- Status: COMPLETE as a local release candidate. 20/20 criteria are met locally (docs/releases/RELEASE_V050.md §F); Linux CI and official-SDK interop are pending verification.
+- Status: COMPLETE as a local release candidate. 20/20 criteria are met locally (docs/releases/RELEASE_V050.md §F); official-SDK interop verified (5/5, `mcp` 2.3.0); publication approved by the owner on 2026-10-14.
 - Confidence: high for scope and plan

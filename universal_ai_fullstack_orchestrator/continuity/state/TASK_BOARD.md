@@ -14,6 +14,6 @@
 - PAL-007-A — Phase 2: agent/skill contracts v2 (schema, derivation, validation, controlled loading): DONE on branch
 - PAL-007-B — Curate contracts and make the 20 unreachable agents and 9 unreachable skills selectable: DONE on branch
 - PAL-010 — v0.4.0 orchestration engine, project memory, provider abstraction (supersedes PAL-007-C/D/E): DONE; PR #6 merged, tag `v0.4.0` and GitHub Release published (2026-10-14)
-- PAL-011 — v0.5.0 plugin ecosystem, MCP 2026-07-28 client, tool registry and governance gateways, SDK: DONE as local release candidate; publication and official-SDK interop await owner approval
+- PAL-011 — v0.5.0 plugin ecosystem, MCP 2026-07-28 client, tool registry and governance gateways, SDK: DONE; official-SDK interop verified; publication approved on 2026-10-14
 - Blocked tasks: none
 - Confidence: high

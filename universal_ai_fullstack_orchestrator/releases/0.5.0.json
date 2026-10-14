@@ -1,6 +1,6 @@
 {
   "version": "0.5.0",
-  "status": "local release candidate (not published)",
+  "status": "release candidate approved for publication",
   "commits": [
     "1fbf0f6b608e4494b85b0bc7b473ba88b07fa831",
     "78963fa8221b51cad1c5770c9f9f140474f6f706",
@@ -38,9 +38,9 @@
     "governance/integrations.json and governance/TOOL_AND_EXTENSION_POLICY.md added"
   ],
   "tests": [
-    "239 framework tests",
+    "242 framework tests",
     "offline end-to-end demo 12/12 checks",
-    "optional official-SDK interop test (not executed)"
+    "official MCP SDK 2.3.0 interop 5/5 (both directions, stdio and Streamable HTTP)"
   ],
   "security": [
     "deny-by-default tool governance with scoped grants and per-call approvals",
@@ -53,7 +53,6 @@
   ],
   "rollback": "Return to v0.4.0; the platform is additive and a v3 memory store still opens with 0.4.0.",
   "known_issues": [
-    "interop with the official MCP SDK v2 not verified",
     "no OS sandbox for plugins",
     "file credential vault not encrypted",
     "subscriptions/listen not implemented",

@@ -10,7 +10,7 @@
   <img alt="Agents" src="https://img.shields.io/badge/agents-59-7B61FF">
   <img alt="Skills" src="https://img.shields.io/badge/skills-90-00A67E">
   <img alt="Technologies" src="https://img.shields.io/badge/technologies-46-F97316">
-  <img alt="Tests" src="https://img.shields.io/badge/tests-239%20passing-2EA44F">
+  <img alt="Tests" src="https://img.shields.io/badge/tests-242%20passing-2EA44F">
   <img alt="License" src="https://img.shields.io/badge/license-MIT-blue">
   <img alt="Provider neutral" src="https://img.shields.io/badge/AI-provider--neutral-111827">
   <img alt="MCP" src="https://img.shields.io/badge/MCP-2026--07--28-0F766E">

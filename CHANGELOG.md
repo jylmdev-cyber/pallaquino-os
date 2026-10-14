@@ -84,12 +84,12 @@ Ver `docs/releases/RELEASE_V050.md`, ADR-0013 a ADR-0016 y `MIGRATION_GUIDE.md`.
 
 ### Security
 
-- 85 tests nuevos, con escenarios adversariales: prompt injection, tool poisoning, rug pull, SSRF, credential leakage, path traversal,
+- Interoperabilidad verificada con el SDK oficial `mcp` 2.3.0 en las dos direcciones (stdio y Streamable HTTP, moderno y legacy).
+- 88 tests nuevos, con escenarios adversariales: prompt injection, tool poisoning, rug pull, SSRF, credential leakage, path traversal,
   confused deputy, escalada, permiso caducado, operación destructiva sin aprobación, plugin malicioso y ZIP con traversal.
 
 ### Not included
 
-- Interoperabilidad verificada con el SDK oficial MCP v2: la prueba existe y no se ejecutó.
 - `subscriptions/listen`; adaptadores Docker y cloud; drivers de PostgreSQL y MySQL; sandbox del sistema operativo para plugins.
 
 ## [0.4.0] - 2026-10-14

@@ -17,5 +17,5 @@
 - Mode and autonomy: BROWNFIELD, STANDARD
 - Checkpoint: generated for PAL-011
 - Handoff: `continuity/HANDOFF.json`
-- Release: 0.5.0 not published; push, pull request, tag and GitHub Release need the owner's approval
-- Next: owner decision on publishing 0.5.0 and on installing the official MCP SDK v2 in an isolated environment for the interop test; next stack re-verification due 2026-11-13
+- Release: 0.5.0 publication approved by the owner on 2026-10-14 (pull request, merge after green CI, tag `v0.5.0`, GitHub Release)
+- Next: publish 0.5.0 as approved and add the v0.4.0 archive note; next stack re-verification due 2026-11-13

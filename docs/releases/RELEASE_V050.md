@@ -15,7 +15,7 @@
   (reproducido el 2026-10-14). El repositorio y el tag `v0.4.0` no están afectados. Corregido en 0.5.0, con un test de regresión; el ZIP
   de 0.5.0 se verificó ejecutando la suite y la demo desde el archivo extraído.
 - **Hallazgo técnico**:
-  - el SDK MCP instalado en este equipo (1.26.0) no soporta 2026-07-28;
+  - el SDK MCP instalado en el entorno del framework (1.26.0) no soporta 2026-07-28;
   - el SDK oficial que sí lo soporta (2.x) añade un árbol grande de dependencias;
   - de ahí sale ADR-0014.
 
@@ -46,7 +46,7 @@
 
 - **Código**: 26 módulos nuevos (incluidos los `__init__.py`). Cambian `core.py` (versión, estado de instancia, política, exclusiones del
   ZIP), `memory/store.py` (migración 3), `orchestration/` (ejecutor `tool`, pasos nuevos, planner con herramientas) y `__main__.py`.
-- **Tests**: 8 archivos y 85 tests nuevos, más una aserción de regresión del archivo en `test_core.py`.
+- **Tests**: 8 archivos y 88 tests nuevos, más una aserción de regresión del archivo en `test_core.py`.
 - **Ejemplos**:
   - `examples/pallaquino-example-plugin/` (pyproject, manifiesto, implementación, tests y ejemplo);
   - `examples/mcp_servers/quality_server.py`;
@@ -56,18 +56,18 @@
 ## D. Calidad
 
 - **Tests**:
-  - Windows, Python 3.11.15: 239 ejecutados, todos en verde, 3 omitidos:
-    - enlaces simbólicos: el host no puede crearlos;
-    - 2 de interop con el SDK oficial: `mcp` ≥ 2 no está instalado.
-  - Windows, Python 3.12.10: 239 en verde con 4 omitidos (no hay setuptools para la instalación pip offline).
+  - Windows, Python 3.11.15, con `mcp` 2.3.0 en un venv aislado: 242 ejecutados, todos en verde, 1 omitido (enlaces simbólicos: el host
+    no puede crearlos).
+  - Windows, Python 3.11.15 sin el SDK: 242 en verde con 6 omitidos (enlaces simbólicos y los 5 de interop).
+  - Windows, Python 3.12.10: en verde, con las omisiones anteriores más la instalación pip offline (no hay setuptools).
   - Desde el ZIP extraído (sin `.git`): la suite pasa, con el test de `git ls-files` omitido, y la demo da `ok`.
   - Error intermitente heredado: la limpieza de archivos WAL de SQLite en Windows (`test_scheduler`, WinError 32) falla de vez en cuando;
     queda vigilado (ver KNOWN_ISSUES).
 - **Cobertura de sentencias** (Python 3.12, en proceso): 93 % del paquete. Por encima del 90 %: `tools/*`, `integrations/*` salvo github
   (90 %), `mcp/client`, `mcp/protocol`, `mcp/auth`, `mcp/connections` y `extensions/manager`, `manifest` y `semver`. El runner del SDK
   (30 %) y parte del servidor de referencia (82 %) se ejecutan en subprocesos que `coverage` no mide; sus tests los ejercitan de verdad.
-- **Conformidad MCP**: ver [MCP_CONFORMANCE_REPORT.md](../evaluation/MCP_CONFORMANCE_REPORT.md). La interoperabilidad con el SDK oficial
-  **no se ejecutó**.
+- **Conformidad MCP**: ver [MCP_CONFORMANCE_REPORT.md](../evaluation/MCP_CONFORMANCE_REPORT.md). La interoperabilidad con el SDK oficial 2.3.0
+  **pasa en las dos direcciones** (cliente y servidor de PALLAQUINO, stdio y Streamable HTTP, moderno y legacy).
 - **Demo end-to-end**: `scripts/run_codebase_analysis_demo.py` pasa sus 12 comprobaciones offline en unos 2,3 s:
   - conexión 2026-07-28;
   - catálogo fijado;
@@ -130,8 +130,8 @@ Riesgos residuales declarados:
 | 19 | La documentación describe el comportamiento real | ✅ | tutoriales ejecutados |
 | 20 | Empaquetado verificable | ✅ | ZIP reproducible y SHA-256 (sección G) |
 
-**Clasificación**: candidato completo frente a los 20 criterios en el entorno local. Quedan dos verificaciones pendientes: CI en Linux con
-py3.11 y 3.14 (necesita push) e interoperabilidad con el SDK oficial MCP v2 (necesita instalarlo).
+**Clasificación**: candidato completo frente a los 20 criterios. La interoperabilidad con el SDK oficial MCP v2 está verificada; el CI en
+Linux con py3.11 y 3.14 se ejecuta en el pull request de publicación.
 
 ## G. Entrega
 

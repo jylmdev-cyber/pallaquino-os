@@ -4,8 +4,9 @@
 - Especificación: https://modelcontextprotocol.io/specification/2026-07-28 (changelog, versioning, transports stdio y Streamable HTTP,
   server/discover, tools, resources, prompts, MRTR, cancellation y authorization) y el esquema de la extensión Tasks
   (`modelcontextprotocol/ext-tasks`, `schema/2026-07-28/schema.ts`).
-- SDK oficial: `mcp` 2.3.0 en PyPI (2026-10-02), línea v2, que habla 2026-07-28. En este equipo está instalado `mcp` 1.26.0, que solo
-  soporta hasta 2025-11-25.
+- SDK oficial: `mcp` 2.3.0 en PyPI (2026-10-02), línea v2, que habla 2026-07-28. En el entorno del framework está `mcp` 1.26.0, que solo
+  soporta hasta 2025-11-25. Para la interoperabilidad se instaló `mcp` 2.3.0 en un venv aislado (autorizado por el propietario el
+  2026-10-14).
 - Contraparte de las pruebas: el servidor de referencia de PALLAQUINO (`pallaquino_cli/mcp/server.py`). Comparte con el cliente la misma
   lectura de la especificación, así que estas pruebas demuestran coherencia interna y cobertura de reglas, no interoperabilidad con
   terceros.
@@ -47,8 +48,14 @@ Origin → 403; GET y DELETE → 405; peticiones sin cabeceras o con valores que
 
 | Contraparte | Resultado |
 |---|---|
-| SDK oficial `mcp` ≥ 2 (stdio, modo moderno y legacy) | **NO EJECUTADO**. `tests/test_mcp_interop_official_sdk.py` existe y se omite porque en este equipo está `mcp` 1.26.0. Ejecutarlo requiere instalar `mcp>=2` en un entorno aislado (descarga de PyPI), y eso queda pendiente de autorización |
+| Cliente PALLAQUINO → servidor `MCPServer` del SDK 2.3.0, stdio, modo moderno (2026-07-28) | **PASA**: discover, `tools/list`, `tools/call` |
+| Cliente PALLAQUINO → servidor del SDK 2.3.0, stdio, handshake legacy (`initialize`) | **PASA** |
+| Cliente PALLAQUINO → servidor del SDK 2.3.0, Streamable HTTP | **PASA**: discover, lista y llamada |
+| Cliente `Client` del SDK 2.3.0 → servidor de referencia de PALLAQUINO, stdio | **PASA**: versión 2026-07-28, tools, `structured_content`, resource y prompt |
+| Cliente `Client` del SDK 2.3.0 → servidor de referencia de PALLAQUINO, Streamable HTTP | **PASA**: los mismos cinco aspectos |
 | Servidores públicos o comerciales | no ejecutado: requiere credenciales y una autorización que no existen |
 | Proveedor de identidad real | no ejecutado: solo stub local |
 
-Hasta que la prueba contra el SDK oficial pase, la interoperabilidad con terceros se considera **no verificada**.
+Evidencia: `tests/test_mcp_interop_official_sdk.py`, 5/5 con `mcp` 2.3.0 en Python 3.11.15 (`evidence/mcp_interop-2026-10-14T20-35-44+00-00.json`). La suite completa en ese
+entorno pasa: 242 tests, 1 omitido (`evidence/test-2026-10-14T20-37-33+00-00.json`). La interoperabilidad con servidores públicos y con
+proveedores de identidad reales sigue sin verificar.

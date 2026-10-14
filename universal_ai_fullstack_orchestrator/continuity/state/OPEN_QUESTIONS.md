@@ -1,9 +1,11 @@
 # Open questions
 
-- Q-4 (PAL-011, 2026-10-14), not blocking the candidate. May the official MCP Python SDK (`mcp>=2`, PyPI) be installed in an isolated
-  scratch environment to run `tests/test_mcp_interop_official_sdk.py`? It is a download of third-party code, so it needs explicit approval.
-- Q-5 (PAL-011, 2026-10-14). Publishing 0.5.0 (push `feat/v0.5.0-extensions`, pull request, tag `v0.5.0`, GitHub Release) needs explicit
-  approval (request sections 24 and 26).
+- None blocking. Resolved on 2026-10-14 by the repository owner ("SI HAZLO") in the PAL-011 session:
+  - Q-4 APPROVED and done: `mcp` 2.3.0 installed in an isolated scratch venv; interop tests 5/5.
+  - Q-5 APPROVED: publish 0.5.0: push `feat/v0.5.0-extensions`, open the pull request, merge after green CI, tag `v0.5.0` and publish the
+    GitHub Release with the ZIP and SHA-256.
+  - Q-6 APPROVED: correct the defective v0.4.0 release ZIP. Chosen option: a note on the v0.4.0 GitHub Release pointing to 0.5.0; the
+    published tag and assets are not altered.
 - Resolved on 2026-10-13T14:59Z by the repository owner in the PAL-005 session:
   - Q-1 RESOLVED: keep `jimdev <jylmdev@gmail.com>` as this repository's and the default identity; make it configurable per project (`governance/git_identity.json`, ADR-0007).
   - Q-2 RESOLVED: the prohibition of AI co-author trailers stays.

@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "timestamp": "2026-10-14T19:20:05+00:00",
+  "timestamp": "2026-10-14T20:40:21+00:00",
   "task": "PAL-011",
   "requested": "evolve PALLAQUINO to 0.5.0 (plugin ecosystem, MCP client, unified tool registry, permission and execution gateway, plugin SDK, integration adapters) per the v0.5.0 master request",
   "implemented": [
@@ -53,7 +53,6 @@
     "planning/*.json"
   ],
   "missing": [
-    "Interoperability run against the official MCP Python SDK v2 (test exists, skipped: mcp 1.26.0 installed)",
     "subscriptions/listen, Docker and cloud adapters, PostgreSQL/MySQL connectors, OS-level plugin sandbox (out of scope, documented)",
     "Loaders for AGENT/SKILL/PROJECT_TEMPLATE plugin types (validated and registered only; 0.6.0 extension point)"
   ],
@@ -67,8 +66,8 @@
     "PAL-011:"
   ],
   "unverified": [
-    "Linux and Python 3.14 (CI runs only after push)",
-    "Real OAuth identity providers and third-party MCP servers (verified against local stubs and the reference server only)",
+    "Linux and Python 3.14 (CI runs on the publication pull request)",
+    "Real OAuth identity providers and public MCP servers (local stubs, the reference server and the official SDK 2.3.0 only)",
     "Symbolic-link escape test on this Windows host (skipped; runs on Linux CI)"
   ],
   "breakage_risks": [
@@ -89,36 +88,40 @@
     "0.5.0:"
   ],
   "open_questions": [
-    "Q-4 (PAL-011, 2026-10-14), not blocking the candidate. May the official MCP Python SDK (`mcp>=2`, PyPI) be installed in an isolated",
-    "Q-5 (PAL-011, 2026-10-14). Publishing 0.5.0 (push `feat/v0.5.0-extensions`, pull request, tag `v0.5.0`, GitHub Release) needs explicit",
+    "None blocking. Resolved on 2026-10-14 by the repository owner (\"SI HAZLO\") in the PAL-011 session:",
     "Resolved on 2026-10-13T14:59Z by the repository owner in the PAL-005 session:"
   ],
   "current": {
     "schema_version": 1,
-    "timestamp": "2026-10-14T19:20:05+00:00",
+    "timestamp": "2026-10-14T20:40:21+00:00",
     "task": "PAL-011",
     "stage": "HANDOFF",
-    "git_head": "9255e0ed9ad656f795cd6a56c3e67df5c39cc187",
+    "git_head": "23c1eec964b30eeb2098a1502100bd7fadade0e5",
     "git_diff": [
       " M CHANGELOG.md",
-      " M PALLAQUINO_autonomous_engineering_os.sha256",
-      " M PALLAQUINO_autonomous_engineering_os.zip",
       " M README.md",
+      " M docs/adr/ADR-0014-mcp-client-2026-07-28.md",
+      " M docs/evaluation/MCP_CONFORMANCE_REPORT.md",
       " M docs/releases/RELEASE_V050.md",
+      " M docs/roadmap/ROADMAP_V050_TO_V060.md",
       " M universal_ai_fullstack_orchestrator/changes/PAL-011.json",
+      " M universal_ai_fullstack_orchestrator/continuity/state/CURRENT_TASK.md",
+      " M universal_ai_fullstack_orchestrator/continuity/state/EXTERNAL_DEPENDENCIES.md",
       " M universal_ai_fullstack_orchestrator/continuity/state/KNOWN_ISSUES.md",
+      " M universal_ai_fullstack_orchestrator/continuity/state/OPEN_QUESTIONS.md",
+      " M universal_ai_fullstack_orchestrator/continuity/state/PIPELINE_STATE.md",
+      " M universal_ai_fullstack_orchestrator/continuity/state/PROJECT_STATE.md",
+      " M universal_ai_fullstack_orchestrator/continuity/state/TASK_BOARD.md",
       " M universal_ai_fullstack_orchestrator/continuity/state/TEST_STATUS.md",
       " M universal_ai_fullstack_orchestrator/releases/0.5.0.json",
-      " M universal_ai_fullstack_orchestrator/tests/test_stabilization.py",
-      "?? universal_ai_fullstack_orchestrator/evidence/e2e_demo-2026-10-14T19-16-38+00-00.json",
-      "?? universal_ai_fullstack_orchestrator/evidence/security_check-2026-10-14T19-16-37+00-00.json",
-      "?? universal_ai_fullstack_orchestrator/evidence/test-2026-10-14T19-18-14+00-00.json",
-      "?? universal_ai_fullstack_orchestrator/evidence/test-2026-10-14T19-19-32+00-00.json"
+      " M universal_ai_fullstack_orchestrator/tests/test_mcp_interop_official_sdk.py",
+      "?? universal_ai_fullstack_orchestrator/evidence/mcp_interop-2026-10-14T20-35-44+00-00.json",
+      "?? universal_ai_fullstack_orchestrator/evidence/test-2026-10-14T20-37-33+00-00.json"
     ],
     "evidence": [],
     "confidence": "medium",
-    "checksum": "702d2606109f02b4a98839e5e7d4154392abab0cd49e03280be96b2fbde1fb71"
+    "checksum": "9b3cdc09ce108971797770c1b41450aff64a7c0fc920c3e415b21f996664516b"
   },
-  "next_action": "Owner decision: (1) approve publishing 0.5.0 (push feat/v0.5.0-extensions, pull request, green Linux CI, merge, tag v0.5.0, GitHub Release with ZIP and SHA-256); (2) approve installing mcp>=2 in an isolated environment to run tests/test_mcp_interop_official_sdk.py; (3) decide how to correct the v0.4.0 release ZIP that lacks pallaquino_cli/memory",
+  "next_action": "Publish 0.5.0 as approved by the owner on 2026-10-14: push feat/v0.5.0-extensions, open the pull request, merge with a merge commit after green Linux CI, tag v0.5.0 on the release commit, publish the GitHub Release with the ZIP and SHA-256, and add a note to the v0.4.0 release about its archive missing pallaquino_cli/memory",
   "confidence": "medium"
 }

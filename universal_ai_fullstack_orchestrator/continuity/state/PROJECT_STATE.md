@@ -12,4 +12,4 @@
 - Pipeline stages: 32 base stages plus 14 conditional gates
 - CLI commands: 30 (new in 0.5.0: `plugins`, `plugin`, `mcp`, `tools`, `permissions`)
 - Builtin tools: 15 (filesystem 5, Git 6, SQLite 4) plus GitHub 4 when enabled
-- Confidence: high for implemented behaviour; Linux CI and interop with the official MCP SDK v2 not yet verified
+- Confidence: high for implemented behaviour; interop with the official MCP SDK 2.3.0 verified; Linux CI runs on the publication pull request
