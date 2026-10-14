@@ -1,0 +1,13 @@
+{
+  "gate": "BUILD",
+  "command": [
+    "python",
+    "scripts/package_release.py"
+  ],
+  "timestamp": "2026-10-14T13:55:53+00:00",
+  "agent": "release_manager",
+  "exit_code": 0,
+  "result": "passed",
+  "summary": "{\n  \"archive\": \"C:\\\\jimdev\\\\proyectos-completos\\\\pallaquino-os\\\\.claude\\\\worktrees\\\\pallaquino-engineering-os-c7d622\\\\PALLAQUINO_autonomous_engineering_os.zip\",\n  \"sha256_file\": \"C:\\\\jimdev\\\\proyectos-completos\\\\pallaquino-os\\\\.claude\\\\worktrees\\\\pallaquino-engineering-os-c7d622\\\\PALLAQUINO_autonomous_engineering_os.sha256\",\n  \"sha256\": \"c5b179ad5616985ba17b5429b5af5c76deb941834ccdd786d6d53709ff05f93d\",\n  \"entries\": 392,\n  \"integrity\": true,\n  \"bad_entry\": null,\n  \"unsafe_paths\": []\n}\n",
+  "artifact": null
+}
