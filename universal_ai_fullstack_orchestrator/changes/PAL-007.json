@@ -1,0 +1,42 @@
+{
+  "task_id": "PAL-007-A",
+  "files_created": [
+    "pallaquino_cli/contracts.py",
+    "scripts/build_contracts.py",
+    "registry/agent_contracts.json",
+    "registry/skill_contracts.json",
+    "tests/test_contracts.py",
+    "../docs/adr/ADR-0008-agent-and-skill-contracts-v2.md"
+  ],
+  "files_modified": [
+    "pallaquino_cli/core.py (validate_contracts, CLI command list)",
+    "pallaquino_cli/__main__.py (contracts command)",
+    "tests/test_cli.py",
+    "continuity/state/*.md",
+    "planning/task_graph.json",
+    "../CHANGELOG.md",
+    "../README.md",
+    "../docs/ARCHITECTURE.md",
+    "../docs/ROADMAP.md",
+    "../docs/AUDIT_REPORT.md"
+  ],
+  "files_deleted": [],
+  "migrations": [],
+  "dependencies": [],
+  "endpoints": [
+    "CLI: new `contracts [--id <agent|skill>]`"
+  ],
+  "tests": [
+    "60 tests (11 new contract tests plus CLI coverage)"
+  ],
+  "docs": [
+    "ADR-0008"
+  ],
+  "decisions": [
+    "Contracts derived from registry facts; written fields marked derived until curated",
+    "Deny-by-default tool tiers with governed tools only under approval_required",
+    "No agent receives secrets_access",
+    "Source digest enforces controlled loading",
+    "Unreachable/untested items are reported, not failed, until PAL-007-B"
+  ]
+}

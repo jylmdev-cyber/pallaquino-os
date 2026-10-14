@@ -1,0 +1,4946 @@
+{
+  "schema_version": 1,
+  "contract_version": 2,
+  "contracts": [
+    {
+      "id": "accounting_domain_expert",
+      "contract_version": 2,
+      "name": "Accounting Domain Expert",
+      "description": "Enforce balanced postings, immutable audit, currencies, business dates, period close, adjustments and reconciliation.",
+      "version": "1.0.0",
+      "capabilities": [
+        "ledger",
+        "period",
+        "reconcile"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [
+          "inventory_consistency",
+          "payments"
+        ],
+        "profiles": [],
+        "domain_packs": [
+          "ecommerce",
+          "restobar",
+          "fintech",
+          "manufacturing"
+        ],
+        "technologies": [],
+        "required_by_agents": [
+          "inventory_consistency_reviewer",
+          "payments_domain_reviewer"
+        ],
+        "tags": [
+          "domain",
+          "accounting",
+          "erp"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "f6947e187bcb6b4355e53f198eab7d74ceda5625c1f4eaf91a2a38d3daed1a4c",
+      "curation": "derived"
+    },
+    {
+      "id": "adversarial_review_expert",
+      "contract_version": 2,
+      "name": "Adversarial Review Expert",
+      "description": "Probe malformed inputs, boundary values, concurrency, retries, partial failure, privilege changes and data-integrity invariants.",
+      "version": "1.0.0",
+      "capabilities": [
+        "attack",
+        "fuzz"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "HIGH",
+      "activation": {
+        "routing_rules": [
+          "security_fix"
+        ],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [],
+        "required_by_agents": [
+          "adversarial_reviewer",
+          "ai_red_team_reviewer",
+          "security_architect"
+        ],
+        "tags": [
+          "security",
+          "security"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "aa465666131ccf7a0ca868ba567a195165b99cc1bf7fcf402984ac5b8d77ab0f",
+      "curation": "derived"
+    },
+    {
+      "id": "ai_cost_optimization_expert",
+      "contract_version": 2,
+      "name": "Ai Cost Optimization Expert",
+      "description": "Attribute token, model, retrieval and tool cost per workflow; optimize only with quality and latency regression evidence.",
+      "version": "1.0.0",
+      "capabilities": [
+        "budget",
+        "measure",
+        "optimize"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "HIGH",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [],
+        "required_by_agents": [],
+        "tags": [
+          "operations",
+          "ai",
+          "cost"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "6e717735ce55dc39898504480cbb09b4ed5550851312511007dbef3dd590f57e",
+      "curation": "derived"
+    },
+    {
+      "id": "ai_guardrails_expert",
+      "contract_version": 2,
+      "name": "Ai Guardrails Expert",
+      "description": "Layer input, policy, tool and output controls around explicit risks; measure false positives, bypasses and safe failure behavior.",
+      "version": "1.0.0",
+      "capabilities": [
+        "policy",
+        "moderate",
+        "evaluate"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "HIGH",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [],
+        "required_by_agents": [
+          "ai_solution_architect"
+        ],
+        "tags": [
+          "security",
+          "ai",
+          "governance"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "bb20b94184e1e94b648fc201d3d1b7a42adc9fdf95d5a5e03b098f1e7afb739d",
+      "curation": "derived"
+    },
+    {
+      "id": "angular_expert",
+      "contract_version": 2,
+      "name": "Angular Expert",
+      "description": "Use standalone boundaries, typed forms and dependency injection deliberately; keep domain state independent from components and framework lifecycle.",
+      "version": "1.0.0",
+      "capabilities": [
+        "components",
+        "routing",
+        "test"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "angular",
+          "typescript"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [
+          "angular",
+          "typescript"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "frontend",
+          "web",
+          "enterprise"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "85e59440cfd1da1a8e9842cece31dece6572995f1acce93d5f49b12f6320062c",
+      "curation": "derived"
+    },
+    {
+      "id": "api_contract_expert",
+      "contract_version": 2,
+      "name": "Api Contract Expert",
+      "description": "Diff contracts for removed routes/fields, changed types, new required inputs and status semantics; provide a migration path for breaking changes.",
+      "version": "1.0.0",
+      "capabilities": [
+        "openapi",
+        "compatibility"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [],
+        "required_by_agents": [
+          "api_governance_reviewer",
+          "event_contract_reviewer",
+          "integration_engineer"
+        ],
+        "tags": [
+          "backend",
+          "api"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "e1942315ab79bd11c075801d294ff5cdb3e403ccabf16d4ba600fa600bd9d09f",
+      "curation": "derived"
+    },
+    {
+      "id": "application_security_expert",
+      "contract_version": 2,
+      "name": "Application Security Expert",
+      "description": "Apply least privilege, deny by default, validate at trust boundaries and test authorization separately from authentication.",
+      "version": "1.0.0",
+      "capabilities": [
+        "threat_model",
+        "review"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "HIGH",
+      "activation": {
+        "routing_rules": [
+          "django_auth",
+          "security_fix"
+        ],
+        "profiles": [],
+        "domain_packs": [
+          "healthcare"
+        ],
+        "technologies": [],
+        "required_by_agents": [
+          "identity_access_engineer",
+          "infrastructure_security_reviewer"
+        ],
+        "tags": [
+          "security",
+          "security"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [
+        "evaluation/routing_golden.json#0"
+      ],
+      "source_digest": "b7be221f936ab481474d89a3650d93bde92cd19fa7d5878e316c44424989884b",
+      "curation": "derived"
+    },
+    {
+      "id": "architecture_fitness_expert",
+      "contract_version": 2,
+      "name": "Architecture Fitness Expert",
+      "description": "Encode important boundaries as deterministic checks with actionable paths; avoid rules that cannot be automatically or independently verified.",
+      "version": "1.0.0",
+      "capabilities": [
+        "boundaries",
+        "validate"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [],
+        "required_by_agents": [],
+        "tags": [
+          "architecture",
+          "architecture"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "304d7f7727c010ae876c2faf233780cbfce301a0ac3277e2149aafbd5153f1d5",
+      "curation": "derived"
+    },
+    {
+      "id": "argocd_expert",
+      "contract_version": 2,
+      "name": "Argocd Expert",
+      "description": "Make desired state and promotion observable; constrain automated sync, drift correction and pruning according to environment risk.",
+      "version": "1.0.0",
+      "capabilities": [
+        "gitops",
+        "sync",
+        "rollback"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "argocd",
+          "kubernetes"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [
+          "cloud_kubernetes"
+        ],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [
+          "argocd",
+          "kubernetes"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "platform",
+          "deployment",
+          "kubernetes"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "e13913183b7a6d4a909fdccf010911e5ee33a6ff8da70082b7c3013376c46eb3",
+      "curation": "derived"
+    },
+    {
+      "id": "aws_expert",
+      "contract_version": 2,
+      "name": "Aws Expert",
+      "description": "Design account, IAM, network, encryption, logging and service limits explicitly; prefer managed services only when ownership and exit cost are understood.",
+      "version": "1.0.0",
+      "capabilities": [
+        "iam",
+        "network",
+        "operate"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "aws"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "HIGH",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [
+          "aws"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "cloud",
+          "cloud",
+          "infrastructure"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "9c8d3804575d6b59c3714e2e1c08e38aaf9593e9fa11943cd032a40d807b7ee1",
+      "curation": "derived"
+    },
+    {
+      "id": "azure_expert",
+      "contract_version": 2,
+      "name": "Azure Expert",
+      "description": "Integrate tenant identity, subscriptions, policy, private connectivity and diagnostics with clear responsibility and cost boundaries.",
+      "version": "1.0.0",
+      "capabilities": [
+        "identity",
+        "network",
+        "operate"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "azure"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "HIGH",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [
+          "azure"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "cloud",
+          "cloud",
+          "enterprise"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "2fded931a24e35a0811b5794419e7023bcebe7f59ff43a687aa287f9ea4a9fd9",
+      "curation": "derived"
+    },
+    {
+      "id": "backup_recovery_expert",
+      "contract_version": 2,
+      "name": "Backup Recovery Expert",
+      "description": "Set RPO/RTO, encrypt and isolate backups, verify completeness and regularly restore into a controlled environment with evidence.",
+      "version": "1.0.0",
+      "capabilities": [
+        "backup",
+        "restore",
+        "exercise"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "HIGH",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [],
+        "required_by_agents": [
+          "database_reliability_engineer",
+          "disaster_recovery_planner"
+        ],
+        "tags": [
+          "operations",
+          "database",
+          "reliability"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "0de13c86e018710a6d165616b35ef29bbf30f78474adebb9db6d1d089392354c",
+      "curation": "derived"
+    },
+    {
+      "id": "clickhouse_expert",
+      "contract_version": 2,
+      "name": "Clickhouse Expert",
+      "description": "Choose sort and partition keys from workload evidence, control cardinality and mutation cost, and validate retention and replication.",
+      "version": "1.0.0",
+      "capabilities": [
+        "model",
+        "query",
+        "operate"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "clickhouse"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [
+          "clickhouse"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "data",
+          "analytics",
+          "database"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "f0625f04b862d7658ba329d4db5cfdfe35d36716da27b0e123bbb9568be3ad84",
+      "curation": "derived"
+    },
+    {
+      "id": "cloud_cost_optimization_expert",
+      "contract_version": 2,
+      "name": "Cloud Cost Optimization Expert",
+      "description": "Attribute cost to owner and workload, forecast scenarios and enforce anomaly/budget guardrails while preserving SLO and security constraints.",
+      "version": "1.0.0",
+      "capabilities": [
+        "forecast",
+        "budget",
+        "optimize"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "aws",
+          "azure",
+          "gcp"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "HIGH",
+      "activation": {
+        "routing_rules": [
+          "cloud_provider"
+        ],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [
+          "aws",
+          "azure",
+          "gcp"
+        ],
+        "required_by_agents": [
+          "cloud_architect",
+          "finops_analyst"
+        ],
+        "tags": [
+          "operations",
+          "cloud",
+          "cost"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "9a82694ba0ed8c8ba8a6341384ee760bf9c14b5760ccf5221dab13a2b28f8a45",
+      "curation": "derived"
+    },
+    {
+      "id": "context_management_expert",
+      "contract_version": 2,
+      "name": "Context Management Expert",
+      "description": "Pin safety rules, decisions and current contracts; rank remaining context by relevance per token cost and record omissions.",
+      "version": "1.0.0",
+      "capabilities": [
+        "budget",
+        "summarize"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [
+          "provider_switch"
+        ],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [],
+        "required_by_agents": [
+          "context_manager"
+        ],
+        "tags": [
+          "context",
+          "context"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "aaca709d26b96cac8a449878e17bdb4899d7e5770361bcf52b14f46b3df809a9",
+      "curation": "derived"
+    },
+    {
+      "id": "crm_domain_expert",
+      "contract_version": 2,
+      "name": "Crm Domain Expert",
+      "description": "Define account/contact identity, ownership, consent, activity history, pipeline transitions and forecast semantics.",
+      "version": "1.0.0",
+      "capabilities": [
+        "account",
+        "pipeline",
+        "activity"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [
+          "crm"
+        ],
+        "technologies": [],
+        "required_by_agents": [],
+        "tags": [
+          "domain",
+          "crm",
+          "saas"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "cc0cee79189faba753b0fdbdf630ff5fea481099fa3dcccb0f61af81e2375ad4",
+      "curation": "derived"
+    },
+    {
+      "id": "data_modeling_expert",
+      "contract_version": 2,
+      "name": "Data Modeling Expert",
+      "description": "Translate business invariants into explicit entities, keys, constraints, histories and ownership; separate operational and analytical models.",
+      "version": "1.0.0",
+      "capabilities": [
+        "model",
+        "invariants",
+        "review"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [
+          "inventory_consistency"
+        ],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [],
+        "required_by_agents": [],
+        "tags": [
+          "data",
+          "data",
+          "database"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "84a97b0a705d30751290f97b2cf3ebda7fd1411dc7821d67b8cf1292e17fd321",
+      "curation": "derived"
+    },
+    {
+      "id": "data_privacy_expert",
+      "contract_version": 2,
+      "name": "Data Privacy Expert",
+      "description": "Inventory data purpose and sensitivity, minimize collection, constrain access, define retention/deletion and test subject-right workflows.",
+      "version": "1.0.0",
+      "capabilities": [
+        "classify",
+        "minimize",
+        "retain"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "HIGH",
+      "activation": {
+        "routing_rules": [
+          "privacy"
+        ],
+        "profiles": [],
+        "domain_packs": [
+          "healthcare",
+          "crm"
+        ],
+        "technologies": [],
+        "required_by_agents": [
+          "data_privacy_reviewer"
+        ],
+        "tags": [
+          "security",
+          "privacy",
+          "data"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [
+        "evaluation/stack_routing/golden.json#6"
+      ],
+      "source_digest": "3c9e3ccebb835d527ee1fd0644d62c64f998b9a7dca9922cbf0d2a70e7d9ee36",
+      "curation": "derived"
+    },
+    {
+      "id": "database_performance_expert",
+      "contract_version": 2,
+      "name": "Database Performance Expert",
+      "description": "Measure representative queries, plans, waits and cardinality; optimize the workload while accounting for write, storage and maintenance cost.",
+      "version": "1.0.0",
+      "capabilities": [
+        "profile",
+        "index",
+        "capacity"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "postgresql",
+          "mysql",
+          "sql_server"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "HIGH",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [
+          "mysql",
+          "postgresql",
+          "sql_server"
+        ],
+        "required_by_agents": [
+          "database_reliability_engineer",
+          "performance_engineer"
+        ],
+        "tags": [
+          "database",
+          "database",
+          "performance"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "a0571f7a7a4ec674fcc6c12f231c068ba799231adc7a3330b7f42b69c965ce4f",
+      "curation": "derived"
+    },
+    {
+      "id": "dependency_governance_expert",
+      "contract_version": 2,
+      "name": "Dependency Governance Expert",
+      "description": "Require a written need, maintenance signal, security and license review, size impact, compatibility and alternatives.",
+      "version": "1.0.0",
+      "capabilities": [
+        "audit",
+        "license"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "HIGH",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [],
+        "required_by_agents": [],
+        "tags": [
+          "security",
+          "dependencies"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "ac27c45c22577aeedf392c09465fac48409a577ff73f0090067778275f08b50e",
+      "curation": "derived"
+    },
+    {
+      "id": "distributed_systems_expert",
+      "contract_version": 2,
+      "name": "Distributed Systems Expert",
+      "description": "State consistency, availability and partition assumptions; design timeouts, retries, deduplication and reconciliation before introducing distribution.",
+      "version": "1.0.0",
+      "capabilities": [
+        "consistency",
+        "resilience",
+        "review"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [
+          "cloud_native_microservices"
+        ],
+        "domain_packs": [],
+        "technologies": [],
+        "required_by_agents": [
+          "distributed_systems_architect",
+          "resilience_engineer"
+        ],
+        "tags": [
+          "architecture",
+          "distributed_systems"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "20a47d751adade66b43894b4d3a4bd6a72e5ab51733e22005309e3e8df27a542",
+      "curation": "derived"
+    },
+    {
+      "id": "django_expert",
+      "contract_version": 2,
+      "name": "Django Expert",
+      "description": "Keep views thin, domain rules explicit and queries bounded; use Django migrations and authorization primitives while verifying the selected supported version.",
+      "version": "1.0.0",
+      "capabilities": [
+        "orm",
+        "auth",
+        "test"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "django",
+          "python"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [
+          "django_auth"
+        ],
+        "profiles": [
+          "flutter_mobile_backend"
+        ],
+        "domain_packs": [],
+        "technologies": [
+          "django",
+          "python"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "backend",
+          "backend",
+          "web"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [
+        "evaluation/routing_golden.json#0"
+      ],
+      "source_digest": "e3af15c2a33bb024a2418e7b95cd733f518c2c0e8ea18f2b09d203865f0ede46",
+      "curation": "derived"
+    },
+    {
+      "id": "docker_expert",
+      "contract_version": 2,
+      "name": "Docker Expert",
+      "description": "Build minimal non-root images, pin important bases, separate build/runtime stages, add health checks and avoid baking secrets into layers.",
+      "version": "1.0.0",
+      "capabilities": [
+        "container",
+        "compose"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "docker_engine",
+          "docker_compose"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [
+          "docker_compose",
+          "docker_engine"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "platform",
+          "deployment"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "7fe509c08999044747751babc85377c294ca0c35a946ebc6718286a1fc03b753",
+      "curation": "derived"
+    },
+    {
+      "id": "dotnet_expert",
+      "contract_version": 2,
+      "name": "Dotnet Expert",
+      "description": "Target an active supported release, use dependency injection and cancellation correctly, and keep domain code independent of ASP.NET and persistence.",
+      "version": "1.0.0",
+      "capabilities": [
+        "aspnet",
+        "test"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "dotnet"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [
+          "dotnet_enterprise"
+        ],
+        "domain_packs": [],
+        "technologies": [
+          "dotnet"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "backend",
+          "backend"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "43c8de4bb6a3c33c37579068cd256c0c8ecb91b72d7e0c4580457b599c0e55be",
+      "curation": "derived"
+    },
+    {
+      "id": "ecommerce_domain_expert",
+      "contract_version": 2,
+      "name": "Ecommerce Domain Expert",
+      "description": "Protect price snapshots, promotions, stock reservation, order states, fulfillment, returns and payment reconciliation.",
+      "version": "1.0.0",
+      "capabilities": [
+        "catalog",
+        "order",
+        "payment"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [
+          "ecommerce"
+        ],
+        "technologies": [],
+        "required_by_agents": [],
+        "tags": [
+          "domain",
+          "ecommerce"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "ae88a6ab8ec6071663d103a63b4deda351ab17ce203d2288f78c079b2632973a",
+      "curation": "derived"
+    },
+    {
+      "id": "erp_domain_expert",
+      "contract_version": 2,
+      "name": "Erp Domain Expert",
+      "description": "Preserve immutable audit trails, balanced financial movements, inventory consistency and explicit business dates/currencies.",
+      "version": "1.0.0",
+      "capabilities": [
+        "accounting",
+        "inventory"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [
+          "restobar"
+        ],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [],
+        "required_by_agents": [],
+        "tags": [
+          "domain",
+          "erp"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "1e780d8cb264db2771eb48a51c7f41ae6a06cb940b4d67982d0025ef3dfa8969",
+      "curation": "derived"
+    },
+    {
+      "id": "event_driven_architecture_expert",
+      "contract_version": 2,
+      "name": "Event Driven Architecture Expert",
+      "description": "Publish facts with clear ownership and schemas; distinguish commands from events and define delivery, ordering, privacy and replay semantics.",
+      "version": "1.0.0",
+      "capabilities": [
+        "event_model",
+        "contract",
+        "review"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "kafka",
+          "rabbitmq"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [
+          "event_driven"
+        ],
+        "profiles": [
+          "cloud_native_microservices"
+        ],
+        "domain_packs": [
+          "logistics"
+        ],
+        "technologies": [
+          "kafka",
+          "rabbitmq"
+        ],
+        "required_by_agents": [
+          "distributed_systems_architect",
+          "event_contract_reviewer",
+          "integration_engineer"
+        ],
+        "tags": [
+          "architecture",
+          "events",
+          "integration"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [
+        "evaluation/stack_routing/golden.json#1"
+      ],
+      "source_digest": "707b983415fc733487d17b084853c7c2e90983eb31939ce3594714856ccfd5ba",
+      "curation": "derived"
+    },
+    {
+      "id": "evidence_validation_expert",
+      "contract_version": 2,
+      "name": "Evidence Validation Expert",
+      "description": "Record exact command, timestamp, agent, exit code, result, summary and artifact; never convert an unrun gate into passed.",
+      "version": "1.0.0",
+      "capabilities": [
+        "capture",
+        "verify"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [
+          "provider_switch"
+        ],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [],
+        "required_by_agents": [],
+        "tags": [
+          "quality",
+          "evidence"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "ca45641f9128a3323521252c3b6848ee0448c46befeaf464055768e915089492",
+      "curation": "derived"
+    },
+    {
+      "id": "fintech_domain_expert",
+      "contract_version": 2,
+      "name": "Fintech Domain Expert",
+      "description": "Use precise money types, immutable ledgers, idempotent operations, reconciliation and explicit pending/failure states.",
+      "version": "1.0.0",
+      "capabilities": [
+        "ledger",
+        "payment",
+        "risk"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [
+          "payments"
+        ],
+        "profiles": [],
+        "domain_packs": [
+          "ecommerce",
+          "fintech"
+        ],
+        "technologies": [],
+        "required_by_agents": [
+          "payments_domain_reviewer"
+        ],
+        "tags": [
+          "domain",
+          "fintech",
+          "payments"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [
+        "evaluation/stack_routing/golden.json#3"
+      ],
+      "source_digest": "177dd1e72963121527e4037ac0b5fac713b773de116a8e90dd3ddb46dd85d413",
+      "curation": "derived"
+    },
+    {
+      "id": "flutter_expert",
+      "contract_version": 2,
+      "name": "Flutter Expert",
+      "description": "Separate presentation, domain and platform services; test lifecycle, navigation, accessibility and platform differences without hiding them behind abstractions.",
+      "version": "1.0.0",
+      "capabilities": [
+        "ui",
+        "state",
+        "test"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "flutter",
+          "dart"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [
+          "flutter_mobile_backend"
+        ],
+        "domain_packs": [],
+        "technologies": [
+          "dart",
+          "flutter"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "mobile",
+          "mobile"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "c279880be5fdc9d1b4bae8c1fc53fe9b3058a4dd7cd7d93323349c51b8b5c47c",
+      "curation": "derived"
+    },
+    {
+      "id": "frontend_accessibility_expert",
+      "contract_version": 2,
+      "name": "Frontend Accessibility Expert",
+      "description": "Verify semantic structure, names, focus order, keyboard operation, contrast, error association and reduced-motion behavior.",
+      "version": "1.0.0",
+      "capabilities": [
+        "wcag",
+        "keyboard"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [
+          "nuxt_feature"
+        ],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [],
+        "required_by_agents": [],
+        "tags": [
+          "frontend",
+          "web"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [
+        "evaluation/routing_golden.json#1"
+      ],
+      "source_digest": "c4860339df78e5f0504bca5557f1b8fdedce79e0defecedde3ae41b089bf7327",
+      "curation": "derived"
+    },
+    {
+      "id": "gcp_expert",
+      "contract_version": 2,
+      "name": "Gcp Expert",
+      "description": "Use projects, service accounts, organization policy and audit logging to create explicit trust and billing boundaries.",
+      "version": "1.0.0",
+      "capabilities": [
+        "iam",
+        "network",
+        "operate"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "gcp"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "HIGH",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [
+          "gcp"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "cloud",
+          "cloud",
+          "data"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "7ceffbcfa45b423d06164c261e46b14b8fc661bc4cd544c4f73768c9366e8fb1",
+      "curation": "derived"
+    },
+    {
+      "id": "git_release_expert",
+      "contract_version": 2,
+      "name": "Git Release Expert",
+      "description": "Use conventional commits, preserve the configured human author, reject AI co-author trailers and avoid rewriting shared history.",
+      "version": "1.0.0",
+      "capabilities": [
+        "git",
+        "commit"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [],
+        "required_by_agents": [],
+        "tags": [
+          "release",
+          "release"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "6acd995edc99cf4b863c51178e69f901142e2448031c20507f12096e581523b1",
+      "curation": "derived"
+    },
+    {
+      "id": "github_actions_expert",
+      "contract_version": 2,
+      "name": "Github Actions Expert",
+      "description": "Pin actions proportionally, minimize token permissions, isolate untrusted contributions and preserve artifact provenance and evidence.",
+      "version": "1.0.0",
+      "capabilities": [
+        "ci",
+        "security",
+        "artifact"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "github_actions"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [
+          "github_actions"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "platform",
+          "ci",
+          "release"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "8793441cc2106253b620467aec6612d6ba12e32fe8fcef0e0615270d45d80ac9",
+      "curation": "derived"
+    },
+    {
+      "id": "go_expert",
+      "contract_version": 2,
+      "name": "Go Expert",
+      "description": "Prefer simple packages and explicit errors; bound goroutines, propagate context cancellation, prevent leaks and test race-sensitive behavior.",
+      "version": "1.0.0",
+      "capabilities": [
+        "concurrency",
+        "api",
+        "test"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "go"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [
+          "cloud_native_microservices"
+        ],
+        "domain_packs": [],
+        "technologies": [
+          "go"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "language",
+          "backend",
+          "platform"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "367778ce47b3426ebf1592b02db75a490a2a5b69773cee69618f14b8a5c46ec6",
+      "curation": "derived"
+    },
+    {
+      "id": "healthcare_domain_expert",
+      "contract_version": 2,
+      "name": "Healthcare Domain Expert",
+      "description": "Separate clinical facts from workflow, enforce consent and least privilege, preserve provenance and make safety-critical changes reviewable.",
+      "version": "1.0.0",
+      "capabilities": [
+        "privacy",
+        "clinical",
+        "audit"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [
+          "privacy"
+        ],
+        "profiles": [],
+        "domain_packs": [
+          "healthcare"
+        ],
+        "technologies": [],
+        "required_by_agents": [],
+        "tags": [
+          "domain",
+          "healthcare"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [
+        "evaluation/stack_routing/golden.json#6"
+      ],
+      "source_digest": "5507ef61bc64588aff1c3d70d541961181c5f82bd0911b90281370ba283c1cfa",
+      "curation": "derived"
+    },
+    {
+      "id": "helm_expert",
+      "contract_version": 2,
+      "name": "Helm Expert",
+      "description": "Keep values schemas explicit, render and validate manifests before release, and avoid templates that hide unsafe defaults.",
+      "version": "1.0.0",
+      "capabilities": [
+        "template",
+        "release",
+        "rollback"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "helm",
+          "kubernetes"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [
+          "cloud_kubernetes"
+        ],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [
+          "helm",
+          "kubernetes"
+        ],
+        "required_by_agents": [
+          "kubernetes_engineer"
+        ],
+        "tags": [
+          "platform",
+          "deployment",
+          "kubernetes"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "2d858a522f99c4c26c8aeee3fbd7074cff536fda8277a450d5920351e1f91ac6",
+      "curation": "derived"
+    },
+    {
+      "id": "idempotency_expert",
+      "contract_version": 2,
+      "name": "Idempotency Expert",
+      "description": "Define operation identity, result retention and concurrency semantics so duplicate requests or messages cannot duplicate effects.",
+      "version": "1.0.0",
+      "capabilities": [
+        "deduplicate",
+        "retry",
+        "test"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "HIGH",
+      "activation": {
+        "routing_rules": [
+          "event_driven",
+          "inventory_consistency",
+          "payments"
+        ],
+        "profiles": [],
+        "domain_packs": [
+          "fintech"
+        ],
+        "technologies": [],
+        "required_by_agents": [
+          "resilience_engineer"
+        ],
+        "tags": [
+          "reliability",
+          "api",
+          "events",
+          "payments"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [
+        "evaluation/stack_routing/golden.json#3"
+      ],
+      "source_digest": "aeb03304e4c4e7debd8b51c57d7e39319acb0d5d2c98768ea5673d8ca7f31c35",
+      "curation": "derived"
+    },
+    {
+      "id": "kafka_expert",
+      "contract_version": 2,
+      "name": "Kafka Expert",
+      "description": "Define partition keys, ordering, retention, consumer ownership and replay behavior; monitor lag and protect schema compatibility.",
+      "version": "1.0.0",
+      "capabilities": [
+        "stream",
+        "schema",
+        "operate"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "kafka"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [
+          "spring_enterprise"
+        ],
+        "domain_packs": [],
+        "technologies": [
+          "kafka"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "integration",
+          "events",
+          "distributed_systems"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "18cdded2e69aef41bdcbf4c53c0458208d77f4b663153f283c8e062570d58bfa",
+      "curation": "derived"
+    },
+    {
+      "id": "kotlin_android_expert",
+      "contract_version": 2,
+      "name": "Kotlin Android Expert",
+      "description": "Use lifecycle-aware state and structured concurrency; test process death, configuration changes, permissions and background constraints.",
+      "version": "1.0.0",
+      "capabilities": [
+        "ui",
+        "lifecycle",
+        "test"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "kotlin"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [
+          "kotlin"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "mobile",
+          "android",
+          "mobile"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "a24815b48d65b9f0bc62960f0591aa73bb73b4070edf1a7ca27958b92cf5216c",
+      "curation": "derived"
+    },
+    {
+      "id": "kubernetes_expert",
+      "contract_version": 2,
+      "name": "Kubernetes Expert",
+      "description": "Set requests/limits, probes, disruption budgets and security contexts; design rollout, rollback and network policy before production use.",
+      "version": "1.0.0",
+      "capabilities": [
+        "orchestration",
+        "security",
+        "operate"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "kubernetes"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [
+          "cloud_kubernetes"
+        ],
+        "profiles": [
+          "cloud_native_microservices"
+        ],
+        "domain_packs": [],
+        "technologies": [
+          "kubernetes"
+        ],
+        "required_by_agents": [
+          "kubernetes_engineer",
+          "platform_engineer"
+        ],
+        "tags": [
+          "platform",
+          "deployment",
+          "cloud"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [
+        "evaluation/stack_routing/golden.json#2"
+      ],
+      "source_digest": "f41932e1b919a93c0523bcac07f51bbba4d1422e9627b50e8d11c25510914e92",
+      "curation": "derived"
+    },
+    {
+      "id": "laravel_expert",
+      "contract_version": 2,
+      "name": "Laravel Expert",
+      "description": "Use policies for authorization, validate request boundaries, control Eloquent query shape and make jobs idempotent and retry-safe.",
+      "version": "1.0.0",
+      "capabilities": [
+        "api",
+        "orm",
+        "queue"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "php",
+          "laravel"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [
+          "laravel",
+          "php"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "backend",
+          "backend",
+          "web"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "2f4f5e45b06a13c5db889d5b99f71158dca73c2c4d5cb6e15d4291e79258d5b6",
+      "curation": "derived"
+    },
+    {
+      "id": "llm_evaluation_expert",
+      "contract_version": 2,
+      "name": "Llm Evaluation Expert",
+      "description": "Use representative frozen cases, deterministic assertions where possible, blinded review where necessary and confidence intervals for noisy metrics.",
+      "version": "1.0.0",
+      "capabilities": [
+        "dataset",
+        "score",
+        "regress"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [
+          "ai_rag"
+        ],
+        "profiles": [
+          "ai_rag_platform"
+        ],
+        "domain_packs": [],
+        "technologies": [],
+        "required_by_agents": [
+          "ai_evaluation_engineer"
+        ],
+        "tags": [
+          "quality",
+          "ai",
+          "testing"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "146a9d38c6807d3506f19789645011c12473058cfb1cbb9d9faa236e20677157",
+      "curation": "derived"
+    },
+    {
+      "id": "logistics_domain_expert",
+      "contract_version": 2,
+      "name": "Logistics Domain Expert",
+      "description": "Model shipment custody, events, time windows, capacity, route changes, exceptions and proof of delivery.",
+      "version": "1.0.0",
+      "capabilities": [
+        "shipment",
+        "tracking",
+        "optimization"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [
+          "logistics"
+        ],
+        "technologies": [],
+        "required_by_agents": [],
+        "tags": [
+          "domain",
+          "logistics"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "1351c5a293e8466e26da6d83914545ba43ab27112c5aff5a83849e8af42d98c6",
+      "curation": "derived"
+    },
+    {
+      "id": "manufacturing_domain_expert",
+      "contract_version": 2,
+      "name": "Manufacturing Domain Expert",
+      "description": "Protect BOM versions, work orders, material consumption, lot traceability, yields, quality holds and costing.",
+      "version": "1.0.0",
+      "capabilities": [
+        "bom",
+        "production",
+        "quality"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [
+          "manufacturing"
+        ],
+        "technologies": [],
+        "required_by_agents": [],
+        "tags": [
+          "domain",
+          "manufacturing",
+          "erp"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "d72ff64ba1a298942464930f07b2f6b196048fbfa9adeea36837dc7976af8f94",
+      "curation": "derived"
+    },
+    {
+      "id": "mcp_expert",
+      "contract_version": 2,
+      "name": "Mcp Expert",
+      "description": "Expose narrow, well-described tools with least privilege, validated arguments, bounded outputs and clear read/write side effects.",
+      "version": "1.0.0",
+      "capabilities": [
+        "tool",
+        "permission",
+        "protocol"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "mcp"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [
+          "ai_rag"
+        ],
+        "profiles": [
+          "ai_rag_platform"
+        ],
+        "domain_packs": [],
+        "technologies": [
+          "mcp"
+        ],
+        "required_by_agents": [
+          "ai_solution_architect"
+        ],
+        "tags": [
+          "ai",
+          "ai",
+          "integration"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "29b01c2ebe6374e84d0e76759e8ab454a9a186e553466435e164215bf4cb5f71",
+      "curation": "derived"
+    },
+    {
+      "id": "microservices_expert",
+      "contract_version": 2,
+      "name": "Microservices Expert",
+      "description": "Require independent ownership and deployment benefits before splitting services; budget network failure, observability and data ownership costs.",
+      "version": "1.0.0",
+      "capabilities": [
+        "boundaries",
+        "api",
+        "operate"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "kubernetes"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [
+          "kubernetes"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "architecture",
+          "distributed_systems",
+          "backend"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "632e4eb0857fff806c6075f9357ec653e89abc6747018786748b672f77fb62e4",
+      "curation": "derived"
+    },
+    {
+      "id": "migration_safety_expert",
+      "contract_version": 2,
+      "name": "Migration Safety Expert",
+      "description": "Separate expand/backfill/contract; assess table size, locks, old/new code coexistence, backups, throttling and rollback.",
+      "version": "1.0.0",
+      "capabilities": [
+        "migration",
+        "online_change"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "HIGH",
+      "activation": {
+        "routing_rules": [
+          "database_migration"
+        ],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [],
+        "required_by_agents": [
+          "database_engineer",
+          "migration_safety_reviewer"
+        ],
+        "tags": [
+          "database",
+          "database"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [
+        "evaluation/routing_golden.json#2"
+      ],
+      "source_digest": "e5de184ba95f639b421c7387e557da904128c59288391fddee08367eddeb74d9",
+      "curation": "derived"
+    },
+    {
+      "id": "mobile_offline_sync_expert",
+      "contract_version": 2,
+      "name": "Mobile Offline Sync Expert",
+      "description": "Define local source of truth, operation identity, ordering and conflict policy; test retries, clock drift, partial sync and schema upgrades.",
+      "version": "1.0.0",
+      "capabilities": [
+        "offline",
+        "sync",
+        "conflict"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [
+          "mobile"
+        ],
+        "profiles": [
+          "flutter_mobile_backend"
+        ],
+        "domain_packs": [],
+        "technologies": [],
+        "required_by_agents": [
+          "mobile_architect"
+        ],
+        "tags": [
+          "mobile",
+          "mobile",
+          "distributed_systems"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [
+        "evaluation/stack_routing/golden.json#4"
+      ],
+      "source_digest": "3ef142e1d1049aee20462b032a3663f935ed092fdcc6af1b68722be579d1722f",
+      "curation": "derived"
+    },
+    {
+      "id": "mobile_security_expert",
+      "contract_version": 2,
+      "name": "Mobile Security Expert",
+      "description": "Protect tokens and local data, minimize permissions, validate deep links and transport trust, and assume clients can be inspected or modified.",
+      "version": "1.0.0",
+      "capabilities": [
+        "storage",
+        "permission",
+        "review"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "flutter",
+          "react_native",
+          "swiftui",
+          "kotlin"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "HIGH",
+      "activation": {
+        "routing_rules": [
+          "mobile"
+        ],
+        "profiles": [
+          "flutter_mobile_backend"
+        ],
+        "domain_packs": [],
+        "technologies": [
+          "flutter",
+          "kotlin",
+          "react_native",
+          "swiftui"
+        ],
+        "required_by_agents": [
+          "mobile_architect",
+          "mobile_qa_engineer"
+        ],
+        "tags": [
+          "security",
+          "mobile",
+          "security"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [
+        "evaluation/stack_routing/golden.json#4"
+      ],
+      "source_digest": "90f80026e4d8d8c0de4a287e5707e416e94a619fc68c8bd95a24f8f4658251df",
+      "curation": "derived"
+    },
+    {
+      "id": "model_routing_expert",
+      "contract_version": 2,
+      "name": "Model Routing Expert",
+      "description": "Route by measured capability, latency, privacy and cost; test fallback semantics and avoid silently weakening safety or output contracts.",
+      "version": "1.0.0",
+      "capabilities": [
+        "route",
+        "fallback",
+        "evaluate"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [],
+        "required_by_agents": [],
+        "tags": [
+          "ai",
+          "ai",
+          "platform"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "d8026af649a5480d29a4553c6a42e97428926b7544ce5b6fff9e06bff8a46e7d",
+      "curation": "derived"
+    },
+    {
+      "id": "modular_monolith_expert",
+      "contract_version": 2,
+      "name": "Modular Monolith Expert",
+      "description": "Enforce module contracts and data ownership in one deployable, preserving a low-cost path to later extraction without premature distribution.",
+      "version": "1.0.0",
+      "capabilities": [
+        "modules",
+        "boundaries",
+        "test"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [],
+        "required_by_agents": [],
+        "tags": [
+          "architecture",
+          "architecture",
+          "backend"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "6ef170afd28b99b42c51ded73d5928271f0bb8631b94228658055f808c48f42d",
+      "curation": "derived"
+    },
+    {
+      "id": "mongodb_expert",
+      "contract_version": 2,
+      "name": "Mongodb Expert",
+      "description": "Model documents from atomic access patterns, enforce schemas and indexes, and plan shard keys, transactions and migration compatibility deliberately.",
+      "version": "1.0.0",
+      "capabilities": [
+        "document",
+        "index",
+        "migration"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "mongodb"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "HIGH",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [
+          "mongodb"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "database",
+          "database"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "0cff3137b0da34215158234c81cab09b82e78925150facb63ca4af06e01b9deb",
+      "curation": "derived"
+    },
+    {
+      "id": "mysql_expert",
+      "contract_version": 2,
+      "name": "Mysql Expert",
+      "description": "Design with engine, collation and isolation behavior in mind; inspect execution plans and use online-compatible schema changes with verified backups.",
+      "version": "1.0.0",
+      "capabilities": [
+        "sql",
+        "index",
+        "migration"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "mysql"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "HIGH",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [
+          "mysql"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "database",
+          "database"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "487851a6a6199da349934448c76e7884d6b3be881b7183b919a0c0f75c0fd7f3",
+      "curation": "derived"
+    },
+    {
+      "id": "nextjs_expert",
+      "contract_version": 2,
+      "name": "Nextjs Expert",
+      "description": "Choose server, client and edge execution intentionally; make caching, revalidation, authentication and streaming behavior observable and testable.",
+      "version": "1.0.0",
+      "capabilities": [
+        "ssr",
+        "routing",
+        "cache"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "nextjs",
+          "react",
+          "nodejs",
+          "typescript"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [
+          "nextjs_react"
+        ],
+        "profiles": [
+          "nextjs_saas"
+        ],
+        "domain_packs": [],
+        "technologies": [
+          "nextjs",
+          "nodejs",
+          "react",
+          "typescript"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "frontend",
+          "web",
+          "saas"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [
+        "evaluation/stack_routing/golden.json#0"
+      ],
+      "source_digest": "70656d2b0a7f89daff55b62fd655db06d6d7ae0a1e1a0a410a350426dd255722",
+      "curation": "derived"
+    },
+    {
+      "id": "nginx_expert",
+      "contract_version": 2,
+      "name": "Nginx Expert",
+      "description": "Configure forwarding trust, timeouts, body limits, TLS and health behavior explicitly; test real client IP and failure propagation.",
+      "version": "1.0.0",
+      "capabilities": [
+        "proxy",
+        "tls",
+        "performance"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "nginx"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [
+          "nginx"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "platform",
+          "web",
+          "network"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "fb42cd8d48ed55d827c4b6b41083338d34bc29a4be22efe77ba6c4508bca6f02",
+      "curation": "derived"
+    },
+    {
+      "id": "nodejs_expert",
+      "contract_version": 2,
+      "name": "Nodejs Expert",
+      "description": "Prefer Active LTS, deterministic lockfiles, ESM-aware tooling and explicit async error handling; audit install scripts and transitive dependencies.",
+      "version": "1.0.0",
+      "capabilities": [
+        "node",
+        "package"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "nodejs"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [
+          "nodejs"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "runtime",
+          "frontend",
+          "backend"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "ff1f2b1bada43010bf75c97eb3eb861586e2364d20e379d569395518aee636e0",
+      "curation": "derived"
+    },
+    {
+      "id": "nuxt_expert",
+      "contract_version": 2,
+      "name": "Nuxt Expert",
+      "description": "Separate server/client boundaries, use composables deliberately, protect hydration and SEO, and verify the stable supported Nuxt release before scaffolding.",
+      "version": "1.0.0",
+      "capabilities": [
+        "ssr",
+        "routing",
+        "test"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "nuxt",
+          "nodejs"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [
+          "nuxt_feature"
+        ],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [
+          "nodejs",
+          "nuxt"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "frontend",
+          "frontend",
+          "web"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [
+        "evaluation/routing_golden.json#1"
+      ],
+      "source_digest": "e025f18dcf05917784e4f87095ba4694164e3f15140b4981d8fbbfcd089df207",
+      "curation": "derived"
+    },
+    {
+      "id": "observability_expert",
+      "contract_version": 2,
+      "name": "Observability Expert",
+      "description": "Design telemetry from operator questions, propagate correlation IDs, avoid secret/PII leakage and alert on symptoms users feel.",
+      "version": "1.0.0",
+      "capabilities": [
+        "logs",
+        "metrics",
+        "traces"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "HIGH",
+      "activation": {
+        "routing_rules": [
+          "incident"
+        ],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [],
+        "required_by_agents": [
+          "performance_engineer"
+        ],
+        "tags": [
+          "operations",
+          "observability"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "2ef5861fc90a6ce599782f59b797b6bbb7b1cd611e20dd6ccbd3748036946bdf",
+      "curation": "derived"
+    },
+    {
+      "id": "openid_connect_expert",
+      "contract_version": 2,
+      "name": "Openid Connect Expert",
+      "description": "Validate issuer, audience, nonce, state, PKCE and redirect boundaries; separate authentication claims from application authorization.",
+      "version": "1.0.0",
+      "capabilities": [
+        "oauth",
+        "sso",
+        "authorization"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "openid_connect"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "HIGH",
+      "activation": {
+        "routing_rules": [
+          "nextjs_react",
+          "spring_java"
+        ],
+        "profiles": [
+          "nextjs_saas",
+          "spring_enterprise",
+          "dotnet_enterprise"
+        ],
+        "domain_packs": [],
+        "technologies": [
+          "openid_connect"
+        ],
+        "required_by_agents": [
+          "identity_access_engineer"
+        ],
+        "tags": [
+          "security",
+          "identity",
+          "api"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [
+        "evaluation/stack_routing/golden.json#0"
+      ],
+      "source_digest": "702d4ade6bbd73174e18dd997622379902558cee442b5295c0d43f47af8a80b6",
+      "curation": "derived"
+    },
+    {
+      "id": "opensearch_expert",
+      "contract_version": 2,
+      "name": "Opensearch Expert",
+      "description": "Design mappings and lifecycle before indexing; bound query cost, shard growth, refresh behavior and sensitive-data exposure.",
+      "version": "1.0.0",
+      "capabilities": [
+        "index",
+        "query",
+        "operate"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "opensearch"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [
+          "opensearch"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "data",
+          "search",
+          "observability"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "7668ddcba83a74984ebfbc074187c3b3061a43b0fa7d9294edbfc5d404beb012",
+      "curation": "derived"
+    },
+    {
+      "id": "outbox_pattern_expert",
+      "contract_version": 2,
+      "name": "Outbox Pattern Expert",
+      "description": "Atomically persist domain change and event intent, then publish idempotently with monitoring, cleanup and replay controls.",
+      "version": "1.0.0",
+      "capabilities": [
+        "transaction",
+        "publish",
+        "reconcile"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "postgresql",
+          "mysql",
+          "sql_server"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [
+          "event_driven"
+        ],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [
+          "mysql",
+          "postgresql",
+          "sql_server"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "integration",
+          "events",
+          "database"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [
+        "evaluation/stack_routing/golden.json#1"
+      ],
+      "source_digest": "00c946447baa688ce36a46335c4ec72ea8cde678860bad6700357e517deda6d9",
+      "curation": "derived"
+    },
+    {
+      "id": "playwright_expert",
+      "contract_version": 2,
+      "name": "Playwright Expert",
+      "description": "Test user-visible outcomes with resilient locators, isolated data and trace artifacts across browsers; avoid arbitrary sleeps.",
+      "version": "1.0.0",
+      "capabilities": [
+        "e2e",
+        "browser",
+        "accessibility"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "playwright"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [
+          "nextjs_react"
+        ],
+        "profiles": [
+          "nextjs_saas"
+        ],
+        "domain_packs": [],
+        "technologies": [
+          "playwright"
+        ],
+        "required_by_agents": [
+          "web_platform_engineer"
+        ],
+        "tags": [
+          "testing",
+          "web",
+          "testing"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [
+        "evaluation/stack_routing/golden.json#0"
+      ],
+      "source_digest": "3cc338ce0245b19c2cf35c9af7e85cdc68f1a7fc1000367cf4da01fd7804f818",
+      "curation": "derived"
+    },
+    {
+      "id": "postgresql_expert",
+      "contract_version": 2,
+      "name": "Postgresql Expert",
+      "description": "Use constraints for invariants, inspect query plans and lock behavior, and always target the latest supported minor of the selected major.",
+      "version": "1.0.0",
+      "capabilities": [
+        "sql",
+        "index",
+        "migration"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "postgresql"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "HIGH",
+      "activation": {
+        "routing_rules": [
+          "database_migration"
+        ],
+        "profiles": [
+          "nextjs_saas",
+          "spring_enterprise",
+          "flutter_mobile_backend"
+        ],
+        "domain_packs": [],
+        "technologies": [
+          "postgresql"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "database",
+          "database"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [
+        "evaluation/routing_golden.json#2"
+      ],
+      "source_digest": "59bd684bf231f1a0b44589bab1efce130e6a15b3618c28dbb74ce761aeb34b3d",
+      "curation": "derived"
+    },
+    {
+      "id": "prompt_security_expert",
+      "contract_version": 2,
+      "name": "Prompt Security Expert",
+      "description": "Separate trusted instructions from untrusted content, constrain tool/data access and test direct, indirect and encoded prompt-injection attacks.",
+      "version": "1.0.0",
+      "capabilities": [
+        "injection",
+        "exfiltration",
+        "review"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "HIGH",
+      "activation": {
+        "routing_rules": [
+          "ai_rag"
+        ],
+        "profiles": [
+          "ai_rag_platform"
+        ],
+        "domain_packs": [],
+        "technologies": [],
+        "required_by_agents": [
+          "ai_red_team_reviewer"
+        ],
+        "tags": [
+          "security",
+          "ai",
+          "security"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [
+        "evaluation/stack_routing/golden.json#5"
+      ],
+      "source_digest": "6a8c6ea34ef711a214f0953d1beeaa1d68614efb1516f6ec226fb6ed062b29e9",
+      "curation": "derived"
+    },
+    {
+      "id": "python_expert",
+      "contract_version": 2,
+      "name": "Python Expert",
+      "description": "Use explicit types and exceptions, pathlib and isolated environments; target the latest supported stable patch compatible with dependencies.",
+      "version": "1.0.0",
+      "capabilities": [
+        "python",
+        "test"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "python"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [
+          "python"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "language",
+          "backend",
+          "automation"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "b54bf7a2fdc666bc059a28e5ecb388b6024ecef2e12a3edfac4189c41c46eba0",
+      "curation": "derived"
+    },
+    {
+      "id": "rabbitmq_expert",
+      "contract_version": 2,
+      "name": "Rabbitmq Expert",
+      "description": "Design exchanges, acknowledgements, prefetch, dead-letter and retry topology to avoid message loss and poison-message loops.",
+      "version": "1.0.0",
+      "capabilities": [
+        "queue",
+        "routing",
+        "retry"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "rabbitmq"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [
+          "rabbitmq"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "integration",
+          "events",
+          "distributed_systems"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "08db1a6e5d189c0164df8827f84243a2673786c6af6a74df3f977aabd710ccb5",
+      "curation": "derived"
+    },
+    {
+      "id": "rag_expert",
+      "contract_version": 2,
+      "name": "Rag Expert",
+      "description": "Preserve source identity and permissions through chunking, indexing and retrieval; measure relevance and require citations for grounded answers.",
+      "version": "1.0.0",
+      "capabilities": [
+        "ingest",
+        "retrieve",
+        "ground"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "vector_database"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [
+          "ai_rag"
+        ],
+        "profiles": [
+          "ai_rag_platform"
+        ],
+        "domain_packs": [],
+        "technologies": [
+          "vector_database"
+        ],
+        "required_by_agents": [
+          "ai_solution_architect",
+          "rag_engineer"
+        ],
+        "tags": [
+          "ai",
+          "ai",
+          "retrieval"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [
+        "evaluation/stack_routing/golden.json#5"
+      ],
+      "source_digest": "b8a92bf2d0c255337d69fed517befa4091ad13a9c12e0b086f6fa117476c0d9a",
+      "curation": "derived"
+    },
+    {
+      "id": "react_expert",
+      "contract_version": 2,
+      "name": "React Expert",
+      "description": "Model UI as accessible components with explicit state ownership, stable identities and effect boundaries; measure rendering before memoizing.",
+      "version": "1.0.0",
+      "capabilities": [
+        "components",
+        "state",
+        "test"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "react"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [
+          "nextjs_react"
+        ],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [
+          "react"
+        ],
+        "required_by_agents": [
+          "web_platform_engineer"
+        ],
+        "tags": [
+          "frontend",
+          "web"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "624bc6e98b53802ab763dd48043b1c45cf43c29e81c9822a7b5721309cf8e517",
+      "curation": "derived"
+    },
+    {
+      "id": "react_native_expert",
+      "contract_version": 2,
+      "name": "React Native Expert",
+      "description": "Control JS/native boundaries, lifecycle and rendering; profile real devices and test permissions, upgrades and degraded networks.",
+      "version": "1.0.0",
+      "capabilities": [
+        "ui",
+        "native_bridge",
+        "test"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "react_native",
+          "react",
+          "nodejs",
+          "typescript"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [
+          "nodejs",
+          "react",
+          "react_native",
+          "typescript"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "mobile",
+          "mobile"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "0aeab9791bcde018c91a88754a00396f096ccd7620e9d8a4a61ab2bc510a70b2",
+      "curation": "derived"
+    },
+    {
+      "id": "redis_expert",
+      "contract_version": 2,
+      "name": "Redis Expert",
+      "description": "Define key lifecycle, eviction, consistency and failure behavior; never treat cache locks as safe without ownership tokens and expiry analysis.",
+      "version": "1.0.0",
+      "capabilities": [
+        "cache",
+        "lock",
+        "queue"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "redis"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [
+          "nextjs_saas",
+          "dotnet_enterprise"
+        ],
+        "domain_packs": [],
+        "technologies": [
+          "redis"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "data",
+          "cache",
+          "distributed_systems"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "52b22041ecca45e12811e7f2e3d6a94c49ff85c9b68603f77790dbd88a1e20b7",
+      "curation": "derived"
+    },
+    {
+      "id": "release_management_expert",
+      "contract_version": 2,
+      "name": "Release Management Expert",
+      "description": "Infer PATCH/MINOR/MAJOR from contract impact, link evidence, migrations and rollback, and preserve known issues.",
+      "version": "1.0.0",
+      "capabilities": [
+        "semver",
+        "manifest"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [],
+        "required_by_agents": [],
+        "tags": [
+          "release",
+          "release"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "57bb94a58ee66dfa2ac44d21c650ebb50302a1586ed0b5b436f8d4e2c677eb8b",
+      "curation": "derived"
+    },
+    {
+      "id": "restobar_domain_expert",
+      "contract_version": 2,
+      "name": "Restobar Domain Expert",
+      "description": "Model menus, modifiers, tables, kitchen flow, split payments, cash shifts, recipes, stock consumption and audit.",
+      "version": "1.0.0",
+      "capabilities": [
+        "pos",
+        "inventory",
+        "cash"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [
+          "restobar"
+        ],
+        "technologies": [],
+        "required_by_agents": [
+          "inventory_consistency_reviewer"
+        ],
+        "tags": [
+          "domain",
+          "restobar",
+          "erp"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "d3950a443810691ed5adf205dddbf2a19569ce149c27b6ff85d0547dd317769e",
+      "curation": "derived"
+    },
+    {
+      "id": "risk_analysis_expert",
+      "contract_version": 2,
+      "name": "Risk Analysis Expert",
+      "description": "Use monotonic factor scoring; explain matched factors, confidence and mandatory gates. Never downgrade an unknown destructive operation.",
+      "version": "1.0.0",
+      "capabilities": [
+        "classify",
+        "gate"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [
+          "incident",
+          "restobar"
+        ],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [],
+        "required_by_agents": [
+          "adversarial_reviewer",
+          "ai_engineer",
+          "backend_engineer",
+          "code_quality_reviewer",
+          "codebase_explorer",
+          "conflict_resolver",
+          "context_manager",
+          "continuity_manager",
+          "data_engineer",
+          "database_engineer",
+          "dependency_governance_agent",
+          "devops_engineer",
+          "documentation_engineer",
+          "erp_domain_expert",
+          "execution_coordinator",
+          "framework_maintainer",
+          "frontend_engineer",
+          "governance_auditor",
+          "migration_safety_reviewer",
+          "observability_engineer",
+          "pipeline_manager",
+          "product_manager",
+          "project_analyzer",
+          "qa_engineer",
+          "release_manager",
+          "risk_analyst",
+          "rollback_readiness_reviewer",
+          "saas_architect",
+          "security_architect",
+          "software_architect",
+          "specification_drift_detector",
+          "sre_engineer",
+          "technical_decision_arbitrator",
+          "test_gap_analyzer",
+          "ux_ui_designer"
+        ],
+        "tags": [
+          "risk",
+          "risk"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "e8c140e8f658ef7b8170e5529b9669fbb4bc836b9457afc300129e30506cd678",
+      "curation": "derived"
+    },
+    {
+      "id": "rollback_strategy_expert",
+      "contract_version": 2,
+      "name": "Rollback Strategy Expert",
+      "description": "Define trigger, owner, time bound and tested reversal for code, data, config and rollout; distinguish rollback from forward repair.",
+      "version": "1.0.0",
+      "capabilities": [
+        "rollback",
+        "flags"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "HIGH",
+      "activation": {
+        "routing_rules": [
+          "database_migration",
+          "incident"
+        ],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [],
+        "required_by_agents": [
+          "disaster_recovery_planner"
+        ],
+        "tags": [
+          "operations",
+          "deployment"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "40262378edadaa1753280b58cfc0d6cd942c2b77771fff3237964e86e1e3e668",
+      "curation": "derived"
+    },
+    {
+      "id": "saas_tenancy_expert",
+      "contract_version": 2,
+      "name": "Saas Tenancy Expert",
+      "description": "Make tenant scope unavoidable in storage and authorization; test cross-tenant denial, lifecycle deletion and entitlement changes.",
+      "version": "1.0.0",
+      "capabilities": [
+        "tenancy",
+        "entitlements"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [],
+        "required_by_agents": [],
+        "tags": [
+          "architecture",
+          "saas"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "ad5b4136149b0841314e44d4f89658093351d1bd2c43064502fff43495cd44cc",
+      "curation": "derived"
+    },
+    {
+      "id": "specification_drift_expert",
+      "contract_version": 2,
+      "name": "Specification Drift Expert",
+      "description": "Build a bidirectional trace matrix from user outcome to tests and docs; classify missing, extra and contradictory behavior.",
+      "version": "1.0.0",
+      "capabilities": [
+        "trace",
+        "compare"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [],
+        "required_by_agents": [
+          "specification_drift_detector"
+        ],
+        "tags": [
+          "quality",
+          "requirements"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "ddc7f54929a6bc378340f8ab4bf7572c9c07578c3552dd949ba8e2b300efb33d",
+      "curation": "derived"
+    },
+    {
+      "id": "spring_boot_expert",
+      "contract_version": 2,
+      "name": "Spring Boot Expert",
+      "description": "Keep domain logic outside controllers and ORM entities; make transactions, authorization, validation and actuator exposure explicit.",
+      "version": "1.0.0",
+      "capabilities": [
+        "api",
+        "security",
+        "persistence"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "java",
+          "spring_boot"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [
+          "spring_java"
+        ],
+        "profiles": [
+          "spring_enterprise"
+        ],
+        "domain_packs": [],
+        "technologies": [
+          "java",
+          "spring_boot"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "backend",
+          "backend",
+          "enterprise"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [
+        "evaluation/stack_routing/golden.json#1"
+      ],
+      "source_digest": "834a361132cf2c0c6ddec8d3a4697a28c108acc5b8d8db04b0cabccdb5c3b95a",
+      "curation": "derived"
+    },
+    {
+      "id": "sql_server_expert",
+      "contract_version": 2,
+      "name": "Sql Server Expert",
+      "description": "Use constraints and execution plans, understand isolation and locking, and design online deployments, backups and recovery for the selected edition.",
+      "version": "1.0.0",
+      "capabilities": [
+        "sql",
+        "index",
+        "migration"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "sql_server"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "HIGH",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [
+          "dotnet_enterprise"
+        ],
+        "domain_packs": [],
+        "technologies": [
+          "sql_server"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "database",
+          "database",
+          "enterprise"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "853d0c857626e0d7ad9e7487be195e708d06f9d4d3e5c4425431826dfb9c6c4e",
+      "curation": "derived"
+    },
+    {
+      "id": "structured_output_expert",
+      "contract_version": 2,
+      "name": "Structured Output Expert",
+      "description": "Use explicit versioned schemas, reject invalid output safely and separate syntactic repair from semantic acceptance.",
+      "version": "1.0.0",
+      "capabilities": [
+        "schema",
+        "validate",
+        "repair"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [],
+        "required_by_agents": [
+          "ai_evaluation_engineer"
+        ],
+        "tags": [
+          "ai",
+          "ai",
+          "api"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "a1b0631a89337ff204db58db743026e27a69a2a40dc75b664670b09db665cea2",
+      "curation": "derived"
+    },
+    {
+      "id": "supply_chain_security_expert",
+      "contract_version": 2,
+      "name": "Supply Chain Security Expert",
+      "description": "Prefer locked and verified artifacts; audit packages and images, generate an SBOM when material, and isolate build provenance.",
+      "version": "1.0.0",
+      "capabilities": [
+        "sbom",
+        "audit"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "HIGH",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [],
+        "required_by_agents": [],
+        "tags": [
+          "security",
+          "dependencies"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "885229fb9aa10512f555d8b416e1f27f9c46807b3f67780935ee64f4480e0848",
+      "curation": "derived"
+    },
+    {
+      "id": "swiftui_expert",
+      "contract_version": 2,
+      "name": "Swiftui Expert",
+      "description": "Model state ownership and navigation explicitly, respect platform conventions and test accessibility, concurrency and persistence behavior.",
+      "version": "1.0.0",
+      "capabilities": [
+        "ui",
+        "state",
+        "test"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "swiftui"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [
+          "swiftui"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "mobile",
+          "ios",
+          "mobile"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "7c212fb970db065302fc089993a4f1467cdcc5e84f5f3aa2cd0e64f351b42905",
+      "curation": "derived"
+    },
+    {
+      "id": "task_graph_expert",
+      "contract_version": 2,
+      "name": "Task Graph Expert",
+      "description": "Validate references and cycles; expose critical path, blocked tasks and file-conflict constraints before parallel execution.",
+      "version": "1.0.0",
+      "capabilities": [
+        "dag",
+        "schedule"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [
+          "restobar"
+        ],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [],
+        "required_by_agents": [],
+        "tags": [
+          "planning",
+          "planning"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "4268049382a5cc92ee0e7606e6140ce410ac94ec2bc058226101c855aae36562",
+      "curation": "derived"
+    },
+    {
+      "id": "terraform_expert",
+      "contract_version": 2,
+      "name": "Terraform Expert",
+      "description": "Use reviewed plans, remote protected state, constrained modules and immutable inputs; never apply destructive infrastructure changes implicitly.",
+      "version": "1.0.0",
+      "capabilities": [
+        "iac",
+        "plan",
+        "state"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "terraform"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [
+          "cloud_kubernetes",
+          "cloud_provider"
+        ],
+        "profiles": [
+          "cloud_native_microservices"
+        ],
+        "domain_packs": [],
+        "technologies": [
+          "terraform"
+        ],
+        "required_by_agents": [
+          "cloud_architect",
+          "infrastructure_security_reviewer",
+          "platform_engineer"
+        ],
+        "tags": [
+          "platform",
+          "infrastructure",
+          "cloud"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [
+        "evaluation/stack_routing/golden.json#2"
+      ],
+      "source_digest": "8e266130a75a518268cc56ac22af8b357c42a8e8e469c055153461be40a73492",
+      "curation": "derived"
+    },
+    {
+      "id": "test_gap_analysis_expert",
+      "contract_version": 2,
+      "name": "Test Gap Analysis Expert",
+      "description": "Inspect changed branches, failures, integrations and risk factors; prioritize behavior gaps over raw line coverage.",
+      "version": "1.0.0",
+      "capabilities": [
+        "coverage",
+        "mutation"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [],
+        "required_by_agents": [
+          "test_gap_analyzer"
+        ],
+        "tags": [
+          "testing",
+          "testing"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "14cd52dd056205db2a2fddd91805a91351d8e96e9894ed06e992ea80c70c17ad",
+      "curation": "derived"
+    },
+    {
+      "id": "testing_strategy_expert",
+      "contract_version": 2,
+      "name": "Testing Strategy Expert",
+      "description": "Use the cheapest test that proves behavior, control nondeterminism and cover negative paths at high-risk boundaries.",
+      "version": "1.0.0",
+      "capabilities": [
+        "unit",
+        "integration",
+        "e2e"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": []
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [
+          "django_auth",
+          "security_fix",
+          "spring_java"
+        ],
+        "profiles": [
+          "spring_enterprise"
+        ],
+        "domain_packs": [],
+        "technologies": [],
+        "required_by_agents": [
+          "mobile_qa_engineer"
+        ],
+        "tags": [
+          "testing",
+          "testing"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "53570d22784639d6e60f32063d8634a14d759704f35e0be49c2e463a35cc7e98",
+      "curation": "derived"
+    },
+    {
+      "id": "tool_calling_expert",
+      "contract_version": 2,
+      "name": "Tool Calling Expert",
+      "description": "Define strict schemas and side-effect metadata, validate targets and make approval and idempotency requirements machine-readable.",
+      "version": "1.0.0",
+      "capabilities": [
+        "schema",
+        "permission",
+        "execute"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "mcp"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [
+          "ai_rag"
+        ],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [
+          "mcp"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "ai",
+          "ai",
+          "integration"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [
+        "evaluation/stack_routing/golden.json#5"
+      ],
+      "source_digest": "d4a76499c7fba25b1500961ff0cd868546151d126340d6e76b7c6550dbaeb2b5",
+      "curation": "derived"
+    },
+    {
+      "id": "typescript_expert",
+      "contract_version": 2,
+      "name": "Typescript Expert",
+      "description": "Prefer strict types, narrow unknown data at boundaries and avoid unsound assertions; choose a compiler compatible with the framework toolchain.",
+      "version": "1.0.0",
+      "capabilities": [
+        "types",
+        "build"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "typescript"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [
+          "nuxt_feature"
+        ],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [
+          "typescript"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "language",
+          "frontend",
+          "backend"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "efcc9ddf42f624460b7c42a2f7c1d59872fbc876bc8e25c9869c3ee9e1672882",
+      "curation": "derived"
+    },
+    {
+      "id": "ubuntu_server_expert",
+      "contract_version": 2,
+      "name": "Ubuntu Server Expert",
+      "description": "Use supported LTS images, minimal packages, unattended security strategy, non-root services and documented kernel/reboot handling.",
+      "version": "1.0.0",
+      "capabilities": [
+        "os",
+        "hardening"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "ubuntu"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [],
+        "domain_packs": [],
+        "technologies": [
+          "ubuntu"
+        ],
+        "required_by_agents": [],
+        "tags": [
+          "platform",
+          "infrastructure"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "0e113a18bdbd6a2153d33a7d43fab6614845313f7e8df278195c057b71920be9",
+      "curation": "derived"
+    },
+    {
+      "id": "vector_database_expert",
+      "contract_version": 2,
+      "name": "Vector Database Expert",
+      "description": "Select metric, dimensions and index from measured recall/latency; enforce tenant filters, deletion and embedding-version migration.",
+      "version": "1.0.0",
+      "capabilities": [
+        "embedding",
+        "index",
+        "retrieve"
+      ],
+      "inputs": [
+        "scoped task and declared technologies",
+        "verified stack versions"
+      ],
+      "outputs": [
+        "specialized guidance applied to the task",
+        "risks, compatibility constraints and evidence commands"
+      ],
+      "dependencies": {
+        "skills": [],
+        "conflicts": [],
+        "technologies": [
+          "vector_database",
+          "postgresql"
+        ]
+      },
+      "tools": {
+        "allowed": [],
+        "approval_required": []
+      },
+      "risk_level": "MEDIUM",
+      "activation": {
+        "routing_rules": [],
+        "profiles": [
+          "ai_rag_platform"
+        ],
+        "domain_packs": [],
+        "technologies": [
+          "postgresql",
+          "vector_database"
+        ],
+        "required_by_agents": [
+          "rag_engineer"
+        ],
+        "tags": [
+          "data",
+          "ai",
+          "database"
+        ]
+      },
+      "success_criteria": [
+        "guidance is limited to the declared scope",
+        "versions come from the verified stack registry"
+      ],
+      "test_cases": [],
+      "source_digest": "28801a5929e7fc75b40cb0dc3cd716eefbefe2fddcd55327ca9d4381f283742c",
+      "curation": "derived"
+    }
+  ]
+}

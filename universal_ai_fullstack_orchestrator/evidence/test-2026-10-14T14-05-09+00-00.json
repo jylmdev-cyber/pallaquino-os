@@ -1,0 +1,17 @@
+{
+  "gate": "TEST",
+  "command": [
+    "python",
+    "-m",
+    "unittest",
+    "discover",
+    "-s",
+    "tests"
+  ],
+  "timestamp": "2026-10-14T14:05:09+00:00",
+  "agent": "qa_engineer",
+  "exit_code": 0,
+  "result": "passed",
+  "summary": "............................................................\n----------------------------------------------------------------------\nRan 60 tests in 19.446s\n\nOK\n",
+  "artifact": null
+}

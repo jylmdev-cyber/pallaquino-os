@@ -31,6 +31,7 @@ lee las políticas y usa el CLI. Esa separación es deliberada y se conserva.
 |---|---|---|
 | Políticas y modos | `governance/`, `modes/`, `AI_ENTRYPOINT.md` | IMPLEMENTADO (texto normativo) |
 | Registros | `registry/*.json` (agentes, skills, rutas, tecnologías, perfiles) | IMPLEMENTADO + validado |
+| Contratos v2 | `registry/agent_contracts.json`, `registry/skill_contracts.json` (ADR-0008) | IMPLEMENTADO; contenido derivado, curación pendiente |
 | Pipeline | `pipeline/pipeline_definition.json` (32 etapas + gates) | IMPLEMENTADO como datos; sin motor de ejecución |
 | Continuidad | `continuity/` (estado, checkpoints, handoff) | IMPLEMENTADO |
 | Núcleo | `pallaquino_cli/core.py` | IMPLEMENTADO |
@@ -91,7 +92,7 @@ manipulación es parte de la Fase 2.
 ```mermaid
 flowchart LR
   subgraph core[Núcleo stdlib — sin red]
-    reg[Registros + contratos v2] --> orch[Orchestration Engine<br/>DAG, locks, run IDs, reintentos]
+    reg[Registros + contratos v2<br/>implementados] --> orch[Orchestration Engine<br/>DAG, locks, run IDs, reintentos]
     mem[Project Memory<br/>SQLite + JSON] --> orch
     qg[Quality Gate Engine] --> orch
     pol[Policy engine<br/>análisis / simulación / ejecución] --> orch

@@ -608,7 +608,7 @@ def validate_risk(root: Path) -> dict[str, Any]:
     return result("validate_risk", not errors, errors or [f"{len(cases)} golden classifications pass"])
 
 
-CLI_COMMANDS = ["init", "status", "doctor", "analyze", "plan", "agents", "skills", "pipeline", "checkpoint", "handoff", "resume", "validate", "stack", "risk", "graph", "security", "identity"]
+CLI_COMMANDS = ["init", "status", "doctor", "analyze", "plan", "agents", "skills", "pipeline", "checkpoint", "handoff", "resume", "validate", "stack", "risk", "graph", "security", "identity", "contracts"]
 # Runs inside a child interpreter whose sys.path[0] is the validated root, so an extracted archive tests its own CLI.
 _CLI_PROBE = """
 import contextlib, io, json, sys
@@ -635,7 +635,12 @@ def validate_cli(root: Path) -> dict[str, Any]:
     return result("validate_cli", not errors, errors or [f"{len(CLI_COMMANDS)} CLI commands respond to --help"])
 
 
-VALIDATORS = [validate_registry, validate_pipeline, validate_continuity, validate_governance, validate_git_authorship, validate_task_graph, validate_repository_map, validate_context, validate_risk, validate_cli]
+def validate_contracts(root: Path) -> dict[str, Any]:
+    from .contracts import validate_contracts as _validate  # lazy: contracts imports core
+    return _validate(root)
+
+
+VALIDATORS = [validate_registry, validate_contracts, validate_pipeline, validate_continuity, validate_governance, validate_git_authorship, validate_task_graph, validate_repository_map, validate_context, validate_risk, validate_cli]
 
 
 def validate_all(root: Path, include_environment: bool = True) -> dict[str, Any]:

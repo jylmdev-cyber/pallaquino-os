@@ -34,6 +34,7 @@ def parser() -> argparse.ArgumentParser:
         ("risk", "classify request risk"), ("graph", "show and validate the task graph"),
         ("security", "read-only security audit (secret scan) of a target"),
         ("identity", "show, set or apply the project commit identity"),
+        ("contracts", "report agent/skill contract coverage or show one verified contract"),
     ]:
         item = subs.add_parser(name, help=help_text); add_common(item)
         if name == "analyze": item.add_argument("--target", type=Path, default=Path.cwd())
@@ -47,6 +48,7 @@ def parser() -> argparse.ArgumentParser:
             item.add_argument("--name", help="set the expected author name (requires --email)")
             item.add_argument("--email", help="set the expected author email (requires --name)")
             item.add_argument("--apply-local", action="store_true", help="write it to the repository-local Git config (never global)")
+        if name == "contracts": item.add_argument("--id", help="show one agent or skill contract after verifying its source")
         if name == "handoff":
             item.add_argument("--next-action", help="exact next action for the receiving agent")
             item.add_argument("--missing", action="append", default=[], help="requested but not implemented (repeatable)")
@@ -90,6 +92,9 @@ def main(argv: list[str] | None = None) -> int:
         elif command == "validate": payload = validate_all(root, include_environment=not args.integrity_only)
         elif command == "stack": payload = stack_status(root)
         elif command == "security": payload = scan_secrets(args.target.resolve())
+        elif command == "contracts":
+            from .contracts import contracts_report, load_contract
+            payload = contracts_report(root) if args.id is None else {k: v for k, v in load_contract(root, args.id).items() if k != "body"}
         elif command == "identity":
             if (args.name is None) != (args.email is None): raise ValueError("--name and --email must be given together")
             if args.name is not None: set_git_identity(root, args.name, args.email)
@@ -102,7 +107,7 @@ def main(argv: list[str] | None = None) -> int:
         else: raise ValueError(f"unsupported command: {command}")
     except FrameworkRootNotFound as exc:
         return fail(args, str(exc), 2)
-    except (OSError, ValueError, KeyError, RuntimeError) as exc:
+    except (OSError, ValueError, KeyError, RuntimeError, LookupError) as exc:
         return fail(args, str(exc), 1)
     emit(payload, args.json)
     if isinstance(payload, dict) and payload.get("ok") is False: return 1

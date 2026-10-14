@@ -406,6 +406,76 @@
         "BUILD",
         "SECURITY_CHECK"
       ]
+    },
+    {
+      "id": "PAL-007-A",
+      "title": "Agent and skill contracts v2",
+      "domain": "framework",
+      "dependencies": [
+        "PAL-009"
+      ],
+      "blocked_by": [],
+      "parallelizable": false,
+      "priority": "P0",
+      "risk": "MEDIUM",
+      "agents": [
+        "framework_maintainer",
+        "security_architect"
+      ],
+      "skills": [
+        "structured_output_expert",
+        "tool_calling_expert"
+      ],
+      "files": [
+        "pallaquino_cli/contracts.py",
+        "scripts/build_contracts.py",
+        "registry/agent_contracts.json",
+        "registry/skill_contracts.json"
+      ],
+      "acceptance_criteria": [
+        "149 contracts valid",
+        "tampered sources rejected",
+        "governed tools only under approval_required",
+        "curated fields preserved"
+      ],
+      "quality_gates": [
+        "TEST",
+        "LINT_TYPECHECK",
+        "SECURITY_CHECK",
+        "CODE_REVIEW"
+      ]
+    },
+    {
+      "id": "PAL-007-B",
+      "title": "Curate contracts and fix unreachable agents/skills",
+      "domain": "orchestration",
+      "dependencies": [
+        "PAL-007-A"
+      ],
+      "blocked_by": [],
+      "parallelizable": false,
+      "priority": "P1",
+      "risk": "MEDIUM",
+      "agents": [
+        "framework_maintainer",
+        "ai_evaluation_engineer"
+      ],
+      "skills": [
+        "llm_evaluation_expert"
+      ],
+      "files": [
+        "registry/routing_rules.json",
+        "registry/agent_contracts.json",
+        "evaluation/"
+      ],
+      "acceptance_criteria": [
+        "no unreachable agent without a documented reason",
+        "every routing change covered by a golden"
+      ],
+      "quality_gates": [
+        "TEST",
+        "CODE_REVIEW"
+      ]
     }
   ]
 }

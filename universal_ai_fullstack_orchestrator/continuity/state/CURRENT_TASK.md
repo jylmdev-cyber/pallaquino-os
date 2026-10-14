@@ -1,11 +1,11 @@
 # Current task
 
-- ID: PAL-009
-- Objective: release 0.3.2 so the distributed archive carries the stack snapshot re-verified in PAL-006
-- Mode: MAINTENANCE
-- Autonomy: STANDARD (owner approved on 2026-10-14: publish the PAL-006 pull request and release 0.3.2)
-- Scope: version metadata, changelog, release manifest, deterministic archive, pull request, tag `v0.3.2`, GitHub Release
-- Status: COMPLETE once the pull request is merged and tag `v0.3.2` with its GitHub Release is published and verified
-- Risk: LOW (catalog data and one generator fix; no data migration)
-- Acceptance: CI green; archive reproducible and verified; release assets match the sidecar SHA-256
+- ID: PAL-007-A
+- Objective: Phase 2, first increment: agent and skill contracts v2 (schema, derivation, validation, controlled loading)
+- Mode: BROWNFIELD
+- Autonomy: STANDARD (branch `feat/pal-007-contracts-v2`; publication awaits owner approval)
+- Scope: `pallaquino_cli/contracts.py`, `scripts/build_contracts.py`, contract registries, `contracts` CLI command, tests, ADR-0008
+- Status: COMPLETE on branch
+- Risk: MEDIUM (new integrity validator; no change to routing or existing contracts)
+- Acceptance: all 149 contracts valid; tampered sources and unauthorized tools are rejected; curated fields survive regeneration; 60 tests pass
 - Confidence: high

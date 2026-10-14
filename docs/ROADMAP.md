@@ -22,7 +22,7 @@ Pendiente de aprobación humana: merge, tag `v0.3.0`, GitHub Release.
 
 | Entrega | Dependencias | Criterios de aceptación |
 |---|---|---|
-| Contratos v2 de agentes/skills (entradas, salidas, herramientas, activación, éxito, casos de prueba) | Fase 1 | Validador rechaza contratos incompletos; migración automática desde v1 sin perder campos |
+| Contratos v2 de agentes/skills (entradas, salidas, herramientas, activación, éxito, casos de prueba) — **PAL-007-A hecho** (esquema, derivación, validación, carga controlada); **PAL-007-B pendiente** (curar contratos y hacer alcanzables los 20 agentes y 9 skills huérfanos) | Fase 1 | Validador rechaza contratos incompletos; migración automática desde v1 sin perder campos |
 | Orchestration Engine: `plan`/`run` con `run_id`, DAG, límites de concurrencia, timeouts, reintentos acotados, cancelación | Contratos v2, locks 0.3.0 | Ciclos y dependencias bloqueadas detectados; una ejecución interrumpida se reanuda desde su checkpoint en los escenarios de `evaluation/abrupt_session_recovery` |
 | Project Memory (SQLite + JSON, aislamiento por proyecto, retención) | `instance_state` 0.3.0 | Consultas sin cruzar proyectos; borrado por política probado; el contenido recuperado se etiqueta como no confiable |
 | Checkpoints a prueba de manipulación (cadena de hashes) | — | Alterar un checkpoint intermedio invalida la cadena |
