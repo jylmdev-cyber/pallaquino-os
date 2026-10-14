@@ -29,7 +29,7 @@ REQUEST = "Analiza el repositorio actual, identifica problemas de calidad, revis
 
 class PlatformCase(unittest.TestCase):
     def setUp(self):
-        self.tmp = tempfile.TemporaryDirectory(); self.addCleanup(self.tmp.cleanup)
+        self.tmp = tempfile.TemporaryDirectory(ignore_cleanup_errors=True); self.addCleanup(self.tmp.cleanup)
         self.workspace = Path(self.tmp.name) / "ws"; (self.workspace / "src").mkdir(parents=True)
         (self.workspace / "src" / "app.py").write_bytes(b"def f():\n    return 1  # TODO handle errors\n")
         self.store = MemoryStore(Path(self.tmp.name) / "m.db", "proj"); self.addCleanup(self.store.close)
@@ -151,7 +151,7 @@ def run_cli(*argv):
 
 class CliTest(unittest.TestCase):
     def setUp(self):
-        self.tmp = tempfile.TemporaryDirectory(); self.addCleanup(self.tmp.cleanup)
+        self.tmp = tempfile.TemporaryDirectory(ignore_cleanup_errors=True); self.addCleanup(self.tmp.cleanup)
         project = Path(self.tmp.name) / "p"; project.mkdir(); init_target(ROOT, project)
         self.common = ["--root", str(project / ".pallaquino"), "--json"]; self.project = project
 
@@ -191,7 +191,7 @@ class CliTest(unittest.TestCase):
 
 class DemoTest(unittest.TestCase):
     def test_end_to_end_codebase_analysis_demo(self):
-        with tempfile.TemporaryDirectory() as tmp:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as tmp:
             evidence = Path(tmp) / "evidence.json"
             proc = subprocess.run([sys.executable, str(ROOT / "scripts" / "run_codebase_analysis_demo.py"), "--evidence", str(evidence)], capture_output=True, text=True,
                                   encoding="utf-8", cwd=str(ROOT), env={**__import__("os").environ, "PYTHONIOENCODING": "utf-8"}, timeout=300)

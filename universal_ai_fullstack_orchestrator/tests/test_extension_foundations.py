@@ -115,7 +115,7 @@ class ManifestTest(unittest.TestCase):
         self.assertTrue(report["ok"]); self.assertFalse(report["compatible"])
 
     def test_content_hash_detects_changes(self):
-        with tempfile.TemporaryDirectory() as tmp:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as tmp:
             root = Path(tmp); (root / "a.py").write_text("x = 1\n", encoding="utf-8")
             first = content_hash(root); (root / "__pycache__").mkdir(); (root / "__pycache__" / "a.pyc").write_bytes(b"\0")
             self.assertEqual(content_hash(root), first, "caches do not change the hash")

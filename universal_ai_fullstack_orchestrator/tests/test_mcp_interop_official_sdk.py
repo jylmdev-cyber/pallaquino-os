@@ -43,7 +43,7 @@ SERVER = textwrap.dedent('''
 @unittest.skipUnless(SDK and int(SDK.split(".")[0]) >= 2, f"official MCP SDK >= 2 not installed (found {SDK})")
 class OfficialSdkInteropTest(unittest.TestCase):
     def setUp(self):
-        self.tmp = tempfile.TemporaryDirectory(); self.addCleanup(self.tmp.cleanup)
+        self.tmp = tempfile.TemporaryDirectory(ignore_cleanup_errors=True); self.addCleanup(self.tmp.cleanup)
         self.server = Path(self.tmp.name) / "server.py"; self.server.write_text(SERVER, encoding="utf-8")
 
     def client(self, mode: str) -> McpClient:

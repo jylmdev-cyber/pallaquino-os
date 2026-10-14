@@ -27,7 +27,7 @@ def make(tool_id, *, kind="builtin", trust="builtin", caps=("FILE_READ",), op="R
 
 class GatewayCase(unittest.TestCase):
     def setUp(self):
-        self.tmp = tempfile.TemporaryDirectory(); self.addCleanup(self.tmp.cleanup)
+        self.tmp = tempfile.TemporaryDirectory(ignore_cleanup_errors=True); self.addCleanup(self.tmp.cleanup)
         self.store = MemoryStore(Path(self.tmp.name) / "m.db", "proj"); self.addCleanup(self.store.close)
         self.registry = ToolRegistry(); self.permissions = PermissionGateway(self.store)
         self.gateway = ToolGateway(self.registry, self.permissions, self.store, workspace=Path(self.tmp.name))

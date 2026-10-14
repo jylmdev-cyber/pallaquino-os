@@ -33,7 +33,7 @@ def hello(args, call):
 
 class PluginCase(unittest.TestCase):
     def setUp(self):
-        self.tmp = tempfile.TemporaryDirectory(); self.addCleanup(self.tmp.cleanup)
+        self.tmp = tempfile.TemporaryDirectory(ignore_cleanup_errors=True); self.addCleanup(self.tmp.cleanup)
         base = Path(self.tmp.name); self.root = base / "framework"; (self.root / "governance").mkdir(parents=True)
         self.workspace = base / "ws"; self.workspace.mkdir(); (self.workspace / "notes.txt").write_bytes(b"one two\nthree\n")
         self.store = MemoryStore(base / "m.db", "proj"); self.addCleanup(self.store.close)

@@ -60,7 +60,7 @@ class StdioTest(unittest.TestCase):
         tools = {t["name"]: t for t in self.client.list_tools()}
         self.assertEqual(sorted(tools), ["confirm_action", "echo", "long_job", "quality_scan", "slow"])
         self.assertTrue(all(len(t["definition_sha256"]) == 64 for t in tools.values()))
-        with tempfile.TemporaryDirectory() as tmp:
+        with tempfile.TemporaryDirectory(ignore_cleanup_errors=True) as tmp:
             Path(tmp, "a.py").write_text("# TODO fix\n" + "x" * 130 + "\n", encoding="utf-8")
             result = self.client.call_tool("quality_scan", {"root": tmp}, tool=tools["quality_scan"])
         self.assertFalse(result["is_error"]); self.assertEqual(result["structured"]["summary"], {"todo": 1, "long_line": 1, "large_file": 0})

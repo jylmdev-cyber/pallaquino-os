@@ -77,7 +77,7 @@ def browser(url: str) -> None:
 
 class OAuthCase(unittest.TestCase):
     def setUp(self):
-        self.tmp = tempfile.TemporaryDirectory(); self.addCleanup(self.tmp.cleanup)
+        self.tmp = tempfile.TemporaryDirectory(ignore_cleanup_errors=True); self.addCleanup(self.tmp.cleanup)
         self.store = CredentialStore("proj", vault_dir=Path(self.tmp.name) / "vault", use_keyring=False)
 
     def protected_server(self, as_server: AuthServer, *, required_scope=None) -> McpHttpServer:

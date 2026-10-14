@@ -23,7 +23,7 @@ FAKE_TOKEN = "gh" + "p_" + "B" * 36
 
 class AdapterCase(unittest.TestCase):
     def setUp(self):
-        self.tmp = tempfile.TemporaryDirectory(); self.addCleanup(self.tmp.cleanup)
+        self.tmp = tempfile.TemporaryDirectory(ignore_cleanup_errors=True); self.addCleanup(self.tmp.cleanup)
         self.workspace = Path(self.tmp.name) / "ws"; self.workspace.mkdir()
         self.store = MemoryStore(Path(self.tmp.name) / "m.db", "proj"); self.addCleanup(self.store.close)
         self.registry = ToolRegistry(); self.permissions = PermissionGateway(self.store)
