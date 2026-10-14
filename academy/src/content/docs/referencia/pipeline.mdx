@@ -1,0 +1,29 @@
+---
+title: Pipeline
+description: Las etapas del pipeline estricto con sus transiciones de éxito y de remediación.
+sidebar:
+  order: 4
+---
+
+import pipeline from '../../../data/generated/pipeline.json';
+
+Generado de `pipeline/pipeline_definition.json` ({pipeline.stages.length} etapas).
+
+<table>
+	<thead>
+		<tr><th scope="col">#</th><th scope="col">Etapa</th><th scope="col">Tipo</th><th scope="col">Si pasa</th><th scope="col">Si falla, vuelve a</th><th scope="col">Evidencia</th><th scope="col">Agentes</th></tr>
+	</thead>
+	<tbody>
+		{pipeline.stages.map((s) => (
+			<tr>
+				<td>{s.order}</td>
+				<td><code>{s.id}</code></td>
+				<td>{s.kind}</td>
+				<td>{s.success_to ? <code>{s.success_to}</code> : '—'}</td>
+				<td>{s.failure_return_to ? <code>{s.failure_return_to}</code> : '—'}</td>
+				<td>{s.evidence_required ? 'sí' : 'no'}</td>
+				<td>{(s.agents ?? []).join(', ') || '—'}</td>
+			</tr>
+		))}
+	</tbody>
+</table>

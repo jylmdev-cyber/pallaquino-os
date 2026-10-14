@@ -1,0 +1,38 @@
+---
+title: Herramientas builtin
+description: Las herramientas incluidas en PALLAQUINO con su operación, riesgo y política de aprobación.
+sidebar:
+  order: 3
+---
+
+import tools from '../../../data/generated/tools.json';
+
+Generado de los adaptadores de sistema de archivos, Git, SQLite y GitHub. Las herramientas de plugins y servidores MCP aparecen en
+`tools list` solo cuando los configuras.
+
+<table>
+	<thead>
+		<tr><th scope="col">Herramienta</th><th scope="col">Operación</th><th scope="col">Riesgo</th><th scope="col">Aprobación</th><th scope="col">Descripción</th></tr>
+	</thead>
+	<tbody>
+		{tools.builtin.map((t) => (
+			<tr>
+				<td><code>{t.tool_id}</code>{!t.default_enabled && <><br /><small>(desactivada por defecto)</small></>}</td>
+				<td><code>{t.operation}</code></td>
+				<td>{t.risk}</td>
+				<td><code>{t.approval}</code></td>
+				<td>{t.description}</td>
+			</tr>
+		))}
+	</tbody>
+</table>
+
+## Operaciones
+
+{tools.operations.map((o) => <code>{o}</code>).reduce((acc, el, i) => (i ? [...acc, ' · ', el] : [el]), [])}
+
+## Capacidades
+
+{tools.capabilities.map((o) => <code>{o}</code>).reduce((acc, el, i) => (i ? [...acc, ' · ', el] : [el]), [])}
+
+Las políticas (`contract`, `grant`, `per_call`) se explican en [Herramientas y permisos](../../plugins-y-mcp/herramientas-y-permisos/).

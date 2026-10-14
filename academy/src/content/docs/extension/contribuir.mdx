@@ -1,0 +1,75 @@
+---
+title: Contribuir a PALLAQUINO
+description: Entorno de desarrollo, validaciones obligatorias, convenciones de commits y qué debe explicar un pull request.
+sidebar:
+  order: 3
+lesson:
+  id: contribuir
+  path: extension
+  difficulty: avanzado
+  duration: 15
+  objectives:
+    - Preparar un entorno de desarrollo con tu identidad
+    - Ejecutar las validaciones que exige un pull request
+  prerequisites:
+    - crear-agentes-y-skills
+  status: disponible
+  since: 0.5.0
+  next: hoja-de-ruta
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import CheckList from '../../../components/CheckList.vue';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+Resumen de `CONTRIBUTING.md`. Ante cualquier diferencia, manda ese archivo.
+
+## Antes de empezar
+
+Busca o crea un Issue con el problema, el alcance y el criterio de aceptación. Los cambios de arquitectura, seguridad, registros o
+contratos públicos se acuerdan primero en el Issue.
+
+## Validaciones obligatorias
+
+Desde `universal_ai_fullstack_orchestrator`:
+
+```bash
+python -m unittest discover -s tests -v
+python -m pallaquino_cli validate --integrity-only
+python scripts/architecture_fitness.py
+python -m pallaquino_cli security audit --target ..
+python -m compileall -q pallaquino_cli scripts tests
+```
+
+<Aside>
+	Con tu propia identidad usa `--integrity-only` y **no modifiques** `governance/git_identity.json` en tu pull request: la comprobación de
+	identidad del repositorio la aplica la CI.
+</Aside>
+
+## Convenciones
+
+- Ramas `feat/…`, `fix/…` o `docs/…`; un propósito por pull request.
+- Commits con prefijo: `feat:`, `fix:`, `docs:`, `test:`, `refactor:`, `perf:`, `build:`, `ci:` o `chore:`.
+- Los trailers de coautoría de IA están prohibidos.
+- JSON en UTF-8 con dos espacios; Markdown con enlaces relativos y ejemplos ejecutables.
+
+## Qué explica un pull request
+
+Qué problema resuelve y por qué; qué archivos, contratos y rutas afecta; riesgos, seguridad, migración y rollback; comandos ejecutados y
+resultado de los gates; evidencia cuando cambia algo visible.
+
+## Contribuir a esta academia
+
+Las lecciones están en `academy/src/content/docs/`. Lee la guía `docs/learning/WRITING_TUTORIALS.md`: cada comando que publiques debe
+existir en la CLI real (lo comprueba `npm run validate:content`).
+
+<CheckList client:load group="contribuir" items={[
+	{ id: 'issue', label: 'Tengo un Issue con criterio de aceptación' },
+	{ id: 'tests', label: 'La batería de tests pasa' },
+	{ id: 'integrity', label: 'validate --integrity-only pasa' },
+	{ id: 'fitness', label: 'architecture_fitness.py no informa violaciones' },
+]} />
+
+**Siguiente:** [Hoja de ruta](../hoja-de-ruta/).
+
+<LessonComplete client:load lessonId="contribuir" />

@@ -1,0 +1,97 @@
+---
+title: Conecta un servidor MCP de forma segura
+description: Añade, prueba, revisa, fija y autoriza un servidor MCP 2026-07-28 con el servidor de prueba incluido.
+sidebar:
+  order: 3
+lesson:
+  id: mcp-conectar
+  path: plugins-y-mcp
+  difficulty: avanzado
+  duration: 20
+  objectives:
+    - Configurar un servidor MCP stdio con clasificación humana de sus herramientas
+    - Revisar el catálogo y fijar solo lo revisado
+    - Autorizar a un agente concreto con un grant
+  prerequisites:
+    - herramientas-ejecutar
+  status: disponible
+  since: 0.5.0
+  next: plugins-crear
+---
+
+import { Aside, Steps } from '@astrojs/starlight/components';
+import CheckList from '../../../components/CheckList.vue';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+Usarás `examples/mcp_servers/quality_server.py`, un servidor de pruebas local incluido en el framework. No necesita red ni credenciales.
+Todos los pasos se comprobaron el 2026-10-14 desde la carpeta `.pallaquino` de un proyecto.
+
+## Paso a paso
+
+<Steps>
+
+1. ### Añade el servidor y clasifica la herramienta que usarás
+
+	```bash
+	python -m pallaquino_cli mcp add quality --classify "quality_scan=READ_ONLY:FILE_READ:quality_scan" --stdio python examples/mcp_servers/quality_server.py
+	```
+
+	`--classify` declara, como persona, la operación, las capacidades y la etiqueta funcional de `quality_scan`. `--stdio` debe ir al
+	final: todo lo que le sigue es la orden que arranca el servidor.
+
+2. ### Prueba la conexión
+
+	```bash
+	python -m pallaquino_cli mcp test quality
+	```
+
+	**Resultado:** `"ok": true`, `"era": "modern"`, `"protocol_version": "2026-07-28"` y la información del servidor.
+
+3. ### Revisa el catálogo
+
+	```bash
+	python -m pallaquino_cli mcp tools quality
+	```
+
+	Aparecen cinco herramientas (`confirm_action`, `echo`, `long_job`, `quality_scan`, `slow`), todas con `"status": "new"`. Sus
+	descripciones y anotaciones vienen marcadas `"trust": "untrusted"`.
+
+4. ### Fija solo lo que revisaste
+
+	```bash
+	python -m pallaquino_cli mcp pin quality --tool quality_scan
+	```
+
+5. ### Autoriza al agente que lo usará
+
+	```bash
+	python -m pallaquino_cli permissions grant mcp.quality.quality_scan --principal project_analyzer --operation READ_ONLY --days 7
+	```
+
+	Ahora `tools list` muestra `mcp.quality.quality_scan` y, al planificar la solicitud de análisis de calidad, el planificador usa esta
+	herramienta en lugar del sustituto `core.files.search`.
+
+</Steps>
+
+<Aside type="caution" title="Si el servidor cambia">
+	Si el servidor modifica la descripción o el esquema de una herramienta fijada, la siguiente llamada se rechaza, la conexión pasa a
+	`DEGRADED` y `mcp tools` la muestra como `changed`. Revisa el cambio y vuelve a fijarla. Las descripciones con instrucciones
+	(`poisoned`) no se pueden fijar.
+</Aside>
+
+## Servidores remotos
+
+`mcp add <id> --url https://…` conecta por Streamable HTTP. Las URL privadas, de loopback o link-local y el HTTP plano se rechazan, salvo
+`--allow-http-loopback` para un servidor local explícito. Si el servidor responde 401, `mcp auth <id>` ejecuta el flujo OAuth con PKCE.
+Las credenciales nunca se escriben en la configuración: se referencian con `--credential-ref env:VARIABLE`.
+
+<CheckList client:load group="mcp-conectar" items={[
+	{ id: 'add', label: 'mcp add con --classify configuró el servidor' },
+	{ id: 'test', label: 'mcp test devolvió protocol_version 2026-07-28' },
+	{ id: 'pin', label: 'Fijé solo quality_scan' },
+	{ id: 'grant', label: 'Concedí un grant a project_analyzer' },
+]} />
+
+**Siguiente:** [Crea tu primer plugin](../plugins/).
+
+<LessonComplete client:load lessonId="mcp-conectar" />

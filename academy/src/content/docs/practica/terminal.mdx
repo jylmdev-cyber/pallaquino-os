@@ -1,0 +1,33 @@
+---
+title: Terminal interactiva
+description: Practica los comandos de PALLAQUINO sin instalar nada, con salidas reales grabadas y retos guiados.
+sidebar:
+  order: 1
+tableOfContents: false
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import InteractiveTerminal from '../../../components/InteractiveTerminal.vue';
+
+Practica aquí los comandos antes de ejecutarlos en tu equipo. Empieza por el reto guiado o escribe `ayuda`.
+
+<InteractiveTerminal client:load />
+
+<Aside type="caution" title="Es una simulación">
+	Nada se ejecuta en tu equipo ni en ningún servidor. Las respuestas de PALLAQUINO son salidas **reales** que se grabaron de un clon
+	limpio del repositorio y se muestran tal cual, con las rutas personales sustituidas por marcadores. `git clone`, `cd` y `ls` solo
+	actualizan un árbol de carpetas imaginario para que el recorrido tenga sentido. Los comandos del sistema (`rm`, `curl`, `sudo`…)
+	y los operadores de shell están bloqueados.
+</Aside>
+
+## Cómo interpretar cada respuesta
+
+| Etiqueta | Significado |
+|---|---|
+| salida real grabada | La salida que produjo la CLI real de PALLAQUINO con ese comando exacto. El código de salida también es el real. |
+| simulado | Respuesta de apoyo del simulador (por ejemplo, `git clone`); en tu equipo el resultado será similar, no idéntico. |
+| información | El comando existe en la CLI real, pero el simulador no tiene grabada esa combinación exacta. |
+| error / bloqueado | Un error que la CLI real también produciría, o un comando que el simulador nunca ejecuta. |
+
+Siguiente paso: haz el mismo recorrido en tu equipo con el tutorial
+[Instala y ejecuta PALLAQUINO por primera vez](../../instalacion/primera-instalacion/).

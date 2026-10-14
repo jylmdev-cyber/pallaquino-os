@@ -28,3 +28,7 @@ universal_ai_fullstack_orchestrator/governance/plugin_trust.json
 .pallaquino/logs/
 .pallaquino/plugins/
 memory/*.db*
+
+# Academy (Node)
+academy/node_modules/
+academy/.astro/

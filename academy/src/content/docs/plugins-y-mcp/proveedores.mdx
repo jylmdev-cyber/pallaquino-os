@@ -1,0 +1,51 @@
+---
+title: Proveedores de IA
+description: El proveedor mock, el proveedor local Ollama y cómo diagnosticar su configuración.
+sidebar:
+  order: 5
+lesson:
+  id: proveedores
+  path: plugins-y-mcp
+  difficulty: intermedio
+  duration: 10
+  objectives:
+    - Ver qué proveedores hay y cuál se usa por defecto
+    - Saber qué cambia al activar un proveedor real
+  prerequisites:
+    - orquestacion-ejecutar
+  status: disponible
+  since: 0.4.0
+  next: plugins-mcp-evaluacion
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+```bash
+python -m pallaquino_cli providers list --json
+python -m pallaquino_cli providers doctor --json
+```
+
+Resultado real en un proyecto recién inicializado:
+
+| Proveedor | Activo | Por defecto | Frontera | Simulado |
+|---|---|---|---|---|
+| `mock` | sí | sí | local | sí |
+| `ollama` (modelo `llama3.1`) | no | no | local | no |
+
+`providers doctor` informa `mock`: *deterministic offline provider* y `ollama`: *disabled in governance/providers.json*.
+
+## Configuración
+
+`governance/providers.json` define el proveedor por defecto, los activos, el orden de respaldo, la privacidad (`"local_only": true`) y
+los presupuestos (por ejecución: 200 llamadas y 400 000 tokens; por tarea: 12 llamadas).
+
+<Aside type="note" title="Estado de los proveedores">
+	Hoy existen `mock` (offline, simulado) y `ollama` (un modelo local en `http://127.0.0.1:11434`, desactivado por defecto). Los
+	adaptadores de proveedores comerciales están pendientes. Con `plan --ai`, el proveedor configurado ayuda a interpretar la intención,
+	pero el riesgo siempre se calcula de forma determinista.
+</Aside>
+
+**Siguiente:** [Evaluación de la ruta 7](../evaluacion/).
+
+<LessonComplete client:load lessonId="proveedores" />

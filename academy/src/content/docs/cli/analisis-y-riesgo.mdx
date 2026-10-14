@@ -1,0 +1,81 @@
+---
+title: Análisis y riesgo
+description: analyze, risk, agents match y security audit para conocer un repositorio y una solicitud antes de tocar nada.
+sidebar:
+  order: 3
+lesson:
+  id: cli-analisis
+  path: cli
+  difficulty: principiante
+  duration: 15
+  objectives:
+    - Generar el mapa de un repositorio
+    - Clasificar el riesgo de una solicitud e interpretar sus gates
+    - Ver qué agentes propone el router y por qué
+    - Auditar un repositorio en busca de secretos sin exponerlos
+  prerequisites:
+    - cli-diagnostico
+  status: disponible
+  since: 0.5.0
+  next: cli-continuidad
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Transcript from '../../../components/Transcript.astro';
+import InteractiveTerminal from '../../../components/InteractiveTerminal.vue';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+## `analyze`: el mapa del repositorio
+
+```bash
+python -m pallaquino_cli analyze
+python -m pallaquino_cli analyze --target ..
+```
+
+Genera el inventario de módulos y lo guarda en `repository/REPOSITORY_MAP.json` y `.md`. Con `--target` analiza otra carpeta.
+
+<Aside type="caution">`analyze` **escribe** esos dos archivos. En el clon del framework aparecerán como modificados en `git status`.</Aside>
+
+## `risk`: clasificación determinista
+
+```bash
+python -m pallaquino_cli risk "agregar autenticación basada en roles" --json
+```
+
+<Transcript id="risk" lines={22} />
+
+- `level`: `LOW`, `MEDIUM`, `HIGH` o `CRITICAL`.
+- `matched_factors`: los factores gobernados detectados (aquí, autenticación y autorización).
+- `required_gates`: los gates que el trabajo tendrá que superar con evidencia.
+- `routing`: las reglas de `registry/routing_rules.json` que coinciden y los agentes y skills que proponen.
+
+El riesgo se detecta por **palabras completas**: "update product documentation" es `LOW`, aunque contenga "prod".
+
+## `agents match`: selección con puntuación
+
+```bash
+python -m pallaquino_cli agents match "agregar autenticación basada en roles" --json
+```
+
+Además de las reglas, el router puntúa cada agente por capacidad, dominio, tecnología, señal de enrutamiento, preferencia y coste de
+contexto, y explica la puntuación. Para esta solicitud elige `identity_access_engineer` (cubre `code` y `design`) y `qa_engineer`
+(cubre `test`), y marca como redundantes a otros candidatos de menor puntuación, como `backend_engineer`.
+
+## `security audit`: secretos sin exponerlos
+
+```bash
+python -m pallaquino_cli security audit --target .. --json
+```
+
+<Transcript id="security-audit" />
+
+Es de solo lectura. Si encuentra algo, informa la ruta, la línea y el tipo (por ejemplo `github_token`), **nunca el valor**, y termina con
+código 1.
+
+## Practica
+
+<InteractiveTerminal client:visible challenge="reto-riesgo-y-herramientas" />
+
+**Siguiente:** [Continuidad desde la CLI](../continuidad/).
+
+<LessonComplete client:load lessonId="cli-analisis" />

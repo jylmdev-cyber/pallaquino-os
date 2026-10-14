@@ -1,0 +1,122 @@
+---
+title: Configura tu proyecto
+description: Instala PALLAQUINO en tu repositorio con init, ejecuta la CLI con la raíz correcta y fija tu propia identidad de commits.
+sidebar:
+  order: 4
+lesson:
+  id: instalacion-configurar-proyecto
+  path: instalacion
+  difficulty: principiante
+  duration: 20
+  objectives:
+    - Instalar el framework en un proyecto propio sin sobrescribir nada
+    - Ejecutar la CLI contra la raíz .pallaquino de tu proyecto
+    - Fijar tu identidad de commits en lugar de la del mantenedor
+  prerequisites:
+    - instalacion-primera-vez
+  status: disponible
+  since: 0.5.0
+  next: instalacion-errores
+---
+
+import { Aside, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import CheckList from '../../../components/CheckList.vue';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+Todo lo de esta lección se comprobó el 2026-10-14 en un proyecto nuevo con `git init`, en Windows con Python 3.11.
+
+## Paso a paso
+
+<Steps>
+
+1. ### Instala el framework en tu proyecto
+
+	Desde `pallaquino-os/universal_ai_fullstack_orchestrator`, primero en seco y después de verdad:
+
+	```bash
+	python -m pallaquino_cli init --target ../mi-proyecto --dry-run --json
+	python -m pallaquino_cli init --target ../mi-proyecto --json
+	```
+
+	**Resultado esperado:** `"copied": 383` y `"dry_run": false`. Se crea `mi-proyecto/.pallaquino/`. Los archivos existentes nunca se
+	sobrescriben (`"skipped"` cuenta los que ya existían). Cambia `../mi-proyecto` por la ruta real de tu repositorio.
+
+2. ### Elige cómo ejecutar la CLI
+
+	`init` copia también el paquete `pallaquino_cli` dentro de `.pallaquino`. Tienes dos opciones:
+
+	<Tabs>
+		<TabItem label="Sin instalar nada (recomendado para empezar)">
+			Trabaja **desde** `.pallaquino`: Python encuentra allí el paquete y la raíz es esa misma carpeta.
+
+			```bash
+			cd ../mi-proyecto/.pallaquino
+			python -m pallaquino_cli status --json
+			```
+
+			Si lo ejecutas desde `mi-proyecto/` verás `No module named pallaquino_cli`.
+		</TabItem>
+		<TabItem label="Con el paquete instalado">
+			Si instalaste el paquete (`python -m pip install -e ./universal_ai_fullstack_orchestrator`), el comando `pallaquino`
+			usa por defecto **el checkout del paquete**, no tu proyecto. Indica la raíz con `--root`, que va **después** del subcomando:
+
+			```bash
+			pallaquino status --root .pallaquino --json
+			```
+
+			También puedes exportar la variable `PALLAQUINO_ROOT` con la ruta de `.pallaquino`.
+		</TabItem>
+	</Tabs>
+
+3. ### Fija tu identidad de commits
+
+	<Aside type="caution" title="Hallazgo de la auditoría">
+		`init` copia `governance/git_identity.json` tal cual, así que tu proyecto empieza esperando la identidad del **mantenedor del
+		framework**. Mientras no la cambies, `doctor` y `validate --json` fallarán en `validate_git_authorship`.
+	</Aside>
+
+	Desde `.pallaquino`:
+
+	```bash
+	python -m pallaquino_cli identity --json
+	python -m pallaquino_cli identity --name "Tu Nombre" --email tu@correo.example --json
+	python -m pallaquino_cli identity --apply-local --json
+	```
+
+	- El primero muestra la identidad esperada y la configurada en tu repositorio.
+	- El segundo guarda **tu** identidad en `governance/git_identity.json` (requiere `--name` y `--email` juntos).
+	- El tercero la escribe en la configuración **local** de Git de tu proyecto (nunca en la global).
+
+	**Resultado esperado:** `"matches": true`. Desde ese momento `python -m pallaquino_cli doctor` termina con código 0.
+
+	<Aside type="danger" title="Problema conocido en Windows (0.5.0)">
+		Con nombres que contienen acentos o eñes (por ejemplo `Ana Pérez`), `identity --apply-local` aplica el nombre correctamente pero la
+		comparación devuelve `"matches": false`, porque la salida de Git se decodifica con la página de códigos de Windows. Está registrado
+		en [Solución de problemas](../../referencia/solucion-de-problemas/). Mientras se corrige, puedes usar el nombre sin tildes.
+	</Aside>
+
+4. ### Comprueba el resultado
+
+	```bash
+	python -m pallaquino_cli doctor
+	```
+
+	**Resultado esperado:** `"ok": true` y código de salida 0.
+
+</Steps>
+
+<Aside>
+	En el **clon del framework** (`pallaquino-os`) no cambies la identidad: allí la comprobación verifica los commits del mantenedor y es
+	normal que falle en tu equipo. Comprueba la integridad con `validate --integrity-only --json`.
+</Aside>
+
+<CheckList client:load group="instalacion-configurar-proyecto" items={[
+	{ id: 'init', label: 'init creó .pallaquino en mi proyecto' },
+	{ id: 'root', label: 'Sé ejecutar la CLI desde .pallaquino o con --root .pallaquino' },
+	{ id: 'identity', label: 'identity muestra "matches": true con mi identidad' },
+	{ id: 'doctor', label: 'doctor termina con código 0 en mi proyecto' },
+]} />
+
+**Siguiente:** [Errores frecuentes](../errores-frecuentes/).
+
+<LessonComplete client:load lessonId="instalacion-configurar-proyecto" />

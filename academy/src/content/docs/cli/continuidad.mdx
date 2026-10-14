@@ -1,0 +1,72 @@
+---
+title: Continuidad desde la CLI
+description: checkpoint, handoff y resume para que el trabajo sobreviva a cierres de sesión y cambios de agente.
+sidebar:
+  order: 4
+lesson:
+  id: cli-continuidad
+  path: cli
+  difficulty: intermedio
+  duration: 12
+  objectives:
+    - Crear un checkpoint y recuperarlo
+    - Generar un handoff con la siguiente acción para otro agente
+  prerequisites:
+    - cli-analisis
+  status: disponible
+  since: 0.3.0
+  next: cli-automatizacion
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+Estos comandos funcionan en tu proyecto (desde `.pallaquino`). Las salidas siguientes se obtuvieron en un proyecto recién inicializado,
+recortadas a los campos relevantes.
+
+## `checkpoint`
+
+```bash
+python -m pallaquino_cli checkpoint --task DEMO-1 --json
+```
+
+```json
+{ "task": "DEMO-1", "stage": "REQUEST", "git_diff": "RECONSTRUCTED: unavailable", "confidence": "medium", "checksum": "c36cbe9b…" }
+```
+
+Guarda una instantánea en `continuity/checkpoints/` con la tarea, la etapa, el estado de Git y un checksum. Si algo no se puede
+confirmar (aquí, el diff de Git en un proyecto sin commits), se marca `RECONSTRUCTED`.
+
+## `resume` (sin `--execution`)
+
+```bash
+python -m pallaquino_cli resume --json
+```
+
+```json
+{ "status": "RECOVERED", "state": { "task": "DEMO-1", "stage": "REQUEST" }, "invalid_skipped": [] }
+```
+
+Recupera el checkpoint válido más reciente. Los checkpoints con checksum incorrecto se omiten y se listan en `invalid_skipped`. Sin
+checkpoints, reconstruye el estado a partir de los archivos (`"status": "RECONSTRUCTED"`).
+
+<Aside>Con `--execution <id>`, `resume` reanuda una **ejecución** interrumpida del motor de orquestación. Lo verás en la ruta 6.</Aside>
+
+## `handoff`
+
+```bash
+python -m pallaquino_cli handoff --next-action "revisar el informe" --json
+```
+
+Genera `continuity/HANDOFF.json` con lo solicitado, lo implementado, lo que falta, lo asumido, lo no verificado, los riesgos y la
+**siguiente acción exacta**. Puedes declarar lo pendiente con `--missing` y lo no verificado con `--unverified` (ambos repetibles). Lo que
+no está registrado aparece como `NOT_RECORDED`: el handoff nunca rellena huecos con suposiciones.
+
+## Ejercicio
+
+En tu proyecto, crea un checkpoint con `--task` y tu propio identificador, recupéralo con `resume` y genera un handoff con una
+`--next-action` concreta.
+
+**Siguiente:** [JSON, códigos de salida y automatización](../automatizacion/).
+
+<LessonComplete client:load lessonId="cli-continuidad" />

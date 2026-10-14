@@ -1,0 +1,115 @@
+{
+  "request": "Analiza el repositorio actual, identifica problemas de calidad, revisa el estado de Git y genera un informe técnico",
+  "status": "PLANNED",
+  "primary_intent": "PROJECT_DISCOVERY",
+  "risk": "LOW",
+  "dag": {
+    "order": [
+      "T01",
+      "T02",
+      "T03",
+      "T04"
+    ],
+    "levels": [
+      [
+        "T01"
+      ],
+      [
+        "T02",
+        "T03"
+      ],
+      [
+        "T04"
+      ]
+    ],
+    "max_parallelism": 2,
+    "critical_path": [
+      "T01",
+      "T03",
+      "T04"
+    ],
+    "critical_minutes": 7
+  },
+  "warnings": [
+    "T03: using fallback tool core.files.search for quality_scan"
+  ],
+  "tasks": [
+    {
+      "task_id": "T01",
+      "step": "discover",
+      "title": "Analyze the existing project structure",
+      "agent": "project_analyzer",
+      "executor": "internal",
+      "dependencies": [],
+      "tools": null,
+      "permissions": {
+        "allowed": [
+          "read_repository"
+        ],
+        "approval_required": []
+      },
+      "status": "PLANNED"
+    },
+    {
+      "task_id": "T02",
+      "step": "git_inspect",
+      "title": "Inspect Git state and recent history",
+      "agent": "project_analyzer",
+      "executor": "tool",
+      "dependencies": [
+        "T01"
+      ],
+      "tools": [
+        "core.git.status",
+        "core.git.log"
+      ],
+      "permissions": {
+        "allowed": [
+          "read_repository"
+        ],
+        "approval_required": []
+      },
+      "status": "PLANNED"
+    },
+    {
+      "task_id": "T03",
+      "step": "quality_scan",
+      "title": "Scan the codebase for quality issues",
+      "agent": "project_analyzer",
+      "executor": "tool",
+      "dependencies": [
+        "T01"
+      ],
+      "tools": [
+        "core.files.search"
+      ],
+      "permissions": {
+        "allowed": [
+          "read_repository"
+        ],
+        "approval_required": []
+      },
+      "status": "PLANNED"
+    },
+    {
+      "task_id": "T04",
+      "step": "report",
+      "title": "Consolidate findings into a technical report",
+      "agent": "documentation_engineer",
+      "executor": "internal",
+      "dependencies": [
+        "T01",
+        "T02",
+        "T03"
+      ],
+      "tools": null,
+      "permissions": {
+        "allowed": [
+          "read_repository"
+        ],
+        "approval_required": []
+      },
+      "status": "PLANNED"
+    }
+  ]
+}

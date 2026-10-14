@@ -1,0 +1,57 @@
+{
+  "task_id": "PAL-012",
+  "files_created": [
+    "../academy/ (Astro + Starlight + Vue portal: 64 content pages, 11 Vue islands, 5 Astro components/overrides, lib/, scripts/, tests/)",
+    "../academy/scripts/generate_data.py",
+    "../academy/scripts/capture_transcripts.py",
+    "../academy/scripts/validate-content.mjs",
+    "../academy/scripts/validate-links.mjs",
+    "../academy/scripts/validate-a11y.mjs",
+    "../docs/adr/ADR-0017-learning-academy-stack.md",
+    "../docs/learning/DOCUMENTATION_AUDIT.md",
+    "../docs/learning/ARCHITECTURE.md",
+    "../docs/learning/MAINTENANCE.md",
+    "../docs/learning/WRITING_TUTORIALS.md",
+    "../docs/learning/PUBLISHING.md",
+    "../docs/learning/CONTENT_CATALOG.md",
+    "../docs/learning/LEARNING_ROADMAP.md",
+    "../docs/learning/UX_TEST_PROTOCOL.md",
+    "../.github/workflows/academy.yml",
+    "changes/PAL-012.json"
+  ],
+  "files_modified": [
+    "../README.md",
+    "../CHANGELOG.md",
+    "../.gitignore",
+    "planning/task_graph.json",
+    "planning/execution_plan.json",
+    "continuity/state/*.md"
+  ],
+  "files_deleted": [],
+  "migrations": [],
+  "dependencies": [
+    "academy only (npm, exact pins, package-lock.json): astro 7.3.8, @astrojs/starlight 0.42.6, @astrojs/vue 7.0.3, vue 3.5.44; dev: typescript 6.0.3, vitest 5.0.4, vue-tsc 3.3.13, @astrojs/check 0.9.10, @vitejs/plugin-vue 6.0.10, @vue/test-utils 2.5.1, jsdom 30.1.2, axe-core 4.14.0; npm audit 0 vulnerabilities",
+    "framework runtime: none added (Python stdlib only)"
+  ],
+  "endpoints": [
+    "static site (not deployed): / , /rutas/, /progreso/, 46 lessons in 9 routes, /practica/, /referencia/, /videos/, /en/"
+  ],
+  "tests": [
+    "academy: 29 vitest tests (13 logic incl. every recorded transcript replayed by the simulator, 16 component tests with axe-core on hydrated markup)",
+    "academy: validate-content (64 pages, 46 lessons, 133 CLI commands checked against the real argparse tree), validate-links (11448 internal links), validate-a11y (65 built pages, axe-core WCAG A/AA)",
+    "in-browser axe-core sweep of all pages, dark and light themes, desktop and 375 px",
+    "framework: 242 tests unchanged and green (6 skipped)"
+  ],
+  "docs": [
+    "documentation audit with 11 findings (H-6: non-ASCII Git identity mismatch on Windows, not fixed here; H-11: upstream Starlight search label)",
+    "8 guides under docs/learning/, ADR-0017, academy README; README quick-start notes and academy link; CHANGELOG Unreleased"
+  ],
+  "decisions": [
+    "ADR-0017 static academy with Astro + Starlight + Vue islands; reference data generated from pallaquino_cli; terminal replays recorded real outputs only; progress in localStorage only; deployment by manual workflow_dispatch"
+  ],
+  "commits": [
+    "8fc2637ebac49712e4ff6f4b93cec8307133e58f",
+    "c163adb26c542eff44f6a9104c72a96303cd3f9b",
+    "68340fe789771e0c00373c480a739640fced98aa"
+  ]
+}

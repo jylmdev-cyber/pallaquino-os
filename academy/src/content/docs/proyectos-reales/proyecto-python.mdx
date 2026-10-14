@@ -1,0 +1,123 @@
+---
+title: Proyecto Python de principio a fin
+description: Instala PALLAQUINO en la calculadora de ejemplo, planifica una funcionalidad, ejecútala y revisa informe y memoria, con salidas reales.
+sidebar:
+  order: 1
+lesson:
+  id: proyecto-python
+  path: proyectos-reales
+  difficulty: intermedio
+  duration: 30
+  objectives:
+    - Recorrer el ciclo completo en un proyecto Python real con tests
+    - Distinguir en el resultado lo real de lo simulado
+  prerequisites:
+    - orquestacion-ejecutar
+  status: disponible
+  since: 0.4.0
+  next: demo-analisis
+---
+
+import { Aside, Steps, Tabs, TabItem } from '@astrojs/starlight/components';
+import Transcript from '../../../components/Transcript.astro';
+import CheckList from '../../../components/CheckList.vue';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+El proyecto de ejemplo es una calculadora en Python con tests `unittest` (`evaluation/reference_scenario/fixture`). Todas las salidas de
+esta lección se grabaron en un clon limpio, con las rutas personales y los identificadores sustituidos por marcadores.
+
+<Aside type="caution" title="Qué es real y qué es simulado">
+	Sin un proveedor de IA real, las tareas de agente (diseño, implementación, tests, revisión, documentación) las responde `mock`: quedan
+	`simulated: true` y **no cambian el código**. El descubrimiento del proyecto y la ejecución de los tests **sí son reales**.
+</Aside>
+
+## Paso a paso
+
+<Steps>
+
+1. ### Copia el proyecto de ejemplo
+
+	Desde `pallaquino-os/universal_ai_fullstack_orchestrator`:
+
+	<Tabs syncKey="os">
+		<TabItem label="Bash (Git Bash · Linux · macOS)">
+			```bash
+			cp -r evaluation/reference_scenario/fixture ../calc
+			```
+		</TabItem>
+		<TabItem label="PowerShell">
+			```powershell
+			Copy-Item -Recurse evaluation\reference_scenario\fixture ..\calc
+			```
+		</TabItem>
+	</Tabs>
+
+2. ### Instala PALLAQUINO en él
+
+	```bash
+	python -m pallaquino_cli init --target ../calc --json
+	cd ../calc/.pallaquino
+	```
+
+	<Transcript id="project-init" lines={4} />
+
+3. ### Planifica
+
+	```bash
+	python -m pallaquino_cli plan "add a multiply function to the calculator module with tests" --workspace .. --json
+	```
+
+	El plan tiene 7 tareas en secuencia: `T01` analizar (`project_analyzer`), `T02` diseñar (`software_architect`), `T03` implementar
+	(`backend_engineer`), `T04` escribir tests (`qa_engineer`), `T05` ejecutar los tests (`python -m unittest discover -s tests`), `T06`
+	revisión (`code_quality_reviewer`) y `T07` documentación (`documentation_engineer`). Riesgo `LOW`.
+
+	<Transcript id="project-plan" lines={30} />
+
+4. ### Revisa sin ejecutar
+
+	```bash
+	python -m pallaquino_cli run --plan <plan_id> --dry-run --json
+	```
+
+	<Transcript id="project-dry-run" lines={30} />
+
+5. ### Ejecuta
+
+	```bash
+	python -m pallaquino_cli run --plan <plan_id> --json
+	```
+
+	<Transcript id="project-run" />
+
+	`T01` y `T05` tienen `"simulated": false`: el análisis y los tests se ejecutaron de verdad. El resto, `"simulated": true`.
+
+6. ### Revisa estado, informe y memoria
+
+	```bash
+	python -m pallaquino_cli status --execution <execution_id> --json
+	python -m pallaquino_cli executions report <execution_id> --json
+	python -m pallaquino_cli memory search tests --json
+	```
+
+	<Transcript id="project-memory" lines={30} />
+
+	La memoria registra el comando de tests y su código de salida real (`exited 0`).
+
+</Steps>
+
+## Para que los agentes cambien código de verdad
+
+Configura un proveedor real en `governance/providers.json` (hoy, `ollama` local). Para una simulación determinista con cambios de
+ejemplo, el framework incluye un guion: activa `"responses_file": "evaluation/reference_scenario/responses.json"` en el proveedor `mock`.
+
+<CheckList client:load group="proyecto-python" items={[
+	{ id: 'init', label: 'Inicialicé PALLAQUINO en ../calc' },
+	{ id: 'plan', label: 'Obtuve un plan de 7 tareas' },
+	{ id: 'run', label: 'La ejecución terminó COMPLETED' },
+	{ id: 'simulated', label: 'Identifiqué qué tareas fueron simuladas' },
+	{ id: 'memory', label: 'Encontré el resultado de los tests en la memoria' },
+]} />
+
+**Siguiente:** [Demo: análisis de un repositorio](../demo-analisis/).
+
+<LessonComplete client:load lessonId="proyecto-python" />

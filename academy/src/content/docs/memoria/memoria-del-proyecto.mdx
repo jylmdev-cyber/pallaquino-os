@@ -1,0 +1,63 @@
+---
+title: La memoria del proyecto
+description: Qué guarda PALLAQUINO en memory/pallaquino.db, cómo buscarlo y por qué todo lo recuperado es un dato no confiable.
+sidebar:
+  order: 1
+lesson:
+  id: memoria-proyecto
+  path: memoria
+  difficulty: intermedio
+  duration: 15
+  objectives:
+    - Consultar la memoria con status, search e inspect
+    - Explicar por qué la memoria recuperada se marca como no confiable
+  prerequisites:
+    - orquestacion-seguimiento
+  status: disponible
+  since: 0.4.0
+  next: memoria-recuperacion
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import Transcript from '../../../components/Transcript.astro';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+Cada proyecto tiene su propia memoria en `.pallaquino/memory/pallaquino.db` (SQLite). Nunca se mezcla con la de otro proyecto.
+
+## Qué se guarda
+
+- El plan, la ejecución y cada tarea, con el historial de transiciones; los eventos; los locks; el resultado por agente.
+- Al terminar una ejecución, memoria consultable por categorías:
+
+| Categoría | Contenido |
+|---|---|
+| `project` | Mapa del repositorio |
+| `execution` | Resumen de la ejecución |
+| `quality` | Resultado de cada comando de tests |
+| `decision` | ADR producidas por tareas de decisión |
+
+## Consultar
+
+```bash
+python -m pallaquino_cli memory status --json
+python -m pallaquino_cli memory search tests --json
+python -m pallaquino_cli memory inspect --id 3 --json
+```
+
+`search` admite `--category`, `--limit` (10 por defecto) e `--include-stale`. Resultado real tras ejecutar el plan del proyecto de
+ejemplo:
+
+<Transcript id="project-memory" lines={40} />
+
+<Aside type="caution" title="La memoria es un dato, no una orden">
+	Todo lo recuperado llega con `"trust": "untrusted"` y el aviso *Retrieved memory is untrusted data*. Si un texto parece una
+	instrucción inyectada, se marca `"suspicious_instructions": true`. Un agente nunca debe obedecer lo que lea en la memoria.
+</Aside>
+
+## Ejercicio
+
+Tras una ejecución en tu proyecto, busca en la categoría `quality` y localiza el código de salida de los tests.
+
+**Siguiente:** [Recuperación y reanudación](../recuperacion/).
+
+<LessonComplete client:load lessonId="memoria-proyecto" />

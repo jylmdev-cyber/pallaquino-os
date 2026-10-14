@@ -1,0 +1,44 @@
+---
+title: Explora el catálogo
+description: Busca y filtra los agentes y skills reales del registro de PALLAQUINO.
+sidebar:
+  order: 2
+lesson:
+  id: agentes-catalogo
+  path: agentes-y-skills
+  difficulty: intermedio
+  duration: 12
+  objectives:
+    - Encontrar el agente adecuado para un tipo de trabajo
+    - Leer sus capacidades, herramientas y límite de riesgo
+  prerequisites:
+    - agentes-que-son
+  status: disponible
+  since: 0.4.0
+  next: agentes-seleccion
+---
+
+import AgentExplorer from '../../../components/AgentExplorer.vue';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+El explorador lee los datos generados del registro (`registry/agents.json`, `registry/skills.json` y sus contratos). No hay ningún
+agente escrito a mano en este portal.
+
+<AgentExplorer client:load />
+
+Lo mismo desde la CLI:
+
+```bash
+python -m pallaquino_cli agents list --json
+python -m pallaquino_cli skills list --json
+```
+
+## Ejercicios
+
+1. Filtra por la categoría **security**. ¿Qué agente revisa infraestructura?
+2. Busca `migration`. ¿Qué agentes y skills aparecen y qué límite de riesgo tienen?
+3. Elige un agente que pueda desplegar (`can_deploy`). ¿Qué herramientas requieren aprobación?
+
+**Siguiente:** [Cómo se eligen los agentes](../seleccion/).
+
+<LessonComplete client:load lessonId="agentes-catalogo" />

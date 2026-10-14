@@ -1,0 +1,33 @@
+---
+title: Recorridos visuales
+description: Flujo de una solicitud, plan (DAG) en ejecución, quality gates y permisos, en simuladores basados en datos reales.
+sidebar:
+  order: 2
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import FlowDiagram from '../../../components/FlowDiagram.vue';
+import DagPlayer from '../../../components/DagPlayer.vue';
+import QualityGates from '../../../components/QualityGates.vue';
+import PermissionSimulator from '../../../components/PermissionSimulator.vue';
+
+<Aside>
+	Estos recorridos son simulaciones visuales. Los datos (plan, etapas, reglas de permisos) proceden del código real de PALLAQUINO, pero
+	nada se ejecuta.
+</Aside>
+
+## 1. De la solicitud al informe
+
+<FlowDiagram client:visible />
+
+## 2. Un plan (DAG) en ejecución
+
+<DagPlayer client:visible />
+
+## 3. Quality gates y remediación
+
+<QualityGates client:visible />
+
+## 4. Permisos de herramientas
+
+<PermissionSimulator client:visible />

@@ -1,0 +1,488 @@
+{
+  "technologies": [
+    {
+      "id": "angular",
+      "category": "framework",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "argocd",
+      "category": "delivery",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "aws",
+      "category": "cloud",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "azure",
+      "category": "cloud",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "clickhouse",
+      "category": "database",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "dart",
+      "category": "language",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "django",
+      "category": "framework",
+      "status": "VERIFIED_BASELINE"
+    },
+    {
+      "id": "docker_compose",
+      "category": "platform",
+      "status": "VERIFIED_BASELINE"
+    },
+    {
+      "id": "docker_engine",
+      "category": "platform",
+      "status": "VERIFIED_BASELINE"
+    },
+    {
+      "id": "dotnet",
+      "category": "runtime",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "dotnet_runtime",
+      "category": "runtime",
+      "status": "VERIFIED_BASELINE"
+    },
+    {
+      "id": "dotnet_sdk",
+      "category": "sdk",
+      "status": "VERIFIED_BASELINE"
+    },
+    {
+      "id": "flutter",
+      "category": "framework",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "gcp",
+      "category": "cloud",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "github_actions",
+      "category": "ci",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "go",
+      "category": "language",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "helm",
+      "category": "platform",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "java",
+      "category": "language",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "kafka",
+      "category": "messaging",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "kotlin",
+      "category": "language",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "kubernetes",
+      "category": "platform",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "laravel",
+      "category": "framework",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "mcp",
+      "category": "protocol",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "mongodb",
+      "category": "database",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "mysql",
+      "category": "database",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "nextjs",
+      "category": "framework",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "nginx",
+      "category": "web_server",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "nodejs",
+      "category": "runtime",
+      "status": "VERIFIED_BASELINE"
+    },
+    {
+      "id": "nuxt",
+      "category": "framework",
+      "status": "VERIFIED_BASELINE"
+    },
+    {
+      "id": "openid_connect",
+      "category": "protocol",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "opensearch",
+      "category": "search",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "php",
+      "category": "language",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "playwright",
+      "category": "testing",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "postgresql",
+      "category": "database",
+      "status": "VERIFIED_BASELINE"
+    },
+    {
+      "id": "python",
+      "category": "language",
+      "status": "VERIFIED_BASELINE"
+    },
+    {
+      "id": "rabbitmq",
+      "category": "messaging",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "react",
+      "category": "framework",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "react_native",
+      "category": "framework",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "redis",
+      "category": "database",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "spring_boot",
+      "category": "framework",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "sql_server",
+      "category": "database",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "swiftui",
+      "category": "framework",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "terraform",
+      "category": "infrastructure_as_code",
+      "status": "VERIFY_BEFORE_USE"
+    },
+    {
+      "id": "typescript",
+      "category": "language",
+      "status": "VERIFIED_BASELINE"
+    },
+    {
+      "id": "ubuntu",
+      "category": "operating_system",
+      "status": "VERIFIED_BASELINE"
+    },
+    {
+      "id": "vector_database",
+      "category": "database",
+      "status": "VERIFY_BEFORE_USE"
+    }
+  ],
+  "profiles": [
+    {
+      "id": "nextjs_saas",
+      "technologies": [
+        "nodejs",
+        "typescript",
+        "react",
+        "nextjs",
+        "postgresql",
+        "redis",
+        "docker_engine"
+      ],
+      "agents": [
+        "web_platform_engineer",
+        "backend_engineer",
+        "identity_access_engineer",
+        "database_engineer",
+        "qa_engineer"
+      ]
+    },
+    {
+      "id": "spring_enterprise",
+      "technologies": [
+        "java",
+        "spring_boot",
+        "postgresql",
+        "redis",
+        "kafka",
+        "docker_engine"
+      ],
+      "agents": [
+        "software_architect",
+        "backend_engineer",
+        "identity_access_engineer",
+        "integration_engineer",
+        "qa_engineer"
+      ]
+    },
+    {
+      "id": "dotnet_enterprise",
+      "technologies": [
+        "dotnet",
+        "sql_server",
+        "redis",
+        "docker_engine"
+      ],
+      "agents": [
+        "software_architect",
+        "backend_engineer",
+        "identity_access_engineer",
+        "database_engineer"
+      ]
+    },
+    {
+      "id": "cloud_native_microservices",
+      "technologies": [
+        "go",
+        "kubernetes",
+        "terraform",
+        "helm",
+        "argocd",
+        "kafka",
+        "postgresql",
+        "redis"
+      ],
+      "agents": [
+        "cloud_architect",
+        "platform_engineer",
+        "distributed_systems_architect",
+        "resilience_engineer",
+        "sre_engineer"
+      ]
+    },
+    {
+      "id": "flutter_mobile_backend",
+      "technologies": [
+        "flutter",
+        "dart",
+        "python",
+        "django",
+        "postgresql"
+      ],
+      "agents": [
+        "mobile_architect",
+        "mobile_qa_engineer",
+        "backend_engineer",
+        "identity_access_engineer"
+      ]
+    },
+    {
+      "id": "ai_rag_platform",
+      "technologies": [
+        "python",
+        "mcp",
+        "postgresql",
+        "vector_database",
+        "docker_engine"
+      ],
+      "agents": [
+        "ai_solution_architect",
+        "rag_engineer",
+        "ai_evaluation_engineer",
+        "ai_red_team_reviewer",
+        "data_privacy_reviewer"
+      ]
+    }
+  ],
+  "modes": [
+    {
+      "id": "GREENFIELD",
+      "autonomy": "STANDARD",
+      "description": "Broad design freedom; establish contracts and a walking skeleton early."
+    },
+    {
+      "id": "BROWNFIELD",
+      "autonomy": "STANDARD",
+      "description": "Preserve observed behavior unless change is explicit; map integration seams first."
+    },
+    {
+      "id": "PROTOTYPE",
+      "autonomy": "STANDARD",
+      "description": "Permit reversible shortcuts only when labelled and recorded as technical debt; never relax safety or secrets rules."
+    },
+    {
+      "id": "PRODUCTION",
+      "autonomy": "SAFE",
+      "description": "Require production-like evidence, staged rollout and explicit approval to deploy."
+    },
+    {
+      "id": "MAINTENANCE",
+      "autonomy": "STANDARD",
+      "description": "Minimize change surface and preserve compatibility."
+    },
+    {
+      "id": "UPGRADE",
+      "autonomy": "SAFE",
+      "description": "Audit official support and transitive compatibility before changing versions."
+    },
+    {
+      "id": "REFACTOR",
+      "autonomy": "STANDARD",
+      "description": "Keep observable behavior stable and prove it with characterization tests."
+    },
+    {
+      "id": "INCIDENT",
+      "autonomy": "SAFE",
+      "description": "Favor containment and recovery; preserve forensic evidence and document every risky action."
+    },
+    {
+      "id": "MIGRATION",
+      "autonomy": "SAFE",
+      "description": "Use expand/backfill/contract and verify coexistence plus recovery."
+    },
+    {
+      "id": "SECURITY_AUDIT",
+      "autonomy": "SAFE",
+      "description": "Read-only by default; separate findings from authorized remediation."
+    },
+    {
+      "id": "UPDATE_PALLAQUINO",
+      "autonomy": "STANDARD",
+      "description": "Review stale versions, deprecated skills, duplicate agents, obsolete routes, references and policies."
+    }
+  ],
+  "domain_packs": [
+    {
+      "id": "ecommerce",
+      "agents": [
+        "product_manager",
+        "software_architect",
+        "payments_domain_reviewer",
+        "inventory_consistency_reviewer"
+      ],
+      "skills": [
+        "ecommerce_domain_expert",
+        "fintech_domain_expert",
+        "accounting_domain_expert"
+      ]
+    },
+    {
+      "id": "restobar",
+      "agents": [
+        "erp_domain_expert",
+        "inventory_consistency_reviewer",
+        "payments_domain_reviewer"
+      ],
+      "skills": [
+        "restobar_domain_expert",
+        "accounting_domain_expert"
+      ]
+    },
+    {
+      "id": "healthcare",
+      "agents": [
+        "data_privacy_reviewer",
+        "security_architect",
+        "adversarial_reviewer"
+      ],
+      "skills": [
+        "healthcare_domain_expert",
+        "data_privacy_expert",
+        "application_security_expert"
+      ]
+    },
+    {
+      "id": "fintech",
+      "agents": [
+        "payments_domain_reviewer",
+        "security_architect",
+        "database_reliability_engineer"
+      ],
+      "skills": [
+        "fintech_domain_expert",
+        "accounting_domain_expert",
+        "idempotency_expert"
+      ]
+    },
+    {
+      "id": "logistics",
+      "agents": [
+        "integration_engineer",
+        "resilience_engineer",
+        "data_engineer"
+      ],
+      "skills": [
+        "logistics_domain_expert",
+        "event_driven_architecture_expert"
+      ]
+    },
+    {
+      "id": "manufacturing",
+      "agents": [
+        "erp_domain_expert",
+        "inventory_consistency_reviewer",
+        "database_reliability_engineer"
+      ],
+      "skills": [
+        "manufacturing_domain_expert",
+        "accounting_domain_expert"
+      ]
+    },
+    {
+      "id": "crm",
+      "agents": [
+        "product_manager",
+        "data_privacy_reviewer",
+        "integration_engineer"
+      ],
+      "skills": [
+        "crm_domain_expert",
+        "data_privacy_expert"
+      ]
+    }
+  ]
+}

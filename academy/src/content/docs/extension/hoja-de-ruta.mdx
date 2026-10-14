@@ -1,0 +1,40 @@
+---
+title: Hoja de ruta
+description: Lo que viene después de 0.5.0 y los puntos de extensión que ya están disponibles.
+sidebar:
+  order: 4
+lesson:
+  id: hoja-de-ruta
+  path: extension
+  difficulty: avanzado
+  duration: 8
+  objectives:
+    - Conocer las próximas fases y sus criterios de aceptación
+  prerequisites:
+    - contribuir
+  status: disponible
+  since: 0.5.0
+  next: extension-evaluacion
+---
+
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+Resumen de `docs/ROADMAP.md` y `docs/roadmap/ROADMAP_V050_TO_V060.md`. Ninguna fase empieza sin que la anterior cumpla sus criterios con
+evidencia.
+
+| Versión | Fase | Estado |
+|---|---|---|
+| 0.3.0 | Auditoría y estabilización | Publicada |
+| 0.4.0 | Inteligencia operativa: contratos v2, motor de orquestación, memoria, proveedores | Publicada |
+| 0.5.0 | Extensibilidad: plugins, MCP 2026-07-28, pasarela de herramientas, adaptadores | Publicada (2026-10-14) |
+| 0.6.0 | Automatización: *Project Factory* con perfiles verificables y motor de quality gates | Planificada |
+| 0.7.0 | Experiencia visual: API local opcional y *Control Center* web | Planificada |
+
+**Pendiente de 0.5.0** según su hoja de ruta: el ejecutor externo, los adaptadores de proveedores comerciales y la optimización del
+scheduler.
+
+**Criterio de 0.6.0:** cada plantilla generada debe pasar su propia CI en un contenedor limpio.
+
+**Siguiente:** [Evaluación de la ruta 9](../evaluacion/).
+
+<LessonComplete client:load lessonId="hoja-de-ruta" />

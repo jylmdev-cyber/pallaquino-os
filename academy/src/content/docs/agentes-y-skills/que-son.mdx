@@ -1,0 +1,55 @@
+---
+title: Qué son los agentes y las skills
+description: Roles con contrato y procedimientos especializados; en qué se diferencian y dónde están definidos.
+sidebar:
+  order: 1
+lesson:
+  id: agentes-que-son
+  path: agentes-y-skills
+  difficulty: intermedio
+  duration: 10
+  objectives:
+    - Diferenciar un agente de una skill
+    - Localizar la definición de cada uno en el framework
+  prerequisites:
+    - introduccion-conceptos
+  status: disponible
+  since: 0.4.0
+  next: agentes-catalogo
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import LessonComplete from '../../../components/LessonComplete.vue';
+import meta from '../../../data/generated/meta.json';
+
+| Aspecto | Agente | Skill |
+|---|---|---|
+| Qué es | Un **rol** que realiza o revisa una tarea | Un **procedimiento** especializado |
+| Ejemplos | `backend_engineer`, `security_architect`, `qa_engineer` | `django_expert`, `migration_safety_expert` |
+| Cuántos | {meta.counts.agents} | {meta.counts.skills} |
+| Definición | `agents/prompt_agent_<id>.md` y `registry/agents.json` | `skills/<id>/SKILL.md` y `registry/skills.json` |
+| Contrato | `registry/agent_contracts.json` | `registry/skill_contracts.json` |
+| Se usa | Se asigna a tareas del plan | Se carga solo cuando es relevante |
+
+Un agente **depende** de skills: el contrato de `backend_engineer` declara, por ejemplo, la skill `risk_analysis_expert`.
+
+<Aside title="Neutralidad de proveedor">
+	Un agente de PALLAQUINO no es un modelo de IA. Es una definición de rol que cualquier proveedor (o una persona) puede asumir. El
+	motor elige el rol; el proveedor configurado responde. Con el proveedor `mock`, la respuesta es simulada y se marca como tal.
+</Aside>
+
+## Qué contiene un contrato
+
+Cada agente tiene un contrato v2 con:
+
+- **capabilities**: qué sabe hacer (`code`, `test`, `design`…);
+- **inputs** y **outputs**: qué recibe y qué entrega;
+- **tools.allowed** y **tools.approval_required**: herramientas permitidas y las que necesitan aprobación;
+- **risk_limit**: el nivel de riesgo máximo con el que puede actuar;
+- **activation**: reglas de enrutamiento, perfiles y paquetes de dominio que lo activan.
+
+Lo verás completo en la lección [Contratos](../contratos/).
+
+**Siguiente:** [Explora el catálogo](../catalogo/).
+
+<LessonComplete client:load lessonId="agentes-que-son" />

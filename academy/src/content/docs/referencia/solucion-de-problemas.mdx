@@ -1,0 +1,45 @@
+---
+title: Solución de problemas
+description: Errores conocidos, sus causas y cómo resolverlos, incluidos los problemas abiertos de la versión actual.
+sidebar:
+  order: 8
+---
+
+## Instalación y ejecución
+
+| Síntoma | Causa | Solución |
+|---|---|---|
+| `No module named pallaquino_cli` | La carpeta actual no contiene el paquete y no está instalado | Trabaja desde `universal_ai_fullstack_orchestrator` o `.pallaquino`, o instala con `python -m pip install -e ./universal_ai_fullstack_orchestrator` |
+| `error: unrecognized arguments` | Opción inexistente o antes del subcomando | Coloca las opciones después del subcomando; consulta `<comando> --help` |
+| `… is not a PALLAQUINO root` (código 2) | `--root` o `PALLAQUINO_ROOT` apuntan a otra carpeta | Apunta a la carpeta con `manifest.json` |
+| El comando `pallaquino` actúa sobre el framework y no sobre tu proyecto | Con el paquete instalado, la raíz por defecto es su checkout | `--root .pallaquino` o `PALLAQUINO_ROOT` |
+| `Filename too long` al clonar (Windows) | Rutas largas | `git config --global core.longpaths true` y una carpeta corta |
+
+## Validación
+
+| Síntoma | Causa | Solución |
+|---|---|---|
+| `validate_git_authorship` falla en el clon del framework | Comprobación de entorno con la identidad del mantenedor | Esperado: usa `validate --integrity-only --json` |
+| `validate_git_authorship` falla en tu proyecto | `init` copió la identidad del mantenedor | `identity --name … --email …` y `identity --apply-local` desde `.pallaquino` |
+| `not a Git repository` | El proyecto no tiene Git | `git init` en el proyecto |
+| `analyze` deja archivos modificados | Regenera `repository/REPOSITORY_MAP.*` | Esperado; `git checkout -- repository/` para descartarlo |
+
+## Ejecución y herramientas
+
+| Síntoma | Causa | Solución |
+|---|---|---|
+| `run` termina con código 3 | Una tarea espera aprobación | `approve --execution <id> --task <tarea>` y `resume --execution <id>` |
+| `ExecutionLocked` | Otro proceso tiene el lease | Espera, o `--force` si sabes que el proceso terminó |
+| `MemoryCorrupted` | Se editó la memoria fuera de PALLAQUINO | `memory verify --json` para ver qué registros fallan |
+| `DENIED` (código 5) | Falta un grant | `permissions grant <herramienta> …` |
+| `no test command detected` | El workspace no tiene `tests/test*.py` ni `package.json` con script `test` | Añade tests con esa convención |
+| `a plugin without a trust policy never executes` | Plugin sin confianza | `plugins trust <id> --approved-by <nombre>` |
+
+## Problemas abiertos (0.5.0)
+
+- **Identidad con caracteres no ASCII en Windows.** `identity --apply-local` aplica bien un nombre como `Ana Pérez`, pero la comparación
+  devuelve `"matches": false` porque la salida de Git se decodifica con la página de códigos de Windows. Mientras se corrige, usa un nombre
+  sin tildes. Detectado el 2026-10-14 al verificar esta academia.
+
+Si encuentras otro problema, [abre un Issue](https://github.com/jylmdev-cyber/pallaquino-os/issues) con el comando, la salida y tu sistema
+operativo.

@@ -1,0 +1,85 @@
+---
+title: Conceptos clave
+description: Agente, skill, pipeline, gate, riesgo, plan, checkpoint, handoff, evidencia y RECONSTRUCTED, explicados con ejemplos.
+sidebar:
+  order: 3
+lesson:
+  id: introduccion-conceptos
+  path: introduccion
+  difficulty: principiante
+  duration: 12
+  objectives:
+    - Definir los diez conceptos con los que trabaja PALLAQUINO
+    - Identificar cada concepto en una salida real de la CLI
+  prerequisites:
+    - introduccion-problemas
+  status: disponible
+  since: 0.2.1
+  next: introduccion-como-funciona
+---
+
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+Estos son los términos que verás en todas las rutas. Las definiciones siguen el glosario del propio framework
+(`docs/DOMAIN_GLOSSARY.md`).
+
+<dl class="glossary">
+
+<dt>Agente</dt>
+<dd>Rol acotado que realiza o revisa una tarea, por ejemplo `backend_engineer` o `security_architect`. Tiene un <strong>contrato</strong>:
+qué recibe, qué entrega, qué herramientas puede usar y hasta qué nivel de riesgo puede actuar.</dd>
+
+<dt>Skill</dt>
+<dd>Procedimiento especializado, independiente de versiones concretas, que se carga solo cuando es relevante (por ejemplo
+`django_expert` o `migration_safety_expert`).</dd>
+
+<dt>Pipeline</dt>
+<dd>Secuencia estricta de etapas, de `REQUEST` a `HANDOFF`. Cada etapa declara a dónde se avanza si va bien (`success_to`) y a dónde se
+vuelve si falla (`failure_return_to`).</dd>
+
+<dt>Gate</dt>
+<dd>Condición respaldada por evidencia que se exige para avanzar, como `TEST`, `SECURITY_CHECK` o `CODE_REVIEW`.</dd>
+
+<dt>Riesgo</dt>
+<dd>Clasificación determinista de una solicitud (`LOW`, `MEDIUM`, `HIGH`, `CRITICAL`) según factores como autenticación, producción
+o borrado de datos. Es <em>monótona</em>: añadir factores nunca la reduce.</dd>
+
+<dt>Plan (DAG)</dt>
+<dd>Grafo dirigido sin ciclos de tareas, cada una con agente, dependencias y permisos. Planificar <strong>no ejecuta nada</strong>.</dd>
+
+<dt>Checkpoint</dt>
+<dd>Instantánea duradera que basta para reanudar el trabajo tras una interrupción.</dd>
+
+<dt>Handoff</dt>
+<dd>Declaración neutral respecto al proveedor de lo hecho, lo pendiente y lo no verificado, para que otro agente o persona continúe.</dd>
+
+<dt>Evidencia</dt>
+<dd>Resultado real (comando, código de salida, salida redactada) que respalda que algo ocurrió. Sin evidencia, nada se declara hecho.</dd>
+
+<dt>RECONSTRUCTED</dt>
+<dd>Marca para información inferida a partir de artefactos, en lugar de estado confirmado. Por ejemplo, un checkpoint sin Git muestra
+`"git_diff": "RECONSTRUCTED: unavailable"`.</dd>
+
+</dl>
+
+## Ejemplo: los conceptos en una salida real
+
+En la salida de `risk` reconocerás el **riesgo** (`level`), los **gates** (`required_gates`), los **agentes** y las **skills**
+propuestos (`routing`):
+
+```json
+{
+  "level": "HIGH",
+  "matched_factors": ["authentication", "authorization"],
+  "required_gates": ["TEST", "INTEGRATION", "E2E", "BUILD", "SECURITY_CHECK", "CODE_REVIEW", "ROLLBACK_READINESS"],
+  "routing": { "agents": [{ "id": "backend_engineer", "score": 2 }, "…"] }
+}
+```
+
+## Ejercicio
+
+Sin mirar la lista, escribe con tus palabras la diferencia entre **checkpoint** y **handoff**. Después compruébalo arriba.
+
+**Siguiente:** [Cómo funciona](../como-funciona/).
+
+<LessonComplete client:load lessonId="introduccion-conceptos" />

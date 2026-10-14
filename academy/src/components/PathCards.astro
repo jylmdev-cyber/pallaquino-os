@@ -1,0 +1,40 @@
+---
+/** Learning-path cards with real lesson counts and estimated duration, built from lesson frontmatter. */
+import { getCollection } from 'astro:content';
+import { PATHS } from '../lib/paths';
+
+interface Props { compact?: boolean }
+const { compact = false } = Astro.props;
+const base = import.meta.env.BASE_URL.replace(/\/$/, '');
+const entries = await getCollection('docs', (e) => Boolean(e.data.lesson) && !e.id.startsWith('en/'));
+const cards = PATHS.map((p) => {
+	const lessons = entries.filter((e) => e.data.lesson!.path === p.id).sort((a, b) => (a.data.sidebar?.order ?? 99) - (b.data.sidebar?.order ?? 99));
+	return { ...p, count: lessons.length, minutes: lessons.reduce((n, e) => n + e.data.lesson!.duration, 0), first: lessons[0], lessons };
+}).filter((p) => p.count);
+---
+
+<ul class="path-cards">
+	{cards.map((p) => (
+		<li class="path-card">
+			<p class="path-order">Ruta {p.order} · {p.level}</p>
+			<h3><a href={`${base}/${p.first!.id}/`}>{p.title}</a></h3>
+			<p>{p.summary}</p>
+			<p class="path-meta">{p.count} lecciones · ~{p.minutes} min</p>
+			{!compact && (
+				<ol class="path-lessons">
+					{p.lessons.map((e) => <li><a href={`${base}/${e.id}/`}>{e.data.title}</a>{e.data.lesson!.status !== 'disponible' && <span class="soon"> ({e.data.lesson!.status})</span>}</li>)}
+				</ol>
+			)}
+		</li>
+	))}
+</ul>
+
+<style>
+	.path-cards { list-style: none; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(17rem, 1fr)); gap: 1rem; }
+	.path-card { border: 1px solid var(--sl-color-gray-5); border-radius: 0.75rem; padding: 1rem; margin: 0; background: var(--sl-color-gray-6); }
+	.path-card h3 { margin: 0.25rem 0; font-size: var(--sl-text-lg); }
+	.path-card p { margin: 0.25rem 0; }
+	.path-order, .path-meta { font-size: var(--sl-text-xs); color: var(--sl-color-gray-2); text-transform: uppercase; letter-spacing: 0.04em; }
+	.path-lessons { font-size: var(--sl-text-sm); margin-top: 0.5rem; padding-inline-start: 1.2rem; }
+	.soon { color: var(--academy-warning); font-size: var(--sl-text-xs); }
+</style>

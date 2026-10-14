@@ -1,0 +1,114 @@
+---
+title: Requisitos del sistema
+description: Python 3.11 o superior y Git en Windows, Linux y macOS, con cómo comprobarlos.
+sidebar:
+  order: 1
+lesson:
+  id: instalacion-requisitos
+  path: instalacion
+  difficulty: principiante
+  duration: 10
+  objectives:
+    - Saber qué necesita PALLAQUINO para funcionar
+    - Instalar o comprobar Python 3.11+ y Git en tu sistema operativo
+  prerequisites:
+    - Saber abrir una terminal
+  status: disponible
+  since: 0.2.1
+---
+
+import { Aside, Tabs, TabItem } from '@astrojs/starlight/components';
+import CheckList from '../../../components/CheckList.vue';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+PALLAQUINO solo necesita **dos cosas**:
+
+| Requisito | Por qué |
+|---|---|
+| **Python 3.11 o superior** | El framework y su CLI están escritos en Python y usan únicamente la biblioteca estándar. |
+| **Git** | Para descargar el repositorio. Además, algunas validaciones y el adaptador `core.git` lo usan. |
+
+No hace falta Node, Docker, una base de datos ni una clave de API. Las funciones con IA real (proveedor Ollama o futuros adaptadores
+comerciales) son opcionales.
+
+## Paso 1. Comprueba Python
+
+<Tabs syncKey="os">
+	<TabItem label="Windows (PowerShell)">
+		```powershell
+		python --version
+		```
+		Si no aparece una versión 3.11 o superior, instálalo desde [python.org](https://www.python.org/downloads/) (marca *Add python.exe to PATH*)
+		o con `winget install Python.Python.3.12`, y abre una terminal nueva.
+	</TabItem>
+	<TabItem label="Windows (Git Bash)">
+		```bash
+		python --version
+		```
+		Git Bash usa el mismo Python que PowerShell. Si `python` abre la Microsoft Store, instala Python desde python.org.
+	</TabItem>
+	<TabItem label="Linux (Ubuntu/Debian)">
+		```bash
+		python3 --version
+		```
+		Ubuntu 24.04 ya trae Python 3.12. En versiones antiguas: `sudo apt update && sudo apt install python3`.
+	</TabItem>
+	<TabItem label="macOS">
+		```bash
+		python3 --version
+		```
+		Si falta o es anterior a 3.11: `brew install python@3.12` (con Homebrew) o el instalador de python.org.
+	</TabItem>
+</Tabs>
+
+**¿Qué hace este comando?** Muestra la versión de Python que usará la terminal.
+**Resultado esperado:** algo como `Python 3.11.15` o `Python 3.12.x`. Cualquier 3.11 o superior sirve.
+
+<Aside>En Linux y macOS el comando suele ser `python3`. En el resto de lecciones verás `python`; si tu sistema usa `python3`, sustitúyelo.</Aside>
+
+## Paso 2. Comprueba Git
+
+<Tabs syncKey="os">
+	<TabItem label="Windows (PowerShell)">
+		```powershell
+		git --version
+		```
+		Si no está, instala [Git para Windows](https://git-scm.com/download/win) o usa `winget install Git.Git`.
+	</TabItem>
+	<TabItem label="Windows (Git Bash)">
+		```bash
+		git --version
+		```
+	</TabItem>
+	<TabItem label="Linux (Ubuntu/Debian)">
+		```bash
+		git --version
+		```
+		Si falta: `sudo apt install git`.
+	</TabItem>
+	<TabItem label="macOS">
+		```bash
+		git --version
+		```
+		Si falta, macOS ofrece instalar las *Command Line Tools*; o usa `brew install git`.
+	</TabItem>
+</Tabs>
+
+**Resultado esperado:** `git version 2.x`. Cualquier versión reciente sirve.
+
+## Error frecuente
+
+> `python` no se reconoce como comando (Windows) o `command not found` (Linux/macOS).
+
+Python no está en el `PATH`. En Windows, reinstala marcando *Add python.exe to PATH* y abre una terminal nueva; en Linux/macOS usa
+`python3`.
+
+<CheckList client:load group="instalacion-requisitos" items={[
+	{ id: 'python', label: 'Mi Python es 3.11 o superior' },
+	{ id: 'git', label: 'Git responde con su versión' },
+]} />
+
+**Resumen:** tienes todo lo necesario; PALLAQUINO no requiere nada más.
+**Siguiente paso:** [Instala y ejecuta PALLAQUINO por primera vez](../primera-instalacion/).
+
+<LessonComplete client:load lessonId="instalacion-requisitos" />

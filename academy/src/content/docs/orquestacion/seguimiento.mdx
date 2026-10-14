@@ -1,0 +1,64 @@
+---
+title: Seguimiento de ejecuciones
+description: status, executions report, trace, metrics y export, y cómo pausar o cancelar una ejecución.
+sidebar:
+  order: 4
+lesson:
+  id: orquestacion-seguimiento
+  path: orquestacion
+  difficulty: intermedio
+  duration: 12
+  objectives:
+    - Consultar el estado y las métricas de una ejecución
+    - Obtener el informe de solicitud a resultado
+    - Pausar o cancelar una ejecución en curso
+  prerequisites:
+    - orquestacion-gates
+  status: disponible
+  since: 0.4.0
+  next: orquestacion-evaluacion
+---
+
+import Transcript from '../../../components/Transcript.astro';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+| Necesito… | Comando |
+|---|---|
+| Listar ejecuciones | `executions list --json` |
+| Estado, tareas y uso de una ejecución | `status --execution <id> --json` |
+| Informe solicitud → plan → agente → validación → resultado | `executions report <id> --json` |
+| Traza detallada | `executions trace <id> --json` |
+| Métricas | `executions metrics <id> --json` |
+| Exportar a JSONL | `executions export <id> --json` (o `--output RUTA`) |
+| Pausar / cancelar | `pause --execution <id>` / `cancel --execution <id>` |
+
+## El informe
+
+```bash
+python -m pallaquino_cli executions report <execution_id> --json
+```
+
+<Transcript id="project-report" lines={45} />
+
+Cada tarea muestra cómo se eligió su agente (`routing.method`), qué herramientas tenía permitidas y su resultado. Las tareas simuladas se
+distinguen de las reales.
+
+## Exportar
+
+`executions export` escribe por defecto `logs/<execution_id>.jsonl`, con campos compatibles con OpenTelemetry, para llevar la traza a
+otras herramientas.
+
+## Pausar y cancelar
+
+Desde otra terminal, mientras se ejecuta un plan largo:
+
+```bash
+python -m pallaquino_cli pause --execution <execution_id> --json
+python -m pallaquino_cli cancel --execution <execution_id> --json
+```
+
+Una ejecución pausada se continúa con `resume --execution <id>`.
+
+**Siguiente:** [Evaluación de la ruta 5](../evaluacion/).
+
+<LessonComplete client:load lessonId="orquestacion-seguimiento" />

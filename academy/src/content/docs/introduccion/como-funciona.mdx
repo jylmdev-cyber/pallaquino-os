@@ -1,0 +1,54 @@
+---
+title: Cómo funciona
+description: El recorrido de una solicitud por PALLAQUINO, de la intención al informe, con un diagrama interactivo.
+sidebar:
+  order: 4
+lesson:
+  id: introduccion-como-funciona
+  path: introduccion
+  difficulty: principiante
+  duration: 10
+  objectives:
+    - Seguir el recorrido de una solicitud hasta su informe
+    - Saber qué etapas son deterministas y cuáles usan un proveedor de IA
+  prerequisites:
+    - introduccion-conceptos
+  status: disponible
+  since: 0.4.0
+  next: introduccion-limites
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import FlowDiagram from '../../../components/FlowDiagram.vue';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+Pulsa **Recorrer el flujo** para ver cómo avanza una solicitud, o elige un paso. Cada paso describe lo que hace la versión actual del framework.
+
+<FlowDiagram client:visible />
+
+## Los pasos, en palabras
+
+1. **Solicitud.** Escribes lo que quieres en lenguaje natural: `pallaquino plan "Agregar un módulo de inventario"`.
+2. **Análisis de intención y riesgo.** De forma determinista se detecta la intención principal, la complejidad, las capacidades
+   necesarias y el riesgo. Con `--ai`, un proveedor configurado ayuda a interpretar la intención, pero el riesgo sigue siendo determinista.
+3. **Selección de agentes.** Cada tarea recibe un agente por el rol de su etapa del pipeline o por reglas de enrutamiento, con los
+   motivos registrados.
+4. **Plan (DAG).** Las tareas forman un grafo validado: sin ciclos, con dependencias, niveles paralelizables y camino crítico.
+5. **Ejecución.** `pallaquino run --plan <plan_id>` ejecuta el grafo con un scheduler concurrente, locks de archivos, reintentos acotados y
+   las herramientas a través de la pasarela de permisos. Las herramientas gobernadas esperan tu aprobación.
+6. **Validación.** Los tests del proyecto se ejecutan de verdad y su código de salida queda como evidencia.
+7. **Memoria e informe.** La ejecución se guarda en la memoria del proyecto y `executions report` reconstruye
+   solicitud → plan → agente → validación → resultado.
+
+<Aside type="note" title="Lo que todavía no existe">
+	El **Control Center visual** (un panel web para proyectos, ejecuciones y aprobaciones) está previsto para la versión 0.7.0. Hoy todo
+	se maneja con la CLI y archivos JSON.
+</Aside>
+
+## Ejercicio
+
+En el diagrama, identifica qué pasos podrían detenerse esperando a una persona. (Pista: busca las aprobaciones.)
+
+**Siguiente:** [Límites y casos de uso](../limites-y-casos-de-uso/).
+
+<LessonComplete client:load lessonId="introduccion-como-funciona" />

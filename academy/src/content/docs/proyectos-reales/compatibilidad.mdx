@@ -1,0 +1,62 @@
+---
+title: Compatibilidad con otros stacks
+description: Qué hace hoy PALLAQUINO en proyectos Django, Nuxt, Laravel y otros, y qué no está verificado todavía.
+sidebar:
+  order: 3
+lesson:
+  id: compatibilidad
+  path: proyectos-reales
+  difficulty: intermedio
+  duration: 12
+  objectives:
+    - Saber qué funciona en cualquier stack y qué depende del lenguaje
+    - Evitar suponer funciones que todavía no existen
+  prerequisites:
+    - proyecto-python
+  status: disponible
+  since: 0.5.0
+  next: proyectos-evaluacion
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import LessonComplete from '../../../components/LessonComplete.vue';
+import meta from '../../../data/generated/meta.json';
+
+PALLAQUINO conoce {meta.counts.technologies} tecnologías y {meta.counts.profiles} perfiles de stack en su registro (Django, Nuxt, Laravel,
+Next.js, Spring Boot, .NET, Flutter y más). Conocer una tecnología significa que el router puede **elegir agentes y skills** para ella y
+que existen versiones verificadas en `stack`; **no** significa que el framework genere o ejecute proyectos de ese stack.
+
+## Matriz honesta
+
+| Capacidad | Python (`unittest`) | Django | Nuxt / Node | Otros stacks |
+|---|---|---|---|---|
+| `init`, `analyze`, `risk`, `security audit` | Verificado | Funciona (no depende del lenguaje) | Funciona (no depende del lenguaje) | Funciona (no depende del lenguaje) |
+| Selección de agentes y skills | Verificado | Regla `django_auth`, skill `django_expert` | Skills `nuxt_expert` y `nodejs_expert` | Según `routing_rules.json` |
+| Detección automática del comando de tests | `tests/test*.py` → `python -m unittest discover -s tests` | Solo si los tests siguen esa convención | `package.json` con script `test` → `npm test` | No detectado |
+| `plan` + `run` con tests reales | **Verificado** con el proyecto de ejemplo | No verificado | No verificado | No verificado |
+| Generar un proyecto desde cero | No disponible | Previsto en 0.6.0 (*Project Factory*) | Previsto en 0.6.0 | Previsto en 0.6.0 |
+
+<Aside type="caution" title="Sin evidencia, no verificado">
+	Esta academia no incluye tutoriales de Django o Nuxt de principio a fin porque esos recorridos no se han ejecutado y comprobado con la
+	versión actual. Se añadirán cuando existan y pasen su verificación.
+</Aside>
+
+## Cómo comprobarlo en tu proyecto
+
+```bash
+python -m pallaquino_cli agents match "agregar autenticación con django" --json
+python -m pallaquino_cli plan "agregar autenticación con django" --workspace .. --json
+```
+
+Revisa en el plan la tarea `verify`. En un proyecto sin tests detectables, el plan real avisa:
+
+```text
+T05: no test command detected in the workspace; the task will fail until one exists
+```
+
+La ejecución solo permite comandos de tests de una lista cerrada (`python -m unittest`, `python -m pytest`, `npm test`, `npm run test`,
+`dotnet test`, `go test`, `php artisan test`), pero hoy solo detecta automáticamente los dos casos de la tabla.
+
+**Siguiente:** [Evaluación de la ruta 8](../evaluacion/).
+
+<LessonComplete client:load lessonId="compatibilidad" />

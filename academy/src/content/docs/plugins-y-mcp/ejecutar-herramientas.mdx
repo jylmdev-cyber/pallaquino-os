@@ -1,0 +1,75 @@
+---
+title: Ejecutar herramientas con seguridad
+description: tools list, inspect, check y run; grants con caducidad y usos; auditoría de llamadas y revocación.
+sidebar:
+  order: 2
+lesson:
+  id: herramientas-ejecutar
+  path: plugins-y-mcp
+  difficulty: intermedio
+  duration: 15
+  objectives:
+    - Ejecutar una herramienta de lectura y otra de escritura con un grant acotado
+    - Revisar el registro de llamadas y revocar un grant
+  prerequisites:
+    - herramientas-permisos
+  status: disponible
+  since: 0.5.0
+  next: mcp-conectar
+---
+
+import Transcript from '../../../components/Transcript.astro';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+Ejecuta estos comandos en tu proyecto (desde `.pallaquino`). Las herramientas actúan sobre el **workspace** del proyecto; puedes
+indicarlo con `--workspace`.
+
+## Descubrir
+
+```bash
+python -m pallaquino_cli tools list
+python -m pallaquino_cli tools inspect core.files.write --json
+python -m pallaquino_cli tools route --capability FILE_READ --json
+```
+
+<Transcript id="tools-list" />
+
+`--no-plugins` evita arrancar los plugins habilitados al listar.
+
+## Leer: permitido por contrato
+
+```bash
+python -m pallaquino_cli tools run core.git.status --json
+```
+
+## Escribir: requiere un grant
+
+```bash
+python -m pallaquino_cli tools run core.files.write --args '{"path":"notes/a.txt","content":"hola"}' --json
+python -m pallaquino_cli permissions grant core.files.write --operation WRITE_OPERATION --days 1 --max-uses 3 --reason "notas" --json
+python -m pallaquino_cli tools run core.files.write --args '{"path":"notes/a.txt","content":"hola"}' --json
+```
+
+La primera llamada se deniega (código 5). Tras el grant, se completa. Aun con grant, escribir en `.env` (archivo sensible) o fuera del
+workspace (`../fuera.txt`) se deniega.
+
+## Efectos externos: aprobación por llamada
+
+Para herramientas con política `per_call`, añade `--approve` a **esa** llamada. La aprobación se liga al SHA-256 de la herramienta y sus
+argumentos y se consume al usarse; ningún grant la sustituye.
+
+## Auditar y revocar
+
+```bash
+python -m pallaquino_cli tools calls --json
+python -m pallaquino_cli tools metrics --json
+python -m pallaquino_cli permissions history --json
+python -m pallaquino_cli permissions revoke <grant_id> --json
+```
+
+La salida de cualquier herramienta es un dato no confiable: los valores con forma de secreto se redactan (`redacted: true`) y el contenido
+con instrucciones se marca (`suspicious_instructions: true`).
+
+**Siguiente:** [Conecta un servidor MCP](../mcp/).
+
+<LessonComplete client:load lessonId="herramientas-ejecutar" />

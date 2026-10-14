@@ -78,6 +78,16 @@ python -m pallaquino_cli security audit --target ..
 python scripts/run_codebase_analysis_demo.py   # demo end-to-end offline (0.5.0)
 ```
 
+En un clon recién descargado, `doctor` y `validate --json` terminan con código 1 por un único motivo:
+`validate_git_authorship`, una comprobación de entorno que verifica la identidad de commits del mantenedor. La integridad
+del framework se comprueba con `python -m pallaquino_cli validate --integrity-only --json`, que termina con código 0.
+`analyze` reescribe `repository/REPOSITORY_MAP.json` y `.md`; si no quieres conservar el cambio, usa
+`git checkout -- repository/`.
+
+Para aprender paso a paso, con una terminal simulada, evaluaciones y salidas reales, usa la
+[PALLAQUINO Academy](academy/README.md), en `academy/`. Se publica como sitio estático solo con aprobación del propietario; ver
+[`docs/learning/PUBLISHING.md`](docs/learning/PUBLISHING.md).
+
 Instalación opcional (editable o normal):
 
 ```bash
@@ -204,7 +214,8 @@ versiones oficiales, compatibilidad, amenazas, datos y estrategia de rollback.
 ```text
 .
 ├── .github/                             # CI, Dependabot y plantillas
-├── docs/                                # auditoría, arquitectura, roadmap, ADR, demo
+├── academy/                             # PALLAQUINO Academy: portal educativo estático (Astro + Starlight)
+├── docs/                                # auditoría, arquitectura, roadmap, ADR, demo, learning/
 ├── scripts/                             # utilidades del repositorio
 ├── universal_ai_fullstack_orchestrator/
 │   ├── agents/                          # contratos de agentes

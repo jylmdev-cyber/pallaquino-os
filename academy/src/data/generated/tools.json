@@ -1,0 +1,414 @@
+{
+  "capabilities": [
+    "FILE_READ",
+    "FILE_WRITE",
+    "CODE_EXECUTION",
+    "GIT_READ",
+    "GIT_WRITE",
+    "DATABASE_READ",
+    "DATABASE_WRITE",
+    "NETWORK_READ",
+    "NETWORK_WRITE",
+    "CLOUD_MANAGEMENT",
+    "DEPLOYMENT",
+    "SECRETS_ACCESS"
+  ],
+  "operations": [
+    "READ_ONLY",
+    "WRITE_OPERATION",
+    "SENSITIVE_OPERATION",
+    "DESTRUCTIVE_OPERATION",
+    "EXTERNAL_SIDE_EFFECT"
+  ],
+  "plugin_types": [
+    "CORE_PLUGIN",
+    "AGENT_PLUGIN",
+    "SKILL_PLUGIN",
+    "TOOL_PLUGIN",
+    "MCP_CONNECTOR",
+    "PROVIDER_ADAPTER",
+    "DATABASE_CONNECTOR",
+    "DEVOPS_CONNECTOR",
+    "OBSERVABILITY_PLUGIN",
+    "QUALITY_GATE_PLUGIN",
+    "PROJECT_TEMPLATE_PLUGIN"
+  ],
+  "builtin": [
+    {
+      "tool_id": "core.files.list",
+      "description": "List files under a workspace directory (no symlink traversal).",
+      "capabilities": [
+        "FILE_READ"
+      ],
+      "operation": "READ_ONLY",
+      "risk": "LOW",
+      "approval": "contract",
+      "provides": [
+        "file_listing"
+      ],
+      "default_enabled": true,
+      "arguments": [
+        "max_entries",
+        "path",
+        "pattern",
+        "recursive"
+      ],
+      "required": []
+    },
+    {
+      "tool_id": "core.files.read",
+      "description": "Read a text file inside the workspace; sensitive files are refused.",
+      "capabilities": [
+        "FILE_READ"
+      ],
+      "operation": "READ_ONLY",
+      "risk": "LOW",
+      "approval": "contract",
+      "provides": [
+        "file_read"
+      ],
+      "default_enabled": true,
+      "arguments": [
+        "max_bytes",
+        "path"
+      ],
+      "required": [
+        "path"
+      ]
+    },
+    {
+      "tool_id": "core.files.search",
+      "description": "Search text files for a literal or regular expression.",
+      "capabilities": [
+        "FILE_READ"
+      ],
+      "operation": "READ_ONLY",
+      "risk": "LOW",
+      "approval": "contract",
+      "provides": [
+        "code_search"
+      ],
+      "default_enabled": true,
+      "arguments": [
+        "glob",
+        "max_matches",
+        "path",
+        "query",
+        "regex"
+      ],
+      "required": [
+        "query"
+      ]
+    },
+    {
+      "tool_id": "core.files.stat",
+      "description": "Metadata of a workspace path.",
+      "capabilities": [
+        "FILE_READ"
+      ],
+      "operation": "READ_ONLY",
+      "risk": "LOW",
+      "approval": "contract",
+      "provides": [],
+      "default_enabled": true,
+      "arguments": [
+        "path"
+      ],
+      "required": [
+        "path"
+      ]
+    },
+    {
+      "tool_id": "core.files.write",
+      "description": "Create or replace a text file inside the workspace (governed write).",
+      "capabilities": [
+        "FILE_WRITE"
+      ],
+      "operation": "WRITE_OPERATION",
+      "risk": "MEDIUM",
+      "approval": "grant",
+      "provides": [],
+      "default_enabled": true,
+      "arguments": [
+        "content",
+        "create_only",
+        "expected_sha256",
+        "path"
+      ],
+      "required": [
+        "path",
+        "content"
+      ]
+    },
+    {
+      "tool_id": "core.git.branches",
+      "description": "Local branches.",
+      "capabilities": [
+        "GIT_READ"
+      ],
+      "operation": "READ_ONLY",
+      "risk": "LOW",
+      "approval": "contract",
+      "provides": [],
+      "default_enabled": true,
+      "arguments": [],
+      "required": []
+    },
+    {
+      "tool_id": "core.git.diff",
+      "description": "Unstaged or staged diff, optionally for one path.",
+      "capabilities": [
+        "GIT_READ"
+      ],
+      "operation": "READ_ONLY",
+      "risk": "LOW",
+      "approval": "contract",
+      "provides": [
+        "git_diff"
+      ],
+      "default_enabled": true,
+      "arguments": [
+        "max_bytes",
+        "path",
+        "staged",
+        "stat_only"
+      ],
+      "required": []
+    },
+    {
+      "tool_id": "core.git.log",
+      "description": "Recent commits.",
+      "capabilities": [
+        "GIT_READ"
+      ],
+      "operation": "READ_ONLY",
+      "risk": "LOW",
+      "approval": "contract",
+      "provides": [
+        "git_history"
+      ],
+      "default_enabled": true,
+      "arguments": [
+        "max_count",
+        "path"
+      ],
+      "required": []
+    },
+    {
+      "tool_id": "core.git.show",
+      "description": "One commit with its file statistics.",
+      "capabilities": [
+        "GIT_READ"
+      ],
+      "operation": "READ_ONLY",
+      "risk": "LOW",
+      "approval": "contract",
+      "provides": [],
+      "default_enabled": true,
+      "arguments": [
+        "revision"
+      ],
+      "required": [
+        "revision"
+      ]
+    },
+    {
+      "tool_id": "core.git.stage",
+      "description": "Stage workspace paths (local, reversible with git restore --staged).",
+      "capabilities": [
+        "GIT_WRITE"
+      ],
+      "operation": "WRITE_OPERATION",
+      "risk": "MEDIUM",
+      "approval": "grant",
+      "provides": [],
+      "default_enabled": true,
+      "arguments": [
+        "paths"
+      ],
+      "required": [
+        "paths"
+      ]
+    },
+    {
+      "tool_id": "core.git.status",
+      "description": "Branch and working-tree status (porcelain).",
+      "capabilities": [
+        "GIT_READ"
+      ],
+      "operation": "READ_ONLY",
+      "risk": "LOW",
+      "approval": "contract",
+      "provides": [
+        "git_status"
+      ],
+      "default_enabled": true,
+      "arguments": [],
+      "required": []
+    },
+    {
+      "tool_id": "core.github.issues",
+      "description": "Issues of a repository.",
+      "capabilities": [
+        "NETWORK_READ"
+      ],
+      "operation": "READ_ONLY",
+      "risk": "LOW",
+      "approval": "contract",
+      "provides": [],
+      "default_enabled": false,
+      "arguments": [
+        "limit",
+        "owner",
+        "repo",
+        "state"
+      ],
+      "required": [
+        "owner",
+        "repo"
+      ]
+    },
+    {
+      "tool_id": "core.github.pulls",
+      "description": "Pull requests of a repository.",
+      "capabilities": [
+        "NETWORK_READ"
+      ],
+      "operation": "READ_ONLY",
+      "risk": "LOW",
+      "approval": "contract",
+      "provides": [],
+      "default_enabled": false,
+      "arguments": [
+        "limit",
+        "owner",
+        "repo",
+        "state"
+      ],
+      "required": [
+        "owner",
+        "repo"
+      ]
+    },
+    {
+      "tool_id": "core.github.repository",
+      "description": "Repository summary.",
+      "capabilities": [
+        "NETWORK_READ"
+      ],
+      "operation": "READ_ONLY",
+      "risk": "LOW",
+      "approval": "contract",
+      "provides": [],
+      "default_enabled": false,
+      "arguments": [
+        "owner",
+        "repo"
+      ],
+      "required": [
+        "owner",
+        "repo"
+      ]
+    },
+    {
+      "tool_id": "core.github.workflow_runs",
+      "description": "Recent GitHub Actions runs.",
+      "capabilities": [
+        "NETWORK_READ"
+      ],
+      "operation": "READ_ONLY",
+      "risk": "LOW",
+      "approval": "contract",
+      "provides": [],
+      "default_enabled": false,
+      "arguments": [
+        "limit",
+        "owner",
+        "repo"
+      ],
+      "required": [
+        "owner",
+        "repo"
+      ]
+    },
+    {
+      "tool_id": "core.sqlite.query",
+      "description": "Run one read-only SQL statement with bound parameters.",
+      "capabilities": [
+        "DATABASE_READ"
+      ],
+      "operation": "READ_ONLY",
+      "risk": "LOW",
+      "approval": "contract",
+      "provides": [
+        "sql_read"
+      ],
+      "default_enabled": true,
+      "arguments": [
+        "database",
+        "max_rows",
+        "params",
+        "sql"
+      ],
+      "required": [
+        "database",
+        "sql"
+      ]
+    },
+    {
+      "tool_id": "core.sqlite.schema",
+      "description": "Columns and DDL of one table or all tables.",
+      "capabilities": [
+        "DATABASE_READ"
+      ],
+      "operation": "READ_ONLY",
+      "risk": "LOW",
+      "approval": "contract",
+      "provides": [],
+      "default_enabled": true,
+      "arguments": [
+        "database",
+        "table"
+      ],
+      "required": [
+        "database"
+      ]
+    },
+    {
+      "tool_id": "core.sqlite.tables",
+      "description": "List tables and views.",
+      "capabilities": [
+        "DATABASE_READ"
+      ],
+      "operation": "READ_ONLY",
+      "risk": "LOW",
+      "approval": "contract",
+      "provides": [],
+      "default_enabled": true,
+      "arguments": [
+        "database"
+      ],
+      "required": [
+        "database"
+      ]
+    },
+    {
+      "tool_id": "core.sqlite.test_connection",
+      "description": "Open a workspace SQLite database read-only and check it answers.",
+      "capabilities": [
+        "DATABASE_READ"
+      ],
+      "operation": "READ_ONLY",
+      "risk": "LOW",
+      "approval": "contract",
+      "provides": [],
+      "default_enabled": true,
+      "arguments": [
+        "database"
+      ],
+      "required": [
+        "database"
+      ]
+    }
+  ]
+}

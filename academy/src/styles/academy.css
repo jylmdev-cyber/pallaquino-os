@@ -1,0 +1,35 @@
+/* PALLAQUINO Academy theme on top of Starlight. Colours meet WCAG 2.2 AA against both themes' backgrounds. */
+/* Dark theme only: Starlight's tokens live in a cascade layer, so an unlayered :root rule would also override the light theme. */
+:root:not([data-theme='light']) {
+	--sl-color-gray-3: #9298a2;
+}
+
+:root {
+	--sl-color-accent-low: #0f2a3d;
+	--sl-color-accent: #3aa0dc;
+	--sl-color-accent-high: #b9e1fa;
+	--academy-success: #4ac26b;
+	--academy-danger: #ff7b72;
+	--academy-warning: #e3b341;
+	--academy-info: #79c0ff;
+}
+
+:root[data-theme='light'] {
+	--sl-color-accent-low: #d6ecfa;
+	--sl-color-accent: #0a6aa3;
+	--sl-color-accent-high: #063c5c;
+	--academy-success: #1a7f37;
+	--academy-danger: #c62a2f;
+	--academy-warning: #8a6200;
+	--academy-info: #0a5ccc;
+}
+
+.academy-hero-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr)); gap: 1rem; }
+
+.sl-markdown-content table:focus-visible { outline: 3px solid var(--sl-color-accent-high); outline-offset: 2px; }
+
+.os-note { font-size: var(--sl-text-sm); color: var(--sl-color-gray-2); }
+
+@media (prefers-reduced-motion: reduce) {
+	*, *::before, *::after { animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; scroll-behavior: auto !important; }
+}

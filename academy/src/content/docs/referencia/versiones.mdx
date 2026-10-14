@@ -1,0 +1,28 @@
+---
+title: Versiones y estado de cada función
+description: Qué está disponible, desde qué versión, y qué está planificado; basado en el CHANGELOG del repositorio.
+sidebar:
+  order: 5
+---
+
+Fuente: `CHANGELOG.md` y `docs/ROADMAP.md`. Esta academia está verificada contra **0.5.0** (publicada el 2026-10-14).
+
+| Función | Desde | Estado |
+|---|---|---|
+| Registro de agentes y skills, pipeline estricto, continuidad (`checkpoint`, `handoff`, `resume`) | 0.2.x | Disponible |
+| `security audit`, `init --dry-run`, `validate --integrity-only`, `scope` de validadores | 0.3.0 | Disponible |
+| Identidad de commits por proyecto (`identity`) | 0.3.0 | Disponible (problema conocido con nombres no ASCII en Windows) |
+| Riesgo por palabras completas | 0.3.0 | Disponible |
+| Contratos v2 de agentes y skills (`contracts`) | 0.4.0 | Disponible |
+| Motor de orquestación: `plan`, `run`, `approve`, `pause`, `cancel`, `resume --execution`, `executions` | 0.4.0 | Disponible |
+| Memoria del proyecto (`memory`) | 0.4.0 | Disponible |
+| Proveedores `mock` y `ollama` (`providers`) | 0.4.0 | Disponible |
+| Pasarela de herramientas, grants y aprobación por llamada (`tools`, `permissions`) | 0.5.0 | Disponible |
+| Plugins con confianza por hash y aislamiento (`plugins`, `plugin`) | 0.5.0 | Disponible |
+| Cliente MCP 2026-07-28, stdio y Streamable HTTP, OAuth (`mcp`) | 0.5.0 | Disponible |
+| Adaptadores de sistema de archivos, Git, SQLite y GitHub | 0.5.0 | Disponible (GitHub desactivado por defecto) |
+| Adaptadores de proveedores comerciales, ejecutor externo | — | Pendiente |
+| *Project Factory* y motor de quality gates | 0.6.0 | Planificado |
+| API local y *Control Center* visual | 0.7.0 | Planificado |
+
+Cada lección indica en su cabecera desde qué versión aplica y su estado (*disponible*, *experimental*, *deprecado* o *próximamente*).

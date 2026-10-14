@@ -1,0 +1,64 @@
+---
+title: Recuperación y reanudación
+description: Qué pasa si una ejecución se interrumpe, cómo se reconcilian las tareas y cómo detecta PALLAQUINO un estado manipulado.
+sidebar:
+  order: 2
+lesson:
+  id: memoria-recuperacion
+  path: memoria
+  difficulty: intermedio
+  duration: 15
+  objectives:
+    - Reanudar una ejecución interrumpida sin repetir trabajo
+    - Verificar la integridad de la memoria
+    - Aplicar la retención y el borrado con confirmación
+  prerequisites:
+    - memoria-proyecto
+  status: disponible
+  since: 0.4.0
+  next: memoria-continuidad
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+## Si el proceso muere a mitad
+
+```bash
+python -m pallaquino_cli resume --execution <execution_id> --json
+```
+
+<Steps>
+
+1. Si otro proceso sigue activo (su *lease* es válido), `resume` se niega con `ExecutionLocked`. Usa `--force` solo si sabes que ese
+   proceso terminó.
+2. Las tareas que quedaron `RUNNING` se **reconcilian**: si su intención de escritura, registrada antes de escribir, coincide por SHA-256
+   con los archivos actuales, pasan a `COMPLETED` sin repetirse; si no, se reintentan con la misma clave de idempotencia.
+3. El resto continúa respetando dependencias y aprobaciones.
+
+</Steps>
+
+Para reintentar tareas `FAILED` después de corregir el entorno: `resume --execution <id> --retry-failed --json`.
+
+## Integridad
+
+```bash
+python -m pallaquino_cli memory verify --json
+```
+
+Si un plan, una ejecución o una tarea se editaron fuera de PALLAQUINO, su checksum no coincide: `resume` falla con `MemoryCorrupted` en
+lugar de continuar sobre un estado no fiable, y los registros manipulados se excluyen de las búsquedas.
+
+## Retención y borrado
+
+Las operaciones destructivas exigen `--yes`; sin él, se rechazan con código 1. Cada borrado queda registrado como evento.
+
+```bash
+python -m pallaquino_cli memory purge --expired --yes --json
+python -m pallaquino_cli memory purge --older-than 90 --yes --json
+python -m pallaquino_cli memory delete --id 12 --yes --json
+```
+
+**Siguiente:** [Continuidad entre agentes](../continuidad-entre-agentes/).
+
+<LessonComplete client:load lessonId="memoria-recuperacion" />

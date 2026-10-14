@@ -1,0 +1,56 @@
+---
+title: Cómo se eligen los agentes
+description: Reglas de enrutamiento, roles de etapa y puntuación explicada; por qué un agente se elige y otro no.
+sidebar:
+  order: 3
+lesson:
+  id: agentes-seleccion
+  path: agentes-y-skills
+  difficulty: intermedio
+  duration: 15
+  objectives:
+    - Explicar los tres mecanismos de selección de agentes
+    - Interpretar la puntuación y los motivos de agents match
+  prerequisites:
+    - agentes-catalogo
+  status: disponible
+  since: 0.4.0
+  next: agentes-contratos
+---
+
+import Transcript from '../../../components/Transcript.astro';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+PALLAQUINO elige agentes de forma **determinista y explicada**. Hay tres mecanismos:
+
+| Mecanismo | Dónde se define | Dónde lo ves |
+|---|---|---|
+| **Reglas de enrutamiento**: palabras clave que activan agentes y skills | `registry/routing_rules.json` | `risk … --json`, en `routing.matched_rules` |
+| **Rol de etapa**: cada etapa del pipeline declara sus agentes | `pipeline/pipeline_definition.json` | En los planes: `routing.method: "pipeline_stage_role"` |
+| **Puntuación**: capacidad, dominio, tecnología, señal de enrutamiento, preferencia y coste de contexto | Pesos en el router | `agents match … --json` |
+
+## La puntuación, paso a paso
+
+```bash
+python -m pallaquino_cli agents match "agregar autenticación basada en roles" --json
+```
+
+<Transcript id="agents-match" lines={60} />
+
+Cómo leerlo:
+
+1. `intent.required_capabilities` = `code`, `design`, `test`: lo que la solicitud necesita.
+2. `selected`: los agentes que cubren esas capacidades con mayor puntuación. `identity_access_engineer` obtiene 48,67 (capacidad
+   26,67 + dominio 25 − coste de contexto 3) y cubre `code` y `design`; `qa_engineer` cubre `test`.
+3. `redundant`: candidatos que también cubrían una capacidad, pero con menor puntuación (aquí, `backend_engineer`).
+4. `weights`: los pesos usados (capacidad 40, dominio 25, tecnología 15, señal 10, preferencia 5, historial 5).
+5. `reproducible_inputs`: las entradas exactas para repetir la selección.
+
+## Ejercicio
+
+Ejecuta `agents match` con una solicitud de tu proyecto y responde: ¿qué capacidad cubre cada agente elegido? ¿Falta alguna
+(`missing_capabilities`)?
+
+**Siguiente:** [Contratos de agentes y skills](../contratos/).
+
+<LessonComplete client:load lessonId="agentes-seleccion" />

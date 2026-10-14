@@ -1,0 +1,80 @@
+---
+title: Diagnóstico y estado
+description: doctor, validate, status, stack, pipeline, graph y contracts, con sus salidas reales y cuándo usar cada uno.
+sidebar:
+  order: 2
+lesson:
+  id: cli-diagnostico
+  path: cli
+  difficulty: principiante
+  duration: 15
+  objectives:
+    - Elegir el comando de diagnóstico adecuado para cada pregunta
+    - Distinguir validadores de integridad y de entorno
+  prerequisites:
+    - cli-introduccion
+  status: disponible
+  since: 0.5.0
+  next: cli-analisis
+---
+
+import Transcript from '../../../components/Transcript.astro';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+| Pregunta | Comando |
+|---|---|
+| ¿Está todo bien, framework y entorno? | `doctor` |
+| ¿Qué validadores pasan? | `validate --json` (todos) o `validate --integrity-only --json` (solo contenido) |
+| ¿En qué etapa está el trabajo? | `status --json`, `pipeline --json` |
+| ¿Son recientes las versiones del stack verificado? | `stack --json` |
+| ¿Es válido el grafo de tareas? | `graph --json` |
+| ¿Qué cobertura tienen los contratos de agentes y skills? | `contracts --json` |
+
+## Integridad frente a entorno
+
+Cada validador declara su `scope`:
+
+- **`integrity`**: el contenido del framework (registro, contratos, pipeline, continuidad, gobernanza, grafo, mapa del repositorio).
+  Da el mismo resultado en cualquier equipo.
+- **`environment`**: depende de tu equipo, como `validate_git_authorship`, que compara la identidad Git local con la esperada.
+
+`--integrity-only` omite las comprobaciones de entorno.
+
+<Transcript id="validate-integrity" lines={24} />
+
+## `status`: dónde está el trabajo
+
+```bash
+python -m pallaquino_cli status --json
+```
+
+Muestra la versión, la raíz en uso, el estado del pipeline (de `continuity/state/PIPELINE_STATE.md`) y los locks de archivos activos.
+Con `--execution <id>` muestra en su lugar el estado de una ejecución concreta (ruta 5).
+
+## `stack`: frescura del stack verificado
+
+```bash
+python -m pallaquino_cli stack --json
+```
+
+Lista cada tecnología verificada con su versión, la fuente oficial, la fecha de verificación, los días transcurridos y su `status`.
+
+<Transcript id="stack" lines={14} />
+
+## `contracts`: cobertura de contratos
+
+```bash
+python -m pallaquino_cli contracts --json
+python -m pallaquino_cli contracts --id backend_engineer --json
+```
+
+El primero resume cuántos contratos son *curados* (escritos a mano) o *derivados*, y cuáles no tienen casos de prueba. El segundo
+muestra el contrato completo de un agente o skill después de verificar su origen.
+
+## Ejercicio
+
+Ejecuta `python -m pallaquino_cli validate --json` y localiza el único validador con `"ok": false`. ¿Cuál es su `scope`?
+
+**Siguiente:** [Análisis y riesgo](../analisis-y-riesgo/).
+
+<LessonComplete client:load lessonId="cli-diagnostico" />

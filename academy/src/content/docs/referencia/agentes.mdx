@@ -1,0 +1,15 @@
+---
+title: Agentes y skills
+description: Explorador del registro real de agentes y skills, con capacidades, herramientas, límites de riesgo y contratos.
+sidebar:
+  order: 2
+tableOfContents: false
+---
+
+import AgentExplorer from '../../../components/AgentExplorer.vue';
+import meta from '../../../data/generated/meta.json';
+
+{meta.counts.agents} agentes y {meta.counts.skills} skills de PALLAQUINO {meta.framework_version}, generados de `registry/agents.json`,
+`registry/skills.json` y sus contratos v2.
+
+<AgentExplorer client:load />

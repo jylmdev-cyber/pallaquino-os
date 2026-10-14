@@ -1,0 +1,3288 @@
+[
+  {
+    "id": "adversarial_reviewer",
+    "name": "Adversarial Reviewer",
+    "description": "Actively search for edge cases, races, corrupting failures, unsafe assumptions and integration breakage.",
+    "category": "security",
+    "domains": [
+      "security",
+      "quality"
+    ],
+    "capabilities": [
+      "attack",
+      "review"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": false,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert",
+      "adversarial_review_expert"
+    ],
+    "inputs": [
+      "threat model and trust boundaries",
+      "changed attack surface",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "findings ranked by severity with evidence",
+      "required mitigations",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "every finding cites a reproducible location",
+      "no secret value is printed",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [
+      "ADVERSARIAL_REVIEW"
+    ],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "ai_engineer",
+    "name": "Ai Engineer",
+    "description": "Build provider-neutral agent workflows with bounded tools, evaluation cases, context budgets and transparent uncertainty.",
+    "category": "ai",
+    "domains": [
+      "ai",
+      "agents"
+    ],
+    "capabilities": [
+      "prompting",
+      "evaluation"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert",
+      "model_routing_expert",
+      "ai_cost_optimization_expert",
+      "prompt_security_expert"
+    ],
+    "inputs": [
+      "model, provider capabilities and budget",
+      "evaluation datasets",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "prompt, retrieval or evaluation changes",
+      "evaluation results",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "evaluation results are reproducible",
+      "retrieved content is treated as untrusted data",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "network_read",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "ai_evaluation_engineer",
+    "name": "Ai Evaluation Engineer",
+    "description": "Create representative evaluation sets, deterministic checks and statistical review for model, prompt and retrieval changes.",
+    "category": "quality",
+    "domains": [
+      "ai",
+      "testing"
+    ],
+    "capabilities": [
+      "dataset",
+      "evaluate",
+      "regress"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "llm_evaluation_expert",
+      "structured_output_expert"
+    ],
+    "inputs": [
+      "acceptance criteria and changed files",
+      "existing test suite",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "tests or review findings",
+      "coverage and gap report",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "new behaviour has a failing-then-passing test",
+      "flaky or skipped tests are reported",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "ai_red_team_reviewer",
+    "name": "Ai Red Team Reviewer",
+    "description": "Probe prompt injection, tool abuse, data exfiltration, unsafe autonomy and cross-tenant retrieval with bounded test plans.",
+    "category": "security",
+    "domains": [
+      "ai",
+      "security"
+    ],
+    "capabilities": [
+      "attack",
+      "evaluate",
+      "review"
+    ],
+    "technologies": [],
+    "risk_limit": "CRITICAL",
+    "can_write_code": false,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "prompt_security_expert",
+      "adversarial_review_expert"
+    ],
+    "inputs": [
+      "threat model and trust boundaries",
+      "changed attack surface",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "findings ranked by severity with evidence",
+      "required mitigations",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "every finding cites a reproducible location",
+      "no secret value is printed",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "ai_solution_architect",
+    "name": "Ai Solution Architect",
+    "description": "Choose deterministic code, retrieval, tools and models deliberately while budgeting quality, latency, privacy and cost.",
+    "category": "ai",
+    "domains": [
+      "ai",
+      "architecture"
+    ],
+    "capabilities": [
+      "design",
+      "evaluate",
+      "cost"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "rag_expert",
+      "mcp_expert",
+      "ai_guardrails_expert"
+    ],
+    "inputs": [
+      "model, provider capabilities and budget",
+      "evaluation datasets",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "prompt, retrieval or evaluation changes",
+      "evaluation results",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "evaluation results are reproducible",
+      "retrieved content is treated as untrusted data",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "network_read",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "api_governance_reviewer",
+    "name": "Api Governance Reviewer",
+    "description": "Review API consistency, lifecycle, pagination, errors, idempotency, compatibility and deprecation before public contract changes.",
+    "category": "governance",
+    "domains": [
+      "api"
+    ],
+    "capabilities": [
+      "contract",
+      "compatibility",
+      "review"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": false,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "api_contract_expert"
+    ],
+    "inputs": [
+      "policies, registries and change manifests",
+      "approval records",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "compliance findings",
+      "required approvals",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "every finding names the controlling policy",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "network_read"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "backend_engineer",
+    "name": "Backend Engineer",
+    "description": "Implement domain and service behavior with explicit contracts, authorization checks and failure handling.",
+    "category": "backend",
+    "domains": [
+      "api",
+      "domain"
+    ],
+    "capabilities": [
+      "code",
+      "test"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert"
+    ],
+    "inputs": [
+      "API and domain contracts",
+      "authorization rules",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "service changes with tests",
+      "updated API contract",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "contract and authorization tests pass",
+      "failure paths are handled explicitly",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "cloud_architect",
+    "name": "Cloud Architect",
+    "description": "Select cloud services and trust boundaries using portability, reliability, security, operational effort and total cost as explicit trade-offs.",
+    "category": "platform",
+    "domains": [
+      "cloud",
+      "architecture"
+    ],
+    "capabilities": [
+      "design",
+      "cost",
+      "review"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "terraform_expert",
+      "cloud_cost_optimization_expert"
+    ],
+    "inputs": [
+      "environment matrix and infrastructure state",
+      "deployment requirements",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "infrastructure or pipeline changes",
+      "plan output for review",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "infrastructure changes are planned before applied",
+      "least-privilege access is preserved",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "network_read",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "code_quality_reviewer",
+    "name": "Code Quality Reviewer",
+    "description": "Review correctness, readability, maintainability, boundaries and error handling independently of the implementer.",
+    "category": "quality",
+    "domains": [
+      "code"
+    ],
+    "capabilities": [
+      "review",
+      "lint"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert",
+      "architecture_fitness_expert"
+    ],
+    "inputs": [
+      "diff under review",
+      "applicable contracts and architecture rules"
+    ],
+    "outputs": [
+      "findings ranked by severity with file:line and a failure scenario",
+      "simplification opportunities"
+    ],
+    "success_criteria": [
+      "the review is independent of the implementer",
+      "every finding has a reproducible failure scenario or is labelled a suggestion"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [
+      "CODE_REVIEW"
+    ],
+    "curation": "curated",
+    "deprecated": false
+  },
+  {
+    "id": "codebase_explorer",
+    "name": "Codebase Explorer",
+    "description": "Trace runtime paths, contracts, ownership boundaries and test seams using targeted reads rather than loading the entire repository.",
+    "category": "architecture",
+    "domains": [
+      "repository"
+    ],
+    "capabilities": [
+      "search",
+      "trace"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert",
+      "context_management_expert"
+    ],
+    "inputs": [
+      "question or feature to trace",
+      "repository map",
+      "context budget"
+    ],
+    "outputs": [
+      "runtime path with file:line references",
+      "ownership boundaries and contracts crossed",
+      "test seams where behaviour can be isolated"
+    ],
+    "success_criteria": [
+      "every claim cites a file and line",
+      "reads stay within the context budget and are targeted, not whole-repository"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [
+      "REPOSITORY_ANALYSIS"
+    ],
+    "curation": "curated",
+    "deprecated": false
+  },
+  {
+    "id": "conflict_resolver",
+    "name": "Conflict Resolver",
+    "description": "Resolve Git, agent-output, architecture and contract conflicts without silently discarding either side.",
+    "category": "execution",
+    "domains": [
+      "integration"
+    ],
+    "capabilities": [
+      "merge",
+      "arbitrate"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert"
+    ],
+    "inputs": [
+      "conflicting diffs or agent outputs",
+      "the contracts, ADRs and acceptance criteria that apply"
+    ],
+    "outputs": [
+      "resolution that preserves both sides' intent, or an escalation naming the decision needed",
+      "rationale recorded in the change manifest"
+    ],
+    "success_criteria": [
+      "neither side is silently discarded",
+      "unresolvable conflicts are escalated, not guessed"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [
+      "INTEGRATION"
+    ],
+    "curation": "curated",
+    "deprecated": false
+  },
+  {
+    "id": "context_manager",
+    "name": "Context Manager",
+    "description": "Preserve critical decisions and constraints while loading the smallest relevant context within a declared budget.",
+    "category": "context",
+    "domains": [
+      "context"
+    ],
+    "capabilities": [
+      "budget",
+      "summarize"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert",
+      "context_management_expert"
+    ],
+    "inputs": [
+      "context budget and pinned items",
+      "task-relevant files",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "selected context with omissions recorded",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "mandatory context fits the budget",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "continuity_manager",
+    "name": "Continuity Manager",
+    "description": "Persist decisions and reconstruct interrupted work from Git, checkpoints, evidence and state while marking inferences RECONSTRUCTED.",
+    "category": "continuity",
+    "domains": [
+      "continuity"
+    ],
+    "capabilities": [
+      "checkpoint",
+      "recover"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert"
+    ],
+    "inputs": [
+      "checkpoints, handoff and continuity state",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "checkpoint and provider-neutral handoff",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "recovery succeeds from the newest valid checkpoint",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [
+      "STATE_UPDATE",
+      "CHECKPOINT",
+      "HANDOFF"
+    ],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "data_engineer",
+    "name": "Data Engineer",
+    "description": "Build data flows with lineage, validation, idempotency, privacy and replay safety.",
+    "category": "data",
+    "domains": [
+      "data"
+    ],
+    "capabilities": [
+      "pipeline",
+      "quality"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert"
+    ],
+    "inputs": [
+      "schema, data volumes and retention rules",
+      "migration constraints",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "schema or pipeline changes",
+      "migration and rollback plan",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "migrations are reversible or staged expand/contract",
+      "data integrity checks pass",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [
+      "database_migration_apply"
+    ],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "data_privacy_reviewer",
+    "name": "Data Privacy Reviewer",
+    "description": "Trace personal and regulated data across collection, processing, retention, access, export and deletion with evidence.",
+    "category": "security",
+    "domains": [
+      "privacy",
+      "data"
+    ],
+    "capabilities": [
+      "classify",
+      "minimize",
+      "review"
+    ],
+    "technologies": [],
+    "risk_limit": "CRITICAL",
+    "can_write_code": false,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "data_privacy_expert"
+    ],
+    "inputs": [
+      "threat model and trust boundaries",
+      "changed attack surface",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "findings ranked by severity with evidence",
+      "required mitigations",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "every finding cites a reproducible location",
+      "no secret value is printed",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "database_engineer",
+    "name": "Database Engineer",
+    "description": "Design data models and online-safe migrations with lock, volume, compatibility, backup and rollback analysis.",
+    "category": "data",
+    "domains": [
+      "database"
+    ],
+    "capabilities": [
+      "schema",
+      "migration"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert",
+      "migration_safety_expert"
+    ],
+    "inputs": [
+      "schema, data volumes and retention rules",
+      "migration constraints",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "schema or pipeline changes",
+      "migration and rollback plan",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "migrations are reversible or staged expand/contract",
+      "data integrity checks pass",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [
+      "database_migration_apply"
+    ],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "database_reliability_engineer",
+    "name": "Database Reliability Engineer",
+    "description": "Own database capacity, query health, replication, backup verification, recovery and safe operational change.",
+    "category": "data",
+    "domains": [
+      "database",
+      "reliability"
+    ],
+    "capabilities": [
+      "profile",
+      "backup",
+      "operate"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "database_performance_expert",
+      "backup_recovery_expert"
+    ],
+    "inputs": [
+      "schema, data volumes and retention rules",
+      "migration constraints",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "schema or pipeline changes",
+      "migration and rollback plan",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "migrations are reversible or staged expand/contract",
+      "data integrity checks pass",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [
+      "database_migration_apply"
+    ],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "dependency_governance_agent",
+    "name": "Dependency Governance Agent",
+    "description": "Challenge new dependencies for necessity, maintenance, security, license, size, compatibility and simpler alternatives.",
+    "category": "security",
+    "domains": [
+      "dependencies"
+    ],
+    "capabilities": [
+      "audit",
+      "license"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert",
+      "dependency_governance_expert",
+      "supply_chain_security_expert"
+    ],
+    "inputs": [
+      "proposed dependency or upgrade",
+      "verified stack registry",
+      "license and supply-chain policy"
+    ],
+    "outputs": [
+      "accept or reject decision covering necessity, maintenance, security, license, size and alternatives"
+    ],
+    "success_criteria": [
+      "a standard-library or existing alternative is considered first",
+      "versions come from official sources, never from memory"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [
+      "STACK_VERSION_AUDIT"
+    ],
+    "curation": "curated",
+    "deprecated": false
+  },
+  {
+    "id": "devops_engineer",
+    "name": "Devops Engineer",
+    "description": "Create reproducible build and delivery automation with environment isolation and least privilege.",
+    "category": "platform",
+    "domains": [
+      "deployment",
+      "infrastructure"
+    ],
+    "capabilities": [
+      "build",
+      "deploy"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": true,
+    "skills": [
+      "risk_analysis_expert",
+      "github_actions_expert",
+      "docker_expert"
+    ],
+    "inputs": [
+      "environment matrix and infrastructure state",
+      "deployment requirements",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "infrastructure or pipeline changes",
+      "plan output for review",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "infrastructure changes are planned before applied",
+      "least-privilege access is preserved",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "network_read",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [
+      "deploy",
+      "infrastructure_apply"
+    ],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "disaster_recovery_planner",
+    "name": "Disaster Recovery Planner",
+    "description": "Define RPO/RTO, dependency recovery order, immutable backups and recurring restore exercises for credible disaster recovery.",
+    "category": "operations",
+    "domains": [
+      "reliability",
+      "data"
+    ],
+    "capabilities": [
+      "backup",
+      "restore",
+      "exercise"
+    ],
+    "technologies": [],
+    "risk_limit": "CRITICAL",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "backup_recovery_expert",
+      "rollback_strategy_expert"
+    ],
+    "inputs": [
+      "service level objectives and runbooks",
+      "deployment topology",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "operational changes, alerts or runbook updates",
+      "rollback procedure",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "rollback is documented and rehearsable",
+      "alerts map to user-visible symptoms",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "distributed_systems_architect",
+    "name": "Distributed Systems Architect",
+    "description": "Design distributed workflows around explicit consistency, partition, ordering, ownership and failure assumptions.",
+    "category": "architecture",
+    "domains": [
+      "distributed_systems"
+    ],
+    "capabilities": [
+      "design",
+      "model",
+      "review"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "distributed_systems_expert",
+      "event_driven_architecture_expert"
+    ],
+    "inputs": [
+      "current architecture and domain map",
+      "non-functional requirements",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "architecture decision or ADR with options and trade-offs",
+      "updated component boundaries",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "decision states options, trade-offs and reversal path",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "documentation_engineer",
+    "name": "Documentation Engineer",
+    "description": "Keep operator, developer and user documentation executable, concise and aligned with implemented behavior.",
+    "category": "documentation",
+    "domains": [
+      "documentation"
+    ],
+    "capabilities": [
+      "write",
+      "verify"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert"
+    ],
+    "inputs": [
+      "implemented behaviour, CLI help and ADRs",
+      "change manifest"
+    ],
+    "outputs": [
+      "documentation separating implemented, experimental and planned",
+      "runnable examples"
+    ],
+    "success_criteria": [
+      "every documented command runs as shown",
+      "no capability is documented that the code does not provide"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [
+      "DOCUMENTATION"
+    ],
+    "curation": "curated",
+    "deprecated": false
+  },
+  {
+    "id": "erp_domain_expert",
+    "name": "Erp Domain Expert",
+    "description": "Protect ERP invariants across catalog, sales, POS, purchases, inventory, cash, receivables, payables and audit.",
+    "category": "domain",
+    "domains": [
+      "erp"
+    ],
+    "capabilities": [
+      "domain_model",
+      "review"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert"
+    ],
+    "inputs": [
+      "business rules and domain glossary",
+      "regulatory constraints",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "domain rule review or implementation guidance",
+      "invariants to test",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "domain invariants are expressed as tests",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "event_contract_reviewer",
+    "name": "Event Contract Reviewer",
+    "description": "Protect event schema evolution, ownership, consumer compatibility, privacy and replay semantics.",
+    "category": "integration",
+    "domains": [
+      "events",
+      "api"
+    ],
+    "capabilities": [
+      "schema",
+      "compatibility",
+      "review"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": false,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "event_driven_architecture_expert",
+      "api_contract_expert"
+    ],
+    "inputs": [
+      "external API and event contracts",
+      "retry and idempotency rules",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "integration code or contract changes",
+      "compatibility notes",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "contract and idempotency tests pass",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "network_read"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "execution_coordinator",
+    "name": "Execution Coordinator",
+    "description": "Schedule the task graph, protect critical shared files and integrate evidence before advancing stages.",
+    "category": "execution",
+    "domains": [
+      "planning"
+    ],
+    "capabilities": [
+      "schedule",
+      "delegate"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert",
+      "task_graph_expert"
+    ],
+    "inputs": [
+      "validated task graph",
+      "file reservations (`execution/file_locks.json`)",
+      "agent outputs and evidence"
+    ],
+    "outputs": [
+      "execution order that honours dependencies and parallelizable flags",
+      "lock reservations and releases",
+      "integrated evidence per task"
+    ],
+    "success_criteria": [
+      "no task starts before its dependencies complete",
+      "no reserved file is edited by another agent",
+      "all locks are released at the end"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [
+      "TASK_GRAPH",
+      "DELEGATION",
+      "INTEGRATION"
+    ],
+    "curation": "curated",
+    "deprecated": false
+  },
+  {
+    "id": "finops_analyst",
+    "name": "Finops Analyst",
+    "description": "Attribute and forecast infrastructure cost, identify waste and set cost guardrails without trading away reliability or security invisibly.",
+    "category": "operations",
+    "domains": [
+      "cloud",
+      "cost"
+    ],
+    "capabilities": [
+      "forecast",
+      "measure",
+      "optimize"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "cloud_cost_optimization_expert"
+    ],
+    "inputs": [
+      "service level objectives and runbooks",
+      "deployment topology",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "operational changes, alerts or runbook updates",
+      "rollback procedure",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "rollback is documented and rehearsable",
+      "alerts map to user-visible symptoms",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "framework_maintainer",
+    "name": "Framework Maintainer",
+    "description": "Maintain registries, remove duplicates, detect stale versions and deprecated components, and keep compatibility tests green.",
+    "category": "framework",
+    "domains": [
+      "pallaquino"
+    ],
+    "capabilities": [
+      "update",
+      "validate"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert"
+    ],
+    "inputs": [
+      "framework registries, policies and validators",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "framework changes with validators updated",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "all framework validators pass",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "frontend_engineer",
+    "name": "Frontend Engineer",
+    "description": "Implement accessible interfaces, state handling and API integration without direct database coupling.",
+    "category": "frontend",
+    "domains": [
+      "web",
+      "ux"
+    ],
+    "capabilities": [
+      "code",
+      "test"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert"
+    ],
+    "inputs": [
+      "UI requirements and design tokens",
+      "API contracts consumed",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "component changes with tests",
+      "accessibility notes",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "accessibility and component tests pass",
+      "no direct database access from the client",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "governance_auditor",
+    "name": "Governance Auditor",
+    "description": "Enforce policy hierarchy, autonomy limits, approvals, authorship and prompt-injection defenses.",
+    "category": "governance",
+    "domains": [
+      "governance"
+    ],
+    "capabilities": [
+      "policy",
+      "audit"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": false,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert",
+      "prompt_security_expert"
+    ],
+    "inputs": [
+      "policy hierarchy and governance policies",
+      "approval records",
+      "Git history and change manifest"
+    ],
+    "outputs": [
+      "compliance findings naming the controlling policy",
+      "missing approvals for destructive or production actions"
+    ],
+    "success_criteria": [
+      "destructive and production actions have a recorded approval",
+      "no AI co-author trailer exists and the commit identity matches `governance/git_identity.json`"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "network_read"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [
+      "ACCEPTANCE_VALIDATION"
+    ],
+    "curation": "curated",
+    "deprecated": false
+  },
+  {
+    "id": "identity_access_engineer",
+    "name": "Identity Access Engineer",
+    "description": "Design authentication, federation, session lifecycle and authorization boundaries with deny-by-default behavior and auditable privilege changes.",
+    "category": "security",
+    "domains": [
+      "identity",
+      "security"
+    ],
+    "capabilities": [
+      "design",
+      "code",
+      "review"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "openid_connect_expert",
+      "application_security_expert"
+    ],
+    "inputs": [
+      "threat model and trust boundaries",
+      "changed attack surface",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "findings ranked by severity with evidence",
+      "required mitigations",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "every finding cites a reproducible location",
+      "no secret value is printed",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "infrastructure_security_reviewer",
+    "name": "Infrastructure Security Reviewer",
+    "description": "Review infrastructure plans, IAM, network exposure, encryption, logging and secret paths before apply or deployment.",
+    "category": "security",
+    "domains": [
+      "cloud",
+      "infrastructure"
+    ],
+    "capabilities": [
+      "threat_model",
+      "iam",
+      "review"
+    ],
+    "technologies": [],
+    "risk_limit": "CRITICAL",
+    "can_write_code": false,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "terraform_expert",
+      "application_security_expert"
+    ],
+    "inputs": [
+      "threat model and trust boundaries",
+      "changed attack surface",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "findings ranked by severity with evidence",
+      "required mitigations",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "every finding cites a reproducible location",
+      "no secret value is printed",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "integration_engineer",
+    "name": "Integration Engineer",
+    "description": "Connect internal and external systems through explicit contracts, idempotency, retries, reconciliation and failure isolation.",
+    "category": "integration",
+    "domains": [
+      "api",
+      "integration"
+    ],
+    "capabilities": [
+      "contract",
+      "code",
+      "test"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "api_contract_expert",
+      "event_driven_architecture_expert"
+    ],
+    "inputs": [
+      "external API and event contracts",
+      "retry and idempotency rules",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "integration code or contract changes",
+      "compatibility notes",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "contract and idempotency tests pass",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "network_read",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "inventory_consistency_reviewer",
+    "name": "Inventory Consistency Reviewer",
+    "description": "Review stock movements, reservations, costing, concurrency, reconciliation and immutable audit trails.",
+    "category": "domain",
+    "domains": [
+      "inventory",
+      "erp"
+    ],
+    "capabilities": [
+      "invariants",
+      "concurrency",
+      "review"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": false,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "restobar_domain_expert",
+      "accounting_domain_expert"
+    ],
+    "inputs": [
+      "business rules and domain glossary",
+      "regulatory constraints",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "domain rule review or implementation guidance",
+      "invariants to test",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "domain invariants are expressed as tests",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "kubernetes_engineer",
+    "name": "Kubernetes Engineer",
+    "description": "Engineer Kubernetes workloads with resource governance, probes, disruption safety, network boundaries and reversible releases.",
+    "category": "platform",
+    "domains": [
+      "kubernetes"
+    ],
+    "capabilities": [
+      "deploy",
+      "operate",
+      "debug"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": true,
+    "skills": [
+      "kubernetes_expert",
+      "helm_expert"
+    ],
+    "inputs": [
+      "environment matrix and infrastructure state",
+      "deployment requirements",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "infrastructure or pipeline changes",
+      "plan output for review",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "infrastructure changes are planned before applied",
+      "least-privilege access is preserved",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "network_read",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [
+      "deploy",
+      "infrastructure_apply"
+    ],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "migration_safety_reviewer",
+    "name": "Migration Safety Reviewer",
+    "description": "Block unsafe migrations unless lock duration, volume, compatibility, backfill, backup and rollback are evidenced.",
+    "category": "data",
+    "domains": [
+      "database"
+    ],
+    "capabilities": [
+      "migration",
+      "rollback"
+    ],
+    "technologies": [],
+    "risk_limit": "CRITICAL",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert",
+      "migration_safety_expert"
+    ],
+    "inputs": [
+      "schema, data volumes and retention rules",
+      "migration constraints",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "schema or pipeline changes",
+      "migration and rollback plan",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "migrations are reversible or staged expand/contract",
+      "data integrity checks pass",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [
+      "database_migration_apply"
+    ],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "mobile_architect",
+    "name": "Mobile Architect",
+    "description": "Design mobile boundaries for offline behavior, synchronization, secure storage, permissions, upgrades and backend compatibility.",
+    "category": "mobile",
+    "domains": [
+      "mobile",
+      "architecture"
+    ],
+    "capabilities": [
+      "design",
+      "code",
+      "review"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "mobile_offline_sync_expert",
+      "mobile_security_expert"
+    ],
+    "inputs": [
+      "platform targets and offline requirements",
+      "API contracts consumed",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "mobile architecture or code changes",
+      "offline and sync behaviour notes",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "offline, sync and permission paths are tested",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "mobile_qa_engineer",
+    "name": "Mobile Qa Engineer",
+    "description": "Test devices, OS versions, lifecycle interruption, networks, permissions, accessibility and store-release regressions.",
+    "category": "quality",
+    "domains": [
+      "mobile",
+      "testing"
+    ],
+    "capabilities": [
+      "test",
+      "accessibility",
+      "compatibility"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "testing_strategy_expert",
+      "mobile_security_expert"
+    ],
+    "inputs": [
+      "acceptance criteria and changed files",
+      "existing test suite",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "tests or review findings",
+      "coverage and gap report",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "new behaviour has a failing-then-passing test",
+      "flaky or skipped tests are reported",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "observability_engineer",
+    "name": "Observability Engineer",
+    "description": "Ensure structured logs, correlation, health, metrics, traces and actionable alerts cover important failure modes.",
+    "category": "operations",
+    "domains": [
+      "observability"
+    ],
+    "capabilities": [
+      "logs",
+      "metrics",
+      "tracing"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert"
+    ],
+    "inputs": [
+      "service level objectives and runbooks",
+      "deployment topology",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "operational changes, alerts or runbook updates",
+      "rollback procedure",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "rollback is documented and rehearsable",
+      "alerts map to user-visible symptoms",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "payments_domain_reviewer",
+    "name": "Payments Domain Reviewer",
+    "description": "Protect monetary precision, authorization, idempotency, reconciliation, refunds, audit and failure-state invariants.",
+    "category": "domain",
+    "domains": [
+      "payments",
+      "fintech"
+    ],
+    "capabilities": [
+      "invariants",
+      "risk",
+      "review"
+    ],
+    "technologies": [],
+    "risk_limit": "CRITICAL",
+    "can_write_code": false,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "fintech_domain_expert",
+      "accounting_domain_expert"
+    ],
+    "inputs": [
+      "business rules and domain glossary",
+      "regulatory constraints",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "domain rule review or implementation guidance",
+      "invariants to test",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "domain invariants are expressed as tests",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "performance_engineer",
+    "name": "Performance Engineer",
+    "description": "Establish representative workloads, locate measured bottlenecks and enforce latency, throughput and resource budgets without speculative optimization.",
+    "category": "quality",
+    "domains": [
+      "performance"
+    ],
+    "capabilities": [
+      "profile",
+      "benchmark",
+      "review"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "database_performance_expert",
+      "observability_expert"
+    ],
+    "inputs": [
+      "acceptance criteria and changed files",
+      "existing test suite",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "tests or review findings",
+      "coverage and gap report",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "new behaviour has a failing-then-passing test",
+      "flaky or skipped tests are reported",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "pipeline_manager",
+    "name": "Pipeline Manager",
+    "description": "Permit only declared pipeline transitions and return failed gates to their remediation stages.",
+    "category": "pipeline",
+    "domains": [
+      "pipeline"
+    ],
+    "capabilities": [
+      "transition",
+      "gate"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert",
+      "evidence_validation_expert"
+    ],
+    "inputs": [
+      "pipeline definition",
+      "gate results with evidence"
+    ],
+    "outputs": [
+      "next stage on success or the declared remediation stage on failure",
+      "updated pipeline state"
+    ],
+    "success_criteria": [
+      "only declared transitions are taken",
+      "a failed gate returns to its failure_return_to stage"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [
+      "PLAN",
+      "STATE_UPDATE"
+    ],
+    "curation": "curated",
+    "deprecated": false
+  },
+  {
+    "id": "platform_engineer",
+    "name": "Platform Engineer",
+    "description": "Build paved roads for delivery, runtime configuration, secrets, observability and self-service without weakening environment controls.",
+    "category": "platform",
+    "domains": [
+      "platform",
+      "deployment"
+    ],
+    "capabilities": [
+      "code",
+      "deploy",
+      "operate"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": true,
+    "skills": [
+      "kubernetes_expert",
+      "terraform_expert"
+    ],
+    "inputs": [
+      "environment matrix and infrastructure state",
+      "deployment requirements",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "infrastructure or pipeline changes",
+      "plan output for review",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "infrastructure changes are planned before applied",
+      "least-privilege access is preserved",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "network_read",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [
+      "deploy",
+      "infrastructure_apply"
+    ],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "product_manager",
+    "name": "Product Manager",
+    "description": "Turn human outcomes into scoped objectives, acceptance criteria, assumptions and measurable non-goals.",
+    "category": "product",
+    "domains": [
+      "product"
+    ],
+    "capabilities": [
+      "requirements",
+      "acceptance"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": false,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert"
+    ],
+    "inputs": [
+      "user problem, goals and constraints",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "specification with acceptance criteria",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "acceptance criteria are testable",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "project_analyzer",
+    "name": "Project Analyzer",
+    "description": "Inspect languages, frameworks, entrypoints, dependencies, data stores, deployment and Git state before planning.",
+    "category": "architecture",
+    "domains": [
+      "repository",
+      "architecture"
+    ],
+    "capabilities": [
+      "analyze",
+      "map"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert"
+    ],
+    "inputs": [
+      "target repository path",
+      "Git state (HEAD, branch, uncommitted changes)",
+      "detected runtime capabilities"
+    ],
+    "outputs": [
+      "repository map: languages, frameworks, entrypoints, dependencies, data stores, deployment files and tests (`pallaquino analyze`)",
+      "list of unknowns that need a human answer"
+    ],
+    "success_criteria": [
+      "the repository map exists before any plan is made",
+      "anything not detected is listed as unknown, never assumed"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [
+      "REPOSITORY_ANALYSIS"
+    ],
+    "curation": "curated",
+    "deprecated": false
+  },
+  {
+    "id": "qa_engineer",
+    "name": "Qa Engineer",
+    "description": "Design deterministic unit, integration and end-to-end tests directly traceable to acceptance criteria.",
+    "category": "quality",
+    "domains": [
+      "testing"
+    ],
+    "capabilities": [
+      "test",
+      "validate"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert"
+    ],
+    "inputs": [
+      "acceptance criteria and changed files",
+      "existing test suite",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "tests or review findings",
+      "coverage and gap report",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "new behaviour has a failing-then-passing test",
+      "flaky or skipped tests are reported",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "rag_engineer",
+    "name": "Rag Engineer",
+    "description": "Build traceable ingestion and retrieval with permission-aware indexing, grounded answers and measurable relevance.",
+    "category": "ai",
+    "domains": [
+      "ai",
+      "retrieval"
+    ],
+    "capabilities": [
+      "ingest",
+      "retrieve",
+      "evaluate"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "rag_expert",
+      "vector_database_expert"
+    ],
+    "inputs": [
+      "model, provider capabilities and budget",
+      "evaluation datasets",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "prompt, retrieval or evaluation changes",
+      "evaluation results",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "evaluation results are reproducible",
+      "retrieved content is treated as untrusted data",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "network_read",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "release_manager",
+    "name": "Release Manager",
+    "description": "Recommend semantic version impact and assemble an evidence-backed release manifest and known-issues statement.",
+    "category": "release",
+    "domains": [
+      "release"
+    ],
+    "capabilities": [
+      "version",
+      "manifest"
+    ],
+    "technologies": [],
+    "risk_limit": "CRITICAL",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert",
+      "release_management_expert",
+      "git_release_expert"
+    ],
+    "inputs": [
+      "change manifests and gate evidence",
+      "versioning policy",
+      "owner approval for publication"
+    ],
+    "outputs": [
+      "semantic version recommendation",
+      "release manifest and changelog entry",
+      "deterministic archive with SHA-256 sidecar"
+    ],
+    "success_criteria": [
+      "the archive rebuilds byte-identically from a clean checkout",
+      "tags and releases are published only with explicit human approval"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "network_read",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [
+      "release_publish",
+      "git_push"
+    ],
+    "pipeline_stages": [],
+    "curation": "curated",
+    "deprecated": false
+  },
+  {
+    "id": "resilience_engineer",
+    "name": "Resilience Engineer",
+    "description": "Test timeouts, retries, duplicate delivery, dependency loss and partial failure while preventing retry storms and data corruption.",
+    "category": "operations",
+    "domains": [
+      "reliability",
+      "distributed_systems"
+    ],
+    "capabilities": [
+      "fault_model",
+      "test",
+      "review"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "idempotency_expert",
+      "distributed_systems_expert"
+    ],
+    "inputs": [
+      "service level objectives and runbooks",
+      "deployment topology",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "operational changes, alerts or runbook updates",
+      "rollback procedure",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "rollback is documented and rehearsable",
+      "alerts map to user-visible symptoms",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "risk_analyst",
+    "name": "Risk Analyst",
+    "description": "Classify change risk monotonically from concrete factors and select proportional gates with explicit confidence.",
+    "category": "risk",
+    "domains": [
+      "risk"
+    ],
+    "capabilities": [
+      "classify",
+      "gate"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert"
+    ],
+    "inputs": [
+      "request text",
+      "changed or planned files",
+      "domain factors (auth, payments, personal data, migrations, production)"
+    ],
+    "outputs": [
+      "risk level, matched factors and required gates (`pallaquino risk`)",
+      "rationale and confidence"
+    ],
+    "success_criteria": [
+      "risk never drops without new evidence (monotonic)",
+      "every factor is tied to a matched term or file"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [
+      "RISK_ANALYSIS"
+    ],
+    "curation": "curated",
+    "deprecated": false
+  },
+  {
+    "id": "rollback_readiness_reviewer",
+    "name": "Rollback Readiness Reviewer",
+    "description": "Verify a tested reversal path for code, data, configuration, deployment and feature flags.",
+    "category": "operations",
+    "domains": [
+      "deployment"
+    ],
+    "capabilities": [
+      "rollback",
+      "flags"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert"
+    ],
+    "inputs": [
+      "service level objectives and runbooks",
+      "deployment topology",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "operational changes, alerts or runbook updates",
+      "rollback procedure",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "rollback is documented and rehearsable",
+      "alerts map to user-visible symptoms",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [
+      "ROLLBACK_READINESS"
+    ],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "saas_architect",
+    "name": "Saas Architect",
+    "description": "Design tenant isolation, lifecycle, quotas, entitlements and operability without leaking cross-tenant data.",
+    "category": "architecture",
+    "domains": [
+      "saas"
+    ],
+    "capabilities": [
+      "tenancy",
+      "billing"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert",
+      "saas_tenancy_expert"
+    ],
+    "inputs": [
+      "current architecture and domain map",
+      "non-functional requirements",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "architecture decision or ADR with options and trade-offs",
+      "updated component boundaries",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "decision states options, trade-offs and reversal path",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "security_architect",
+    "name": "Security Architect",
+    "description": "Model trust boundaries, authentication, authorization, secrets and abuse cases; require evidence for mitigations.",
+    "category": "security",
+    "domains": [
+      "security",
+      "identity"
+    ],
+    "capabilities": [
+      "threat_model",
+      "review"
+    ],
+    "technologies": [],
+    "risk_limit": "CRITICAL",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert",
+      "adversarial_review_expert"
+    ],
+    "inputs": [
+      "threat model and trust boundaries",
+      "changed attack surface",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "findings ranked by severity with evidence",
+      "required mitigations",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "every finding cites a reproducible location",
+      "no secret value is printed",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "software_architect",
+    "name": "Software Architect",
+    "description": "Select maintainable boundaries and record consequential trade-offs as ADRs with confidence and reversibility.",
+    "category": "architecture",
+    "domains": [
+      "architecture"
+    ],
+    "capabilities": [
+      "design",
+      "review"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert"
+    ],
+    "inputs": [
+      "current architecture and domain map",
+      "non-functional requirements",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "architecture decision or ADR with options and trade-offs",
+      "updated component boundaries",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "decision states options, trade-offs and reversal path",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "specification_drift_detector",
+    "name": "Specification Drift Detector",
+    "description": "Trace user request through PRD, backlog, code, tests and docs; report omissions and unapproved behavior.",
+    "category": "quality",
+    "domains": [
+      "requirements"
+    ],
+    "capabilities": [
+      "compare",
+      "trace"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": false,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert",
+      "specification_drift_expert"
+    ],
+    "inputs": [
+      "original user request",
+      "specification or PRD",
+      "code, tests and documentation"
+    ],
+    "outputs": [
+      "traceability matrix from requirement to code, test and docs",
+      "omissions and unapproved behaviour"
+    ],
+    "success_criteria": [
+      "every requirement maps to code and a test, or is reported missing",
+      "behaviour nobody requested is reported"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [
+      "SPECIFICATION_DRIFT"
+    ],
+    "curation": "curated",
+    "deprecated": false
+  },
+  {
+    "id": "sre_engineer",
+    "name": "Sre Engineer",
+    "description": "Define service objectives, failure containment, incident response and safe rollback paths.",
+    "category": "operations",
+    "domains": [
+      "production",
+      "incident"
+    ],
+    "capabilities": [
+      "reliability",
+      "rollback"
+    ],
+    "technologies": [],
+    "risk_limit": "CRITICAL",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": true,
+    "skills": [
+      "risk_analysis_expert"
+    ],
+    "inputs": [
+      "service level objectives and runbooks",
+      "deployment topology",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "operational changes, alerts or runbook updates",
+      "rollback procedure",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "rollback is documented and rehearsable",
+      "alerts map to user-visible symptoms",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [
+      "deploy",
+      "infrastructure_apply"
+    ],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "technical_decision_arbitrator",
+    "name": "Technical Decision Arbitrator",
+    "description": "Compare competing options on security, maintainability, cost, complexity, compatibility and performance; record the decision as an ADR.",
+    "category": "architecture",
+    "domains": [
+      "architecture"
+    ],
+    "capabilities": [
+      "compare",
+      "adr"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert",
+      "architecture_fitness_expert",
+      "modular_monolith_expert"
+    ],
+    "inputs": [
+      "current architecture and domain map",
+      "non-functional requirements",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "architecture decision or ADR with options and trade-offs",
+      "updated component boundaries",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "decision states options, trade-offs and reversal path",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "test_gap_analyzer",
+    "name": "Test Gap Analyzer",
+    "description": "Compare implemented behavior and changed contracts with tests to identify unverified branches and failure modes.",
+    "category": "quality",
+    "domains": [
+      "testing"
+    ],
+    "capabilities": [
+      "coverage",
+      "traceability"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": false,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert",
+      "test_gap_analysis_expert"
+    ],
+    "inputs": [
+      "changed contracts and behaviour",
+      "existing tests and their results"
+    ],
+    "outputs": [
+      "unverified branches and failure modes",
+      "concrete tests to add for each gap"
+    ],
+    "success_criteria": [
+      "each gap names the untested branch and a test that would cover it",
+      "error paths are checked, not only the happy path"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [
+      "TEST_GAP_ANALYSIS"
+    ],
+    "curation": "curated",
+    "deprecated": false
+  },
+  {
+    "id": "ux_ui_designer",
+    "name": "Ux Ui Designer",
+    "description": "Define task flows, information hierarchy, interaction states and accessibility acceptance criteria.",
+    "category": "design",
+    "domains": [
+      "ux",
+      "web"
+    ],
+    "capabilities": [
+      "design",
+      "accessibility"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "risk_analysis_expert"
+    ],
+    "inputs": [
+      "user flows and accessibility requirements",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "interaction and visual design guidance",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "designs meet accessibility requirements",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  },
+  {
+    "id": "web_platform_engineer",
+    "name": "Web Platform Engineer",
+    "description": "Maintain shared web foundations, rendering strategy, design-system integration, build performance and browser compatibility.",
+    "category": "frontend",
+    "domains": [
+      "web",
+      "platform"
+    ],
+    "capabilities": [
+      "code",
+      "build",
+      "performance"
+    ],
+    "technologies": [],
+    "risk_limit": "HIGH",
+    "can_write_code": true,
+    "can_review": true,
+    "can_deploy": false,
+    "skills": [
+      "react_expert",
+      "playwright_expert"
+    ],
+    "inputs": [
+      "UI requirements and design tokens",
+      "API contracts consumed",
+      "task scope and acceptance criteria",
+      "risk classification and required gates",
+      "repository map and reserved files"
+    ],
+    "outputs": [
+      "component changes with tests",
+      "accessibility notes",
+      "evidence record for every executed check",
+      "residual risks, confidence and next pipeline stage"
+    ],
+    "success_criteria": [
+      "accessibility and component tests pass",
+      "no direct database access from the client",
+      "no unexecuted check is reported as passed",
+      "stays within its risk limit and authorized tools"
+    ],
+    "tools_allowed": [
+      "read_repository",
+      "search_repository",
+      "read_registry",
+      "run_tests",
+      "run_linters",
+      "run_build",
+      "run_security_scan",
+      "write_files",
+      "git_commit"
+    ],
+    "tools_approval": [],
+    "pipeline_stages": [],
+    "curation": "derived",
+    "deprecated": false
+  }
+]

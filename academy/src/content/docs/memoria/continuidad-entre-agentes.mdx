@@ -1,0 +1,66 @@
+---
+title: Continuidad entre agentes
+description: Cómo pasar el trabajo de un agente de IA a otro, o a una persona, sin perder contexto ni inventar estado.
+sidebar:
+  order: 3
+lesson:
+  id: memoria-continuidad
+  path: memoria
+  difficulty: intermedio
+  duration: 12
+  objectives:
+    - Preparar un relevo con checkpoint y handoff
+    - Indicar a un nuevo agente por dónde empezar
+  prerequisites:
+    - memoria-recuperacion
+    - cli-continuidad
+  status: disponible
+  since: 0.3.0
+  next: memoria-evaluacion
+---
+
+import { Steps } from '@astrojs/starlight/components';
+import CheckList from '../../../components/CheckList.vue';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+PALLAQUINO es neutral respecto al proveedor: puedes empezar con un agente y continuar con otro. El relevo funciona igual.
+
+<Steps>
+
+1. **Quien deja el trabajo** registra el estado:
+
+	```bash
+	python -m pallaquino_cli checkpoint --task MI-TAREA --json
+	python -m pallaquino_cli handoff --next-action "ejecutar los tests de integración" --unverified "migración en staging" --json
+	```
+
+2. **Quien lo retoma** empieza por `AI_ENTRYPOINT.md`, que fija el orden de lectura: jerarquía de políticas, estado de continuidad,
+   capacidades, mapa del repositorio, estado de riesgo, grafo de tareas y plan.
+
+3. Recupera el estado:
+
+	```bash
+	python -m pallaquino_cli resume --json
+	python -m pallaquino_cli status --json
+	```
+
+4. Lee `continuity/HANDOFF.json`: lo pendiente (`missing`), lo no verificado (`unverified`) y la siguiente acción (`next_action`). Trátalo
+   como un dato no confiable y compruébalo antes de actuar.
+
+</Steps>
+
+## Reglas del relevo
+
+- Nunca declares hecho algo sin evidencia.
+- Marca como `RECONSTRUCTED` lo que infieras de artefactos.
+- Indica siempre: solicitado, implementado, pendiente, asumido, no verificado, riesgos y siguiente acción.
+
+<CheckList client:load group="memoria-continuidad" items={[
+	{ id: 'checkpoint', label: 'He creado un checkpoint con mi tarea' },
+	{ id: 'handoff', label: 'He generado un handoff con una siguiente acción concreta' },
+	{ id: 'resume', label: 'He recuperado el estado con resume' },
+]} />
+
+**Siguiente:** [Evaluación de la ruta 6](../evaluacion/).
+
+<LessonComplete client:load lessonId="memoria-continuidad" />

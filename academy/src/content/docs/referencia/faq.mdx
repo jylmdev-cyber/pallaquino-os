@@ -1,0 +1,42 @@
+---
+title: Preguntas frecuentes
+description: Respuestas breves a las dudas más habituales sobre PALLAQUINO y esta academia.
+sidebar:
+  order: 7
+---
+
+## ¿Necesito una clave de API o pagar algo?
+
+No. PALLAQUINO funciona offline con el proveedor `mock`. Para respuestas de IA reales puedes activar `ollama`, que ejecuta un modelo local.
+
+## ¿Funciona en Windows, Linux y macOS?
+
+Sí, con Python 3.11+ y Git. Esta academia se verificó en Windows; la CI del repositorio ejecuta los tests en Linux. En Windows hay un
+problema conocido con identidades no ASCII (ver [Solución de problemas](../solucion-de-problemas/)).
+
+## ¿PALLAQUINO escribe el código por mí?
+
+No por sí mismo. Organiza, controla y verifica el trabajo. El código lo escribe el agente de IA configurado o tú.
+
+## ¿Puede hacer push, publicar o desplegar?
+
+Las herramientas gobernadas (`deploy`, `release_publish`, `git_push`…) siempre esperan aprobación humana, y ningún comando autoriza por sí
+solo una acción destructiva o de producción.
+
+## ¿Por qué `doctor` falla en el clon del framework?
+
+Por `validate_git_authorship`, una comprobación de entorno que verifica la identidad del mantenedor. Usa
+`validate --integrity-only --json`.
+
+## ¿La terminal interactiva ejecuta comandos?
+
+No. Reproduce salidas reales grabadas de un clon limpio. Nada se ejecuta en tu equipo ni en un servidor.
+
+## ¿Dónde se guarda mi progreso?
+
+Solo en el `localStorage` de tu navegador: lecciones completadas, resultados de evaluaciones, listas y retos. No hay cuentas, no se envía
+a ningún servicio y no se guarda ningún secreto. Puedes exportarlo, importarlo o borrarlo en [Tu progreso](../../progreso/).
+
+## ¿Hay videos?
+
+Hay **guiones** de video preparados en la sección [Videos (guiones)](../../videos/). Los videos todavía no se han grabado.

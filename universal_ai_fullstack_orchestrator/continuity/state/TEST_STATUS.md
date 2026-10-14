@@ -14,5 +14,19 @@
 - Lint/typecheck proxy: `compileall` passed for pallaquino_cli, scripts, tests and examples.
 - Security: secret scan 0 findings over 574 files (`evidence/security_check-2026-10-14T19-16-37+00-00.json`); fitness 0 violations.
 - Not verified: Linux and Python 3.14 (CI runs on the publication pull request); real identity providers and public MCP servers.
+- Academy (PAL-012), 2026-10-14, Windows 11, Node 24 / Python 3.11.15:
+  - `npm run ci` green (`evidence/docs_validation-2026-10-14T23-14-58+00-00.json`):
+    - generated data matches the code;
+    - `astro check` and `vue-tsc` with 0 errors;
+    - 29 vitest tests (logic and components with axe-core);
+    - content validation: 64 pages, 46 lessons, 133 CLI commands;
+    - build of 127 pages;
+    - 11448 internal links;
+    - axe-core on 65 built pages.
+  - In-browser axe-core sweep of 63 pages: dark and light at 1280 px, light at 375 px, with no horizontal overflow. The only remaining rule is
+    Starlight's search button (`label-content-name-mismatch`, audit H-11)
+    (`evidence/accessibility_browser-2026-10-14T23-20-00+00-00.json`).
+  - Not run: the academy CI workflow on GitHub (needs a push), tests with real users (protocol only), and deployment.
+- Framework suite re-run after the PAL-012 changes: 242 OK, 6 skipped (`evidence/test-2026-10-14T23-16-55+00-00.json`).
 - Updated: 2026-10-14
 - Confidence: high

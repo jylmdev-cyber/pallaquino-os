@@ -1,0 +1,85 @@
+---
+title: Domina PALLAQUINO OS
+description: Aprende a usar agentes de IA, automatizar tareas de ingeniería y construir proyectos con PALLAQUINO mediante tutoriales interactivos verificados contra el código real.
+template: splash
+hero:
+  title: Domina PALLAQUINO OS
+  tagline: Aprende a utilizar agentes de IA, automatizar tareas de ingeniería y construir proyectos mediante tutoriales interactivos.
+  actions:
+    - text: Comenzar desde cero
+      link: introduccion/que-es/
+      icon: right-arrow
+    - text: Explorar documentación
+      link: referencia/cli/
+      variant: secondary
+    - text: Probar terminal interactiva
+      link: practica/terminal/
+      variant: minimal
+---
+
+import { Card, CardGrid, LinkCard } from '@astrojs/starlight/components';
+import FlowDiagram from '../../components/FlowDiagram.vue';
+import PathCards from '../../components/PathCards.astro';
+import meta from '../../data/generated/meta.json';
+
+## ¿Qué es PALLAQUINO?
+
+PALLAQUINO Autonomous Engineering OS es un **framework en Python** que da a los agentes de IA (y a las personas que trabajan con ellos) un
+método de ingeniería verificable. Convierte una solicitud en un plan con tareas, elige agentes especializados, ejecuta con controles de
+riesgo y permisos, y deja evidencia, checkpoints y handoffs. Funciona offline, sin dependencias externas y con cualquier proveedor de IA.
+
+<CardGrid>
+	<Card title="Gobernanza primero" icon="approve-check">
+		Riesgo determinista, gates de calidad y aprobación humana para lo crítico. Nada se da por hecho sin evidencia.
+	</Card>
+	<Card title={`${meta.counts.agents} agentes y ${meta.counts.skills} skills`} icon="puzzle">
+		Catálogo real con contratos verificables: entradas, salidas, herramientas permitidas y límites de riesgo.
+	</Card>
+	<Card title="Orquestación multiagente" icon="random">
+		Planes como DAG, scheduler concurrente, memoria por proyecto y reanudación tras fallos (desde 0.4.0).
+	</Card>
+	<Card title="Plugins y MCP" icon="setting">
+		Herramientas gobernadas, plugins aislados y cliente MCP 2026-07-28 con revisión de catálogo (desde 0.5.0).
+	</Card>
+</CardGrid>
+
+## ¿Cómo funciona?
+
+<FlowDiagram client:visible />
+
+## Elige tu ruta
+
+| Perfil | Empieza por | Llegarás a |
+|---|---|---|
+| **Principiante**: programas, pero no conoces PALLAQUINO | [1 · Introducción](introduccion/que-es/) y [2 · Instalación](instalacion/requisitos/) | instalarlo, diagnosticarlo y usar la CLI |
+| **Intermedio**: quieres usarlo en tus proyectos | [3 · CLI](cli/introduccion/) y [5 · Orquestación](orquestacion/plan-y-dag/) | planificar, ejecutar, revisar memoria y gobernar herramientas |
+| **Avanzado**: quieres extenderlo | [7 · Plugins y MCP](plugins-y-mcp/herramientas-y-permisos/) y [9 · Extensión](extension/arquitectura-interna/) | crear plugins, integrar servidores MCP y contribuir |
+
+<PathCards compact />
+
+## Tutoriales destacados
+
+<CardGrid>
+	<LinkCard title="Instala y ejecuta PALLAQUINO por primera vez" href="instalacion/primera-instalacion/" description="Paso a paso para Windows, Linux y macOS, con resultados reales y errores frecuentes." />
+	<LinkCard title="Terminal interactiva" href="practica/terminal/" description="Practica los comandos sin instalar nada: salidas reales grabadas, retos guiados." />
+	<LinkCard title="Tu primer plan multiagente" href="orquestacion/plan-y-dag/" description="De una solicitud a un DAG validado, y cómo lo ejecuta el scheduler." />
+	<LinkCard title="Conecta un servidor MCP de forma segura" href="plugins-y-mcp/mcp/" description="Revisión de catálogo, clasificación y grants, con un servidor de prueba local." />
+</CardGrid>
+
+## Explora las herramientas
+
+<CardGrid>
+	<LinkCard title="Comandos de la CLI" href="referencia/cli/" description={`Los ${meta.counts.commands} comandos reales, con sus opciones.`} />
+	<LinkCard title="Agentes y skills" href="referencia/agentes/" description="Explorador con búsqueda y filtros sobre el registro real." />
+	<LinkCard title="Herramientas gobernadas" href="referencia/herramientas/" description={`${meta.counts.builtin_tools} herramientas builtin con su política de aprobación.`} />
+	<LinkCard title="Pipeline" href="referencia/pipeline/" description={`Las ${meta.counts.pipeline_stages} etapas del pipeline y sus retornos ante fallos.`} />
+</CardGrid>
+
+## Recursos
+
+- [Repositorio en GitHub](https://github.com/jylmdev-cyber/pallaquino-os)
+- [Guía de instalación](instalacion/primera-instalacion/) · [Ejemplos reales](proyectos-reales/proyecto-python/) · [Preguntas frecuentes](referencia/faq/)
+- [Solución de problemas](referencia/solucion-de-problemas/) · [Reportar un problema](https://github.com/jylmdev-cyber/pallaquino-os/issues)
+- [Estado de cada funcionalidad por versión](referencia/versiones/)
+
+Contenido verificado contra PALLAQUINO {meta.framework_version}. Los datos de agentes, skills, comandos y herramientas se generan del código fuente.

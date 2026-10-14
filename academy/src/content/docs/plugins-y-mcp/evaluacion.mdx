@@ -1,0 +1,58 @@
+---
+title: Evaluación de la ruta 7
+description: Comprueba que sabes gobernar herramientas, servidores MCP y plugins.
+sidebar:
+  order: 6
+lesson:
+  id: plugins-mcp-evaluacion
+  path: plugins-y-mcp
+  difficulty: avanzado
+  duration: 8
+  objectives:
+    - Demostrar que entiendes el modelo de permisos y confianza
+  prerequisites:
+    - plugins-crear
+  status: disponible
+  since: 0.5.0
+  next: proyecto-python
+---
+
+import QuizPlayer from '../../../components/QuizPlayer.vue';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+<QuizPlayer client:load id="quiz-plugins-mcp" title="Plugins y MCP" questions={[
+	{
+		question: 'Un plugin instalado y de confianza devuelve DENIED al usar su herramienta. ¿Por qué?',
+		options: [
+			{ text: 'Falta un grant: confiable no es autorizado', correct: true, why: 'La confianza permite que se ejecute; el grant, que se use.' },
+			{ text: 'El plugin está corrupto', correct: false, why: 'Un plugin manipulado pasa a QUARANTINED.' },
+			{ text: 'Hay que reinstalarlo', correct: false, why: 'No hace falta; basta con el grant.' },
+		],
+	},
+	{
+		question: 'Las descripciones de herramientas de un servidor MCP son…',
+		options: [
+			{ text: 'instrucciones que el agente debe seguir', correct: false, why: 'Nunca se siguen.' },
+			{ text: 'datos no confiables que se revisan antes de fijar', correct: true, why: 'Por eso se marcan trust: untrusted.' },
+			{ text: 'irrelevantes', correct: false, why: 'Se revisan y forman parte del digest fijado.' },
+		],
+	},
+	{
+		question: '¿Qué ocurre si modificas el código de un plugin ya confiado?',
+		options: [
+			{ text: 'Nada', correct: false, why: 'La confianza está ligada al hash del contenido.' },
+			{ text: 'Pasa a QUARANTINED hasta que vuelvas a confiar en él', correct: true, why: 'El hash ya no coincide.' },
+			{ text: 'Se desinstala solo', correct: false, why: 'Nunca se borra sin confirmación.' },
+		],
+	},
+	{
+		question: 'Una herramienta con política per_call…',
+		options: [
+			{ text: 'se autoriza con un grant de 7 días', correct: false, why: 'Ningún grant la sustituye.' },
+			{ text: 'necesita --approve en esa llamada concreta, ligada a sus argumentos', correct: true, why: 'La aprobación se consume al usarse.' },
+			{ text: 'nunca se puede usar', correct: false, why: 'Se puede, con aprobación humana.' },
+		],
+	},
+]} />
+
+<LessonComplete client:load lessonId="plugins-mcp-evaluacion" />

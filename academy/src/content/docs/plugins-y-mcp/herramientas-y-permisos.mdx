@@ -1,0 +1,58 @@
+---
+title: Herramientas y permisos
+description: El modelo de denegación por defecto de la pasarela de herramientas, con un simulador basado en las reglas reales.
+sidebar:
+  order: 1
+lesson:
+  id: herramientas-permisos
+  path: plugins-y-mcp
+  difficulty: intermedio
+  duration: 15
+  objectives:
+    - Explicar las tres políticas de aprobación (contract, grant, per_call)
+    - Predecir si una llamada se permite, se deniega o pide aprobación
+  prerequisites:
+    - orquestacion-ejecutar
+  status: disponible
+  since: 0.5.0
+  next: herramientas-ejecutar
+---
+
+import { Aside } from '@astrojs/starlight/components';
+import PermissionSimulator from '../../../components/PermissionSimulator.vue';
+import Transcript from '../../../components/Transcript.astro';
+import LessonComplete from '../../../components/LessonComplete.vue';
+
+Toda llamada a una herramienta (builtin, de un plugin o de un servidor MCP) pasa por la **pasarela de herramientas**. La regla de
+partida es **denegar**.
+
+| Política | Se aplica a | Qué hace falta |
+|---|---|---|
+| `contract` | Lecturas builtin | Que el contrato de la tarea lo permita |
+| `grant` | Otras lecturas y las escrituras | Un *grant* acotado: herramienta o patrón, principal, operación, días y usos |
+| `per_call` | Operaciones sensibles, destructivas o con efectos externos | Una aprobación humana ligada a los argumentos exactos de esa llamada |
+
+## Simulador
+
+Elige un escenario y comprueba la decisión. El simulador aplica las mismas reglas que el código de la pasarela.
+
+<PermissionSimulator client:visible />
+
+## Comprobación en seco real
+
+`tools check` decide sin ejecutar nada:
+
+```bash
+python -m pallaquino_cli tools check core.files.write --no-plugins --args '{"path": "a.txt", "content": "x"}' --json
+```
+
+<Transcript id="tools-check-write" />
+
+<Aside type="caution" title="Confiable no es autorizado">
+	Que un plugin sea de confianza o que un servidor MCP esté conectado no autoriza a usar sus herramientas. Cada uso necesita su grant o
+	su aprobación.
+</Aside>
+
+**Siguiente:** [Ejecutar herramientas con seguridad](../ejecutar-herramientas/).
+
+<LessonComplete client:load lessonId="herramientas-permisos" />

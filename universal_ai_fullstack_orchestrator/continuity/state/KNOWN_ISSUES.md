@@ -14,7 +14,7 @@
 - 0.4.0: memory/state checksums are unkeyed; scheduler throughput is bounded by per-transition SQLite commits (~84 tasks/s, 4 workers).
 - 0.4.0: a task that exceeds its timeout keeps running in its thread; its late result is discarded but its effects are not undone.
 - The published v0.4.0 release ZIP lacks `pallaquino_cli/memory/` (orchestration commands fail from the extracted archive). The repository and
-  tag are complete; the archive defect is fixed in 0.5.0. A corrected 0.4.x archive, or a note on the v0.4.0 release, needs the owner's decision.
+  tag are complete; the archive defect is fixed in 0.5.0, and the v0.4.0 release carries a warning note (added 2026-10-14).
 - 0.5.0:
   - interoperability with the official MCP SDK v2 is verified locally (5/5 with `mcp` 2.3.0) but is not part of CI (the SDK is not a dependency);
   - plugins run in a separate process but not in an OS sandbox; a trusted plugin has the user's file permissions;
@@ -25,4 +25,10 @@
   - inherited Windows flake: SQLite WAL cleanup in `test_scheduler` sometimes fails with WinError 32 (seen once in the source tree and once in the
     extracted archive on 2026-10-14); watch CI;
   - with an editable install, the default root is the package checkout (ADR-0004); use `--root .pallaquino` or `PALLAQUINO_ROOT` in projects.
+- PAL-012 documentation audit (`docs/learning/DOCUMENTATION_AUDIT.md`):
+  - H-6, on Windows: `identity --apply-local` with a non-ASCII name sets the local Git config, but returns `"matches": false`. `run_git`
+    decodes Git's UTF-8 output with the locale code page. Not fixed; proposed as PAL-013.
+  - Test-command detection covers only `tests/test*.py` and `package.json` with a `test` script (H-7).
+- Academy: Starlight's search button shows `Ctrl K` outside its accessible name (axe `label-content-name-mismatch`, upstream, H-11).
+- Academy: recorded transcripts age with each release; re-capture them with `npm run transcripts` (docs/learning/MAINTENANCE.md).
 - Confidence: high
