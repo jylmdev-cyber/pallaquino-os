@@ -2,8 +2,8 @@
 
 - Stack snapshot verified 2026-10-14; it becomes STALE after 2026-11-13 and must be re-verified.
 - In this repository `validate_all.py` expects the identity in `governance/git_identity.json` (jimdev); contributors with another local identity use `--integrity-only`.
-- Contracts v2 exist for all 59 agents and 90 skills, but their inputs, outputs and success criteria are category-derived (`curation: derived`) until curated (PAL-007-B).
-- 20 agents and 9 skills are unreachable: no routing rule, profile, domain pack or coverage entry selects them (`pallaquino contracts`).
+- 46 agent and 90 skill contracts keep category-derived inputs, outputs and success criteria (`curation: derived`); 13 role agents are curated.
+- 19 agents and 52 skills still have no golden test case (`pallaquino contracts`).
 - Checkpoint SHA-256 detects accidental corruption, not deliberate tampering (hash chain planned for Phase 2).
 - Only `no_secrets` of the 4 declared fitness rules has an implementation.
 - `runtime/capabilities.json` in the framework tree still contains host paths from the 0.2.x build machine; it is no longer copied into new projects.

@@ -1,12 +1,14 @@
 {
-  "task_id": "PAL-007-A",
+  "task_id": "PAL-007-A, PAL-007-B",
   "files_created": [
     "pallaquino_cli/contracts.py",
     "scripts/build_contracts.py",
     "registry/agent_contracts.json",
     "registry/skill_contracts.json",
     "tests/test_contracts.py",
-    "../docs/adr/ADR-0008-agent-and-skill-contracts-v2.md"
+    "../docs/adr/ADR-0008-agent-and-skill-contracts-v2.md",
+    "evaluation/pipeline_stages/golden.json",
+    "../docs/adr/ADR-0009-pipeline-stage-roles-and-create-only-generators.md"
   ],
   "files_modified": [
     "pallaquino_cli/core.py (validate_contracts, CLI command list)",
@@ -18,7 +20,12 @@
     "../README.md",
     "../docs/ARCHITECTURE.md",
     "../docs/ROADMAP.md",
-    "../docs/AUDIT_REPORT.md"
+    "../docs/AUDIT_REPORT.md",
+    "registry/agents.json (11 agents: specialist skills, minor version)",
+    "registry/routing_rules.json (10 rules)",
+    "pipeline/pipeline_definition.json (stage agents)",
+    "evaluation/routing_golden.json (11 cases)",
+    "scripts/scaffold_framework.py, scripts/expand_catalog.py (create-only --write)"
   ],
   "files_deleted": [],
   "migrations": [],
@@ -27,7 +34,7 @@
     "CLI: new `contracts [--id <agent|skill>]`"
   ],
   "tests": [
-    "60 tests (11 new contract tests plus CLI coverage)"
+    "67 tests (17 contract and reachability tests, 1 CLI contract test)"
   ],
   "docs": [
     "ADR-0008"
@@ -37,6 +44,9 @@
     "Deny-by-default tool tiers with governed tools only under approval_required",
     "No agent receives secrets_access",
     "Source digest enforces controlled loading",
-    "Unreachable/untested items are reported, not failed, until PAL-007-B"
+    "Unreachable/untested items are reported, not failed, until PAL-007-B",
+    "Pipeline roles are selected by stage, specialists by request keywords (ADR-0009)",
+    "Generators create only missing files; --overwrite is explicit and destructive",
+    "Keyword 'document' rejected for documentation routing to avoid document-management false positives"
   ]
 }

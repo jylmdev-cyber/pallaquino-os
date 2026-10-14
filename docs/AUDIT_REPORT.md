@@ -124,7 +124,8 @@ Corrección: ambos son dry-run por defecto y requieren `--write`. **CORREGIDO.**
 - **M-6 — Agentes y skills sin contrato operativo.** Faltan entradas/salidas,
   herramientas autorizadas, condiciones de activación, criterios de éxito y casos de
   prueba por agente. **PARCIAL**: contratos v2 implementados (ADR-0008, PAL-007-A) con contenido
-  derivado; la curación y la alcanzabilidad de 20 agentes y 9 skills siguen abiertas (PAL-007-B).
+  derivado; alcanzabilidad resuelta y 13 contratos de rol curados (PAL-007-B, ADR-0009). Siguen
+  46 contratos de agente y 90 de skill con contenido derivado.
 - **M-7 — Snapshot tecnológico caducado** (verificado 2026-08-31, caducó 2026-09-30).
   Requiere verificación contra fuentes oficiales en modo `UPGRADE`. **ABIERTO** (`PAL-006`).
 - **M-8 — Salida no JSON en modo humano.** `agents`/`skills` imprimían `repr` de

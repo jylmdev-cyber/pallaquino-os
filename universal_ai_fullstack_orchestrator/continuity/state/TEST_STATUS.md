@@ -1,7 +1,7 @@
 # Test status
 
 - Result: PASSED for integrity scope; the environment-scope Git identity check needs the owner identity (configured in CI)
-- Framework suite: 60/60 passed (`python -m unittest discover -s tests`)
+- Framework suite: 67/67 passed (`python -m unittest discover -s tests`)
 - Statement coverage (stdlib trace, in-process): core.py 92.1 %, __main__.py 86.4 %
 - Validators: 9/9 integrity checks pass; validate_git_authorship fails locally without the owner identity, by design
 - Lint/typecheck proxy: Python compileall passed

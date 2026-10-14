@@ -469,7 +469,15 @@ def validate_pipeline(root: Path) -> dict[str, Any]:
         if row.get("success_to") != expected: errors.append(f"{row.get('id')} invalid success transition")
         failure = row.get("failure_return_to")
         if row.get("id") != "REQUEST" and failure not in known: errors.append(f"{row.get('id')} invalid failure return")
-    return result("validate_pipeline", not errors, errors or [f"{len(rows)} stages and failure loops valid"])
+    try: agent_ids = {a["id"] for a in read_json(root / "registry" / "agents.json")["agents"]}
+    except (OSError, ValueError, KeyError, TypeError): agent_ids = None
+    staffed = 0
+    for row in rows:  # optional pipeline-stage roles (PAL-007-B)
+        if "agents" not in row: continue
+        staffed += 1
+        if not isinstance(row["agents"], list) or not all(isinstance(a, str) for a in row["agents"]): errors.append(f"{row.get('id')} agents must be a list of IDs"); continue
+        if agent_ids is not None: errors += [f"{row.get('id')} unknown stage agent {a}" for a in row["agents"] if a not in agent_ids]
+    return result("validate_pipeline", not errors, errors or [f"{len(rows)} stages and failure loops valid; {staffed} stages declare agents"])
 
 
 def validate_continuity(root: Path) -> dict[str, Any]:

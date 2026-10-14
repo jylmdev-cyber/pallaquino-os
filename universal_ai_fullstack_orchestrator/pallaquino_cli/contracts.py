@@ -10,7 +10,7 @@ from .core import read_json, result, sha256_file
 CONTRACT_VERSION = 2
 AGENT_CONTRACTS = "registry/agent_contracts.json"
 SKILL_CONTRACTS = "registry/skill_contracts.json"
-GOLDEN_FILES = ["evaluation/routing_golden.json", "evaluation/stack_routing/golden.json"]
+GOLDEN_FILES = ["evaluation/routing_golden.json", "evaluation/stack_routing/golden.json", "evaluation/pipeline_stages/golden.json"]
 
 # Deny by default: a tool absent from a contract is not authorized. Governed tools may only appear under
 # approval_required, so even an authorized agent needs explicit human approval (HUMAN_APPROVAL_POLICY.md).
@@ -80,7 +80,8 @@ def _registry(root: Path) -> dict[str, Any]:
             goldens.extend((f"{rel}#{index}", case) for index, case in enumerate(load(rel, "cases")))
     return {"agents": load("registry/agents.json", "agents"), "skills": load("registry/skills.json", "skills"),
             "rules": load("registry/routing_rules.json", "rules"), "profiles": load("registry/stack_profiles.json", "profiles"),
-            "packs": load("registry/domain_packs.json", "packs"), "coverage": load("registry/agent_skill_coverage.json", "coverage"), "goldens": goldens}
+            "packs": load("registry/domain_packs.json", "packs"), "coverage": load("registry/agent_skill_coverage.json", "coverage"),
+            "stages": load("pipeline/pipeline_definition.json", "stages"), "goldens": goldens}
 
 
 def _agent_tools(agent: dict[str, Any]) -> dict[str, list[str]]:
@@ -111,7 +112,7 @@ def derive_contracts(root: Path, existing: dict[str, dict[str, dict[str, Any]]] 
         contract = {"id": agent["id"], "contract_version": CONTRACT_VERSION, "name": _title(text) or agent["id"], "description": _section(text, "Mission"),
                     "version": agent["version"], "capabilities": agent["capabilities"], "inputs": inputs + UNIVERSAL_INPUTS, "outputs": outputs + UNIVERSAL_OUTPUTS,
                     "dependencies": {"skills": agent["required_skills"], "technologies": agent["technologies"]}, "tools": _agent_tools(agent),
-                    "risk_limit": agent["risk_limit"], "activation": {**_activation(registry, "agents", agent["id"]), "domains": agent["domains"]},
+                    "risk_limit": agent["risk_limit"], "activation": {**_activation(registry, "agents", agent["id"]), "pipeline_stages": [s["id"] for s in registry["stages"] if agent["id"] in s.get("agents", [])], "domains": agent["domains"]},
                     "success_criteria": success + UNIVERSAL_SUCCESS, "test_cases": [ref for ref, case in registry["goldens"] if agent["id"] in case.get("required_agents", [])],
                     "source_digest": sha256_file(root / agent["path"]), "curation": "derived"}
         agents.append(_merge_curated(contract, existing["agents"].get(agent["id"])))
@@ -145,7 +146,7 @@ def load_contract_files(root: Path) -> dict[str, dict[str, dict[str, Any]]]:
 
 def _is_reachable(contract: dict[str, Any]) -> bool:
     activation = contract.get("activation", {})
-    return any(activation.get(key) for key in ("routing_rules", "profiles", "domain_packs", "technologies", "required_by_agents"))
+    return any(activation.get(key) for key in ("routing_rules", "profiles", "domain_packs", "technologies", "required_by_agents", "pipeline_stages"))
 
 
 def contract_errors(root: Path) -> list[str]:
@@ -155,7 +156,7 @@ def contract_errors(root: Path) -> list[str]:
         return [f"cannot load contracts: {exc}"]
     errors: list[str] = []
     golden_refs = dict(registry["goldens"]); rule_ids = {r["id"] for r in registry["rules"]}
-    profile_ids = {p["id"] for p in registry["profiles"]}; pack_ids = {p["id"] for p in registry["packs"]}
+    profile_ids = {p["id"] for p in registry["profiles"]}; pack_ids = {p["id"] for p in registry["packs"]}; stage_ids = {s["id"] for s in registry["stages"]}
     for kind, rows, fields, golden_key in (("agents", registry["agents"], REQUIRED_AGENT_FIELDS, "required_agents"), ("skills", registry["skills"], REQUIRED_SKILL_FIELDS, "required_skills")):
         found = contracts[kind]
         if not found: errors.append(f"no {kind} contracts; run scripts/build_contracts.py --write"); continue
@@ -179,6 +180,7 @@ def contract_errors(root: Path) -> list[str]:
             errors += [f"{label} unknown routing rule {x}" for x in activation.get("routing_rules", []) if x not in rule_ids]
             errors += [f"{label} unknown profile {x}" for x in activation.get("profiles", []) if x not in profile_ids]
             errors += [f"{label} unknown domain pack {x}" for x in activation.get("domain_packs", []) if x not in pack_ids]
+            errors += [f"{label} unknown pipeline stage {x}" for x in activation.get("pipeline_stages", []) if x not in stage_ids]
             for ref in contract["test_cases"]:
                 case = golden_refs.get(ref)
                 if case is None: errors.append(f"{label} test case {ref} does not exist")

@@ -54,6 +54,9 @@
           "healthcare"
         ],
         "technologies": [],
+        "pipeline_stages": [
+          "ADVERSARIAL_REVIEW"
+        ],
         "domains": [
           "security",
           "quality"
@@ -65,7 +68,9 @@
         "no unexecuted check is reported as passed",
         "stays within its risk limit and authorized tools"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/pipeline_stages/golden.json#8"
+      ],
       "source_digest": "4fecb9466eed79ed4c350111fe930e5f67c011796dba525629110113bfb17a03",
       "curation": "derived"
     },
@@ -74,7 +79,7 @@
       "contract_version": 2,
       "name": "Ai Engineer",
       "description": "Build provider-neutral agent workflows with bounded tools, evaluation cases, context budgets and transparent uncertainty.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "capabilities": [
         "prompting",
         "evaluation"
@@ -94,7 +99,10 @@
       ],
       "dependencies": {
         "skills": [
-          "risk_analysis_expert"
+          "risk_analysis_expert",
+          "model_routing_expert",
+          "ai_cost_optimization_expert",
+          "prompt_security_expert"
         ],
         "technologies": []
       },
@@ -115,10 +123,13 @@
       },
       "risk_limit": "HIGH",
       "activation": {
-        "routing_rules": [],
+        "routing_rules": [
+          "ai_engineering"
+        ],
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "ai",
           "agents"
@@ -130,7 +141,9 @@
         "no unexecuted check is reported as passed",
         "stays within its risk limit and authorized tools"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/routing_golden.json#10"
+      ],
       "source_digest": "ffce5687be5c0058748a8ecb7ddc04594a1f887b5459998541e7198a5ab13af1",
       "curation": "derived"
     },
@@ -189,6 +202,7 @@
         ],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "ai",
           "testing"
@@ -257,6 +271,7 @@
         ],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "ai",
           "security"
@@ -331,6 +346,7 @@
         ],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "ai",
           "architecture"
@@ -391,10 +407,13 @@
       },
       "risk_limit": "HIGH",
       "activation": {
-        "routing_rules": [],
+        "routing_rules": [
+          "api_governance"
+        ],
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "api"
         ]
@@ -404,7 +423,9 @@
         "no unexecuted check is reported as passed",
         "stays within its risk limit and authorized tools"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/routing_golden.json#5"
+      ],
       "source_digest": "516a74a860d8ebe0dcfd27b6c75365642f10b827276c2c94d79294548a117f3a",
       "curation": "derived"
     },
@@ -466,6 +487,7 @@
         ],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "api",
           "domain"
@@ -541,6 +563,7 @@
         ],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "cloud",
           "architecture"
@@ -561,27 +584,23 @@
       "contract_version": 2,
       "name": "Code Quality Reviewer",
       "description": "Review correctness, readability, maintainability, boundaries and error handling independently of the implementer.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "capabilities": [
         "review",
         "lint"
       ],
       "inputs": [
-        "acceptance criteria and changed files",
-        "existing test suite",
-        "task scope and acceptance criteria",
-        "risk classification and required gates",
-        "repository map and reserved files"
+        "diff under review",
+        "applicable contracts and architecture rules"
       ],
       "outputs": [
-        "tests or review findings",
-        "coverage and gap report",
-        "evidence record for every executed check",
-        "residual risks, confidence and next pipeline stage"
+        "findings ranked by severity with file:line and a failure scenario",
+        "simplification opportunities"
       ],
       "dependencies": {
         "skills": [
-          "risk_analysis_expert"
+          "risk_analysis_expert",
+          "architecture_fitness_expert"
         ],
         "technologies": []
       },
@@ -605,46 +624,47 @@
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [
+          "CODE_REVIEW"
+        ],
         "domains": [
           "code"
         ]
       },
       "success_criteria": [
-        "new behaviour has a failing-then-passing test",
-        "flaky or skipped tests are reported",
-        "no unexecuted check is reported as passed",
-        "stays within its risk limit and authorized tools"
+        "the review is independent of the implementer",
+        "every finding has a reproducible failure scenario or is labelled a suggestion"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/pipeline_stages/golden.json#9"
+      ],
       "source_digest": "828065d9235cd9d3162fc3e9661ffe83ee3f933134e699af545e7c75716567db",
-      "curation": "derived"
+      "curation": "curated"
     },
     {
       "id": "codebase_explorer",
       "contract_version": 2,
       "name": "Codebase Explorer",
       "description": "Trace runtime paths, contracts, ownership boundaries and test seams using targeted reads rather than loading the entire repository.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "capabilities": [
         "search",
         "trace"
       ],
       "inputs": [
-        "current architecture and domain map",
-        "non-functional requirements",
-        "task scope and acceptance criteria",
-        "risk classification and required gates",
-        "repository map and reserved files"
+        "question or feature to trace",
+        "repository map",
+        "context budget"
       ],
       "outputs": [
-        "architecture decision or ADR with options and trade-offs",
-        "updated component boundaries",
-        "evidence record for every executed check",
-        "residual risks, confidence and next pipeline stage"
+        "runtime path with file:line references",
+        "ownership boundaries and contracts crossed",
+        "test seams where behaviour can be isolated"
       ],
       "dependencies": {
         "skills": [
-          "risk_analysis_expert"
+          "risk_analysis_expert",
+          "context_management_expert"
         ],
         "technologies": []
       },
@@ -668,18 +688,22 @@
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [
+          "REPOSITORY_ANALYSIS"
+        ],
         "domains": [
           "repository"
         ]
       },
       "success_criteria": [
-        "decision states options, trade-offs and reversal path",
-        "no unexecuted check is reported as passed",
-        "stays within its risk limit and authorized tools"
+        "every claim cites a file and line",
+        "reads stay within the context budget and are targeted, not whole-repository"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/pipeline_stages/golden.json#0"
+      ],
       "source_digest": "f047d4ed04ddd1e6627feaacda8fe00cb01b0538aabf5bd4c628736dda1f06c3",
-      "curation": "derived"
+      "curation": "curated"
     },
     {
       "id": "conflict_resolver",
@@ -692,17 +716,12 @@
         "arbitrate"
       ],
       "inputs": [
-        "task graph and file locks",
-        "agent outputs",
-        "task scope and acceptance criteria",
-        "risk classification and required gates",
-        "repository map and reserved files"
+        "conflicting diffs or agent outputs",
+        "the contracts, ADRs and acceptance criteria that apply"
       ],
       "outputs": [
-        "integrated results and updated task states",
-        "conflict report",
-        "evidence record for every executed check",
-        "residual risks, confidence and next pipeline stage"
+        "resolution that preserves both sides' intent, or an escalation naming the decision needed",
+        "rationale recorded in the change manifest"
       ],
       "dependencies": {
         "skills": [
@@ -730,18 +749,22 @@
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [
+          "INTEGRATION"
+        ],
         "domains": [
           "integration"
         ]
       },
       "success_criteria": [
-        "no two agents edit a reserved file concurrently",
-        "no unexecuted check is reported as passed",
-        "stays within its risk limit and authorized tools"
+        "neither side is silently discarded",
+        "unresolvable conflicts are escalated, not guessed"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/pipeline_stages/golden.json#6"
+      ],
       "source_digest": "8c90cf7f5c2f7541b346bbf540261d98a2347304ee52adb0a41a615f31706450",
-      "curation": "derived"
+      "curation": "curated"
     },
     {
       "id": "context_manager",
@@ -794,6 +817,7 @@
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "context"
         ]
@@ -856,6 +880,11 @@
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [
+          "STATE_UPDATE",
+          "CHECKPOINT",
+          "HANDOFF"
+        ],
         "domains": [
           "continuity"
         ]
@@ -865,7 +894,11 @@
         "no unexecuted check is reported as passed",
         "stays within its risk limit and authorized tools"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/pipeline_stages/golden.json#14",
+        "evaluation/pipeline_stages/golden.json#15",
+        "evaluation/pipeline_stages/golden.json#16"
+      ],
       "source_digest": "af1d7dd350a3caa5b250b57cd8ba5cf8b719c18d3fc36a9bd69a350330ea6a9a",
       "curation": "derived"
     },
@@ -922,6 +955,7 @@
           "logistics"
         ],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "data"
         ]
@@ -991,6 +1025,7 @@
           "crm"
         ],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "privacy",
           "data"
@@ -1065,6 +1100,7 @@
         ],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "database"
         ]
@@ -1140,6 +1176,7 @@
           "manufacturing"
         ],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "database",
           "reliability"
@@ -1160,27 +1197,24 @@
       "contract_version": 2,
       "name": "Dependency Governance Agent",
       "description": "Challenge new dependencies for necessity, maintenance, security, license, size, compatibility and simpler alternatives.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "capabilities": [
         "audit",
         "license"
       ],
       "inputs": [
-        "threat model and trust boundaries",
-        "changed attack surface",
-        "task scope and acceptance criteria",
-        "risk classification and required gates",
-        "repository map and reserved files"
+        "proposed dependency or upgrade",
+        "verified stack registry",
+        "license and supply-chain policy"
       ],
       "outputs": [
-        "findings ranked by severity with evidence",
-        "required mitigations",
-        "evidence record for every executed check",
-        "residual risks, confidence and next pipeline stage"
+        "accept or reject decision covering necessity, maintenance, security, license, size and alternatives"
       ],
       "dependencies": {
         "skills": [
-          "risk_analysis_expert"
+          "risk_analysis_expert",
+          "dependency_governance_expert",
+          "supply_chain_security_expert"
         ],
         "technologies": []
       },
@@ -1200,30 +1234,36 @@
       },
       "risk_limit": "HIGH",
       "activation": {
-        "routing_rules": [],
+        "routing_rules": [
+          "dependency_governance"
+        ],
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [
+          "STACK_VERSION_AUDIT"
+        ],
         "domains": [
           "dependencies"
         ]
       },
       "success_criteria": [
-        "every finding cites a reproducible location",
-        "no secret value is printed",
-        "no unexecuted check is reported as passed",
-        "stays within its risk limit and authorized tools"
+        "a standard-library or existing alternative is considered first",
+        "versions come from official sources, never from memory"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/routing_golden.json#4",
+        "evaluation/pipeline_stages/golden.json#1"
+      ],
       "source_digest": "b28987f48eddfe3cb1cbd95d99910b1eaa30affe9487a41b817ee93d62552d1d",
-      "curation": "derived"
+      "curation": "curated"
     },
     {
       "id": "devops_engineer",
       "contract_version": 2,
       "name": "Devops Engineer",
       "description": "Create reproducible build and delivery automation with environment isolation and least privilege.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "capabilities": [
         "build",
         "deploy"
@@ -1243,7 +1283,9 @@
       ],
       "dependencies": {
         "skills": [
-          "risk_analysis_expert"
+          "risk_analysis_expert",
+          "github_actions_expert",
+          "docker_expert"
         ],
         "technologies": []
       },
@@ -1267,10 +1309,13 @@
       },
       "risk_limit": "HIGH",
       "activation": {
-        "routing_rules": [],
+        "routing_rules": [
+          "ci_cd"
+        ],
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "deployment",
           "infrastructure"
@@ -1282,7 +1327,9 @@
         "no unexecuted check is reported as passed",
         "stays within its risk limit and authorized tools"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/routing_golden.json#6"
+      ],
       "source_digest": "015753e4eb643b4ef34dfad5ebcff12fc4b2954045fc998c7d0011821592ad88",
       "curation": "derived"
     },
@@ -1333,10 +1380,13 @@
       },
       "risk_limit": "CRITICAL",
       "activation": {
-        "routing_rules": [],
+        "routing_rules": [
+          "disaster_recovery"
+        ],
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "reliability",
           "data"
@@ -1348,7 +1398,9 @@
         "no unexecuted check is reported as passed",
         "stays within its risk limit and authorized tools"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/routing_golden.json#7"
+      ],
       "source_digest": "97ebcb9eddf81e03b0f47b331a2be449dce9e8067a4084bde2ea88d0a559f927",
       "curation": "derived"
     },
@@ -1407,6 +1459,7 @@
         ],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "distributed_systems"
         ]
@@ -1431,15 +1484,12 @@
         "verify"
       ],
       "inputs": [
-        "implemented behaviour and decisions",
-        "task scope and acceptance criteria",
-        "risk classification and required gates",
-        "repository map and reserved files"
+        "implemented behaviour, CLI help and ADRs",
+        "change manifest"
       ],
       "outputs": [
-        "updated documentation separating implemented, experimental and planned",
-        "evidence record for every executed check",
-        "residual risks, confidence and next pipeline stage"
+        "documentation separating implemented, experimental and planned",
+        "runnable examples"
       ],
       "dependencies": {
         "skills": [
@@ -1463,22 +1513,29 @@
       },
       "risk_limit": "HIGH",
       "activation": {
-        "routing_rules": [],
+        "routing_rules": [
+          "documentation"
+        ],
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [
+          "DOCUMENTATION"
+        ],
         "domains": [
           "documentation"
         ]
       },
       "success_criteria": [
-        "documentation matches observed behaviour",
-        "no unexecuted check is reported as passed",
-        "stays within its risk limit and authorized tools"
+        "every documented command runs as shown",
+        "no capability is documented that the code does not provide"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/routing_golden.json#5",
+        "evaluation/pipeline_stages/golden.json#12"
+      ],
       "source_digest": "d9d1b27dd0a2f812c1e6f518fa8041a6773c659c9a678730aa348b81dc96b32a",
-      "curation": "derived"
+      "curation": "curated"
     },
     {
       "id": "erp_domain_expert",
@@ -1534,6 +1591,7 @@
           "manufacturing"
         ],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "erp"
         ]
@@ -1599,6 +1657,7 @@
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "events",
           "api"
@@ -1620,27 +1679,25 @@
       "contract_version": 2,
       "name": "Execution Coordinator",
       "description": "Schedule the task graph, protect critical shared files and integrate evidence before advancing stages.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "capabilities": [
         "schedule",
         "delegate"
       ],
       "inputs": [
-        "task graph and file locks",
-        "agent outputs",
-        "task scope and acceptance criteria",
-        "risk classification and required gates",
-        "repository map and reserved files"
+        "validated task graph",
+        "file reservations (`execution/file_locks.json`)",
+        "agent outputs and evidence"
       ],
       "outputs": [
-        "integrated results and updated task states",
-        "conflict report",
-        "evidence record for every executed check",
-        "residual risks, confidence and next pipeline stage"
+        "execution order that honours dependencies and parallelizable flags",
+        "lock reservations and releases",
+        "integrated evidence per task"
       ],
       "dependencies": {
         "skills": [
-          "risk_analysis_expert"
+          "risk_analysis_expert",
+          "task_graph_expert"
         ],
         "technologies": []
       },
@@ -1664,18 +1721,27 @@
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [
+          "TASK_GRAPH",
+          "DELEGATION",
+          "INTEGRATION"
+        ],
         "domains": [
           "planning"
         ]
       },
       "success_criteria": [
-        "no two agents edit a reserved file concurrently",
-        "no unexecuted check is reported as passed",
-        "stays within its risk limit and authorized tools"
+        "no task starts before its dependencies complete",
+        "no reserved file is edited by another agent",
+        "all locks are released at the end"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/pipeline_stages/golden.json#4",
+        "evaluation/pipeline_stages/golden.json#5",
+        "evaluation/pipeline_stages/golden.json#6"
+      ],
       "source_digest": "ac1b9da69f66ac3c4bad37f9869690479f90f98941461f8b213c80b43389083c",
-      "curation": "derived"
+      "curation": "curated"
     },
     {
       "id": "finops_analyst",
@@ -1729,6 +1795,7 @@
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "cloud",
           "cost"
@@ -1793,6 +1860,7 @@
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "pallaquino"
         ]
@@ -1859,6 +1927,7 @@
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "web",
           "ux"
@@ -1881,27 +1950,24 @@
       "contract_version": 2,
       "name": "Governance Auditor",
       "description": "Enforce policy hierarchy, autonomy limits, approvals, authorship and prompt-injection defenses.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "capabilities": [
         "policy",
         "audit"
       ],
       "inputs": [
-        "policies, registries and change manifests",
+        "policy hierarchy and governance policies",
         "approval records",
-        "task scope and acceptance criteria",
-        "risk classification and required gates",
-        "repository map and reserved files"
+        "Git history and change manifest"
       ],
       "outputs": [
-        "compliance findings",
-        "required approvals",
-        "evidence record for every executed check",
-        "residual risks, confidence and next pipeline stage"
+        "compliance findings naming the controlling policy",
+        "missing approvals for destructive or production actions"
       ],
       "dependencies": {
         "skills": [
-          "risk_analysis_expert"
+          "risk_analysis_expert",
+          "prompt_security_expert"
         ],
         "technologies": []
       },
@@ -1924,18 +1990,22 @@
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [
+          "ACCEPTANCE_VALIDATION"
+        ],
         "domains": [
           "governance"
         ]
       },
       "success_criteria": [
-        "every finding names the controlling policy",
-        "no unexecuted check is reported as passed",
-        "stays within its risk limit and authorized tools"
+        "destructive and production actions have a recorded approval",
+        "no AI co-author trailer exists and the commit identity matches `governance/git_identity.json`"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/pipeline_stages/golden.json#11"
+      ],
       "source_digest": "68587398cf494ef42398be6cf75c98dad29ddbe20c0c31daa865f3f2a4d56e1d",
-      "curation": "derived"
+      "curation": "curated"
     },
     {
       "id": "identity_access_engineer",
@@ -1997,6 +2067,7 @@
         ],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "identity",
           "security"
@@ -2066,6 +2137,7 @@
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "cloud",
           "infrastructure"
@@ -2140,6 +2212,7 @@
           "crm"
         ],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "api",
           "integration"
@@ -2209,6 +2282,7 @@
           "manufacturing"
         ],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "inventory",
           "erp"
@@ -2282,6 +2356,7 @@
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "kubernetes"
         ]
@@ -2350,6 +2425,7 @@
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "database"
         ]
@@ -2421,6 +2497,7 @@
         ],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "mobile",
           "architecture"
@@ -2492,6 +2569,7 @@
         ],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "mobile",
           "testing"
@@ -2559,6 +2637,7 @@
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "observability"
         ]
@@ -2628,6 +2707,7 @@
           "fintech"
         ],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "payments",
           "fintech"
@@ -2691,10 +2771,13 @@
       },
       "risk_limit": "HIGH",
       "activation": {
-        "routing_rules": [],
+        "routing_rules": [
+          "performance"
+        ],
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "performance"
         ]
@@ -2705,7 +2788,9 @@
         "no unexecuted check is reported as passed",
         "stays within its risk limit and authorized tools"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/routing_golden.json#8"
+      ],
       "source_digest": "0e169698c889f7cc6dc3acba986fbc30a8beece370c735e6f55f64f1a929db81",
       "curation": "derived"
     },
@@ -2714,25 +2799,23 @@
       "contract_version": 2,
       "name": "Pipeline Manager",
       "description": "Permit only declared pipeline transitions and return failed gates to their remediation stages.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "capabilities": [
         "transition",
         "gate"
       ],
       "inputs": [
-        "pipeline definition and gate results",
-        "task scope and acceptance criteria",
-        "risk classification and required gates",
-        "repository map and reserved files"
+        "pipeline definition",
+        "gate results with evidence"
       ],
       "outputs": [
-        "stage transitions and remediation routing",
-        "evidence record for every executed check",
-        "residual risks, confidence and next pipeline stage"
+        "next stage on success or the declared remediation stage on failure",
+        "updated pipeline state"
       ],
       "dependencies": {
         "skills": [
-          "risk_analysis_expert"
+          "risk_analysis_expert",
+          "evidence_validation_expert"
         ],
         "technologies": []
       },
@@ -2756,18 +2839,24 @@
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [
+          "PLAN",
+          "STATE_UPDATE"
+        ],
         "domains": [
           "pipeline"
         ]
       },
       "success_criteria": [
-        "failed gates return to their declared stage",
-        "no unexecuted check is reported as passed",
-        "stays within its risk limit and authorized tools"
+        "only declared transitions are taken",
+        "a failed gate returns to its failure_return_to stage"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/pipeline_stages/golden.json#3",
+        "evaluation/pipeline_stages/golden.json#14"
+      ],
       "source_digest": "e1b834e27c2e8547c5f3b5fe74b14f5c3e80128a9df63e3999f3bddea2240493",
-      "curation": "derived"
+      "curation": "curated"
     },
     {
       "id": "platform_engineer",
@@ -2828,6 +2917,7 @@
         ],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "platform",
           "deployment"
@@ -2895,6 +2985,7 @@
           "crm"
         ],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "product"
         ]
@@ -2919,17 +3010,13 @@
         "map"
       ],
       "inputs": [
-        "current architecture and domain map",
-        "non-functional requirements",
-        "task scope and acceptance criteria",
-        "risk classification and required gates",
-        "repository map and reserved files"
+        "target repository path",
+        "Git state (HEAD, branch, uncommitted changes)",
+        "detected runtime capabilities"
       ],
       "outputs": [
-        "architecture decision or ADR with options and trade-offs",
-        "updated component boundaries",
-        "evidence record for every executed check",
-        "residual risks, confidence and next pipeline stage"
+        "repository map: languages, frameworks, entrypoints, dependencies, data stores, deployment files and tests (`pallaquino analyze`)",
+        "list of unknowns that need a human answer"
       ],
       "dependencies": {
         "skills": [
@@ -2957,19 +3044,23 @@
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [
+          "REPOSITORY_ANALYSIS"
+        ],
         "domains": [
           "repository",
           "architecture"
         ]
       },
       "success_criteria": [
-        "decision states options, trade-offs and reversal path",
-        "no unexecuted check is reported as passed",
-        "stays within its risk limit and authorized tools"
+        "the repository map exists before any plan is made",
+        "anything not detected is listed as unknown, never assumed"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/pipeline_stages/golden.json#0"
+      ],
       "source_digest": "b2b02dbd37a3d71f9fe413051ce7b40b42d55104f93312a357db60ae3001d751",
-      "curation": "derived"
+      "curation": "curated"
     },
     {
       "id": "qa_engineer",
@@ -3029,6 +3120,7 @@
         ],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "testing"
         ]
@@ -3099,6 +3191,7 @@
         ],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "ai",
           "retrieval"
@@ -3121,25 +3214,26 @@
       "contract_version": 2,
       "name": "Release Manager",
       "description": "Recommend semantic version impact and assemble an evidence-backed release manifest and known-issues statement.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "capabilities": [
         "version",
         "manifest"
       ],
       "inputs": [
-        "change manifests, evidence and version policy",
-        "task scope and acceptance criteria",
-        "risk classification and required gates",
-        "repository map and reserved files"
+        "change manifests and gate evidence",
+        "versioning policy",
+        "owner approval for publication"
       ],
       "outputs": [
-        "release manifest, changelog and verified artifact",
-        "evidence record for every executed check",
-        "residual risks, confidence and next pipeline stage"
+        "semantic version recommendation",
+        "release manifest and changelog entry",
+        "deterministic archive with SHA-256 sidecar"
       ],
       "dependencies": {
         "skills": [
-          "risk_analysis_expert"
+          "risk_analysis_expert",
+          "release_management_expert",
+          "git_release_expert"
         ],
         "technologies": []
       },
@@ -3163,22 +3257,27 @@
       },
       "risk_limit": "CRITICAL",
       "activation": {
-        "routing_rules": [],
+        "routing_rules": [
+          "release_management"
+        ],
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "release"
         ]
       },
       "success_criteria": [
-        "artifact is reproducible and verified before publication",
-        "no unexecuted check is reported as passed",
-        "stays within its risk limit and authorized tools"
+        "the archive rebuilds byte-identically from a clean checkout",
+        "tags and releases are published only with explicit human approval"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/routing_golden.json#3",
+        "evaluation/routing_golden.json#12"
+      ],
       "source_digest": "04196b2cd23b4195be0e6307b216573837942768e5998336cabbaacf51bb4d26",
-      "curation": "derived"
+      "curation": "curated"
     },
     {
       "id": "resilience_engineer",
@@ -3237,6 +3336,7 @@
           "logistics"
         ],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "reliability",
           "distributed_systems"
@@ -3265,15 +3365,13 @@
         "gate"
       ],
       "inputs": [
-        "request, changed files and domain factors",
-        "task scope and acceptance criteria",
-        "risk classification and required gates",
-        "repository map and reserved files"
+        "request text",
+        "changed or planned files",
+        "domain factors (auth, payments, personal data, migrations, production)"
       ],
       "outputs": [
-        "risk level with factors and required gates",
-        "evidence record for every executed check",
-        "residual risks, confidence and next pipeline stage"
+        "risk level, matched factors and required gates (`pallaquino risk`)",
+        "rationale and confidence"
       ],
       "dependencies": {
         "skills": [
@@ -3301,18 +3399,22 @@
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [
+          "RISK_ANALYSIS"
+        ],
         "domains": [
           "risk"
         ]
       },
       "success_criteria": [
-        "risk classification is monotonic and justified",
-        "no unexecuted check is reported as passed",
-        "stays within its risk limit and authorized tools"
+        "risk never drops without new evidence (monotonic)",
+        "every factor is tied to a matched term or file"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/pipeline_stages/golden.json#2"
+      ],
       "source_digest": "054dac19daa339c87b687548c5ee41b0f03d74847880b558bfb5f7b20a146c33",
-      "curation": "derived"
+      "curation": "curated"
     },
     {
       "id": "rollback_readiness_reviewer",
@@ -3366,6 +3468,9 @@
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [
+          "ROLLBACK_READINESS"
+        ],
         "domains": [
           "deployment"
         ]
@@ -3376,7 +3481,9 @@
         "no unexecuted check is reported as passed",
         "stays within its risk limit and authorized tools"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/pipeline_stages/golden.json#13"
+      ],
       "source_digest": "6ba58ebaa01d91f92c102b8deabe301bebf61645374d6e77eb0a5ca63aa6f422",
       "curation": "derived"
     },
@@ -3385,7 +3492,7 @@
       "contract_version": 2,
       "name": "Saas Architect",
       "description": "Design tenant isolation, lifecycle, quotas, entitlements and operability without leaking cross-tenant data.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "capabilities": [
         "tenancy",
         "billing"
@@ -3405,7 +3512,8 @@
       ],
       "dependencies": {
         "skills": [
-          "risk_analysis_expert"
+          "risk_analysis_expert",
+          "saas_tenancy_expert"
         ],
         "technologies": []
       },
@@ -3425,10 +3533,13 @@
       },
       "risk_limit": "HIGH",
       "activation": {
-        "routing_rules": [],
+        "routing_rules": [
+          "saas_tenancy"
+        ],
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "saas"
         ]
@@ -3438,7 +3549,9 @@
         "no unexecuted check is reported as passed",
         "stays within its risk limit and authorized tools"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/routing_golden.json#9"
+      ],
       "source_digest": "e31e348f3b43a1490bee4b3be00676c27c9350b38961fae82f9173d5102136c8",
       "curation": "derived"
     },
@@ -3500,6 +3613,7 @@
           "fintech"
         ],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "security",
           "identity"
@@ -3575,6 +3689,7 @@
           "ecommerce"
         ],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "architecture"
         ]
@@ -3599,17 +3714,13 @@
         "trace"
       ],
       "inputs": [
-        "acceptance criteria and changed files",
-        "existing test suite",
-        "task scope and acceptance criteria",
-        "risk classification and required gates",
-        "repository map and reserved files"
+        "original user request",
+        "specification or PRD",
+        "code, tests and documentation"
       ],
       "outputs": [
-        "tests or review findings",
-        "coverage and gap report",
-        "evidence record for every executed check",
-        "residual risks, confidence and next pipeline stage"
+        "traceability matrix from requirement to code, test and docs",
+        "omissions and unapproved behaviour"
       ],
       "dependencies": {
         "skills": [
@@ -3636,19 +3747,22 @@
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [
+          "SPECIFICATION_DRIFT"
+        ],
         "domains": [
           "requirements"
         ]
       },
       "success_criteria": [
-        "new behaviour has a failing-then-passing test",
-        "flaky or skipped tests are reported",
-        "no unexecuted check is reported as passed",
-        "stays within its risk limit and authorized tools"
+        "every requirement maps to code and a test, or is reported missing",
+        "behaviour nobody requested is reported"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/pipeline_stages/golden.json#10"
+      ],
       "source_digest": "35d6102e308d5ce403482587d4e97ae68e90258f8a8a179d5c81442cf8162a31",
-      "curation": "derived"
+      "curation": "curated"
     },
     {
       "id": "sre_engineer",
@@ -3706,6 +3820,7 @@
         ],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "production",
           "incident"
@@ -3726,7 +3841,7 @@
       "contract_version": 2,
       "name": "Technical Decision Arbitrator",
       "description": "Compare competing options on security, maintainability, cost, complexity, compatibility and performance; record the decision as an ADR.",
-      "version": "1.0.0",
+      "version": "1.1.0",
       "capabilities": [
         "compare",
         "adr"
@@ -3746,7 +3861,9 @@
       ],
       "dependencies": {
         "skills": [
-          "risk_analysis_expert"
+          "risk_analysis_expert",
+          "architecture_fitness_expert",
+          "modular_monolith_expert"
         ],
         "technologies": []
       },
@@ -3766,10 +3883,13 @@
       },
       "risk_limit": "HIGH",
       "activation": {
-        "routing_rules": [],
+        "routing_rules": [
+          "architecture_decision"
+        ],
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "architecture"
         ]
@@ -3779,7 +3899,9 @@
         "no unexecuted check is reported as passed",
         "stays within its risk limit and authorized tools"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/routing_golden.json#11"
+      ],
       "source_digest": "9ac195d888035b7f9b67ff1ea18d3b0304567dbc1eaa3bf332a125cf5e8bbaf4",
       "curation": "derived"
     },
@@ -3794,17 +3916,12 @@
         "traceability"
       ],
       "inputs": [
-        "acceptance criteria and changed files",
-        "existing test suite",
-        "task scope and acceptance criteria",
-        "risk classification and required gates",
-        "repository map and reserved files"
+        "changed contracts and behaviour",
+        "existing tests and their results"
       ],
       "outputs": [
-        "tests or review findings",
-        "coverage and gap report",
-        "evidence record for every executed check",
-        "residual risks, confidence and next pipeline stage"
+        "unverified branches and failure modes",
+        "concrete tests to add for each gap"
       ],
       "dependencies": {
         "skills": [
@@ -3831,19 +3948,22 @@
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [
+          "TEST_GAP_ANALYSIS"
+        ],
         "domains": [
           "testing"
         ]
       },
       "success_criteria": [
-        "new behaviour has a failing-then-passing test",
-        "flaky or skipped tests are reported",
-        "no unexecuted check is reported as passed",
-        "stays within its risk limit and authorized tools"
+        "each gap names the untested branch and a test that would cover it",
+        "error paths are checked, not only the happy path"
       ],
-      "test_cases": [],
+      "test_cases": [
+        "evaluation/pipeline_stages/golden.json#7"
+      ],
       "source_digest": "22cf49a91f548089fb6d2392de34749e1651cb8e77e4f7a1c7ad7c1ed4540000",
-      "curation": "derived"
+      "curation": "curated"
     },
     {
       "id": "ux_ui_designer",
@@ -3894,6 +4014,7 @@
         "profiles": [],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "ux",
           "web"
@@ -3963,6 +4084,7 @@
         ],
         "domain_packs": [],
         "technologies": [],
+        "pipeline_stages": [],
         "domains": [
           "web",
           "platform"

@@ -52,9 +52,13 @@ class RepositoryContractTests(unittest.TestCase):
 class MutatedFrameworkTests(unittest.TestCase):
     """Each test mutates a private copy of the framework and checks that validation catches it."""
 
+    # Only what contracts read: copying the whole framework per test made the suite exceed its 15 s budget.
+    SUBSET = ("registry", "agents", "skills", "evaluation", "pipeline", "scripts", "pallaquino_cli")
+
     def setUp(self) -> None:
         self.temp = tempfile.TemporaryDirectory(); self.root = Path(self.temp.name) / "framework"
-        shutil.copytree(ROOT, self.root, ignore=shutil.ignore_patterns("__pycache__", "tests"))
+        for name in self.SUBSET:
+            shutil.copytree(ROOT / name, self.root / name, ignore=shutil.ignore_patterns("__pycache__"))
 
     def tearDown(self) -> None:
         self.temp.cleanup()
@@ -123,6 +127,66 @@ class MutatedFrameworkTests(unittest.TestCase):
         self.assertIn("no agents contracts; run scripts/build_contracts.py --write", contract_errors(self.root))
         subprocess.run([sys.executable, str(self.root / "scripts/build_contracts.py"), "--write"], text=True, capture_output=True, check=True)
         self.assertEqual(contract_errors(self.root), [])
+
+
+class ReachabilityTests(unittest.TestCase):
+    """PAL-007-B: 20 agents and 9 skills could never be selected; this locks the fix."""
+
+    NEW_RULES = ["release_management", "dependency_governance", "api_governance", "ci_cd", "disaster_recovery", "performance",
+                 "documentation", "saas_tenancy", "ai_engineering", "architecture_decision"]
+
+    def test_no_agent_or_skill_is_unreachable(self) -> None:
+        report = contracts_report(ROOT)
+        self.assertEqual((report["agents"]["unreachable"], report["skills"]["unreachable"]), ([], []))
+
+    def test_pipeline_stage_goldens_match_the_pipeline(self) -> None:
+        stages = {s["id"]: set(s.get("agents", [])) for s in read_json(ROOT / "pipeline/pipeline_definition.json")["stages"]}
+        for case in read_json(ROOT / "evaluation/pipeline_stages/golden.json")["cases"]:
+            self.assertTrue(set(case["required_agents"]) <= stages[case["stage"]], case)
+
+    def test_every_new_routing_rule_has_a_golden(self) -> None:
+        from pallaquino_cli.core import route_request
+        cases = read_json(ROOT / "evaluation/routing_golden.json")["cases"]
+        rules = {r["id"]: r for r in read_json(ROOT / "registry/routing_rules.json")["rules"]}
+        for rule_id in self.NEW_RULES:
+            covered = [c for c in cases if set(rules[rule_id]["agents"]) <= set(c["required_agents"])]
+            self.assertTrue(covered, rule_id)
+            self.assertIn(rule_id, {m["rule"] for m in route_request(ROOT, covered[0]["request"])["matched_rules"]})
+
+    def test_role_contracts_are_curated(self) -> None:
+        contracts = load_contract_files(ROOT)["agents"]
+        for agent_id in ("project_analyzer", "risk_analyst", "execution_coordinator", "release_manager", "governance_auditor"):
+            self.assertEqual(contracts[agent_id]["curation"], "curated", agent_id)
+
+
+class GeneratorOverwriteTests(unittest.TestCase):
+    """Generators must not revert curated registries: --write creates only missing files."""
+
+    def test_write_keeps_existing_files_and_overwrite_is_explicit(self) -> None:
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp) / "framework"; shutil.copytree(ROOT, root, ignore=shutil.ignore_patterns("__pycache__", "tests"))
+            rules = root / "registry/routing_rules.json"; before = rules.read_bytes()
+            for script in ("scripts/scaffold_framework.py", "scripts/expand_catalog.py"):
+                proc = subprocess.run([sys.executable, str(root / script), "--write"], text=True, capture_output=True, check=False)
+                self.assertEqual(proc.returncode, 0, proc.stderr); self.assertIn("kept", proc.stdout)
+            self.assertEqual(rules.read_bytes(), before)
+            (root / "registry/capabilities.json").unlink()
+            subprocess.run([sys.executable, str(root / "scripts/scaffold_framework.py"), "--write"], text=True, capture_output=True, check=True)
+            self.assertTrue((root / "registry/capabilities.json").is_file())  # missing files are still materialized
+            subprocess.run([sys.executable, str(root / "scripts/scaffold_framework.py"), "--write", "--overwrite"], text=True, capture_output=True, check=True)
+            self.assertNotEqual(rules.read_bytes(), before)  # the embedded seed lacks curated rules: overwrite is destructive
+
+
+class PipelineStageValidationTests(unittest.TestCase):
+    def test_unknown_stage_agent_is_rejected(self) -> None:
+        from pallaquino_cli.core import validate_pipeline
+        with tempfile.TemporaryDirectory() as temp:
+            root = Path(temp); (root / "pipeline").mkdir(); (root / "registry").mkdir()
+            shutil.copy(ROOT / "pipeline/pipeline_definition.json", root / "pipeline/pipeline_definition.json")
+            shutil.copy(ROOT / "registry/agents.json", root / "registry/agents.json")
+            data = read_json(root / "pipeline/pipeline_definition.json")
+            data["stages"][6]["agents"] = ["ghost_agent"]; atomic_json(root / "pipeline/pipeline_definition.json", data)
+            self.assertIn(f"{data['stages'][6]['id']} unknown stage agent ghost_agent", validate_pipeline(root)["details"])
 
 
 if __name__ == "__main__":

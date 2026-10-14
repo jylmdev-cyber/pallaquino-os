@@ -41,6 +41,144 @@
       "forbidden_agents": [
         "ux_ui_designer"
       ]
+    },
+    {
+      "request": "Prepare the 2.0 release with a changelog and semver bump",
+      "required_agents": [
+        "release_manager"
+      ],
+      "required_skills": [
+        "release_management_expert",
+        "git_release_expert"
+      ],
+      "forbidden_agents": [
+        "devops_engineer"
+      ]
+    },
+    {
+      "request": "Add a new dependency for PDF generation and check its license",
+      "required_agents": [
+        "dependency_governance_agent"
+      ],
+      "required_skills": [
+        "dependency_governance_expert",
+        "supply_chain_security_expert"
+      ],
+      "forbidden_agents": [
+        "release_manager"
+      ]
+    },
+    {
+      "request": "Update the docs for the deprecation of the v1 OpenAPI endpoints",
+      "required_agents": [
+        "api_governance_reviewer",
+        "documentation_engineer"
+      ],
+      "required_skills": [
+        "api_contract_expert"
+      ],
+      "forbidden_agents": [
+        "devops_engineer"
+      ]
+    },
+    {
+      "request": "Set up GitHub Actions CI/CD for the monorepo",
+      "required_agents": [
+        "devops_engineer"
+      ],
+      "required_skills": [
+        "github_actions_expert",
+        "docker_expert"
+      ],
+      "forbidden_agents": [
+        "release_manager"
+      ]
+    },
+    {
+      "request": "Define backup and restore procedures with RPO and RTO targets",
+      "required_agents": [
+        "disaster_recovery_planner"
+      ],
+      "required_skills": [
+        "backup_recovery_expert"
+      ],
+      "forbidden_agents": [
+        "performance_engineer"
+      ]
+    },
+    {
+      "request": "The checkout endpoint is slow; reduce p95 latency",
+      "required_agents": [
+        "performance_engineer"
+      ],
+      "required_skills": [
+        "database_performance_expert",
+        "observability_expert"
+      ],
+      "forbidden_agents": [
+        "disaster_recovery_planner"
+      ]
+    },
+    {
+      "request": "Design tenant isolation for a multi-tenant SaaS",
+      "required_agents": [
+        "saas_architect"
+      ],
+      "required_skills": [
+        "saas_tenancy_expert"
+      ],
+      "forbidden_agents": [
+        "release_manager"
+      ]
+    },
+    {
+      "request": "Reduce LLM token cost with model routing",
+      "required_agents": [
+        "ai_engineer"
+      ],
+      "required_skills": [
+        "model_routing_expert",
+        "ai_cost_optimization_expert"
+      ],
+      "forbidden_agents": [
+        "saas_architect"
+      ]
+    },
+    {
+      "request": "Compare options for a modular monolith versus microservices and record an ADR",
+      "required_agents": [
+        "technical_decision_arbitrator"
+      ],
+      "required_skills": [
+        "modular_monolith_expert",
+        "architecture_fitness_expert"
+      ],
+      "forbidden_agents": [
+        "devops_engineer"
+      ]
+    },
+    {
+      "request": "Preparar el lanzamiento con changelog",
+      "required_agents": [
+        "release_manager"
+      ],
+      "required_skills": [
+        "release_management_expert"
+      ],
+      "forbidden_agents": []
+    },
+    {
+      "request": "fix typo in the login form label",
+      "required_agents": [],
+      "required_skills": [],
+      "forbidden_agents": [
+        "release_manager",
+        "dependency_governance_agent",
+        "performance_engineer",
+        "disaster_recovery_planner",
+        "saas_architect",
+        "ai_engineer"
+      ]
     }
   ]
 }

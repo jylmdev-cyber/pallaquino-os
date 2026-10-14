@@ -14,6 +14,16 @@ Los cambios relevantes de este proyecto se documentan aquí. El formato sigue
   prueba y digest de la fuente. Generador `scripts/build_contracts.py` (dry-run salvo
   `--write`), validador `validate_contracts` y comando `pallaquino contracts [--id]`
   con carga controlada.
+- Roles por etapa del pipeline (`agents` en `pipeline_definition.json`) y diez reglas
+  de routing nuevas con sus goldens (ADR-0009): ningún agente ni skill queda
+  inalcanzable (antes 20 y 9). Trece contratos de rol curados a mano.
+
+### Changed
+
+- Los skills especializados que existían sin conectar ahora son dependencias de sus
+  agentes (versión menor +1 en 11 agentes).
+- `scaffold_framework.py` y `expand_catalog.py` con `--write` solo crean archivos
+  ausentes; reemplazar registros existentes exige `--overwrite`.
 
 ### Planned
 
