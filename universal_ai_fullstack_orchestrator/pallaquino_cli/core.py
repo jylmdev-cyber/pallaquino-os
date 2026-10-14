@@ -608,31 +608,36 @@ def validate_risk(root: Path) -> dict[str, Any]:
     return result("validate_risk", not errors, errors or [f"{len(cases)} golden classifications pass"])
 
 
-CLI_COMMANDS = ["init", "status", "doctor", "analyze", "plan", "agents", "skills", "pipeline", "checkpoint", "handoff", "resume", "validate", "stack", "risk", "graph", "security", "identity", "contracts"]
-# Runs inside a child interpreter whose sys.path[0] is the validated root, so an extracted archive tests its own CLI.
+# Commands every PALLAQUINO root must keep (0.2.1 contract). A root may define more; each defined command
+# must answer --help. The list is read from the root under test, so an archive of an older release is judged
+# by its own CLI rather than by the commands of the code running the check.
+BASELINE_CLI_COMMANDS = ["init", "status", "doctor", "analyze", "plan", "agents", "skills", "pipeline", "checkpoint", "handoff", "resume", "validate", "stack", "risk", "graph"]
+# Runs inside a child interpreter whose sys.path[0] is the validated root.
 _CLI_PROBE = """
-import contextlib, io, json, sys
+import argparse, contextlib, io, json
 from pallaquino_cli.__main__ import parser
-failed = []
-for command in json.loads(sys.argv[1]):
+subparsers = next(a for a in parser()._actions if isinstance(a, argparse._SubParsersAction))
+commands = sorted(subparsers.choices); failed = []
+for command in commands:
     try:
         with contextlib.redirect_stdout(io.StringIO()):
             parser().parse_args([command, "--help"])
         failed.append(f"{command} --help did not exit")
     except SystemExit as exc:
         if exc.code not in (0, None): failed.append(f"{command} --help exited {exc.code}")
-print(json.dumps(failed))
+print(json.dumps({"commands": commands, "failed": failed}))
 """
 
 
 def validate_cli(root: Path) -> dict[str, Any]:
     env = os.environ.copy()
     env["PYTHONPATH"] = str(root) + os.pathsep + env.get("PYTHONPATH", "")
-    proc = subprocess.run([sys.executable, "-c", _CLI_PROBE, json.dumps(CLI_COMMANDS)], cwd=root, env=env, text=True, capture_output=True, check=False)
+    proc = subprocess.run([sys.executable, "-c", _CLI_PROBE], cwd=root, env=env, text=True, capture_output=True, check=False)
     if proc.returncode != 0:
         return result("validate_cli", False, [f"CLI probe exited {proc.returncode}: {proc.stderr.strip()[-500:]}"])
-    errors = json.loads(proc.stdout.strip().splitlines()[-1])
-    return result("validate_cli", not errors, errors or [f"{len(CLI_COMMANDS)} CLI commands respond to --help"])
+    probe = json.loads(proc.stdout.strip().splitlines()[-1])
+    errors = probe["failed"] + [f"baseline command {c} is missing" for c in BASELINE_CLI_COMMANDS if c not in probe["commands"]]
+    return result("validate_cli", not errors, errors or [f"{len(probe['commands'])} CLI commands respond to --help"])
 
 
 def validate_contracts(root: Path) -> dict[str, Any]:

@@ -258,6 +258,29 @@ class EnvironmentValidatorTests(unittest.TestCase):
         self.assertEqual(scopes["validate_registry"], "integrity")
 
 
+class CliContractTests(unittest.TestCase):
+    """Finding: verifying the 0.3.2 archive failed because the checker used the running code's command list."""
+
+    def fake_root(self, temp: str, commands: list[str]) -> Path:
+        root = Path(temp); package = root / "pallaquino_cli"; package.mkdir()
+        (package / "__init__.py").write_text("", encoding="utf-8")
+        (package / "__main__.py").write_text("\n".join([
+            "import argparse",
+            "def parser():",
+            "    top = argparse.ArgumentParser(prog='pallaquino'); subs = top.add_subparsers(dest='command', required=True)",
+            f"    for name in {commands!r}: subs.add_parser(name)",
+            "    return top", ""]), encoding="utf-8")
+        return root
+
+    def test_older_root_is_judged_by_its_own_commands(self) -> None:
+        from pallaquino_cli.core import BASELINE_CLI_COMMANDS, validate_cli
+        with tempfile.TemporaryDirectory() as temp:
+            self.assertTrue(validate_cli(self.fake_root(temp, BASELINE_CLI_COMMANDS))["ok"])
+        with tempfile.TemporaryDirectory() as temp:
+            details = validate_cli(self.fake_root(temp, [c for c in BASELINE_CLI_COMMANDS if c != "graph"]))["details"]
+            self.assertEqual(details, ["baseline command graph is missing"])
+
+
 class ArchiveReproducibilityTests(unittest.TestCase):
     """Finding: identical content produced different archive SHA-256 values (mtime-dependent)."""
 
