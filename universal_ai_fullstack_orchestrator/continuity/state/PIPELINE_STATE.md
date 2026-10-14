@@ -1,13 +1,13 @@
 # Pipeline state
 
-- Status: complete
-- Updated: 2026-09-01 04:24 UTC
+- Status: complete for PAL-005 on branch; release publication pending approval
+- Updated: 2026-10-13
 - Confidence: high
 - Current stage: HANDOFF
 - Last confirmed stage: HANDOFF
-- Failed gates remediated: none
-- Git commit: 45bf59582f9dc80ba1eee0633e59eab7edd9a8a3
-- Checkpoint: generated for PAL-004 after public repository validation
+- Failed gates remediated: TEST (3 baseline failures fixed); an in-session generator overwrite was recovered from Git and is now guarded (ADR-0006)
+- Mode and autonomy: BROWNFIELD with UPDATE_PALLAQUINO gates, STANDARD
+- Checkpoint: generated for PAL-005 after finalization
 - Handoff: `continuity/HANDOFF.json`
-- Release: PALLAQUINO 0.2.1 complete; public repository files and release artifact validated
-- Next: create the public GitHub remote, replace the documented owner/repository placeholders, enable branch protection and publish v0.2.1
+- Release: 0.3.0 artifact built and verified; publication approved (branch push, Pull Request, tag `v0.3.0`)
+- Next: owner reviews and merges the Pull Request with a merge commit (keeps the tagged commit in `main`); optionally publish the GitHub Release for `v0.3.0`; then PAL-006 (stack re-verification) and PAL-007 (Phase 2)

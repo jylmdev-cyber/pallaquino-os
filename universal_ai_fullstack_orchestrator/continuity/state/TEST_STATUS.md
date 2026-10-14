@@ -1,14 +1,14 @@
 # Test status
 
-- Result: PASSED
-- Framework suite: 18/18 passed
-- Named validators: 10/10 passed
+- Result: PASSED for integrity scope; the environment-scope Git identity check needs the owner identity (configured in CI)
+- Framework suite: 47/47 passed (`python -m unittest discover -s tests`)
+- Statement coverage (stdlib trace, in-process): core.py 92.1 %, __main__.py 86.4 %
+- Validators: 9/9 integrity checks pass; validate_git_authorship fails locally without the owner identity, by design
 - Lint/typecheck proxy: Python compileall passed
-- Security/fitness rules: 4 checked, 0 violations
-- Expansion routing goldens: 7/7 passed
-- Catalog integrity: 59 agents, 90 skills, 46 technologies and 6 profiles resolve
-- Git identity utility: local mutation, show, invalid input and dry-run behavior passed
-- Release archive: 348 entries, no unsafe paths, checksum sidecar valid
-- Evidence: local test, validator, fitness, compile and archive integrity outputs for PAL-004
-- Updated: 2026-09-01 04:24 UTC
+- Security: repository-wide secret scan 0 findings; fitness enforces 1 of 4 declared rules and reports 3 as not_enforced
+- Risk goldens 14/14; routing goldens 3/3 and 7/7
+- Archive: deterministic (identical SHA-256 for identical content); integrity verified after extraction
+- Non-editable install: verified locally (framework dir, nested project dir, outside any project exits 2)
+- Evidence: `evidence/*-2026-10-13T*.json` for PAL-005
+- Updated: 2026-10-13
 - Confidence: high

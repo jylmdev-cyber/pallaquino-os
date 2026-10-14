@@ -262,7 +262,8 @@ Prepara el release PALLAQUINO. Ejecuta todas las validaciones aplicables y regis
 evidencia con comando y exit code. Realiza test gap, seguridad, revisión adversarial,
 code review, specification drift, aceptación, documentación y rollback readiness.
 Actualiza el change manifest y recomienda PATCH, MINOR o MAJOR. Configura y valida
-solo la identidad Git local jimdev <jylmdev@gmail.com>; no agregues coautores de IA.
+solo la identidad Git local del proyecto (`governance/git_identity.json`, por defecto
+jimdev <jylmdev@gmail.com>); no agregues coautores de IA.
 Genera checkpoint y handoff. No despliegues a producción.
 ```
 

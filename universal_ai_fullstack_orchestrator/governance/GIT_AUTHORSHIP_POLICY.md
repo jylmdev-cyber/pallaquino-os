@@ -6,13 +6,17 @@ Preserve sole human ownership of commits.
 
 ## Enforceable rules
 
-- Set only local `user.name=jimdev` and `user.email=jylmdev@gmail.com`.
+- The expected commit identity is declared per project in `governance/git_identity.json`;
+  the default, and this repository's identity, is `jimdev <jylmdev@gmail.com>`.
+  Change it with `pallaquino identity --name <name> --email <email>`.
+- Set only the repository-local `user.name` and `user.email` matching that file
+  (`pallaquino identity --apply-local`).
 - Reject AI co-author trailers and non-conventional subjects.
 - Never modify global Git configuration or rewrite shared history.
 
 ## Required evidence
 
-`validate_git_authorship.py`, local config and commit-message hook result.
+`validate_git_authorship.py`, `governance/git_identity.json`, local config and commit-message hook result.
 
 ## Escalation
 

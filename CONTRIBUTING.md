@@ -40,10 +40,17 @@ de runtime fuera de la Standard Library.
 
 ```bash
 python -m unittest discover -s tests -v
-python scripts/validate_all.py
+python -m pallaquino_cli validate --integrity-only
 python scripts/architecture_fitness.py
+python -m pallaquino_cli security audit --target ..
 python -m compileall -q pallaquino_cli scripts tests
 ```
+
+`python scripts/validate_all.py` añade la comprobación de identidad Git declarada en
+`governance/git_identity.json` (jimdev en este repositorio); CI la aplica con
+`pallaquino identity --apply-local`. Con tu propia identidad usa `--integrity-only` y
+no modifiques ese archivo en tu Pull Request. Los trailers de coautoría de IA están
+prohibidos.
 
 Si el contenido distribuible cambió:
 

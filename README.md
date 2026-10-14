@@ -5,12 +5,12 @@
 </p>
 
 <p align="center">
-  <img alt="Version" src="https://img.shields.io/badge/version-0.2.1-0A7BBB">
+  <img alt="Version" src="https://img.shields.io/badge/version-0.3.0-0A7BBB">
   <img alt="Python" src="https://img.shields.io/badge/Python-3.11%2B-3776AB?logo=python&logoColor=white">
   <img alt="Agents" src="https://img.shields.io/badge/agents-59-7B61FF">
   <img alt="Skills" src="https://img.shields.io/badge/skills-90-00A67E">
   <img alt="Technologies" src="https://img.shields.io/badge/technologies-46-F97316">
-  <img alt="Tests" src="https://img.shields.io/badge/tests-18%20passing-2EA44F">
+  <img alt="Tests" src="https://img.shields.io/badge/tests-47%20passing-2EA44F">
   <img alt="License" src="https://img.shields.io/badge/license-MIT-blue">
   <img alt="Provider neutral" src="https://img.shields.io/badge/AI-provider--neutral-111827">
   <a href="https://github.com/jylmdev-cyber/pallaquino-os/actions/workflows/ci.yml"><img alt="CI" src="https://github.com/jylmdev-cyber/pallaquino-os/actions/workflows/ci.yml/badge.svg"></a>
@@ -22,10 +22,11 @@ un grafo de tareas, ejecuta gates de calidad y conserva evidencia, checkpoints y
 handoffs. No es solamente una colección de prompts: incluye CLI en Python,
 registros validados, políticas, evaluaciones y empaquetado reproducible.
 
-> **Estado:** el framework es utilizable y auto-validable. Las versiones concretas
-> del baseline se verificaron el 31 de agosto de 2026. Todo perfil adicional está
-> marcado `VERIFY_BEFORE_USE` hasta auditar versiones y compatibilidad para el
-> proyecto que lo adopte.
+> **Estado (0.3.0):** el framework es utilizable y auto-validable. El snapshot de
+> versiones se verificó el 31 de agosto de 2026 y **caducó el 30 de septiembre**;
+> `pallaquino stack` lo reporta como `STALE` hasta su re-verificación (`PAL-006`).
+> Todo perfil está marcado `VERIFY_BEFORE_USE`. Lo implementado, experimental y
+> planificado se distingue en [`docs/ARCHITECTURE.md`](docs/ARCHITECTURE.md).
 
 ## Capacidades
 
@@ -38,7 +39,12 @@ registros validados, políticas, evaluaciones y empaquetado reproducible.
 - Clasificación de riesgo `LOW`, `MEDIUM`, `HIGH` y `CRITICAL` con gates
   proporcionales.
 - Validación cruzada de agentes, skills, rutas, pipeline, continuidad y gobernanza.
-- Neutralidad de proveedor: Codex, ChatGPT, Claude, Gemini, Mistral, Grok u otro.
+- Instalación aislada por proyecto: `init` genera estado limpio y admite `--dry-run`.
+- Escaneo de secretos de solo lectura (`pallaquino security audit`) y redacción de
+  secretos en la evidencia.
+- Archivo de release reproducible: mismo contenido, mismo SHA-256.
+- Neutralidad de proveedor: el agente activo (Codex, ChatGPT, Claude, Gemini u otro)
+  lee las políticas y usa el CLI; aún no hay adaptadores de proveedor (Fase 2).
 - Dependencias de ejecución: únicamente Python Standard Library.
 
 ## Inicio rápido
@@ -53,20 +59,28 @@ python -m pallaquino_cli doctor
 python -m pallaquino_cli validate --json
 python -m pallaquino_cli analyze
 python -m pallaquino_cli risk "agregar autenticación basada en roles"
+python -m pallaquino_cli security audit --target ..
 ```
 
-Instalación editable opcional:
+Instalación opcional (editable o normal):
 
 ```bash
 python -m pip install -e ./universal_ai_fullstack_orchestrator
 pallaquino --help
 ```
 
+Con una instalación normal (`pip install ./universal_ai_fullstack_orchestrator`),
+`pallaquino` localiza el framework con `--root`, `$PALLAQUINO_ROOT` o el
+directorio `.pallaquino/` del proyecto actual.
+
 Para incorporar el framework en otro proyecto sin sobrescribir archivos existentes:
 
 ```bash
+python -m pallaquino_cli init --target /ruta/al/proyecto --dry-run --json
 python -m pallaquino_cli init --target /ruta/al/proyecto --json
 ```
+
+Demostración reproducible paso a paso: [`docs/DEMO.md`](docs/DEMO.md).
 
 Después, entrega
 [`AI_ENTRYPOINT.md`](universal_ai_fullstack_orchestrator/AI_ENTRYPOINT.md) al agente
@@ -155,7 +169,7 @@ versiones oficiales, compatibilidad, amenazas, datos y estrategia de rollback.
 ```text
 .
 ├── .github/                             # CI, Dependabot y plantillas
-├── docs/                                # documentación pública del repositorio
+├── docs/                                # auditoría, arquitectura, roadmap, ADR, demo
 ├── scripts/                             # utilidades del repositorio
 ├── universal_ai_fullstack_orchestrator/
 │   ├── agents/                          # contratos de agentes
@@ -177,19 +191,32 @@ versiones oficiales, compatibilidad, amenazas, datos y estrategia de rollback.
 cd universal_ai_fullstack_orchestrator
 
 python -m unittest discover -s tests -v
-python scripts/validate_all.py
+python scripts/validate_all.py            # colaboradores: pallaquino validate --integrity-only
 python scripts/architecture_fitness.py
+python -m pallaquino_cli security audit --target ..
 python scripts/package_release.py
 python scripts/verify_zip_integrity.py
 ```
 
 El [workflow de GitHub Actions](https://github.com/jylmdev-cyber/pallaquino-os/actions/workflows/ci.yml)
-ejecuta la suite en Python 3.11 y 3.14, valida la arquitectura y comprueba el ZIP.
+ejecuta la suite en Python 3.11 y 3.14, valida la arquitectura, escanea secretos,
+prueba la instalación no editable y comprueba el ZIP.
 
 ## Configurar la identidad de Git
 
-La utilidad escribe **solo** `user.name` y `user.email` en la configuración local
-del repositorio; no modifica la identidad global del equipo:
+La identidad esperada de cada proyecto vive en
+`universal_ai_fullstack_orchestrator/governance/git_identity.json`
+(`jimdev <jylmdev@gmail.com>` por defecto y en este repositorio):
+
+```bash
+cd universal_ai_fullstack_orchestrator
+python -m pallaquino_cli identity                        # muestra esperada vs. local
+python -m pallaquino_cli identity --apply-local          # la aplica solo en la config local
+python -m pallaquino_cli identity --name "Equipo" --email "equipo@example.com"  # otro proyecto
+```
+
+La utilidad de la raíz escribe **solo** `user.name` y `user.email` en la configuración
+local del repositorio; no modifica la identidad global del equipo:
 
 ```bash
 python scripts/configure_git_identity.py \
@@ -232,14 +259,14 @@ Antes de contribuir, consulta [`CONTRIBUTING.md`](CONTRIBUTING.md),
 Las vulnerabilidades no deben publicarse en Issues; utiliza el proceso privado de
 [`SECURITY.md`](SECURITY.md).
 
-## Roadmap sugerido
+## Roadmap
 
-- Publicar el paquete en PyPI y firmar artefactos de release con Sigstore.
-- Añadir un esquema JSON formal para cada registro público.
-- Incorporar cobertura de tests, lint estático y escaneo de secretos en CI.
-- Probar perfiles contra repositorios de referencia ejecutables.
-- Generar documentación web versionada y ejemplos completos por proveedor.
-- Activar GitHub Discussions y protección de la rama principal.
+La evolución por fases (orquestación, memoria, proveedores, extensiones, Project
+Factory y Control Center), con dependencias y criterios de aceptación, está en
+[`docs/ROADMAP.md`](docs/ROADMAP.md). El diagnóstico que la motiva está en
+[`docs/AUDIT_REPORT.md`](docs/AUDIT_REPORT.md) y las decisiones en
+[`docs/adr/`](docs/adr/). Para actualizar desde 0.2.1, consulta
+[`MIGRATION_GUIDE.md`](MIGRATION_GUIDE.md).
 
 ## Licencia
 

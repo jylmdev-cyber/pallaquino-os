@@ -1,8 +1,12 @@
 # Known issues
 
-- Stack snapshot becomes STALE after 2026-09-30 and must be re-verified.
-- Internet/browser/MCP/subagent availability remains provider-session dependent; local detection records unknown rather than claiming availability.
-- Docker is installed on the host, but no container workload was required or started.
-- No database clients were detected in the current environment.
-- GitHub remote is not configured; owner/repository URLs and the dynamic CI badge must be added after repository creation.
+- Stack snapshot (verified 2026-08-31) is STALE since 2026-09-30; `doctor` and `stack` exit 1 until PAL-006 re-verifies it.
+- In this repository `validate_all.py` expects the identity in `governance/git_identity.json` (jimdev); contributors with another local identity use `--integrity-only`.
+- Agent and skill files are templates whose only specific content is one sentence; inputs, outputs, tools, activation and success criteria are missing (Phase 2 contracts v2).
+- Checkpoint SHA-256 detects accidental corruption, not deliberate tampering (hash chain planned for Phase 2).
+- Only `no_secrets` of the 4 declared fitness rules has an implementation.
+- `runtime/capabilities.json` in the framework tree still contains host paths from the 0.2.x build machine; it is no longer copied into new projects.
+- Installations created with 0.2.1 keep inherited framework state until cleaned manually (MIGRATION_GUIDE.md).
+- Internet, browser, MCP and subagent availability remains provider-session dependent.
+- Tag `v0.3.0` (published) derives lock keys from `\` as a literal character on POSIX, so the same file can be reserved twice from Windows and Linux agents. Fixed on the PAL-005 branch after the tag; ship as 0.3.1.
 - Confidence: high

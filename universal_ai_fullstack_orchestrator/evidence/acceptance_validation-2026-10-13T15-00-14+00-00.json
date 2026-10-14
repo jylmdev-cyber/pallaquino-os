@@ -1,0 +1,17 @@
+{
+  "gate": "ACCEPTANCE_VALIDATION",
+  "command": [
+    "python",
+    "-m",
+    "pallaquino_cli",
+    "validate",
+    "--integrity-only",
+    "--json"
+  ],
+  "timestamp": "2026-10-13T15:00:14+00:00",
+  "agent": "governance_auditor",
+  "exit_code": 0,
+  "result": "passed",
+  "summary": "{\n  \"ok\": true,\n  \"checks\": [\n    {\n      \"validator\": \"validate_registry\",\n      \"ok\": true,\n      \"details\": [\n        \"59 agents, 90 skills, 46 technologies and 6 profiles resolve\"\n      ],\n      \"scope\": \"integrity\"\n    },\n    {\n      \"validator\": \"validate_pipeline\",\n      \"ok\": true,\n      \"details\": [\n        \"32 stages and failure loops valid\"\n      ],\n      \"scope\": \"integrity\"\n    },\n    {\n      \"validator\": \"validate_continuity\",\n      \"ok\": true,\n      \"details\": [\n        \"12 state files present\"\n      ],\n      \"scope\": \"integrity\"\n    },\n    {\n      \"validator\": \"validate_governance\",\n      \"ok\": true,\n      \"details\": [\n        \"10 governance policies present; identity from governance/git_identity.json\"\n      ],\n      \"scope\": \"integrity\"\n    },\n    {\n      \"validator\": \"validate_task_graph\",\n      \"ok\": true,\n      \"details\": [\n        \"9 tasks form a DAG\"\n      ],\n      \"scope\": \"integrity\"\n    },\n    {\n      \"validator\": \"validate_repository_map\",\n      \"ok\": true,\n      \"details\": [\n        \"repository map schema valid\"\n      ],\n      \"scope\": \"integrity\"\n    },\n    {\n      \"validator\": \"validate_context\",\n      \"ok\": true,\n      \"details\": [\n        \"context budget and pinned items valid\"\n      ],\n      \"scope\": \"integrity\"\n    },\n    {\n      \"validator\": \"validate_risk\",\n      \"ok\": true,\n      \"details\": [\n        \"4 golden classifications pass\"\n      ],\n      \"scope\": \"integrity\"\n    },\n    {\n      \"validator\": \"validate_cli\",\n      \"ok\": true,\n      \"details\": [\n        \"17 CLI commands respond to --help\"\n      ],\n      \"scope\": \"integrity\"\n    }\n  ],\n  \"version\": \"0.3.0\"\n}\n",
+  "artifact": null
+}
