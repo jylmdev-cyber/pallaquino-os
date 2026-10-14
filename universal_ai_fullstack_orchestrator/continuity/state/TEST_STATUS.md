@@ -28,5 +28,9 @@
     (`evidence/accessibility_browser-2026-10-14T23-20-00+00-00.json`).
   - Not run: the academy CI workflow on GitHub (needs a push), tests with real users (protocol only), and deployment.
 - Framework suite re-run after the PAL-012 changes: 242 OK, 6 skipped (`evidence/test-2026-10-14T23-16-55+00-00.json`).
+- PAL-013 (H-6 fix), Windows 11 / Python 3.11.15:
+  - 243 tests OK, 6 skipped (`evidence/test-2026-10-14T23-33-18+00-00.json`);
+  - the new regression test fails without the fix;
+  - the previous run (`evidence/test-2026-10-14T23-31-18+00-00.json`) hit the known WinError 32 WAL-cleanup flake in a tearDown.
 - Updated: 2026-10-14
 - Confidence: high

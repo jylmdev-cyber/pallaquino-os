@@ -1,0 +1,34 @@
+{
+  "task_id": "PAL-013",
+  "files_created": [
+    "changes/PAL-013.json"
+  ],
+  "files_modified": [
+    "pallaquino_cli/core.py",
+    "scripts/configure_git_identity.py",
+    "tests/test_git_identity.py",
+    "../CHANGELOG.md",
+    "../docs/learning/DOCUMENTATION_AUDIT.md",
+    "../academy/src/content/docs/ (4 pages)",
+    "continuity/state/KNOWN_ISSUES.md",
+    "continuity/state/TASK_BOARD.md",
+    "continuity/state/TEST_STATUS.md"
+  ],
+  "files_deleted": [],
+  "migrations": [],
+  "dependencies": [],
+  "endpoints": [],
+  "tests": [
+    "tests/test_git_identity.py::test_non_ascii_identity_round_trips (fails without the fix on Windows: 'Ana Pérez Núñez' read back mangled)",
+    "end-to-end on Windows 11: identity --name 'Ana Pérez' + --apply-local -> matches true; doctor exit 0"
+  ],
+  "docs": [
+    "CHANGELOG Unreleased/Fixed; audit H-6 marked fixed; academy lessons note the defect only for 0.5.0"
+  ],
+  "decisions": [
+    "decode Git output as UTF-8 with errors='replace' (the Git adapter already did); no other behaviour change"
+  ],
+  "commits": [
+    "47337c0012318691fb78bc7d8cb0b9751b70f6d7"
+  ]
+}

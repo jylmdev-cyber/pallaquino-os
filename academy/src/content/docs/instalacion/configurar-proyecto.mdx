@@ -89,10 +89,11 @@ Todo lo de esta lección se comprobó el 2026-10-14 en un proyecto nuevo con `gi
 
 	**Resultado esperado:** `"matches": true`. Desde ese momento `python -m pallaquino_cli doctor` termina con código 0.
 
-	<Aside type="danger" title="Problema conocido en Windows (0.5.0)">
-		Con nombres que contienen acentos o eñes (por ejemplo `Ana Pérez`), `identity --apply-local` aplica el nombre correctamente pero la
-		comparación devuelve `"matches": false`, porque la salida de Git se decodifica con la página de códigos de Windows. Está registrado
-		en [Solución de problemas](../../referencia/solucion-de-problemas/). Mientras se corrige, puedes usar el nombre sin tildes.
+	<Aside type="caution" title="Windows y nombres con tildes en 0.5.0">
+		En PALLAQUINO 0.5.0, con nombres que contienen acentos o eñes (por ejemplo `Ana Pérez`), `identity --apply-local` aplica bien el
+		nombre, pero la comparación devuelve `"matches": false`: la salida de Git se decodifica con la página de códigos de Windows. Está
+		corregido en la rama principal y se incluirá en la próxima versión. Si usas 0.5.0, escribe el nombre sin tildes. Más información en
+		[Solución de problemas](../../referencia/solucion-de-problemas/).
 	</Aside>
 
 4. ### Comprueba el resultado

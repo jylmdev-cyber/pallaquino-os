@@ -35,11 +35,12 @@ sidebar:
 | `no test command detected` | El workspace no tiene `tests/test*.py` ni `package.json` con script `test` | Añade tests con esa convención |
 | `a plugin without a trust policy never executes` | Plugin sin confianza | `plugins trust <id> --approved-by <nombre>` |
 
-## Problemas abiertos (0.5.0)
+## Problemas conocidos de 0.5.0
 
-- **Identidad con caracteres no ASCII en Windows.** `identity --apply-local` aplica bien un nombre como `Ana Pérez`, pero la comparación
-  devuelve `"matches": false` porque la salida de Git se decodifica con la página de códigos de Windows. Mientras se corrige, usa un nombre
-  sin tildes. Detectado el 2026-10-14 al verificar esta academia.
+- **Identidad con caracteres no ASCII en Windows.** En 0.5.0, `identity --apply-local` aplica bien un nombre como `Ana Pérez`, pero la
+  comparación devuelve `"matches": false`: la salida de Git se decodifica con la página de códigos de Windows. Se detectó el 2026-10-14 al
+  verificar esta academia. Está corregido en la rama principal (PAL-013) y se incluirá en la próxima versión. Con 0.5.0, usa un nombre
+  sin tildes.
 
 Si encuentras otro problema, [abre un Issue](https://github.com/jylmdev-cyber/pallaquino-os/issues) con el comando, la salida y tu sistema
 operativo.

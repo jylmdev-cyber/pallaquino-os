@@ -26,8 +26,7 @@
     extracted archive on 2026-10-14); watch CI;
   - with an editable install, the default root is the package checkout (ADR-0004); use `--root .pallaquino` or `PALLAQUINO_ROOT` in projects.
 - PAL-012 documentation audit (`docs/learning/DOCUMENTATION_AUDIT.md`):
-  - H-6, on Windows: `identity --apply-local` with a non-ASCII name sets the local Git config, but returns `"matches": false`. `run_git`
-    decodes Git's UTF-8 output with the locale code page. Not fixed; proposed as PAL-013.
+  - H-6 (non-ASCII Git identity on Windows) is fixed on `main` by PAL-013; the published 0.5.0 still has it until the next release.
   - Test-command detection covers only `tests/test*.py` and `package.json` with a `test` script (H-7).
 - Academy: Starlight's search button shows `Ctrl K` outside its accessible name (axe `label-content-name-mismatch`, upstream, H-11).
 - Academy: recorded transcripts age with each release; re-capture them with `npm run transcripts` (docs/learning/MAINTENANCE.md).

@@ -189,9 +189,10 @@ def git_repository_root(root: Path) -> Path:
 
 def run_git(root: Path, *args: str) -> subprocess.CompletedProcess[str]:
     repository = git_repository_root(root)
+    # Git writes UTF-8; decoding with the locale (cp1252 on Windows) would turn "Ana Pérez" into "Ana PÃ©rez".
     return subprocess.run(
         ["git", "-c", f"safe.directory={repository.as_posix()}", *args],
-        cwd=repository, text=True, capture_output=True, check=False,
+        cwd=repository, text=True, encoding="utf-8", errors="replace", capture_output=True, check=False,
     )
 
 

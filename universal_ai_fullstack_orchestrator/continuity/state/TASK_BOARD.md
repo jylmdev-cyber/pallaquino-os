@@ -16,6 +16,6 @@
 - PAL-010 — v0.4.0 orchestration engine, project memory, provider abstraction (supersedes PAL-007-C/D/E): DONE; PR #6 merged, tag `v0.4.0` and GitHub Release published (2026-10-14)
 - PAL-011 — v0.5.0 plugin ecosystem, MCP 2026-07-28 client, tool registry and governance gateways, SDK: DONE; PR #7 merged, tag `v0.5.0` and GitHub Release published (2026-10-14)
 - PAL-012 — Interactive Learning Academy (static portal, tutorials, simulators, progress): DONE locally on `feat/academy` (committed, not pushed); awaiting owner approval for push/PR and GitHub Pages deployment
-- PAL-013 (proposed) — Fix non-ASCII Git identity comparison on Windows (`core.run_git` decoding; audit H-6): TODO
+- PAL-013 — Fix non-ASCII Git identity comparison on Windows (`core.run_git` decoding; audit H-6): DONE on `fix/git-identity-utf8` (pull request)
 - Blocked tasks: none
 - Confidence: high

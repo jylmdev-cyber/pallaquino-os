@@ -23,10 +23,11 @@ Los cambios relevantes de este proyecto se documentan aquí. El formato sigue
 - `docs/learning/`: auditoría de documentación, arquitectura, mantenimiento, guía de redacción, publicación, catálogo, hoja de ruta y
   protocolo de pruebas con usuarios (no ejecutado). ADR-0017.
 
-### Known issues
+### Fixed
 
-- En Windows, `identity --apply-local` con un nombre no ASCII devuelve `"matches": false`: `run_git` decodifica la salida de Git con la
-  página de códigos local. Hallazgo H-6 de `docs/learning/DOCUMENTATION_AUDIT.md`. Pendiente de corrección en el núcleo.
+- En Windows, una identidad Git con caracteres no ASCII (`Ana Pérez`) nunca coincidía: `identity --apply-local` devolvía
+  `"matches": false` y `validate_git_authorship` fallaba. `run_git` y `scripts/configure_git_identity.py` decodificaban la salida UTF-8 de
+  Git con la página de códigos local. Ahora la leen como UTF-8, con un test de regresión (hallazgo H-6, PAL-013).
 
 ### Planned
 
