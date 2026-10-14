@@ -169,3 +169,12 @@ def content_hash(directory: Path, files: list[Path] | None = None) -> str:
         if any(part in HASH_SKIP for part in rel.parts) or path.suffix in (".pyc", ".pyo") or path.is_symlink(): continue
         entries.append(f"{rel.as_posix()}\0{hashlib.sha256(path.read_bytes()).hexdigest()}")
     return hashlib.sha256("\n".join(sorted(entries)).encode("utf-8")).hexdigest()
+
+
+def import_path_for(plugin_dir: Path, manifest: dict[str, Any]) -> Path:
+    """Where the entrypoint's top-level package is importable from: the parent of a manifest that sits inside the
+    package itself (the layout that ships in wheels), otherwise `plugin_dir / runtime.source_root`."""
+    plugin_dir = Path(plugin_dir); entrypoint = manifest["runtime"].get("entrypoint") or ""
+    top = entrypoint.split(":", 1)[0].split(".")[0]
+    if top and plugin_dir.name == top: return plugin_dir.parent
+    return plugin_dir / manifest["runtime"].get("source_root", "src")

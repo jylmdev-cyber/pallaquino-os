@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=77"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "pallaquino-example-plugin"
+version = "0.1.0"
+description = "Reference PALLAQUINO plugin built with the extension SDK: read-only text statistics"
+requires-python = ">=3.11"
+license = "MIT"
+authors = [{name = "jimdev", email = "jylmdev@gmail.com"}]
+
+# PALLAQUINO discovers this entry point from metadata; it never imports the plugin to find it.
+[project.entry-points."pallaquino.plugins"]
+text_stats = "pallaquino_example_plugin:plugin"
+
+[tool.setuptools]
+packages = ["pallaquino_example_plugin"]
+package-dir = {"" = "src"}
+
+[tool.setuptools.package-data]
+pallaquino_example_plugin = ["plugin.toml"]

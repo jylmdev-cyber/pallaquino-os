@@ -1,7 +1,7 @@
 {
   "name": "pallaquino",
   "display_name": "PALLAQUINO Autonomous Engineering OS",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "schema_version": 1,
   "entrypoint": "AI_ENTRYPOINT.md",
   "cli": "pallaquino_cli",

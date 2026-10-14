@@ -83,7 +83,16 @@ MIGRATIONS: list[tuple[int, str]] = [
             outcome TEXT NOT NULL, verified INTEGER NOT NULL, simulated INTEGER NOT NULL, duration_ms REAL, cost_estimated REAL, recorded_at TEXT NOT NULL);
     """),
     (2, "ALTER TABLE records ADD COLUMN redacted INTEGER NOT NULL DEFAULT 0;"),
+    (3, """
+        CREATE TABLE platform_docs (project TEXT NOT NULL, kind TEXT NOT NULL, doc_id TEXT NOT NULL, status TEXT, updated_at TEXT NOT NULL,
+            body TEXT NOT NULL, checksum TEXT NOT NULL, PRIMARY KEY (project, kind, doc_id));
+        CREATE TABLE tool_calls (call_id TEXT PRIMARY KEY, project TEXT NOT NULL, idempotency_key TEXT, tool_id TEXT NOT NULL, agent_id TEXT,
+            execution_id TEXT, task_id TEXT, status TEXT NOT NULL, started_at TEXT NOT NULL, finished_at TEXT, duration_ms REAL, body TEXT NOT NULL, checksum TEXT NOT NULL);
+        CREATE UNIQUE INDEX tool_calls_idempotency ON tool_calls(project, idempotency_key);
+        CREATE INDEX tool_calls_tool ON tool_calls(project, tool_id);
+    """),
 ]
+PLATFORM_KINDS = {"plugin", "connection", "grant", "approval", "catalog"}
 SCHEMA_VERSION = MIGRATIONS[-1][0]
 
 
@@ -216,7 +225,7 @@ class MemoryStore:
         with self._lock:
             for row in self._conn.execute("SELECT * FROM records WHERE project=?", (self.project,)):
                 if row["checksum"] != _checksum(row["category"], row["kind"], row["key"], row["summary"], row["content"]): problems.append(f"record {row['id']}")
-            for table, key in (("plans", "plan_id"), ("executions", "execution_id"), ("tasks", "task_id")):
+            for table, key in (("plans", "plan_id"), ("executions", "execution_id"), ("tasks", "task_id"), ("platform_docs", "doc_id"), ("tool_calls", "call_id")):
                 for row in self._conn.execute(f"SELECT {key}, body, checksum FROM {table} WHERE project=?", (self.project,)):
                     if row["checksum"] != _checksum(row["body"]): problems.append(f"{table[:-1]} {row[key]}")
             sqlite_check = self._conn.execute("PRAGMA integrity_check").fetchone()[0]
@@ -323,3 +332,55 @@ class MemoryStore:
             rows = self._conn.execute("SELECT outcome FROM agent_runs WHERE project=? AND agent_id=? AND verified=1 AND simulated=0", (self.project, agent_id)).fetchall()
         total = len(rows); succeeded = sum(r["outcome"] == "COMPLETED" for r in rows)
         return {"verified_runs": total, "succeeded": succeeded, "success_rate": succeeded / total if total else None}
+
+    # -- platform state: plugins, connections, grants, approvals, pinned catalogs (0.5.0) ---------------------
+    def put_platform(self, kind: str, doc_id: str, body: dict[str, Any], *, status: str | None = None) -> None:
+        if kind not in PLATFORM_KINDS: raise ValueError(f"unknown platform document kind {kind!r}")
+        clean = _redact_tree(body)
+        self._put_doc("platform_docs", {"kind": kind, "doc_id": doc_id}, {"status": status, "updated_at": _iso(_now())}, clean)
+
+    def get_platform(self, kind: str, doc_id: str) -> dict[str, Any] | None:
+        return self._get_doc("platform_docs", "kind=? AND doc_id=?", (kind, doc_id))
+
+    def list_platform(self, kind: str, *, status: str | None = None) -> list[dict[str, Any]]:
+        sql = "SELECT doc_id, body, checksum FROM platform_docs WHERE project=? AND kind=?"; params: list[Any] = [self.project, kind]
+        if status: sql += " AND status=?"; params.append(status)
+        with self._lock: rows = self._conn.execute(sql + " ORDER BY doc_id", params).fetchall()
+        docs = []
+        for row in rows:
+            if row["checksum"] != _checksum(row["body"]): raise MemoryCorrupted(f"{kind} {row['doc_id']} failed its integrity check")
+            docs.append(json.loads(row["body"]))
+        return docs
+
+    def delete_platform(self, kind: str, doc_id: str) -> bool:
+        with self._tx() as conn:
+            return bool(conn.execute("DELETE FROM platform_docs WHERE project=? AND kind=? AND doc_id=?", (self.project, kind, doc_id)).rowcount)
+
+    def begin_tool_call(self, call: dict[str, Any]) -> dict[str, Any] | None:
+        """Write-ahead record of a tool call. Returns the existing call when the idempotency key was already used."""
+        body = json.dumps(_redact_tree(call), ensure_ascii=False, sort_keys=True)
+        with self._tx() as conn:
+            if call.get("idempotency_key"):
+                row = conn.execute("SELECT body FROM tool_calls WHERE project=? AND idempotency_key=?", (self.project, call["idempotency_key"])).fetchone()
+                if row: return json.loads(row["body"])
+            conn.execute("INSERT INTO tool_calls (call_id, project, idempotency_key, tool_id, agent_id, execution_id, task_id, status, started_at, body, checksum)"
+                         " VALUES (?,?,?,?,?,?,?,?,?,?,?)", (call["call_id"], self.project, call.get("idempotency_key"), call["tool_id"], call.get("agent_id"),
+                                                             call.get("execution_id"), call.get("task_id"), call["status"], call["started_at"], body, _checksum(body)))
+        return None
+
+    def finish_tool_call(self, call: dict[str, Any]) -> None:
+        body = json.dumps(_redact_tree(call), ensure_ascii=False, sort_keys=True)
+        with self._tx() as conn:
+            conn.execute("UPDATE tool_calls SET status=?, finished_at=?, duration_ms=?, body=?, checksum=? WHERE project=? AND call_id=?",
+                         (call["status"], call.get("finished_at"), call.get("duration_ms"), body, _checksum(body), self.project, call["call_id"]))
+
+    def list_tool_calls(self, *, tool_id: str | None = None, execution_id: str | None = None, limit: int = 100) -> list[dict[str, Any]]:
+        sql = "SELECT body, checksum, call_id FROM tool_calls WHERE project=?"; params: list[Any] = [self.project]
+        if tool_id: sql += " AND tool_id=?"; params.append(tool_id)
+        if execution_id: sql += " AND execution_id=?"; params.append(execution_id)
+        with self._lock: rows = self._conn.execute(sql + " ORDER BY started_at DESC LIMIT ?", (*params, limit)).fetchall()
+        calls = []
+        for row in rows:
+            if row["checksum"] != _checksum(row["body"]): raise MemoryCorrupted(f"tool call {row['call_id']} failed its integrity check")
+            calls.append(json.loads(row["body"]))
+        return calls

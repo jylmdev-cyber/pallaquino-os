@@ -1,0 +1,44 @@
+manifest_version = 1
+
+[plugin]
+id = "example.text_stats"
+name = "Text statistics"
+description = "Counts lines, words and characters of text files inside the workspace. Read-only."
+author = "jimdev"
+version = "0.1.0"
+type = "TOOL_PLUGIN"
+license = "MIT"
+
+[compatibility]
+pallaquino = ">=0.5.0,<0.6.0"
+python = ">=3.11"
+
+[runtime]
+entrypoint = "pallaquino_example_plugin:plugin"
+isolation = "process"
+timeout_seconds = 20
+
+[capabilities]
+provides = ["text_statistics"]
+
+[permissions]
+requested = ["FILE_READ"]
+
+[configuration]
+methods = ["file"]
+schema = { type = "object", additionalProperties = false, properties = { max_bytes = { type = "integer", minimum = 1, maximum = 1048576 } } }
+
+[[tools]]
+name = "file_stats"
+description = "Line, word and character counts of one text file in the workspace."
+capabilities = ["FILE_READ"]
+operation = "READ_ONLY"
+input_schema = { type = "object", additionalProperties = false, required = ["path"], properties = { path = { type = "string", minLength = 1, maxLength = 1024 } } }
+output_schema = { type = "object", required = ["path", "lines", "words", "characters"], properties = { path = { type = "string" }, lines = { type = "integer" }, words = { type = "integer" }, characters = { type = "integer" } } }
+
+[[tools]]
+name = "word_frequency"
+description = "Most frequent words of a text passed as an argument."
+capabilities = ["FILE_READ"]
+operation = "READ_ONLY"
+input_schema = { type = "object", additionalProperties = false, required = ["text"], properties = { text = { type = "string", maxLength = 100000 }, top = { type = "integer", minimum = 1, maximum = 50 } } }
