@@ -5,7 +5,7 @@ type: software
 authors:
   - family-names: "jimdev"
     email: "jylmdev@gmail.com"
-version: 0.4.0
+version: 0.5.1
 date-released: 2026-10-14
 license: MIT
 repository-code: "https://github.com/jylmdev-cyber/pallaquino-os"

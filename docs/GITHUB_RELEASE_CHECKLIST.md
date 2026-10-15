@@ -39,13 +39,13 @@ Este documento no debe usarse para sobrescribir un remoto existente sin revisar.
 ## 5. Primera release
 
 - Verifica que CI esté verde.
-- Crea el tag anotado `v0.4.0` y la GitHub Release.
+- Crea el tag anotado `v0.5.1` y la GitHub Release.
 - Adjunta `PALLAQUINO_autonomous_engineering_os.zip` y su `.sha256`.
 - Copia las notas de `CHANGELOG.md` y verifica el checksum descargado.
 
 ```bash
-git tag -a v0.4.0 -m "PALLAQUINO 0.4.0"
-git push origin v0.4.0
+git tag -a v0.5.1 -m "PALLAQUINO 0.5.1"
+git push origin v0.5.1
 ```
 
 No publiques el tag hasta que el commit final y los artefactos hayan sido

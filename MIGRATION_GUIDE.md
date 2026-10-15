@@ -1,5 +1,14 @@
 # Guía de migración
 
+## 0.5.0 → 0.5.1
+
+Versión de corrección, sin cambios de comandos, contratos, esquemas ni memoria. No requiere acciones.
+
+- Si en Windows usas una identidad de commits con tildes o eñes y `identity --apply-local` devolvía `"matches": false`, vuelve a
+  ejecutar `pallaquino identity --apply-local --json`: ahora devuelve `"matches": true`.
+- Para actualizar un proyecto ya inicializado, sustituye el paquete `pallaquino_cli` de su `.pallaquino/` por el de 0.5.1, o reinstala
+  el paquete si lo instalaste con pip.
+
 ## 0.4.0 → 0.5.0
 
 0.5.0 es aditiva. Los comandos, contratos v1 y planes de 0.4.0 siguen funcionando, y el núcleo funciona sin plugins ni conexiones MCP.

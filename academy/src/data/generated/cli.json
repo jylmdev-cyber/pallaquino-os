@@ -1,7 +1,7 @@
 {
   "program": "pallaquino",
   "module": "python -m pallaquino_cli",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "commands": [
     {
       "name": "agents",

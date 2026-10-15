@@ -1,0 +1,25 @@
+{
+  "version": "0.5.1",
+  "status": "patch release approved for publication by the owner (2026-10-14)",
+  "commits": [],
+  "features": [],
+  "fixes": [
+    "non-ASCII Git identity compared correctly on Windows: core.run_git and configure_git_identity decode Git output as UTF-8 (audit H-6, PAL-013)",
+    "CITATION.cff, the release checklist and the framework README carried 0.4.0"
+  ],
+  "migrations": [],
+  "dependencies": [],
+  "environment_changes": [],
+  "tests": [
+    "243 framework tests (1 new regression test)",
+    "offline end-to-end demo",
+    "reproducible release archive verified"
+  ],
+  "security": [],
+  "rollback": "Return to v0.5.0; nothing else changes (on Windows, non-ASCII identities stop matching again).",
+  "known_issues": [
+    "no OS sandbox for plugins",
+    "file credential vault not encrypted",
+    "subscriptions/listen not implemented"
+  ]
+}
