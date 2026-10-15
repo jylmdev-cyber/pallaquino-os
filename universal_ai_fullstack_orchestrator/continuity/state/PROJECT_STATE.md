@@ -1,6 +1,6 @@
 # Project state
 
-- Status: 0.5.1 patch release prepared and approved (PAL-014). 0.5.0 published on 2026-10-14 (PR #7 merged into `main` at `d4a2af3`, tag `v0.5.0` on `ddf3341`, GitHub Release with verified assets; Linux CI green on py3.11 and 3.14). The v0.4.0 release carries a note about its archive missing `pallaquino_cli/memory`. PAL-012 learning academy merged (PR #8) and published on GitHub Pages (https://jylmdev-cyber.github.io/pallaquino-os/); PAL-013 H-6 fix merged (PR #9, `ec5a542`); PAL-012-F1 merged (PR #10, `fc42622`). `main` = `fc42622`. Merged branches were deleted (only `main` remains on GitHub). The H-6 fix is unreleased (0.5.0 still has it)
+- Status: 0.5.1 published on 2026-10-15 UTC (PAL-014: PR #12 merged (`4e77c50`) after green CI; annotated tag `v0.5.1` on the release head `4df790f`; GitHub Release "PALLAQUINO 0.5.1" published 2026-10-15T00:13:04Z with the ZIP (SHA-256 `38238b6855625e2d7aeeda8cfc5bbd309669657f6bef1a4d620b0e9969a9e7d4`) and `.sha256`, marked latest; downloaded assets checksum OK; academy redeployed (run 38658770613)). Academy live at https://jylmdev-cyber.github.io/pallaquino-os/. Only `main` remains on GitHub.
 - Version: 0.5.1 (patch over 0.5.0: Windows non-ASCII Git identity fix); 0.5.0 feature set: plugin ecosystem, MCP 2026-07-28 client, unified tool registry, permission and execution gateways, SDK
 - Updated: 2026-10-14
 - Agents: 59 (contracts v2)

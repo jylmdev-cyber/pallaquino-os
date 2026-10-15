@@ -57,5 +57,10 @@
   - secret scan, 0 findings (`evidence/security_check-2026-10-15T00-06-48+00-00.json`);
   - architecture fitness (`evidence/architecture_fitness-2026-10-15T00-06-49+00-00.json`);
   - academy `npm run ci` (`evidence/docs_validation-2026-10-15T00-08-59+00-00.json`).
+- 0.5.1 publication checks (2026-10-15 UTC):
+  - CI on PR #12 green: Python 3.11 and 3.14, including the committed-archive verification and the non-editable install smoke test;
+  - Academy build and validate green;
+  - GitHub Release assets downloaded and checked with `sha256sum -c` (OK);
+  - live academy pages show 0.5.1.
 - Updated: 2026-10-15
 - Confidence: high
