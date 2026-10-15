@@ -15,3 +15,15 @@
     specification requires are implemented, with stdlib primitives (ADR-0016). Confidence: medium.
   - Writing reports to the framework's git-ignored `logs/reports/` instance state does not count as modifying the analysed repository.
     Confidence: high.
+- PAL-012:
+  - the academy is a separate component (`academy/`, Node) and may use npm dependencies; the framework's stdlib-only rule applies to
+    `pallaquino_cli`, not to the portal. Confidence: high.
+  - "No inventes comandos" is enforced mechanically: every CLI command quoted in lesson code is checked against the real argparse tree,
+    and shown outputs come only from recorded runs. Confidence: high.
+  - "Gratuito" is satisfied by GitHub Pages for a public repository. Confidence: high.
+  - The owner's "SI HAZLO" replies on 2026-10-14 covered:
+    - the push, pull request and merge after green CI of PRs #8, #9 and #10;
+    - enabling GitHub Pages and deploying;
+    - deleting merged branches;
+    - updating the local `main`.
+    Each action was executed only after that reply. Confidence: high.
