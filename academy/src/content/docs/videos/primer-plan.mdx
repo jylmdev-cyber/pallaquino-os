@@ -13,7 +13,7 @@ sidebar:
 | # | Duración | Narración | En pantalla | Comando |
 |---:|---|---|---|---|
 | 1 | 0:30 | El proyecto de ejemplo: una calculadora con tests | Editor con `calc.py` y `tests/` | — |
-| 2 | 0:45 | Instalamos PALLAQUINO en el proyecto | `"copied": 383` | `python -m pallaquino_cli init --target ../calc --json` |
+| 2 | 0:45 | Instalamos PALLAQUINO en el proyecto | `"copied": 384` | `python -m pallaquino_cli init --target ../calc --json` |
 | 3 | 1:00 | Planificamos; planificar no ejecuta nada | Plan de 7 tareas, recorrido visual del DAG | `python -m pallaquino_cli plan "add a multiply function to the calculator module with tests" --workspace .. --json` |
 | 4 | 0:45 | Revisamos en seco | `would_run` | `python -m pallaquino_cli run --plan <plan_id> --dry-run --json` |
 | 5 | 1:00 | Ejecutamos. Resaltar `simulated` en cada tarea | `COMPLETED`; T01 y T05 reales | `python -m pallaquino_cli run --plan <plan_id> --json` |

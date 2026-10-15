@@ -1,7 +1,7 @@
 # Project state
 
-- Status: 0.5.0 published on 2026-10-14 (PR #7 merged into `main` at `d4a2af3`, tag `v0.5.0` on `ddf3341`, GitHub Release with verified assets; Linux CI green on py3.11 and 3.14). The v0.4.0 release carries a note about its archive missing `pallaquino_cli/memory`. PAL-012 learning academy merged (PR #8) and published on GitHub Pages (https://jylmdev-cyber.github.io/pallaquino-os/); PAL-013 H-6 fix merged (PR #9, `ec5a542`); PAL-012-F1 merged (PR #10, `fc42622`). `main` = `fc42622`. Merged branches were deleted (only `main` remains on GitHub). The H-6 fix is unreleased (0.5.0 still has it)
-- Version: 0.5.0 (plugin ecosystem, MCP 2026-07-28 client, unified tool registry, permission and execution gateways, SDK)
+- Status: 0.5.1 patch release prepared and approved (PAL-014). 0.5.0 published on 2026-10-14 (PR #7 merged into `main` at `d4a2af3`, tag `v0.5.0` on `ddf3341`, GitHub Release with verified assets; Linux CI green on py3.11 and 3.14). The v0.4.0 release carries a note about its archive missing `pallaquino_cli/memory`. PAL-012 learning academy merged (PR #8) and published on GitHub Pages (https://jylmdev-cyber.github.io/pallaquino-os/); PAL-013 H-6 fix merged (PR #9, `ec5a542`); PAL-012-F1 merged (PR #10, `fc42622`). `main` = `fc42622`. Merged branches were deleted (only `main` remains on GitHub). The H-6 fix is unreleased (0.5.0 still has it)
+- Version: 0.5.1 (patch over 0.5.0: Windows non-ASCII Git identity fix); 0.5.0 feature set: plugin ecosystem, MCP 2026-07-28 client, unified tool registry, permission and execution gateways, SDK
 - Updated: 2026-10-14
 - Agents: 59 (contracts v2)
 - Skills: 90

@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "timestamp": "2026-10-15T00:09:36+00:00",
+  "task": "PAL-014",
+  "stage": "HANDOFF",
+  "git_head": "074740f7f1f7e92dbcd14792e0105a612a8dd4cd",
+  "git_diff": [
+    " M academy/src/content/docs/instalacion/configurar-proyecto.mdx",
+    " M academy/src/content/docs/videos/primer-plan.mdx",
+    " M academy/src/data/transcripts.json",
+    " M universal_ai_fullstack_orchestrator/continuity/state/CURRENT_TASK.md",
+    " M universal_ai_fullstack_orchestrator/continuity/state/KNOWN_ISSUES.md",
+    " M universal_ai_fullstack_orchestrator/continuity/state/OPEN_QUESTIONS.md",
+    " M universal_ai_fullstack_orchestrator/continuity/state/PIPELINE_STATE.md",
+    " M universal_ai_fullstack_orchestrator/continuity/state/PROJECT_STATE.md",
+    " M universal_ai_fullstack_orchestrator/continuity/state/TASK_BOARD.md",
+    " M universal_ai_fullstack_orchestrator/continuity/state/TEST_STATUS.md",
+    " M universal_ai_fullstack_orchestrator/planning/execution_plan.json",
+    " M universal_ai_fullstack_orchestrator/planning/task_graph.json",
+    "?? universal_ai_fullstack_orchestrator/changes/PAL-014.json",
+    "?? universal_ai_fullstack_orchestrator/evidence/architecture_fitness-2026-10-15T00-06-49+00-00.json",
+    "?? universal_ai_fullstack_orchestrator/evidence/docs_validation-2026-10-15T00-08-59+00-00.json",
+    "?? universal_ai_fullstack_orchestrator/evidence/integrity-2026-10-15T00-06-45+00-00.json",
+    "?? universal_ai_fullstack_orchestrator/evidence/lint_typecheck-2026-10-15T00-06-44+00-00.json",
+    "?? universal_ai_fullstack_orchestrator/evidence/security_check-2026-10-15T00-06-48+00-00.json",
+    "?? universal_ai_fullstack_orchestrator/evidence/test-2026-10-15T00-08-18+00-00.json"
+  ],
+  "evidence": [],
+  "confidence": "medium",
+  "checksum": "9320801131bd12367f0460fa38cf3c73006a458717906b45854158e2f48d48d2"
+}

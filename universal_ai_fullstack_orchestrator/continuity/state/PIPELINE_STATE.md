@@ -1,6 +1,6 @@
 # Pipeline state
 
-- Status: session closed 2026-10-14. PAL-012 published (PR #8, GitHub Pages), PAL-013 merged (PR #9), PAL-012-F1 merged and redeployed (PR #10)
+- Status: PAL-014 (release 0.5.1) gates green locally; publication approved (PR, merge after green CI, tag `v0.5.1`, GitHub Release)
 - Updated: 2026-10-14
 - Confidence: high
 - Current stage: HANDOFF
@@ -27,4 +27,4 @@
 - Session-close gates on `fc42622` (2026-10-14, local, with evidence): TEST 243 OK, 6 skipped; LINT_TYPECHECK (compileall); integrity validation;
   SECURITY_CHECK (secret scan); architecture fitness; release ZIP integrity; academy `npm run ci`. Not run here: the full `validate` with
   the Git identity (environment; local identity unset in this checkout, applied in CI).
-- Next: owner decision on PAL-014 (release 0.5.1 with the H-6 fix); run the user-testing protocol (PAL-015); stack re-verification due 2026-11-13
+- Next: publish 0.5.1 as approved, redeploy the academy, then PAL-015 (user testing); stack re-verification due 2026-11-13

@@ -1,0 +1,43 @@
+{
+  "task_id": "PAL-014",
+  "files_created": [
+    "releases/0.5.1.json",
+    "../docs/releases/RELEASE_V051.md",
+    "changes/PAL-014.json"
+  ],
+  "files_modified": [
+    "pallaquino_cli/core.py (VERSION)",
+    "pallaquino_cli/__init__.py",
+    "pyproject.toml",
+    "manifest.json",
+    "README.md",
+    "../README.md",
+    "../CHANGELOG.md",
+    "../MIGRATION_GUIDE.md",
+    "../CITATION.cff",
+    "../docs/GITHUB_RELEASE_CHECKLIST.md",
+    "../academy/ (version texts, generated data, recorded transcripts)",
+    "planning/*.json",
+    "continuity/state/*.md",
+    "../PALLAQUINO_autonomous_engineering_os.zip",
+    "../PALLAQUINO_autonomous_engineering_os.sha256"
+  ],
+  "files_deleted": [],
+  "migrations": [],
+  "dependencies": [],
+  "endpoints": [],
+  "tests": [
+    "see evidence/ for this release: full suite, compileall, integrity, secret scan, fitness, academy ci, archive integrity"
+  ],
+  "docs": [
+    "release notes, migration note, changelog 0.5.1"
+  ],
+  "decisions": [
+    "patch release: only the H-6 fix and documentation; the academy ships in the repository, not in the framework ZIP"
+  ],
+  "commits": [
+    "47337c0012318691fb78bc7d8cb0b9751b70f6d7",
+    "074740f7f1f7e92dbcd14792e0105a612a8dd4cd",
+    "68c9fe840c67d50b397ef905a58898762c409a8c"
+  ]
+}

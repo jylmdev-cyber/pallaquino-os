@@ -6,6 +6,17 @@ Los cambios relevantes de este proyecto se documentan aquí. El formato sigue
 
 ## [Unreleased]
 
+### Planned
+
+- 0.6.0, Autonomous Project Factory (ver `docs/roadmap/ROADMAP_V050_TO_V060.md`).
+- Arrastrado desde la Fase 3: ejecutor externo para asistentes sin API, adaptadores comerciales verificados, `subscriptions/listen`
+  y optimización de la persistencia del scheduler.
+- Publicación en PyPI y firma de artefactos.
+
+## [0.5.1] - 2026-10-14
+
+Versión de corrección. Es compatible con 0.5.0: no cambia comandos, contratos, esquemas ni el formato de la memoria.
+
 ### Added
 
 - **PALLAQUINO Academy** (`academy/`, PAL-012), un portal educativo estático con Astro 7, Starlight 0.42 e islas Vue 3:
@@ -28,13 +39,9 @@ Los cambios relevantes de este proyecto se documentan aquí. El formato sigue
 - En Windows, una identidad Git con caracteres no ASCII (`Ana Pérez`) nunca coincidía: `identity --apply-local` devolvía
   `"matches": false` y `validate_git_authorship` fallaba. `run_git` y `scripts/configure_git_identity.py` decodificaban la salida UTF-8 de
   Git con la página de códigos local. Ahora la leen como UTF-8, con un test de regresión (hallazgo H-6, PAL-013).
-
-### Planned
-
-- 0.6.0, Autonomous Project Factory (ver `docs/roadmap/ROADMAP_V050_TO_V060.md`).
-- Arrastrado desde la Fase 3: ejecutor externo para asistentes sin API, adaptadores comerciales verificados, `subscriptions/listen`
-  y optimización de la persistencia del scheduler.
-- Publicación en PyPI y firma de artefactos.
+- Terminal de la academia: `python -m pallaquino_cli --version` y `--help` fallan fuera de la carpeta del framework, como el módulo real
+  (PAL-012-F1).
+- `CITATION.cff`, la checklist de release y el README del framework se habían quedado en 0.4.0.
 
 ## [0.5.0] - 2026-10-14
 
@@ -263,6 +270,8 @@ Fase 1 (auditoría y estabilización) del pedido v0.3. Detalle y evidencia en
 
 - Framework inicial, CLI, pipeline, gobernanza, continuidad y empaquetado.
 
+[0.5.1]: universal_ai_fullstack_orchestrator/releases/0.5.1.json
+[0.5.0]: universal_ai_fullstack_orchestrator/releases/0.5.0.json
 [0.4.0]: universal_ai_fullstack_orchestrator/releases/0.4.0.json
 [0.3.2]: universal_ai_fullstack_orchestrator/releases/0.3.2.json
 [0.3.1]: universal_ai_fullstack_orchestrator/releases/0.3.1.json
@@ -270,4 +279,4 @@ Fase 1 (auditoría y estabilización) del pedido v0.3. Detalle y evidencia en
 [0.2.1]: universal_ai_fullstack_orchestrator/releases/0.2.1.json
 [0.2.0]: universal_ai_fullstack_orchestrator/releases/0.2.0.json
 [0.1.0]: universal_ai_fullstack_orchestrator/releases/0.1.0.json
-[Unreleased]: https://github.com/jylmdev-cyber/pallaquino-os/compare/v0.4.0...HEAD
+[Unreleased]: https://github.com/jylmdev-cyber/pallaquino-os/compare/v0.5.1...HEAD

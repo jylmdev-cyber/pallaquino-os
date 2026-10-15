@@ -38,7 +38,7 @@ Todo lo de esta lección se comprobó el 2026-10-14 en un proyecto nuevo con `gi
 	python -m pallaquino_cli init --target ../mi-proyecto --json
 	```
 
-	**Resultado esperado:** `"copied": 383` y `"dry_run": false`. Se crea `mi-proyecto/.pallaquino/`. Los archivos existentes nunca se
+	**Resultado esperado:** `"copied": 384` (en 0.5.1) y `"dry_run": false`. Se crea `mi-proyecto/.pallaquino/`. Los archivos existentes nunca se
 	sobrescriben (`"skipped"` cuenta los que ya existían). Cambia `../mi-proyecto` por la ruta real de tu repositorio.
 
 2. ### Elige cómo ejecutar la CLI
@@ -89,10 +89,9 @@ Todo lo de esta lección se comprobó el 2026-10-14 en un proyecto nuevo con `gi
 
 	**Resultado esperado:** `"matches": true`. Desde ese momento `python -m pallaquino_cli doctor` termina con código 0.
 
-	<Aside type="caution" title="Windows y nombres con tildes en 0.5.0">
-		En PALLAQUINO 0.5.0, con nombres que contienen acentos o eñes (por ejemplo `Ana Pérez`), `identity --apply-local` aplica bien el
-		nombre, pero la comparación devuelve `"matches": false`: la salida de Git se decodifica con la página de códigos de Windows. Está
-		corregido en la rama principal y se incluirá en la próxima versión. Si usas 0.5.0, escribe el nombre sin tildes. Más información en
+	<Aside type="note" title="Nombres con tildes en Windows">
+		Desde 0.5.1, los nombres con acentos o eñes (por ejemplo `Ana Pérez`) funcionan en Windows. En 0.5.0, `identity --apply-local`
+		devolvía `"matches": false` con esos nombres; si todavía usas 0.5.0, actualiza a 0.5.1. Más información en
 		[Solución de problemas](../../referencia/solucion-de-problemas/).
 	</Aside>
 

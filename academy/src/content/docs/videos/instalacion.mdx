@@ -15,7 +15,7 @@ sidebar:
 | 2 | 0:30 | Comprobamos Python y Git | Terminal | `python --version`, `git --version` |
 | 3 | 0:45 | Descargamos el repositorio | Progreso de Git | `git clone https://github.com/jylmdev-cyber/pallaquino-os.git` |
 | 4 | 0:30 | Entramos en la carpeta del framework; sin ella, Python no encuentra el módulo | Árbol de carpetas | `cd pallaquino-os/universal_ai_fullstack_orchestrator` |
-| 5 | 0:30 | Sin dependencias: comprobamos la versión | `pallaquino 0.5.0` | `python -m pallaquino_cli --version` |
+| 5 | 0:30 | Sin dependencias: comprobamos la versión | `pallaquino 0.5.1` | `python -m pallaquino_cli --version` |
 | 6 | 1:00 | El diagnóstico. Resaltar el único fallo, de entorno, y por qué es normal | Salida JSON con `validate_git_authorship` resaltado | `python -m pallaquino_cli doctor` |
 | 7 | 0:45 | Comprobamos solo la integridad: todo pasa | `"ok": true`, código 0 | `python -m pallaquino_cli validate --integrity-only --json` |
 | 8 | 0:45 | Clasificamos el riesgo de una solicitud | `"level": "HIGH"` y gates | `python -m pallaquino_cli risk "agregar autenticación basada en roles" --json` |
