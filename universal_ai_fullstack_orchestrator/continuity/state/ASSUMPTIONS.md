@@ -27,3 +27,9 @@
     - deleting merged branches;
     - updating the local `main`.
     Each action was executed only after that reply. Confidence: high.
+- PAL-014:
+  - The owner's message "publica la versión 0.5.1 con el arreglo de H-6" covered the release pull request, the merge after green CI, the
+    tag, the GitHub Release and the academy redeploy. The later "SI HAZLO" covered recording the publication (PR #13). Confidence: high.
+  - The tag sits on the release branch head (as `v0.5.0` does), not on the merge commit; both have the same tree. Confidence: high.
+  - `releases/0.5.1.json` keeps the status it had when the archive was built, so the repository file matches the published ZIP.
+    Publication facts live in continuity. Confidence: high.
