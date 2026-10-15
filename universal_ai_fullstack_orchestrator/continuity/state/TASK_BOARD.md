@@ -18,7 +18,7 @@
 - PAL-012 — Interactive Learning Academy: DONE; PR #8 merged (`b9ec3ea`), GitHub Pages enabled and deployed on 2026-10-14 (Academy run 38655034166) at https://jylmdev-cyber.github.io/pallaquino-os/
 - PAL-013 — Fix non-ASCII Git identity comparison on Windows (`core.run_git` decoding; audit H-6): DONE; PR #9 merged (`ec5a542`)
 - PAL-012-F1 — Terminal simulator: `python -m pallaquino_cli --version/--help` fail outside the framework folder like the real module: DONE; PR #10 merged (`fc42622`), redeployed (run 38655943918)
-- PAL-014 — Release 0.5.1 with the PAL-013 fix (H-6): READY on `release/0.5.1` (gates green, ZIP rebuilt); publication approved by the owner (PR, merge after green CI, tag `v0.5.1`, GitHub Release)
+- PAL-014 — Release 0.5.1 with the PAL-013 fix (H-6): DONE; PR #12 merged (`4e77c50`) after green CI; annotated tag `v0.5.1` on the release head `4df790f`; GitHub Release "PALLAQUINO 0.5.1" published 2026-10-15T00:13:04Z with the ZIP (SHA-256 `38238b6855625e2d7aeeda8cfc5bbd309669657f6bef1a4d620b0e9969a9e7d4`) and `.sha256`, marked latest; downloaded assets checksum OK; academy redeployed (run 38658770613)
 - PAL-015 (proposed) — Run the academy user-testing protocol (`docs/learning/UX_TEST_PROTOCOL.md`): TODO
 - Blocked tasks: none
 - Confidence: high

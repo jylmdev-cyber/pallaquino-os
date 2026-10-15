@@ -21,5 +21,6 @@
   - secret scan, 0 findings (`evidence/security_check-2026-10-15T00-06-48+00-00.json`);
   - architecture fitness (`evidence/architecture_fitness-2026-10-15T00-06-49+00-00.json`);
   - academy `npm run ci` (`evidence/docs_validation-2026-10-15T00-08-59+00-00.json`).
+- Status: DONE and published. PR #12 merged (`4e77c50`) after green CI; annotated tag `v0.5.1` on the release head `4df790f`; GitHub Release "PALLAQUINO 0.5.1" published 2026-10-15T00:13:04Z with the ZIP (SHA-256 `38238b6855625e2d7aeeda8cfc5bbd309669657f6bef1a4d620b0e9969a9e7d4`) and `.sha256`, marked latest; downloaded assets checksum OK; academy redeployed (run 38658770613).
 - Previous task PAL-012 (academy) is closed. Its §25 acceptance evidence is in pull request #11 and `changes/PAL-012.json`.
 - Confidence: high
