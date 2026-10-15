@@ -1,6 +1,6 @@
 # Pipeline state
 
-- Status: complete for PAL-014; 0.5.1 published (tag `v0.5.1`, GitHub Release, academy redeployed)
+- Status: session closed 2026-10-15 UTC. PAL-012, PAL-013, PAL-012-F1 and PAL-014 are done; 0.5.1 is published; the academy is live; only `main` remains on GitHub
 - Updated: 2026-10-14
 - Confidence: high
 - Current stage: HANDOFF

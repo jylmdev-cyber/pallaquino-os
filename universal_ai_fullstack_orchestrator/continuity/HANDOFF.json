@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "timestamp": "2026-10-15T00:18:56+00:00",
+  "timestamp": "2026-10-15T00:25:28+00:00",
   "task": "PAL-014",
   "requested": "publish PALLAQUINO 0.5.1, a patch release with the PAL-013 fix for audit H-6 (non-ASCII Git identity on Windows).",
   "implemented": [
@@ -24,8 +24,10 @@
     "../PALLAQUINO_autonomous_engineering_os.sha256"
   ],
   "missing": [
-    "academy user-testing sessions (PAL-015)",
-    "English translation of the academy lessons"
+    "academy user-testing sessions (PAL-015, protocol only)",
+    "English translation of the academy lessons",
+    "recorded videos (scripts only)",
+    "verified Django and Nuxt end-to-end tutorials"
   ],
   "assumed": [
     "The requested portable root is `universal_ai_fullstack_orchestrator/` inside the provided workspace. Confidence: high.",
@@ -35,10 +37,12 @@
     "PAL-005: `.pallaquino/` in the main checkout is an untracked self-install identical to the tracked framework except `tests/`; the tracked source is canonical and the self-install was not modified. Confidence: high.",
     "PAL-005: Phase 1 ships as minor version 0.3.0 (new commands and flags, backward-compatible contracts). Confidence: medium.",
     "PAL-011:",
-    "PAL-012:"
+    "PAL-012:",
+    "PAL-014:"
   ],
   "unverified": [
-    "NOT_RECORDED"
+    "full validate with Git identity in this checkout (local identity unset; enforced in CI)",
+    "academy in browsers other than Chromium and with screen readers"
   ],
   "breakage_risks": [
     "Stack snapshot verified 2026-10-14; it becomes STALE after 2026-11-13 and must be re-verified.",
@@ -72,21 +76,28 @@
   ],
   "current": {
     "schema_version": 1,
-    "timestamp": "2026-10-15T00:18:56+00:00",
+    "timestamp": "2026-10-15T00:25:28+00:00",
     "task": "PAL-014",
     "stage": "HANDOFF",
-    "git_head": "4e77c50a4a8bb192474165f54fec82a321248093",
+    "git_head": "c20b2be35e5acbd4d603dee87ea466671554b56a",
     "git_diff": [
+      " M universal_ai_fullstack_orchestrator/continuity/state/ASSUMPTIONS.md",
       " M universal_ai_fullstack_orchestrator/continuity/state/CURRENT_TASK.md",
       " M universal_ai_fullstack_orchestrator/continuity/state/PIPELINE_STATE.md",
-      " M universal_ai_fullstack_orchestrator/continuity/state/PROJECT_STATE.md",
-      " M universal_ai_fullstack_orchestrator/continuity/state/TASK_BOARD.md",
-      " M universal_ai_fullstack_orchestrator/continuity/state/TEST_STATUS.md"
+      " M universal_ai_fullstack_orchestrator/continuity/state/TECHNICAL_DEBT.md",
+      " M universal_ai_fullstack_orchestrator/continuity/state/TEST_STATUS.md",
+      "?? universal_ai_fullstack_orchestrator/evidence/architecture_fitness-2026-10-15T00-22-26+00-00.json",
+      "?? universal_ai_fullstack_orchestrator/evidence/docs_validation-2026-10-15T00-24-56+00-00.json",
+      "?? universal_ai_fullstack_orchestrator/evidence/integrity-2026-10-15T00-22-22+00-00.json",
+      "?? universal_ai_fullstack_orchestrator/evidence/lint_typecheck-2026-10-15T00-22-21+00-00.json",
+      "?? universal_ai_fullstack_orchestrator/evidence/release_integrity-2026-10-15T00-22-26+00-00.json",
+      "?? universal_ai_fullstack_orchestrator/evidence/security_check-2026-10-15T00-22-25+00-00.json",
+      "?? universal_ai_fullstack_orchestrator/evidence/test-2026-10-15T00-23-54+00-00.json"
     ],
     "evidence": [],
     "confidence": "medium",
-    "checksum": "d2b1495ce417d653b6626aa5d3e007ad5df89a2f5b4da6afa6f7df0d808792e1"
+    "checksum": "cd577eae40e8bd3923c636fb061a5646320047751885148c3f3160e469182722"
   },
-  "next_action": "Owner decides Q-8: who runs the academy user-testing protocol (docs/learning/UX_TEST_PROTOCOL.md) and when (PAL-015); re-verify the stack before 2026-11-13",
-  "confidence": "high"
+  "next_action": "Owner decides Q-8: who runs the academy user-testing protocol (docs/learning/UX_TEST_PROTOCOL.md) and when (PAL-015); before 2026-11-13 re-verify the stack snapshot (PAL-006 procedure)",
+  "confidence": "medium"
 }

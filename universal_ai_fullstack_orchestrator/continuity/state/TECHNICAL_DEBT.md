@@ -23,3 +23,8 @@
   - Starlight's search button keeps an accessible-name mismatch (H-11, upstream).
 - Test-command detection covers only `tests/test*.py` and `package.json` scripts (audit H-7).
 - `docs/DEMO.md` shows 0.3.0 figures (audit H-8).
+- Release packaging includes `evidence/`, so any evidence record written between two builds changes the archive hash. That happened while
+  building 0.5.1. Build twice in a row first, then record the evidence; alternatively, exclude records created after the build or package
+  a fixed manifest of files.
+- Continuity changes after a release (for example, recording the publication) make the repository framework tree differ from the
+  published ZIP. That is expected, but it is not flagged anywhere.

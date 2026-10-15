@@ -62,5 +62,15 @@
   - Academy build and validate green;
   - GitHub Release assets downloaded and checked with `sha256sum -c` (OK);
   - live academy pages show 0.5.1.
+- Session close on `main` `c20b2be` (2026-10-15 UTC, Windows 11, Python 3.11.15, Node 24.15.0):
+  - 243 tests OK, 6 skipped (`evidence/test-2026-10-15T00-23-54+00-00.json`);
+  - compileall (`evidence/lint_typecheck-2026-10-15T00-22-21+00-00.json`);
+  - integrity validation (`evidence/integrity-2026-10-15T00-22-22+00-00.json`);
+  - secret scan, 0 findings (`evidence/security_check-2026-10-15T00-22-25+00-00.json`);
+  - architecture fitness (`evidence/architecture_fitness-2026-10-15T00-22-26+00-00.json`);
+  - 0.5.1 ZIP integrity (`evidence/release_integrity-2026-10-15T00-22-26+00-00.json`);
+  - academy `npm run ci` (`evidence/docs_validation-2026-10-15T00-24-56+00-00.json`);
+  - `stack` reports ok (snapshot 1 day old);
+  - full `validate`: only `validate_git_authorship` fails (local identity unset in this checkout; applied in CI).
 - Updated: 2026-10-15
 - Confidence: high
