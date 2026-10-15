@@ -1,5 +1,15 @@
 # Open questions
 
+- Q-7 (open, non-blocking, 2026-10-14): publish a 0.5.1 patch release with the H-6 fix (PAL-014)? It needs owner approval (tag and GitHub Release).
+- Q-8 (open, non-blocking): who runs the user-testing sessions of `docs/learning/UX_TEST_PROTOCOL.md`, and when (PAL-015)?
+- Q-9 (open, non-blocking): report H-11 (the Starlight search button's accessible name) upstream to Starlight?
+- Resolved 2026-10-14 in the PAL-012/013 session, each by the owner's "SI HAZLO":
+  - push and pull request for the academy, then merge after green CI (PR #8);
+  - enable GitHub Pages and deploy;
+  - fix H-6 (PR #9);
+  - simulator fix and redeploy (PR #10);
+  - delete merged branches;
+  - fast-forward the local `main`.
 - None blocking. Resolved on 2026-10-14 by the repository owner ("SI HAZLO") in the PAL-011 session:
   - Q-4 APPROVED and done: `mcp` 2.3.0 installed in an isolated scratch venv; interop tests 5/5.
   - Q-5 APPROVED: publish 0.5.0: push `feat/v0.5.0-extensions`, open the pull request, merge after green CI, tag `v0.5.0` and publish the

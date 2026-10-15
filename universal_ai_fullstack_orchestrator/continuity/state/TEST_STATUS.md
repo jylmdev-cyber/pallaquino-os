@@ -32,5 +32,23 @@
   - 243 tests OK, 6 skipped (`evidence/test-2026-10-14T23-33-18+00-00.json`);
   - the new regression test fails without the fix;
   - the previous run (`evidence/test-2026-10-14T23-31-18+00-00.json`) hit the known WinError 32 WAL-cleanup flake in a tearDown.
+- Session close on `main` `fc42622` (2026-10-14, Windows 11, Python 3.11.15, Node 24.15.0):
+  - framework: 243 tests OK, 6 skipped (`evidence/test-2026-10-14T23-57-44+00-00.json`);
+  - compileall (`evidence/lint_typecheck-2026-10-14T23-55-46+00-00.json`);
+  - integrity validation (`evidence/integrity-2026-10-14T23-55-46+00-00.json`);
+  - secret scan, 0 findings (`evidence/security_check-2026-10-14T23-55-51+00-00.json`);
+  - architecture fitness (`evidence/architecture_fitness-2026-10-14T23-55-51+00-00.json`);
+  - committed 0.5.0 ZIP integrity (`evidence/build-2026-10-14T23-55-52+00-00.json`; this verifies the existing archive, it is not a new
+    release build);
+  - academy `npm run ci` (`evidence/docs_validation-2026-10-14T23-58-40+00-00.json`).
+- GitHub CI on PRs #8, #9 and #10: CI (Python 3.11, 3.14) and Academy (build and validate) green; Academy deploy runs 38655034166 and
+  38655943918 green.
+- Live site checks (built-in browser, 2026-10-14): pages 200, unknown path 404, Pagefind search, terminal replay and module-folder rule, and
+  local progress persisting across navigation (test data cleared afterwards).
+- Not verified:
+  - the full `validate` with Git identity in this checkout (local identity unset; CI applies it);
+  - real-user testing;
+  - other browsers than the desktop app's built-in Chromium;
+  - screen readers (only axe-core automated checks).
 - Updated: 2026-10-14
 - Confidence: high

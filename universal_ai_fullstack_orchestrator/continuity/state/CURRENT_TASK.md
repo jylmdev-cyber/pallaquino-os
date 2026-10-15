@@ -25,7 +25,8 @@
 - Acceptance: the 15 criteria of request §25.
 - Status (2026-10-14): owner-approved and published. PR #8 merged (`b9ec3ea`) after green CI. GitHub Pages enabled with the Actions source;
   the Academy workflow was run with `deploy=true` (run 38655034166, both jobs green), and the live site was checked (pages 200, unknown
-  path 404, search index served, terminal replay working). The follow-up simulator fix is PAL-012-F1.
+  path 404, search index served, terminal replay working). Follow-up PAL-012-F1 (simulator) merged as PR #10 (`fc42622`) and redeployed
+  (run 38655943918). Session closed 2026-10-14; see `continuity/HANDOFF.json`.
   - `academy/`: 64 content pages, including 46 lessons in 9 routes, 10 quizzes, 2 terminal challenges, the mandatory first-install
     tutorial, practice, reference (generated), video scripts and the English entry page.
   - Every taught command is checked against the real CLI parser (133 commands).
@@ -35,4 +36,20 @@
     (`evidence/test-2026-10-14T23-16-55+00-00.json`).
   - Documentation audit: 11 findings. H-6, a non-ASCII Git identity defect on Windows in `core.run_git`, was fixed separately by PAL-013
     (PR #9).
-- Confidence: high for content accuracy and local verification; deployment and user testing not performed
+- Acceptance (request §25), with the evidence for each:
+  1. Local installation documented. Every step was executed in a clean clone and a fresh project.
+  2. Taught commands exist. 133 commands are checked against argparse by `validate-content`.
+  3. Navigation works. Links are validated, and the live site was checked by hand.
+  4. Search works. A Pagefind query on the live site returned 12 results.
+  5. Responsive. Axe sweep at 375 px, with no horizontal overflow.
+  6. Dark mode works. Axe sweep in the dark and light themes.
+  7. Exercises give feedback. Quiz and terminal component tests.
+  8. The simulator runs nothing dangerous. Blocked commands and operators are tested, and there is no shell or backend.
+  9. Local progress persists. Unit tests, plus the live site: a completed lesson survived navigation; the test data was then cleared.
+  10. Internal links validated. 11448 links.
+  11. Versions and capabilities distinguished. Lesson `since` and `status` fields and the versions page.
+  12. Accessible components. axe in jsdom and in the browser; the only remaining finding is the upstream H-11.
+  13. The static build succeeds. 127 pages, locally and in CI.
+  14. No paid services. GitHub Pages is free and nothing else is external.
+  15. A maintenance guide exists: `docs/learning/MAINTENANCE.md`.
+- Confidence: high for content accuracy, local, CI and live verification. User testing has not been run (protocol only).
