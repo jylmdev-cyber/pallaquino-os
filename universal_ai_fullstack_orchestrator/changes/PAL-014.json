@@ -35,5 +35,9 @@
   "decisions": [
     "patch release: only the H-6 fix and documentation; the academy ships in the repository, not in the framework ZIP"
   ],
-  "commits": []
+  "commits": [
+    "47337c0012318691fb78bc7d8cb0b9751b70f6d7",
+    "074740f7f1f7e92dbcd14792e0105a612a8dd4cd",
+    "68c9fe840c67d50b397ef905a58898762c409a8c"
+  ]
 }
