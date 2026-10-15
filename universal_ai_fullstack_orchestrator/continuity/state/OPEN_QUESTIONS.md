@@ -1,6 +1,6 @@
 # Open questions
 
-- Q-7 (open, non-blocking, 2026-10-14): publish a 0.5.1 patch release with the H-6 fix (PAL-014)? It needs owner approval (tag and GitHub Release).
+- Q-7 RESOLVED (2026-10-14): the owner approved publishing 0.5.1 with the H-6 fix (PAL-014).
 - Q-8 (open, non-blocking): who runs the user-testing sessions of `docs/learning/UX_TEST_PROTOCOL.md`, and when (PAL-015)?
 - Q-9 (open, non-blocking): report H-11 (the Starlight search button's accessible name) upstream to Starlight?
 - Resolved 2026-10-14 in the PAL-012/013 session, each by the owner's "SI HAZLO":

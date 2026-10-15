@@ -1,39 +1,30 @@
 {
   "schema_version": 1,
-  "timestamp": "2026-10-15T00:00:06+00:00",
-  "task": "PAL-012",
-  "requested": "build the PALLAQUINO Interactive Learning Academy, a static learning portal with tutorials, a terminal simulator, visual",
+  "timestamp": "2026-10-15T00:09:36+00:00",
+  "task": "PAL-014",
+  "requested": "publish PALLAQUINO 0.5.1, a patch release with the PAL-013 fix for audit H-6 (non-ASCII Git identity on Windows).",
   "implemented": [
-    "../academy/ (Astro + Starlight + Vue portal: 64 content pages, 11 Vue islands, 5 Astro components/overrides, lib/, scripts/, tests/)",
-    "../academy/scripts/generate_data.py",
-    "../academy/scripts/capture_transcripts.py",
-    "../academy/scripts/validate-content.mjs",
-    "../academy/scripts/validate-links.mjs",
-    "../academy/scripts/validate-a11y.mjs",
-    "../docs/adr/ADR-0017-learning-academy-stack.md",
-    "../docs/learning/DOCUMENTATION_AUDIT.md",
-    "../docs/learning/ARCHITECTURE.md",
-    "../docs/learning/MAINTENANCE.md",
-    "../docs/learning/WRITING_TUTORIALS.md",
-    "../docs/learning/PUBLISHING.md",
-    "../docs/learning/CONTENT_CATALOG.md",
-    "../docs/learning/LEARNING_ROADMAP.md",
-    "../docs/learning/UX_TEST_PROTOCOL.md",
-    "../.github/workflows/academy.yml",
-    "changes/PAL-012.json",
+    "releases/0.5.1.json",
+    "../docs/releases/RELEASE_V051.md",
+    "changes/PAL-014.json",
+    "pallaquino_cli/core.py (VERSION)",
+    "pallaquino_cli/__init__.py",
+    "pyproject.toml",
+    "manifest.json",
+    "README.md",
     "../README.md",
     "../CHANGELOG.md",
-    "../.gitignore",
-    "planning/task_graph.json",
-    "planning/execution_plan.json",
-    "continuity/state/*.md"
+    "../MIGRATION_GUIDE.md",
+    "../CITATION.cff",
+    "../docs/GITHUB_RELEASE_CHECKLIST.md",
+    "../academy/ (version texts, generated data, recorded transcripts)",
+    "planning/*.json",
+    "continuity/state/*.md",
+    "../PALLAQUINO_autonomous_engineering_os.zip",
+    "../PALLAQUINO_autonomous_engineering_os.sha256"
   ],
   "missing": [
-    "0.5.1 release containing the H-6 fix (published 0.5.0 still has it)",
-    "academy user-testing sessions (protocol only, PAL-015)",
-    "English translation of the academy lessons",
-    "recorded videos (scripts only)",
-    "verified Django and Nuxt end-to-end tutorials"
+    "NOT_RECORDED"
   ],
   "assumed": [
     "The requested portable root is `universal_ai_fullstack_orchestrator/` inside the provided workspace. Confidence: high.",
@@ -46,8 +37,7 @@
     "PAL-012:"
   ],
   "unverified": [
-    "full validate with Git identity in this checkout (local identity unset; enforced in CI)",
-    "academy in browsers other than the desktop app's Chromium and with screen readers"
+    "Linux CI for the release branch (runs on the pull request)"
   ],
   "breakage_risks": [
     "Stack snapshot verified 2026-10-14; it becomes STALE after 2026-11-13 and must be re-verified.",
@@ -72,7 +62,7 @@
     "Academy: the English edition is structure only (Spanish fallback with a notice). Videos are scripts only, and no user testing has been"
   ],
   "open_questions": [
-    "Q-7 (open, non-blocking, 2026-10-14): publish a 0.5.1 patch release with the H-6 fix (PAL-014)? It needs owner approval (tag and GitHub Release).",
+    "Q-7 RESOLVED (2026-10-14): the owner approved publishing 0.5.1 with the H-6 fix (PAL-014).",
     "Q-8 (open, non-blocking): who runs the user-testing sessions of `docs/learning/UX_TEST_PROTOCOL.md`, and when (PAL-015)?",
     "Q-9 (open, non-blocking): report H-11 (the Starlight search button's accessible name) upstream to Starlight?",
     "Resolved 2026-10-14 in the PAL-012/013 session, each by the owner's \"SI HAZLO\":",
@@ -81,35 +71,35 @@
   ],
   "current": {
     "schema_version": 1,
-    "timestamp": "2026-10-14T23:59:50+00:00",
-    "task": "PAL-012",
+    "timestamp": "2026-10-15T00:09:36+00:00",
+    "task": "PAL-014",
     "stage": "HANDOFF",
-    "git_head": "fc4262207de36c63ff2b289abb21668dcd88113f",
+    "git_head": "074740f7f1f7e92dbcd14792e0105a612a8dd4cd",
     "git_diff": [
-      " M universal_ai_fullstack_orchestrator/continuity/state/ARCHITECTURE_STATE.md",
-      " M universal_ai_fullstack_orchestrator/continuity/state/ASSUMPTIONS.md",
+      " M academy/src/content/docs/instalacion/configurar-proyecto.mdx",
+      " M academy/src/content/docs/videos/primer-plan.mdx",
+      " M academy/src/data/transcripts.json",
       " M universal_ai_fullstack_orchestrator/continuity/state/CURRENT_TASK.md",
-      " M universal_ai_fullstack_orchestrator/continuity/state/EXTERNAL_DEPENDENCIES.md",
       " M universal_ai_fullstack_orchestrator/continuity/state/KNOWN_ISSUES.md",
       " M universal_ai_fullstack_orchestrator/continuity/state/OPEN_QUESTIONS.md",
       " M universal_ai_fullstack_orchestrator/continuity/state/PIPELINE_STATE.md",
       " M universal_ai_fullstack_orchestrator/continuity/state/PROJECT_STATE.md",
       " M universal_ai_fullstack_orchestrator/continuity/state/TASK_BOARD.md",
-      " M universal_ai_fullstack_orchestrator/continuity/state/TECHNICAL_DEBT.md",
       " M universal_ai_fullstack_orchestrator/continuity/state/TEST_STATUS.md",
-      "?? .claude/",
-      "?? universal_ai_fullstack_orchestrator/evidence/architecture_fitness-2026-10-14T23-55-51+00-00.json",
-      "?? universal_ai_fullstack_orchestrator/evidence/build-2026-10-14T23-55-52+00-00.json",
-      "?? universal_ai_fullstack_orchestrator/evidence/docs_validation-2026-10-14T23-58-40+00-00.json",
-      "?? universal_ai_fullstack_orchestrator/evidence/integrity-2026-10-14T23-55-46+00-00.json",
-      "?? universal_ai_fullstack_orchestrator/evidence/lint_typecheck-2026-10-14T23-55-46+00-00.json",
-      "?? universal_ai_fullstack_orchestrator/evidence/security_check-2026-10-14T23-55-51+00-00.json",
-      "?? universal_ai_fullstack_orchestrator/evidence/test-2026-10-14T23-57-44+00-00.json"
+      " M universal_ai_fullstack_orchestrator/planning/execution_plan.json",
+      " M universal_ai_fullstack_orchestrator/planning/task_graph.json",
+      "?? universal_ai_fullstack_orchestrator/changes/PAL-014.json",
+      "?? universal_ai_fullstack_orchestrator/evidence/architecture_fitness-2026-10-15T00-06-49+00-00.json",
+      "?? universal_ai_fullstack_orchestrator/evidence/docs_validation-2026-10-15T00-08-59+00-00.json",
+      "?? universal_ai_fullstack_orchestrator/evidence/integrity-2026-10-15T00-06-45+00-00.json",
+      "?? universal_ai_fullstack_orchestrator/evidence/lint_typecheck-2026-10-15T00-06-44+00-00.json",
+      "?? universal_ai_fullstack_orchestrator/evidence/security_check-2026-10-15T00-06-48+00-00.json",
+      "?? universal_ai_fullstack_orchestrator/evidence/test-2026-10-15T00-08-18+00-00.json"
     ],
     "evidence": [],
     "confidence": "medium",
-    "checksum": "84414c678709d0abff43deead24df744fa4eae09a6b3f613baf981b5601d0718"
+    "checksum": "9320801131bd12367f0460fa38cf3c73006a458717906b45854158e2f48d48d2"
   },
-  "next_action": "Owner decides Q-7: approve releasing 0.5.1 with the PAL-013 fix (bump version, rebuild ZIP with package_release.py, PR, tag v0.5.1, GitHub Release) or defer to 0.6.0",
+  "next_action": "Push release/0.5.1, open the PR, merge after green CI, tag v0.5.1 on the release head, publish the GitHub Release with the ZIP and SHA-256, redeploy the academy",
   "confidence": "medium"
 }

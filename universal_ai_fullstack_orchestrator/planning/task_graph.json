@@ -633,6 +633,82 @@
         "BUILD",
         "CODE_REVIEW"
       ]
+    },
+    {
+      "id": "PAL-013",
+      "title": "Decode Git output as UTF-8 so non-ASCII identities match on Windows (audit H-6)",
+      "domain": "governance",
+      "dependencies": [
+        "PAL-012"
+      ],
+      "blocked_by": [],
+      "parallelizable": false,
+      "priority": "P1",
+      "risk": "LOW",
+      "agents": [
+        "framework_maintainer",
+        "qa_engineer"
+      ],
+      "skills": [
+        "testing_strategy_expert"
+      ],
+      "files": [
+        "pallaquino_cli/core.py",
+        "scripts/configure_git_identity.py",
+        "tests/test_git_identity.py"
+      ],
+      "acceptance_criteria": [
+        "identity --apply-local with a non-ASCII name reports matches true on Windows",
+        "regression test fails without the fix",
+        "full suite green"
+      ],
+      "quality_gates": [
+        "TEST",
+        "LINT_TYPECHECK",
+        "CODE_REVIEW"
+      ]
+    },
+    {
+      "id": "PAL-014",
+      "title": "Release PALLAQUINO 0.5.1 (H-6 fix)",
+      "domain": "release",
+      "dependencies": [
+        "PAL-013"
+      ],
+      "blocked_by": [],
+      "parallelizable": false,
+      "priority": "P1",
+      "risk": "LOW",
+      "agents": [
+        "release_manager",
+        "qa_engineer"
+      ],
+      "skills": [
+        "testing_strategy_expert"
+      ],
+      "files": [
+        "pallaquino_cli/core.py",
+        "pallaquino_cli/__init__.py",
+        "pyproject.toml",
+        "manifest.json",
+        "releases/0.5.1.json",
+        "../CHANGELOG.md",
+        "../MIGRATION_GUIDE.md",
+        "../docs/releases/RELEASE_V051.md",
+        "../PALLAQUINO_autonomous_engineering_os.zip"
+      ],
+      "acceptance_criteria": [
+        "version 0.5.1 everywhere it is declared",
+        "reproducible ZIP rebuilt and verified",
+        "CI green; tag v0.5.1 and GitHub Release with ZIP and SHA-256 after owner approval"
+      ],
+      "quality_gates": [
+        "TEST",
+        "LINT_TYPECHECK",
+        "SECURITY_CHECK",
+        "BUILD",
+        "CODE_REVIEW"
+      ]
     }
   ]
 }

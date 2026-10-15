@@ -480,6 +480,40 @@
         "BUILD",
         "CODE_REVIEW"
       ]
+    },
+    {
+      "task": "PAL-014",
+      "agent": "release_manager",
+      "skills": [
+        "testing_strategy_expert"
+      ],
+      "inputs": [
+        "owner approval (2026-10-14)",
+        "main with PAL-013 merged"
+      ],
+      "expected_files": [
+        "releases/0.5.1.json",
+        "../docs/releases/RELEASE_V051.md",
+        "../PALLAQUINO_autonomous_engineering_os.zip"
+      ],
+      "dependencies": [
+        "PAL-013"
+      ],
+      "commands": [
+        "python -m unittest discover -s tests",
+        "python scripts/package_release.py",
+        "python scripts/verify_zip_integrity.py"
+      ],
+      "tests": [
+        "full suite, demo, archive integrity"
+      ],
+      "gates": [
+        "TEST",
+        "LINT_TYPECHECK",
+        "SECURITY_CHECK",
+        "BUILD",
+        "CODE_REVIEW"
+      ]
     }
   ]
 }

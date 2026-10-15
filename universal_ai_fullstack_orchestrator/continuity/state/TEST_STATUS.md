@@ -50,5 +50,12 @@
   - real-user testing;
   - other browsers than the desktop app's built-in Chromium;
   - screen readers (only axe-core automated checks).
-- Updated: 2026-10-14
+- PAL-014 release gates for 0.5.1 (2026-10-15 UTC):
+  - 243 tests OK, 6 skipped (`evidence/test-2026-10-15T00-08-18+00-00.json`);
+  - compileall (`evidence/lint_typecheck-2026-10-15T00-06-44+00-00.json`);
+  - integrity validation (`evidence/integrity-2026-10-15T00-06-45+00-00.json`);
+  - secret scan, 0 findings (`evidence/security_check-2026-10-15T00-06-48+00-00.json`);
+  - architecture fitness (`evidence/architecture_fitness-2026-10-15T00-06-49+00-00.json`);
+  - academy `npm run ci` (`evidence/docs_validation-2026-10-15T00-08-59+00-00.json`).
+- Updated: 2026-10-15
 - Confidence: high
